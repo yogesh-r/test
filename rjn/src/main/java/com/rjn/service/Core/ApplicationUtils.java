@@ -35,4 +35,12 @@ public interface ApplicationUtils {
 	VendorLead getLeadsByVendorAndUserId(long userId, String vendorId);
 	
 	public boolean matchPassword(String password,String encriptedPassword);
+	
+	
+	
+	void bulkCategoryInsert(List<ProductCategory> productCategoryList);
+	
+	
+	
+	
 }

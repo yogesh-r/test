@@ -35,4 +35,18 @@ public class ProductCategoryDaoImpl extends AbstractDao<Integer, ProductCategory
 		return (ProductCategory) criteria.uniqueResult();
 	}
 
+	@Override
+	public void saveInBulk(List<ProductCategory> productCategoryList) {
+		int i = 0;
+		for (ProductCategory pc : productCategoryList ) {
+			persist(pc);
+			if (i % 30 == 0) {
+			    // flush a batch of inserts and release memory:
+			    getSession().flush();
+			    getSession().clear();
+			}
+			i++;
+		}
+	}
+
 }

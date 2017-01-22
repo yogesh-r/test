@@ -2,6 +2,7 @@ package com.rjn.controller.admin;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -163,6 +164,26 @@ public class AdminController {
 		utils.saveCategory(productCategory);
 		return "admin/admin_register_category";
 	}
+	
+	@RequestMapping(value = { "/bulk-register-category" }, method = RequestMethod.POST)
+	public String bulkSaveCategory(ModelMap model, @RequestParam("excelfile") MultipartFile excelfile) {
+		try {
+			String fileName = excelfile.getOriginalFilename();
+			List<ExcelFile> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);
+			List<ProductCategory> productCategories = new ArrayList<ProductCategory>();
+			for (ExcelFile e : thisFile) {
+				ProductCategory pc = new ProductCategory();
+				pc.setName(e.getCol1()); 
+				pc.setDescription(e.getCol2());
+				productCategories.add(pc);
+			}
+			utils.bulkCategoryInsert(productCategories);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/admin_register_category";
+	}
+	
 
 	@RequestMapping(value = { "/product-category-list" }, method = RequestMethod.GET)
 	public String productCategoryList(ModelMap model) {

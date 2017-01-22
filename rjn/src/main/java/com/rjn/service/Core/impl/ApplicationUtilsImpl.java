@@ -136,5 +136,11 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return passwordEncoder.matches(password, encriptedPassword);
 	}
+
+	@Override
+	public void bulkCategoryInsert(List<ProductCategory> productCategoryList) {
+		productCategoryDao.saveInBulk(productCategoryList);
+		
+	}
 }
 

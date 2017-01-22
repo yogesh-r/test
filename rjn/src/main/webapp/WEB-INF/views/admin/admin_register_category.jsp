@@ -38,8 +38,10 @@
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
-			<label>upload excel</label> <input type="file" /> <input
-				type="button" value="Upload" />
+			<form action="${rc.getContextPath()}/admin/bulk-register-category" method="POST" enctype="multipart/form-data">
+				<label>upload excel</label> <input type="file" name="excelfile" /> 
+				<input type="submit" value="Upload" />
+			</form>
 		</div>
 		<div class="col-md-3"></div>
 	</div>

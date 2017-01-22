@@ -11,4 +11,6 @@ public interface ProductCategoryDao {
 	List<ProductCategory> getAllCategory();
 
 	ProductCategory getCategory(int productCategoryId);
+	
+	void saveInBulk(List<ProductCategory> productCategoryList);
 }
