@@ -1,0 +1,583 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/**
+ * Site Header
+ */
+
+.site-header {
+    background-color: #fff;
+    position: relative;
+}
+.site-header .brand-logo {
+    width: 200px;
+}
+
+/**
+ * Navbar
+ */
+
+.navbar {
+    margin-bottom: 0;
+    padding: 10px 0;
+    border: 0;
+}
+.navbar-default {
+    background-color: #fff;
+    border-color: inherit;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand {
+    padding: 10px 15px;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #000;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.active>a:hover {
+    color: #da0001;
+    background-color: transparent;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus {
+    color: #000;
+    background-color: transparent;
+}
+.nav.navbar-nav li a.navbar-btn {
+    padding: 6px 15px;
+}
+.nav.navbar-nav li:nth-child(1) a.navbar-btn {
+    transition: all .5s;
+}
+.nav.navbar-nav li:nth-child(1) a.navbar-btn:hover {
+    background: #1E1E1E;
+    color: #fff;
+    border-color: transparent;
+    transition: all .5s;
+}
+.nav.navbar-nav li:nth-child(2) a.navbar-btn {
+    background: #da0001;
+    color: #fff;
+    border-color: transparent;
+    transition: all .5s;
+}
+.nav.navbar-nav li:nth-child(2) a.navbar-btn:hover {
+    background: #1E1E1E;
+    transition: all .5s;
+}
+.navbar-actions li {
+    display: inline-block;
+    margin-left: 12px;
+}
+
+/**
+ * Main Contents
+ */
+
+.main-contents {
+    position: relative;
+    margin-top: 71px;
+}
+.main-contents .contact-page {
+    padding: 30px 0 40px 0;
+}
+
+/**
+ * ApnaOffice Search
+ */
+
+.apna-office-search {
+    position: relative;
+    background: url('../images/home/apna-office-search.jpg') no-repeat;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 450px;
+}
+.apna-office-search-form {
+    background: rgba(23, 23, 23, 0.75);
+    width: 100%;
+    height: 140px;
+    position: absolute;
+    bottom: 0;
+}
+.apna-office-search-form form {
+    position: relative;
+    padding: 15px 0;
+}
+.apna-office-search-form .title, .apna-office-search-form .description {
+    color: #fff;
+}
+.apna-office-search-form .title {
+    font-size: 2em;
+}
+.apna-office-search-form .description {
+    text-transform: none;
+    font-size: 0.85em;
+}
+.apna-office-search-form select.form-control {
+    background: transparent;
+    color: #ddd;
+    height: 40px;
+}
+.apna-office-search-form button[type="submit"] {
+    background: #DA0001;
+    color: #f9f9f9;
+    border-color: transparent;
+    height: 40px;
+    transition: all .5s;
+}
+.apna-office-search-form button[type="submit"]:hover {
+    background: #1E1E1E;
+    transition: all .5s;
+}
+
+/**
+ * Advert Cards
+ */
+
+.advert-cards-holder {
+    padding: 30px 0;
+}
+.advert-card {
+    padding: 30px;
+    background: #fff;
+    color: #000;
+    box-shadow: 0px 2px 6px #ddd;
+}
+
+/**
+ * Popular Cities
+ */
+
+.popular-cities {
+    background: #f7f7f7;
+    padding: 35px 0 20px 0;
+}
+.popular-cities .title {
+    margin-bottom: 30px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #da0001;
+    display: inline-block;
+    color: #000;
+}
+.popular_city {
+    position: relative;
+    margin-bottom: 35px;
+}
+.popular_city img {
+    width: 100%;
+    max-width: 100%;
+}
+.popular_city .overlay_text {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    display: block;
+    width: 100%;
+    background: rgba(249, 249, 249, .81);
+    padding: 7px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .95em;
+}
+
+/**
+ * Our Partners
+ */
+
+.our_partners {
+    background: #fdfdfd;
+    padding: 35px 0 55px 0;
+}
+.our_partners .title {
+    margin-bottom: 30px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #da0001;
+    display: inline-block;
+    color: #000;
+}
+#our_partners.carousel {
+    height: 45px;
+    overflow: hidden;
+}
+#our_partners.carousel .item img {
+    height: 45px;
+}
+#our_partners .carousel-inner .active.left {
+    left: -16.66666666666667%;
+}
+#our_partners .carousel-inner .next {
+    left: 16.66666666666667%;
+}
+#our_partners .carousel-inner .prev {
+    left: -16.66666666666667%;
+}
+#our_partners .carousel-control {
+    width: 4%;
+}
+#our_partners .carousel-control.left, #our_partners .carousel-control.right {
+    margin-left: 15px;
+    background-image: none;
+}
+
+/**
+ * Form Styles
+ */
+
+.form-group.col-md-6, .form-group.col-md-12 {
+    padding: 0 15px 0 0;
+}
+
+/**
+ * Buttons
+ */
+
+.btn-default:hover, .btn-default-alt {
+    background: #1E1E1E;
+    color: #fff;
+    border-color: transparent;
+    transition: all .5s;
+}
+.btn-default-alt:hover {
+    color: #ededed;
+    background: #333;
+}
+
+/**
+ * Login Page
+ */
+
+.login {
+    padding: 20px 0;
+}
+.login .form-control {
+  height: 34px;
+}
+.social-logins {
+    margin: 20px -15px 40px -15px;
+}
+.social-logins .btn {
+    line-height: 30px;
+    color: #f9f9f9;
+    font-size: 12px;
+}
+.social-logins .btn .fa {
+    font-size: 1.5em;
+    margin-right: 5px;
+}
+.social-logins .facebook {
+    background-color: #3a5795;
+}
+.social-logins .gplus {
+    background-color: #d84539;
+}
+.forgot-password-link, .forgot-password-link:hover {
+    margin-left: 15px;
+    color: #000;
+}
+.apnaoffice-benefits {
+    background: #f7f7f7;
+    padding: 20px 40px;
+    color: #000;
+    height: auto;
+}
+.apnaoffice-benefits .break-line {
+    width: 40px;
+    height: 3px;
+    background-color: #333;
+    margin: 0 auto;
+}
+.apnaoffice-benefits ul {
+    list-style: none;
+    margin: 45px 0 0 0;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+.apnaoffice-benefits ul li {
+    padding: 0 0 20px 75px;
+    margin-bottom: 20px;
+}
+.apnaoffice-benefits ul li.search {
+    background: url('../images/login/search.png') no-repeat;
+    background-size: 48px 48px;
+}
+.apnaoffice-benefits ul li.budget {
+    background: url('../images/login/budget.png') no-repeat;
+    background-size: 48px 48px;
+}
+.apnaoffice-benefits ul li.plug-play {
+    background: url('../images/login/plug-play.png') no-repeat;
+    background-size: 58px 45px;
+}
+
+/**
+ * Register Page
+ */
+
+.register {
+    padding: 20px 0;
+}
+.page {
+    padding: 20px 0;
+}
+.page p {
+    margin: 15px 0;
+    line-height: 1.7em;
+}
+
+/**
+ * List your space page
+ */
+
+.list-your-space {
+    padding: 25px 0;
+}
+
+/**
+ * FAQs page
+ */
+
+.faqs {
+    padding: 25px 0;
+}
+
+/**
+ * Banner Image
+ */
+
+.banner-img {
+    margin-top: 71px;
+}
+.banner-img img {
+    margin: 0 auto;
+}
+
+/**
+ * Why Us Page
+ */
+
+.why-us {
+    padding-bottom: 40px;
+}
+.benefit {
+    margin: 20px 0;
+}
+.benefit img {
+    width: 100px;
+}
+.benefit-name {
+    margin: 0 0 10px 0;
+}
+
+/**
+ * How it works page
+ */
+
+.how-it-works {
+    padding: 20px 0 40px 0;
+}
+.bs-wizard {
+    margin-top: 40px;
+    padding: 0 0 10px 0;
+}
+.bs-wizard > .bs-wizard-step {
+    padding: 0;
+    position: relative;
+}
+.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {
+    color: #000;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {
+    color: #000;
+    font-size: 14px;
+}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: #da0001;
+    top: 45px;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -15px;
+    border-radius: 50%;
+}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
+    content: ' ';
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+.bs-wizard > .bs-wizard-step > .progress {
+    position: relative;
+    border-radius: 0px;
+    height: 8px;
+    box-shadow: none;
+    margin: 20px 0;
+}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {
+    width: 0px;
+    box-shadow: none;
+    background: #da0001;
+}
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {
+    width: 100%;
+}
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {
+    width: 50%;
+}
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {
+    width: 0%;
+}
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {
+    width: 100%;
+}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {
+    background-color: #f5f5f5;
+}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {
+    opacity: 0;
+}
+.bs-wizard > .bs-wizard-step:first-child > .progress {
+    left: 50%;
+    width: 50%;
+}
+.bs-wizard > .bs-wizard-step:last-child > .progress {
+    width: 50%;
+}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot {
+    pointer-events: none;
+}
+
+/**
+ * Footer
+ */
+
+.site-footer {
+    background: #2E3137;
+    width: 100%;
+    min-height: 290px;
+    color: #ffffff;
+    padding: 25px 0;
+}
+.site-footer a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: all .5s;
+}
+.site-footer a:hover {
+    color: #DA0001;
+    text-decoration: none;
+    transition: all .5s;
+}
+.footer-block .title {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #A8A9AB;
+    display: inline-block;
+}
+.footer-block ul.list-unstyled li {
+    padding: 2px 0;
+}
+.footer-block.brand {
+    padding: 45px 0;
+}
+.footer-block.brand .brand-logo {
+    width: auto;
+    height: 30px;
+}
+.footer-block .social-media {
+    font-size: 1.5em;
+}
+
+/**
+ * Helpers
+ */
+
+.no-gutter > [class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
+.page-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.page-contents {
+    padding: 25px 0;
+}
+
+/**
+ * Media Queries
+ */
+
+@media (max-width: 767px) {
+    /* Navbar */
+    .navbar-actions li {
+        display: inline-block;
+        width: 45%;
+    }
+    .navbar-default .navbar-nav>li>a {
+        color: #000;
+        border-bottom: 1px solid #ddd;
+    }
+    .navbar-nav {
+        margin: 7.5px 0;
+    }
+    /* ApnaOffice Search */
+    .apna-office-search-form {
+        background: rgba(23, 23, 23, 0.75);
+        width: 100%;
+        min-height: 170px;
+        height: auto;
+        position: absolute;
+        top: 0;
+        padding: 55px 10px;
+    }
+    .apna-office-search-form select.form-control {
+        margin: 10px 0;
+    }
+}
+@media (width: 768px) {
+    /* Site Header */
+    .site-header .brand-logo {
+        width: 190px;
+    }
+    /* ApnaOffice Search */
+    .apna-office-search-form {
+        background: rgba(23, 23, 23, 0.75);
+        width: 100%;
+        min-height: 170px;
+        height: auto;
+        position: absolute;
+        top: 0;
+        padding: 25px 10px;
+    }
+    .apna-office-search-form select.form-control {
+        margin: 10px 0;
+    }
+}
+@media (min-width: 768px) {
+    /* Navbar */
+    .navbar-right {
+        margin-right: 0;
+    }
+}
+@media (min-width: 992px) {
+    /* ApnaOffice Search */
+    .apna-office-search-form .col-md-offset-1 {
+        margin-left: 7.5%;
+    }
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<security:global-method-security
+		secured-annotations="enabled" />
+
+	<http pattern="/js/**" security="none" />
+	<http pattern="/template/**" security="none" />
+	<http pattern="/css/**" security="none" />
+	<http pattern="/images/**" security="none" />
+	<http pattern="/img/**" security="none" />
+	<http pattern="/site/**" security="none" />
+	<http pattern="/index.jsp" security="none" />
+
+	<http auto-config="true">
+		<form-login login-page="/user-login.html"
+			default-target-url="/success-login.html" authentication-failure-url="/error-login.html" />
+		<logout logout-success-url="/user-login.html" logout-url="/logout" />
+		<access-denied-handler error-page="/access-denied.html" />
+
+	</http>
+	
+	<!-- http://stackoverflow.com/questions/15217928/spring-security-authentication-and-authorization-using-database/18208419#18208419 -->
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="customUserDetailsService">
+			<password-encoder ref="encoder" />
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="encoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<beans:constructor-arg name="strength" value="11" />
+	</beans:bean>
+
+</beans:beans>

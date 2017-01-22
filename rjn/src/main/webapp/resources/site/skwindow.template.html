@@ -1,0 +1,17 @@
+<div class="skwindow {{windowclass}}" id="window{{windowid}}" ng-show="windowVisible" ng-class="{fullscreen: fullscreen , minimize: minimize}" >
+    <div class="panel panel-default" data-id="windowid" style="margin-top:{{margin}}"> 
+                <div class="panel-heading">
+                   {{title}}
+                    <div class="pull-right action-icons">
+                        <!-- <a href="#" alt="Minimize" title="Minimize" ng-click="minimiseMaximiseWindow();" ng-hide="fullscreen" class="fa fa-minus"></a>
+                        <a href="#" alt="Full Screen" title="Full Screen" ng-click="resizeWindow();" ng-hide="fullscreen"  class="fa fa-square-o"></a>
+                        <a href="#" alt="Filters" title="Filters" ng-show="showOptions" ng-click="flag = !.flag" class="fa fa-filter"></a>
+                        <a href="#" alt="Minimize" title="Minimize" ng-show="fullscreen"  ng-click="resizeWindow();"  class="glyphicon glyphicon-remove-circle"></a> -->
+                    </div>
+                </div> 
+				
+				<div >
+					<div class="panel-body" ng-transclude style="height:{{height}}"></div>
+				</div>
+    </div>
+</div>
