@@ -19,7 +19,8 @@ import com.rjn.service.EmployeeService;
 
 @Controller
 @RequestMapping("/")
-public class AppController {  
+public class AppController
+{  
 
 	@Autowired
 	EmployeeService service;
