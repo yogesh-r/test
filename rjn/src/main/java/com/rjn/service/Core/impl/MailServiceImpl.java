@@ -23,10 +23,8 @@ public class MailServiceImpl implements MailService {
 		MimeMessagePreparator preparator = getMessagePreparator(email);
 		try {
 			javaMailSenderImpl.send(preparator);
-			System.out.println("Message Send...Hurrey");
 			return true;
 		} catch (MailException ex) {
-			System.out.println("Email not send >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> :(");
 			System.err.println(ex.getMessage());
 			return false;
 		}

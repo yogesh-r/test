@@ -109,9 +109,7 @@ public class MemberController {
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
 	public String memberUpdateProfile( @Valid ProfileMaster profileMaster, BindingResult result , ModelMap model) {
-		System.out.println("edit profile member controller"+profileMaster);
 		memberService.saveMemberDetails(profileMaster); 
-		
 		return "member/member-edit-profile"; 
 	}
 	
@@ -122,7 +120,6 @@ public class MemberController {
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public String updateMemberPassword(@Valid ForgetPasswordBean forgetPasswordBean,BindingResult result, ModelMap model) {
-		System.out.println("cntroller"+forgetPasswordBean.getOldPassword());
 		return null; 
 	}
 }

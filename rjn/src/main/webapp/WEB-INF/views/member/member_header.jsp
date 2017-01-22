@@ -89,13 +89,9 @@
 												class="dropdown-toggle"><i class="fa fa-home"></i> Home</a>
 											</li>
 											<li class="dropdown"><a href="" class="dropdown-toggle">
-													<i class="fa fa-gift" aria-hidden="true"></i>Wishlist
+													<i class="fa fa-gift" aria-hidden="true"></i>List
 											</a>
 												<ul class="dropdown-menu" role="menu">
-													<li><a
-														href="${rc.getContextPath()}/member/clear_wishlist">Clear
-															Wishlist</a></li>
-															
 													<li><a
 														href="${rc.getContextPath()}/member/search">Search</a></li>
 															

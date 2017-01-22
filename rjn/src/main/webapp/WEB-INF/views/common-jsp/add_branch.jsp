@@ -13,7 +13,7 @@
 									<div class="col-md-7">
 										<div class="row">
 											<div class="col-md-6">
-												<span>Partner<label></label></span> 
+												<span>Vendor<label></label></span> 
 												<c:choose>
 													<c:when test="${allPartners ne null}">
 														<select
@@ -133,16 +133,6 @@
 							<div class="panel-body">
 								<div class="row" style="margin-bottom: 10px">
 									<div id="locationField">
-										<div style="margin-left: 70px; margin-top: 3px"
-											class="col-sm-2 pull-left">
-											<label> <input id="checkPartnerAddress"
-												onclick="checkAddress();" type="checkbox"
-												style="margin-left: 1em"> <font waight
-												style="margin-left: 5px; font-size: 11px; font-weight: normal">
-													<b>Copy</b> Partner Address
-											</font>
-											</label>
-										</div>
 										<div style="margin-right: 70px" class="col-sm-8 pull-right">
 											<input name="address" value="${thisBranch.address}"
 												id="autocomplete" placeholder="Enter your address"

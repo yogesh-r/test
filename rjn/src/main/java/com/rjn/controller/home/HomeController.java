@@ -21,9 +21,7 @@ public class HomeController {
 	
 	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public String index(ModelMap model) {
-		
 		List<String> keywords = vendorProductService.getKeyWord();
-		System.out.println("keywords >> "+keywords);
 		return "index"; 
 	}
 	

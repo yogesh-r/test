@@ -60,7 +60,6 @@ public class TestQueryDaoImpl extends AbstractDao<Integer, SearchBean> implement
 				" a.land_line, a.location,b.img1,b.img2,b.img3,b.img4,b.img5"+
 				" ORDER BY distance ";
 		
-				System.out.println(" Search without Aminities Query yy1111 >>>>>>>>>>>>>>>>> "+hql); 
 		
 		Query query = getSession().createSQLQuery(hql);
 		List results = query.list();

@@ -47,7 +47,6 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	}
 	
 	public void update(T entity) {
-		System.out.println("Update called >> ");
 		getSession().update(entity);
 	}
 

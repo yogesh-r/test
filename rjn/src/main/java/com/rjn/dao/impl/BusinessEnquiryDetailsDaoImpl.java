@@ -15,15 +15,11 @@ public class BusinessEnquiryDetailsDaoImpl extends AbstractDao<Integer, Business
 
 	@Override
 	public void saveListYourOffice(BusinessEnquiryDetails listSpaceData) {
-		System.out.println("listSpaceData.getId() >> "+listSpaceData.getId()); 
 		if (listSpaceData.getId() <= 0) {
-			System.out.println("if >>");
 			persist(listSpaceData);	
 		}else {
-			System.out.println("else >>");
 			update(listSpaceData);
 		}
-		
 	}
 
 	@Override

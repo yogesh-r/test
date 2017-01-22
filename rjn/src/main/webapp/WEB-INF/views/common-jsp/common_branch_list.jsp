@@ -9,7 +9,7 @@
 				<div class="row">
 					<div class="col-sm-3">
 					
-							<span>Partner<label></label></span>
+							<span>Vendor<label></label></span>
 							<c:choose>
 								<c:when test="${allPartners ne null}">
 									<select

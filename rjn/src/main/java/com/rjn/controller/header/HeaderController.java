@@ -126,9 +126,6 @@ public class HeaderController {
     	thisEmail.setSubject("Test subject");
     	thisEmail.setBody("Test Body enquiry id = "+enquiryId);
     	boolean isEmailSent = mailService.sendEmail(thisEmail);
-    	
-    	System.out.println("isEmailSent >>>> "+isEmailSent);
-    	
     	if (isEmailSent) {
         	BusinessEnquiryDetails thisListSpace = headerService.getBusinessEnquiryByEnquiryId(enquiryId);
         	thisListSpace.setEmailStatus("Sent");

@@ -1,6 +1,4 @@
-<%@include file="../header/vendor_header.jsp"%>
-
-
+<%@include file="member_header.jsp"%>
 <div class="main">
 	<div class="container">
 		<input type='hidden' id='user_id' value=''>

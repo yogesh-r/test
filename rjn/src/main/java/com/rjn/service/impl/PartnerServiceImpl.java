@@ -44,9 +44,7 @@ public class PartnerServiceImpl implements VendorService {
 	@Override 
 	public void savePartnerDetails(VendorProfile partnerDetails) { 
 		partnerDetailsDao.savePartnerDetails(partnerDetails); 
-		System.out.println("before calling accpunt>>>>>>>>>>>>>>>");
 		if (partnerDetails.getId() == null || "".equals(partnerDetails.getId())) {
-			System.out.println("inside calling accpunt>>>>>>>>>>>>>>>"); 	
 			Account account = new Account(); 
 			account.setMy_user_name(partnerDetails.getEmail()); 
 			account.setPassword(partnerDetails.getPassword()); 

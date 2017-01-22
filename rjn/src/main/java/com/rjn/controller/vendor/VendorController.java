@@ -52,14 +52,14 @@ public class VendorController {
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.setAttribute("thisUserMenu", utils.getMenu(Constant.PARTNER));
-		return "partner/partner_home";
+		return "vendor/vendor_home";
 	}
 
 	// Master
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
 	public String paernerRegisterBranch(ModelMap model) {
 		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
-		return "partner/partner_register-branch"; 
+		return "vendor/partner_register-branch"; 
 	}
 
 	@RequestMapping(value = { "/register-branch/{uniqueId}" }, method = RequestMethod.GET)
@@ -72,7 +72,7 @@ public class VendorController {
 		} else {
 			model.addAttribute("errorMessage", "Sorry this branch dosent exist please register your own branch" );
 		}
-		return "partner/partner_register-branch";
+		return "vendor/partner_register-branch";
 	}
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
@@ -84,7 +84,7 @@ public class VendorController {
 		String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
 		branchMasterDetails.setUniqueId(bracnhUniqueId);
 		branchService.saveBranch(branchMasterDetails);
-		return "partner/partner_register-branch";
+		return "vendor/partner_register-branch";
 	}
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
@@ -93,13 +93,13 @@ public class VendorController {
 		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
 		List<BranchMasterDetails> branchList =  branchService.getBranchByPartner(loginUser.getReg_id());
 		model.addAttribute("branchList", branchList);
-		return "partner/partner-branch-list";
+		return "vendor/partner-branch-list";
 	}
 
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String paernerEditProfile(ModelMap model) {
 		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
-		return "partner/vendor-edit-profile";
+		return "vendor/vendor-edit-profile";
 	}
 
 	private VendorProfile getLoginPartnerDetails() {
@@ -122,40 +122,28 @@ public class VendorController {
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
 	public String vendorChangePassword(ModelMap model) {
-		return "partner/vendor-change-password"; 
+		return "vendor/vendor-change-password"; 
 	}
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
 	public String vendorUpdateProfile(@Valid VendorProfile partnerDetails,BindingResult result, ModelMap model) {
-		System.out.println("form controller1");
 		partnerservice.savePartnerDetails(partnerDetails);
-		System.out.println("form controller2");
-		return "partner/vendor-edit-profile";
+		return "vendor/vendor-edit-profile";
 	}
 
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public String updateVendorPassword(@Valid ForgetPasswordBean forgetPasswordBean,BindingResult result,ModelMap model) {
-		System.out.println("controller"+forgetPasswordBean.getOldPassword());
 		Account loginUser = utils.getLoggedInUser();
-		
-		
-		
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
 		String newpassword=forgetPasswordBean.getNewPassword();
-		System.out.println("new password"+forgetPasswordBean.getNewPassword());
 		
 		if (utils.matchPassword(uiOldpassword, dbPassword)) {
-			System.out.println("inside if");
-			
 			loginUser.setPassword(utils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
-			
 		} else {
-			System.out.println("inside else");
 			return "wrong-password";
 		}
-		
 		return null;
 	}
 	

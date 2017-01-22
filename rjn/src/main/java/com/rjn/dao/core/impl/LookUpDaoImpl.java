@@ -15,7 +15,6 @@ public class LookUpDaoImpl extends AbstractDao<Integer, LookupMaster> implements
 
 	@Override
 	public List<LookupMaster> getLookUpValuesData(String lookUpValue) {
-		System.out.println("lookUpValue : "+lookUpValue);
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("lookupType", lookUpValue));
 		return (List<LookupMaster>) criteria.list();

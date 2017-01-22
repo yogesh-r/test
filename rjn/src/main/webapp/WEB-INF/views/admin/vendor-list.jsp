@@ -1,7 +1,7 @@
 <%@include file="admin_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container" ng-controller="vendorsListCtrl">
-	<div class="panel panel-default">{{tesing}}
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<center>Vendors</center>
 		</div>
@@ -18,7 +18,7 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Partner ID</th>
+						<th>Vendor ID</th>
 						<th>First Name</th>
 						<th>Address</th>
 						<th>City</th>

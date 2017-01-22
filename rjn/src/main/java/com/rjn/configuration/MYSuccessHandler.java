@@ -25,18 +25,12 @@ public class MYSuccessHandler implements AuthenticationSuccessHandler {
 	@Override 
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		
-		System.out.println(">>>>>>>>>>>>>>"+request.getParameter("pageName"));
-		
 		String pageName = request.getParameter("pageName");
-		
 		String searchKeyWord = request.getParameter("searchKeyWord");
-		
 		/*Set some session variables*/
 		User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();  
         session.setAttribute("uname", authUser.getUsername());  
         session.setAttribute("authorities", authentication.getAuthorities()); 
-        
         /*Set target URL to redirect*/
 		String targetUrl = determineTargetUrl(authentication, pageName, searchKeyWord ); 
         redirectStrategy.sendRedirect(request, response, targetUrl);
@@ -44,9 +38,6 @@ public class MYSuccessHandler implements AuthenticationSuccessHandler {
  
 	protected String determineTargetUrl(Authentication authentication, String pageName, String searchKeyWord){
         Set<String> authorities = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        
-        System.out.println("authorities>> "+authorities); 
-        
         if (authorities.contains(Constant.ROLE_ADMIN)) {
         	return "/admin/home";
         } else if (authorities.contains(Constant.ROLE_PARTNER)) {

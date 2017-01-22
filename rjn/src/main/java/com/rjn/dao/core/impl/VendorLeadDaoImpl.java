@@ -16,7 +16,6 @@ public class VendorLeadDaoImpl extends AbstractDao<Integer, VendorLead> implemen
 	@Override
 	public void saveVendorLead(VendorLead vendorLead) {
 		
-		System.out.println("vendorLead.getId() >>>>> "+vendorLead.getId());
 		if (vendorLead.getId() == null) {
 			persist(vendorLead);
 		} else {

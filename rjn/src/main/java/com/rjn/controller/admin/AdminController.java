@@ -71,10 +71,7 @@ public class AdminController {
 	public String processExcel2003(ModelMap model, @RequestParam("excelfile2007") MultipartFile excelfile) {
 		try {
 			String fileName = excelfile.getOriginalFilename();
-			System.out.println("file name "+fileName);
 			List<ExcelFile> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);
-			System.out.println("thisFile >> "+thisFile);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

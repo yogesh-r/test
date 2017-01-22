@@ -52,7 +52,7 @@ public class VendorProductController {
 		
 		model.addAttribute("branchList", branchService.getBranchByPartner(loginPartner.getId()));
 		
-		return "partner/partner_register-product"; 
+		return "vendor/partner_register-product"; 
 	}
 	
 	@RequestMapping(value = { "/register-product" }, method = RequestMethod.POST)
@@ -68,7 +68,7 @@ public class VendorProductController {
 		vendorProduct.setUniqueId(profileNumber);
 		vendorProduct.setPartId(loginPartner.getId());
  		productService.saveProduct(vendorProduct); 
-		return "partner/partner_register-product";
+		return "vendor/partner_register-product";
 	}
 	
 	@RequestMapping(value = { "/register-product/{uniqueId}" }, method = RequestMethod.GET)
@@ -82,14 +82,14 @@ public class VendorProductController {
 		}
 		model.addAttribute("categoryList", utils.getAllCategory());
 		model.addAttribute("branchList", branchService.getBranchByPartner(loginPartner.getId()));
-		return "partner/partner_register-product"; 
+		return "vendor/partner_register-product"; 
 	}
 	
 	@RequestMapping(value = { "/product-list" }, method = RequestMethod.GET)
 	public String productList(ModelMap model) {
 		VendorProfile loginPartner = getLoginPartnerDetails();
 		model.addAttribute("productList", productService.getProductByVendor(loginPartner.getId()));
-		return "partner/partner_product_list"; 
+		return "vendor/partner_product_list"; 
 	}
 	
 	@RequestMapping(value = { "/leads" }, method = RequestMethod.GET)
@@ -100,8 +100,8 @@ public class VendorProductController {
 		
 		List<BranchMasterDetails> branchList =  branchService.getBranchByPartner(loginPartner.getId());
 		model.addAttribute("branchList", branchList);
-		 
-		return "partner/partner_leads"; 
+
+		return "vendor/vendor_leads"; 
 	}
 	
 	private VendorProfile getLoginPartnerDetails() {

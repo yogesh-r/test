@@ -48,9 +48,7 @@ public class AppFileHandlingUtils {
 	
 	public static List<ExcelFile> readExcelFile(MultipartFile thisFile, String fileName) throws IOException {
 		String extension = getFileExtension(fileName);
-		System.out.println("extension >> "+extension);
 		List<ExcelFile> excelFiles = new ArrayList<ExcelFile>();
-  		
 		if (Constant.EXCEL_2007.equals(extension)) {
 			int i = 0;
 			// Creates a workbook object from the uploaded excelfile

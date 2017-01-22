@@ -15,11 +15,9 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 
 	@Override
 	public void savePartnerDetails(VendorProfile partnerDetails) {
-		System.out.println("partnerDetails.getId() >>>>>>>>>>>>>>>>>."+partnerDetails.getId()+"=================");
 		if (partnerDetails.getId() == null || "".equals(partnerDetails.getId())) {
 			persist(partnerDetails);
 		} else {
-			System.out.println("Update >>>>>>>>>>>>>> ");
 			update(partnerDetails); 
 		}
 	}
