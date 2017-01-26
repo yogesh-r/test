@@ -8,19 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cy_product_category") 
+@Table(name = "cy_product_category")
 public class ProductCategory {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private int id;
-	
+
 	@Column(name = "name", nullable = false)
-	private String name ;
-	
+	private String name;
+
 	@Column(name = "description", nullable = false)
-	private String description ;
+	private String description;
 
 	public int getId() {
 		return id;

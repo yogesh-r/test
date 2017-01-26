@@ -20,6 +20,7 @@ import com.rjn.model.Account;
 import com.rjn.model.ProfileMaster;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.core.VendorLead;
+import com.rjn.service.AccountService;
 import com.rjn.service.MemberService;
 import com.rjn.service.SearchService;
 import com.rjn.service.VendorService;
@@ -41,6 +42,9 @@ public class MemberController {
 	
 	@Autowired  
 	SearchService searchService;
+	
+	@Autowired
+	private AccountService accountService;
 	
 	@RequestMapping(value = { "/home"}, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
@@ -120,6 +124,18 @@ public class MemberController {
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public String updateMemberPassword(@Valid ForgetPasswordBean forgetPasswordBean,BindingResult result, ModelMap model) {
+
+		Account loginUser = utils.getLoggedInUser();
+		String dbPassword = loginUser.getPassword();
+		String uiOldpassword =forgetPasswordBean.getOldPassword();
+		String newpassword=forgetPasswordBean.getNewPassword();
+		
+		if (utils.matchPassword(uiOldpassword, dbPassword)) {
+			loginUser.setPassword(utils.encryptPassword(newpassword));
+			accountService.updatePassword(loginUser);
+		} else {
+			return "wrong-password";
+		}
 		return null; 
 	}
 }

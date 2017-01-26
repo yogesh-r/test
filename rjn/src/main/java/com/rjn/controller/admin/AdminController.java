@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rjn.bean.ExcelFile;
+import com.rjn.bean.ForgetPasswordBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
@@ -29,6 +30,7 @@ import com.rjn.model.Branch.BranchMasterDetails;
 import com.rjn.model.core.LookupMaster;
 import com.rjn.model.core.Menu;
 import com.rjn.model.core.ProductCategory;
+import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
@@ -56,6 +58,9 @@ public class AdminController {
 	
 	@Autowired
 	BranchService branchService;
+	
+	@Autowired
+	private AccountService accountService;
 	
 	//======================testing=========================================
 	@RequestMapping(value = { "/uploadTest" }, method = RequestMethod.GET)
@@ -238,9 +243,28 @@ public class AdminController {
 		return "admin/admin_change_password";
 	}
 	
+	
+	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String adminEditProfile(ModelMap model) {
 		return "admin/admin-edit-profile";
 	}
 	
+	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
+	public String adminChangePassword(@Valid ForgetPasswordBean forgetPasswordBean,BindingResult result,ModelMap model) {
+		Account loginUser = utils.getLoggedInUser();
+		String dbPassword = loginUser.getPassword();
+		String uiOldpassword =forgetPasswordBean.getOldPassword();
+		String newpassword=forgetPasswordBean.getNewPassword();
+		
+		if (utils.matchPassword(uiOldpassword, dbPassword)) {
+			loginUser.setPassword(utils.encryptPassword(newpassword));
+			accountService.updatePassword(loginUser);
+		} else {
+			return "wrong-password";
+		}
+		
+		return null;
+	
 }
+	}

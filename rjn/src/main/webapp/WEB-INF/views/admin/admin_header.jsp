@@ -91,7 +91,7 @@
 											class="dropdown-toggle"><i class="fa fa-cog fa-spin"></i>My
 												Account</a>
 											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Change Password</a></li>
+												<li><a href="${rc.getContextPath()}/admin/change-password">Change Password</a></li>
 												<li><a href="${rc.getContextPath()}/admin/home">Edit Profile</a></li>
 												<li><a href="${rc.getContextPath()}/logout">Logout</a></li>
 											</ul></li>
