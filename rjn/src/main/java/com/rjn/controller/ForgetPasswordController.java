@@ -50,8 +50,11 @@ public class ForgetPasswordController {
 		return null;
 	}
 	
-	@RequestMapping(value = { "/forgetPassword/link" }, method = RequestMethod.POST)
-	public String forgetPasswordLink(ModelMap model, @RequestParam("email") String contactEmailId, HttpServletRequest request) {
+	@RequestMapping(value = { "/forgetPassword/link" }, method = RequestMethod.GET)
+	public String forgetPasswordLink(@RequestParam("id") long id, @RequestParam("token") String token) {
+		System.out.println("===============================");
+		System.out.println(token);
+		System.out.println(id);
 		return null;
 	}
 

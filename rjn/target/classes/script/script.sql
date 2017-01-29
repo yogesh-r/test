@@ -1286,6 +1286,16 @@ CREATE TABLE IF NOT EXISTS `cy_vendor_lead` (
 	PRIMARY KEY (`id`) 
 );
 
+
+
+CREATE TABLE IF NOT EXISTS `password_reset_token` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`profile_number` varchar(255) DEFAULT NULL,
+	`token` varchar(255) DEFAULT NULL,
+	PRIMARY KEY (`id`) 
+);
+
+
 INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('member home', 'MEMBER');
 INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('partner home', 'PARTNER');
 INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('partner add branch', 'PARTNER');
