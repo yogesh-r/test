@@ -490,4 +490,22 @@ public class BranchMasterDetails {
 	public void setUniqueId(String uniqueId) {
 		this.uniqueId = uniqueId;
 	}
+
+	@Override
+	public String toString() {
+		return "BranchMasterDetails [id=" + id + ", uniqueId=" + uniqueId + ", branchName=" + branchName
+				+ ", branchOwner=" + branchOwner + ", description=" + description + ", startDate=" + startDate
+				+ ", contactno=" + contactno + ", emailid=" + emailid + ", address=" + address + ", city=" + city
+				+ ", state=" + state + ", country=" + country + ", zipcode=" + zipcode + ", status=" + status
+				+ ", managerName=" + managerName + ", managerEmail=" + managerEmail + ", managerMobile=" + managerMobile
+				+ ", landLine=" + landLine + ", location=" + location + ", termsConditions=" + termsConditions
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", locationId=" + locationId + ", workMonday="
+				+ workMonday + ", workTuesday=" + workTuesday + ", workWednesday=" + workWednesday + ", workThursday="
+				+ workThursday + ", workFriday=" + workFriday + ", workSaturday=" + workSaturday + ", workSunday="
+				+ workSunday + ", verify=" + verify + ", createdDate=" + createdDate + ", created_By=" + created_By
+				+ ", lastUpdatedDate=" + lastUpdatedDate + ", lastUpdatedBy=" + lastUpdatedBy + ", aminitiesList="
+				+ aminitiesList + ", termsAndCondition=" + termsAndCondition + ", cancellationPolicy="
+				+ cancellationPolicy + "]";
+	}
+	
 }

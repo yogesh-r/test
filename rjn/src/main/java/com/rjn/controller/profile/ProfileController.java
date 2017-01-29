@@ -41,6 +41,7 @@ public class ProfileController {
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
+		System.out.println("partner id controller");
 		return "vendor-profile";
 	}
 	
@@ -51,9 +52,27 @@ public class ProfileController {
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
+		VendorProfile thisVendor = partnerService.getPartner(partId);
+		model.addAttribute("thisVendor", thisVendor);
 		List<BranchMasterDetails> branch_details=branch_service.getBranchByPartner(partId);
 		System.out.println("branch details?>>> "+branch_details);
 		model.addAttribute("branch",branch_details);
+		System.out.println("branch list id controller");
+		return "vendor-profile";
+		
+	}
+	
+	@RequestMapping(value = { "/{partId}/{uniquieId}" }, method = RequestMethod.GET)
+	public String branchData(HttpServletRequest request,ModelMap model,@PathVariable String uniquieId){
+		System.out.println("branch id controller");
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		BranchMasterDetails branch_details=branch_service.getBranchDetails(uniquieId);
+		System.out.println("branch details>>>> "+branch_details);
+		model.addAttribute("branchName",branch_details);
 		return "vendor-profile";
 		
 	}

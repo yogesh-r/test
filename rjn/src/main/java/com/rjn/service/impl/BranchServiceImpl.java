@@ -46,6 +46,12 @@ public class BranchServiceImpl implements BranchService {
 		return dao.getBranchByUniqueId(uniqueId);
 	}
 
+	@Override
+	public BranchMasterDetails getBranchDetails(String uniqueID) {
+		
+		return dao.getBranchDetails(uniqueID);
+	}
+
 	
 
 }

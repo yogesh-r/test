@@ -55,5 +55,13 @@ public class BranchMasterDetailsDaoImpl extends AbstractDao<Integer, BranchMaste
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public BranchMasterDetails getBranchDetails(String uniqueID) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("uniqueId",uniqueID));
+		return (BranchMasterDetails) criteria.uniqueResult();
+	}
+
 	
 }

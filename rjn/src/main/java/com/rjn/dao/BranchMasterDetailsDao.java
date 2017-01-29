@@ -16,6 +16,8 @@ public interface BranchMasterDetailsDao {
 	
 	void saveBranch(BranchMasterDetails branchMasterDetails);
 	
+	BranchMasterDetails getBranchDetails(String uniqueID);
+	
 	
 }
 

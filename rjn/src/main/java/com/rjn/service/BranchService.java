@@ -17,6 +17,8 @@ public interface BranchService {
 	
 	BranchMasterDetails getBranchByUniqueId(String uniqueId);
 	
+	BranchMasterDetails getBranchDetails(String uniqueID);
+	
 	
 	
 }
