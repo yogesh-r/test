@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring().antMatchers("/search");
 		web.ignoring().antMatchers("/vendor-profile/**");
 		web.ignoring().antMatchers("/public/**");
+		web.ignoring().antMatchers("/forgetPassword/**");
 	}
 	
 	@Bean

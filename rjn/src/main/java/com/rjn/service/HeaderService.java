@@ -10,4 +10,8 @@ public interface HeaderService {
 	void saveMemberRegistration(ProfileMaster profileMaster);
 	void saveListYourOffice(BusinessEnquiryDetails listYourSpace);
 	BusinessEnquiryDetails getBusinessEnquiryByEnquiryId(String enquiryId);
+	
+	public ProfileMaster getProfileMasterByEmail(String contactEmailId);
+	
+	void saveToken(ProfileMaster profileMaster, String token);
 }

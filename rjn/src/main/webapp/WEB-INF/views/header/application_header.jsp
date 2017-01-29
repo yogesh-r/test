@@ -47,7 +47,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">login</h4>
+        <h4 class="modal-title">`</h4>
       </div>
       <div class="modal-body">
           <form name='f' action="login" method='POST'>
@@ -67,6 +67,9 @@
 		      <input name="pageName" type="hidden" value="${pageName}"/>
 		      <input name="searchKeyWord" type="hidden" value="${param.thisProduct}"/>
 		  </form>
+		  
+		  <a data-toggle="modal" data-target="#forgetPasswordModal">Forget Password ??</a>
+		  
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -129,4 +132,36 @@
     </div>
 
   </div>
+</div>
+
+
+
+
+
+<!-- ====================================================== -->
+<!-- Modal -->
+<div id="forgetPasswordModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Forget Password</h4>
+			</div>
+			<div class="modal-body">
+				<form action="${rc.getContextPath()}/forgetPassword" method='POST'>
+					<table>
+						<tr>
+							<td>Email id:</td>
+							<td><input type='text' name='email' value=''></td>
+						</tr>
+					</table>
+					<button type="submit" class="btn btn-default-alt">Register</button>
+				</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

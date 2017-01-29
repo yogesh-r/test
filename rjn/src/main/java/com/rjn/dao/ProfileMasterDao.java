@@ -9,5 +9,6 @@ public interface ProfileMasterDao {
 	List<ProfileMaster> getAllCustomerCompany();
 	
 	public ProfileMaster getProfileMasterByprofileNumber(String profileNumber);
+	public ProfileMaster getProfileMasterByEmail(String contactEmailId);
 	
 }

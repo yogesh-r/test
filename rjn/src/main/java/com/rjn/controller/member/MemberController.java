@@ -1,11 +1,9 @@
 package com.rjn.controller.member;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,8 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.rjn.bean.ForgetPasswordBean;
+import com.rjn.bean.ChangePassworddBean;
 import com.rjn.bean.SearchBean;
 import com.rjn.model.Account;
 import com.rjn.model.ProfileMaster;
@@ -114,7 +111,7 @@ public class MemberController {
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
 	public String memberUpdateProfile( @Valid ProfileMaster profileMaster, BindingResult result , ModelMap model) {
 		memberService.saveMemberDetails(profileMaster); 
-		return "member/member-edit-profile"; 
+		return "member/member-edit-profile";
 	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
@@ -123,8 +120,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
-	public String updateMemberPassword(@Valid ForgetPasswordBean forgetPasswordBean,BindingResult result, ModelMap model) {
-
+	public String updateMemberPassword(@Valid ChangePassworddBean forgetPasswordBean,BindingResult result, ModelMap model) {
 		Account loginUser = utils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
@@ -136,6 +132,6 @@ public class MemberController {
 		} else {
 			return "wrong-password";
 		}
-		return null; 
+		return null;
 	}
 }

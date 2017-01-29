@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rjn.dao.BusinessEnquiryDetailsDao;
 import com.rjn.dao.HeaderDao;
+import com.rjn.dao.PasswordResetTokenDao;
 import com.rjn.dao.ProfileMasterDao;
 import com.rjn.dao.core.AccountDao;
 import com.rjn.model.Account;
@@ -31,6 +32,10 @@ public class HeaderServiceImpl implements HeaderService  {
 	@Autowired
 	private BusinessEnquiryDetailsDao listDao;
 	
+	@Autowired
+	private PasswordResetTokenDao passwordResetTokenDao;
+	
+	
 	@Override
 	public void saveContactUs(GeneralContactUs contactUs) {
 		dao.saveContactUs(contactUs); 
@@ -55,5 +60,15 @@ public class HeaderServiceImpl implements HeaderService  {
 	@Override
 	public BusinessEnquiryDetails getBusinessEnquiryByEnquiryId(String enquiryId) {
 		return listDao.getBusinessEnquiryByEnquiryId(enquiryId); 
+	}
+
+	@Override
+	public ProfileMaster getProfileMasterByEmail(String contactEmailId) {
+		return profileMasterdao.getProfileMasterByEmail(contactEmailId);
+	}
+
+	@Override
+	public void saveToken(ProfileMaster profileMaster, String token) {
+		 passwordResetTokenDao.saveToken(profileMaster, token);
 	}
 }

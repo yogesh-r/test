@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.rjn.bean.ForgetPasswordBean;
+import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
@@ -132,7 +132,7 @@ public class VendorController {
 	}
 
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
-	public String updateVendorPassword(@Valid ForgetPasswordBean forgetPasswordBean,BindingResult result,ModelMap model) {
+	public String updateVendorPassword(@Valid ChangePassworddBean forgetPasswordBean,BindingResult result,ModelMap model) {
 		Account loginUser = utils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();

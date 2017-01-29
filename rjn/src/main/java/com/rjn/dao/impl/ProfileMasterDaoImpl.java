@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
 import com.rjn.dao.ProfileMasterDao;
 import com.rjn.dao.core.AbstractDao;
 import com.rjn.model.ProfileMaster;
@@ -42,6 +43,13 @@ public class ProfileMasterDaoImpl extends AbstractDao<Integer, ProfileMaster> im
 	public ProfileMaster getProfileMasterByprofileNumber(String profileNumber) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("profileNumber", profileNumber));
+		return (ProfileMaster) criteria.uniqueResult();
+	}
+
+	@Override
+	public ProfileMaster getProfileMasterByEmail(String contactEmailId) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("contactEmailId", contactEmailId));
 		return (ProfileMaster) criteria.uniqueResult();
 	}
 }
