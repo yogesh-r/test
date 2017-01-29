@@ -15,6 +15,8 @@ public interface BranchMasterDetailsDao {
 	List<BranchMasterDetails> getBranchList(String cityId, String partnerId, String location);
 	
 	void saveBranch(BranchMasterDetails branchMasterDetails);
+	
+	
 }
 
 

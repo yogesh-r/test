@@ -54,4 +54,6 @@ public class BranchMasterDetailsDaoImpl extends AbstractDao<Integer, BranchMaste
 			update(branchMasterDetails); 
 		}
 	}
+
+	
 }
