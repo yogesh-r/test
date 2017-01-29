@@ -16,4 +16,7 @@ public interface BranchService {
 	void saveBranch(BranchMasterDetails branchMasterDetails);
 	
 	BranchMasterDetails getBranchByUniqueId(String uniqueId);
+	
+	
+	
 }

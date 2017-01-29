@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>About Us</title>
 </head>
-<body>
+<body>==============${headerType}
 <c:choose>
 	<c:when test="${headerType eq  'ROLE_ADMIN'}">
 	<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search"/>
@@ -30,6 +30,18 @@
 				Shop owners / vendor Profile =====================${thisVendor.partFName}
         </div>
     </div>
+    <a href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/branch-list">Branch List</a>
+   	<table>
+   		<thead>
+   			<td>Branch Name</td>
+   		</thead>
+   		<c:forEach items="${branch}" var="branch">
+   		<tbody>
+   				<td>${branch.branchName }</td>
+   		</tbody>
+   		</c:forEach>
+   	</table>
+   	
 </main>
 <c:choose>
 	<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_PARTNER' || headerType eq 'ROLE_MEMBER'}"></c:when>
