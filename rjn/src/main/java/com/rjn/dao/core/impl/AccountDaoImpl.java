@@ -64,4 +64,11 @@ public class AccountDaoImpl extends AbstractDao<Integer, Account> implements Acc
 		update(account);
 		
 	}
+
+	@Override
+	public Account findByRegId(String regId) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("reg_id", regId));
+		return (Account) criteria.uniqueResult();
+	}
 }

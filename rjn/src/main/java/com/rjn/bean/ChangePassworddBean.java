@@ -5,6 +5,8 @@ public class ChangePassworddBean {
 	private String oldPassword;
 	private String newPassword;
 	private String conformPassword;
+	private String token;
+	private String profileNumber;
 	
 	public String getOldPassword() {
 		return oldPassword;
@@ -24,5 +26,16 @@ public class ChangePassworddBean {
 	public void setConformPassword(String conformPassword) {
 		this.conformPassword = conformPassword;
 	}
-
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public String getProfileNumber() {
+		return profileNumber;
+	}
+	public void setProfileNumber(String profileNumber) {
+		this.profileNumber = profileNumber;
+	}
 }

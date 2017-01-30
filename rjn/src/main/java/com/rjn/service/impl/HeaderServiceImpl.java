@@ -12,6 +12,7 @@ import com.rjn.dao.core.AccountDao;
 import com.rjn.model.Account;
 import com.rjn.model.BusinessEnquiryDetails;
 import com.rjn.model.GeneralContactUs;
+import com.rjn.model.PasswordResetToken;
 import com.rjn.model.ProfileMaster;
 import com.rjn.service.HeaderService;
 import com.rjn.utils.Constant;
@@ -70,5 +71,15 @@ public class HeaderServiceImpl implements HeaderService  {
 	@Override
 	public void saveToken(ProfileMaster profileMaster, String token) {
 		 passwordResetTokenDao.saveToken(profileMaster, token);
+	}
+
+	@Override
+	public PasswordResetToken getPasswordResetToken(String profileNumber, String token) {
+		return passwordResetTokenDao.getPasswordResetToken(profileNumber, token);
+	}
+
+	@Override
+	public Account findByRegId(String regId) {
+		return accountDao.findByRegId(regId);
 	}
 }

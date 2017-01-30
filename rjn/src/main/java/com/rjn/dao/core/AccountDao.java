@@ -10,4 +10,5 @@ public interface AccountDao {
 	public Account getLoggedInUser();
 	void updateAccount(Account account);
 
+	Account findByRegId(String regId);
 }
