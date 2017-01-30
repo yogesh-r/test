@@ -33,11 +33,28 @@
     <a href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/branch-list">Branch List</a>
    	<table>
    		<thead>
-   			<td>Branch Name</td>
+   			<td></td>
    		</thead>
    		<c:forEach items="${branch}" var="branch">
    		<tbody>
-   				<td>${branch.branchName }</td>
+   				<td><a href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/${branch.uniqueId}">${branch.branchName }</a></td>
+   			
+   		</tbody>
+   		</c:forEach>
+   	</table>
+   	
+   	Branch name:======================${branchName.branchOwner}
+   	
+   	<a href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/product-list">Product List</a>
+   	
+   	<table>
+   		<thead>
+   			<td></td>
+   		</thead>
+   		<c:forEach items="${product}" var="product">
+   		<tbody>
+   				<td>${product.name}</a></td>
+   			
    		</tbody>
    		</c:forEach>
    	</table>
