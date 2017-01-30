@@ -1,18 +1,26 @@
 package com.rjn.controller.profile;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.core.ProductCategory;
 import com.rjn.service.BranchService;
+import com.rjn.service.ProductDetailsService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
+
+
 
 @Controller
 @RequestMapping("/vendor-profile")
@@ -26,6 +34,9 @@ public class ProfileController {
 	
 	@Autowired
 	BranchService branch_service;
+	
+	@Autowired
+	ProductDetailsService productService;
 
 	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
@@ -69,6 +80,20 @@ public class ProfileController {
 		System.out.println("branch details>>>> "+branch_details);
 		model.addAttribute("branchName",branch_details);
 		return "vendor-profile";
+		
+	}
+	
+	@RequestMapping(value = { "/{partId}/product-list" }, method = RequestMethod.GET)
+	public String productData(HttpServletRequest request,ModelMap model){
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		List<ProductCategory> product=productService.getProductDetails();
+		System.out.println("product>>>> "+product);
+		model.addAttribute("product", product);
+		return "vendor-profile"; 
 		
 	}
 }
