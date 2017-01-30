@@ -98,6 +98,15 @@
 													<li><a href="${rc.getContextPath()}/vendor/product/product-list">Product List</a></li>
 													<li><a href="${rc.getContextPath()}/vendor/product/leads">Leads</a></li>
 												</ul></li>
+												
+											<li class="dropdown"><a href="#" data-toggle="dropdown"
+												class="dropdown-toggle"><i class="fa fa-book"></i>
+													View </a>
+												<ul class="dropdown-menu" role="menu">
+													<li><a href="${rc.getContextPath()}/vendor/branch-list">My Profile</a></li>
+												</ul></li>
+												
+												
 											<li class="dropdown"><a href="#" data-toggle="dropdown"
 												class="dropdown-toggle"><i class="fa fa-cog fa-spin"></i>My
 													Account</a>

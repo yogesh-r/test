@@ -51,7 +51,7 @@ public class VendorController {
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.setAttribute("thisUserMenu", utils.getMenu(Constant.PARTNER));
+		//session.setAttribute("thisUserMenu", utils.getMenu(Constant.PARTNER));
 		return "vendor/vendor_home";
 	}
 

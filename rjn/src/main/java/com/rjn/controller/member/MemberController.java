@@ -45,9 +45,9 @@ public class MemberController {
 	
 	@RequestMapping(value = { "/home"}, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
+/*		HttpSession session = request.getSession();
 		session.setAttribute("thisUserMenu", utils.getMenu(Constant.MEMBER));
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = utils.getLoggedInUser();*/
 		return "member/member_home";
 	}
 	
