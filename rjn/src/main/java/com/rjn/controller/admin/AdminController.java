@@ -97,9 +97,9 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String whyUs(ModelMap model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
+/*		HttpSession session = request.getSession();
 		List<Menu> thisMenu = utils.getMenu(Constant.ADMIN);
-		session.setAttribute("thisUserMenu", thisMenu);
+		session.setAttribute("thisUserMenu", thisMenu);*/
 		return "admin/admin_home";
 	}
 
@@ -112,8 +112,8 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/register-vendor" }, method = RequestMethod.GET)
 	public String registerPartner(ModelMap model) {
-		List<LookupMaster> license = lookUpService.getLookUpValuesData(Constant.LOOKUP_LICENSE);
-		model.addAttribute("licenceList", license);
+/*		List<LookupMaster> license = lookUpService.getLookUpValuesData(Constant.LOOKUP_LICENSE);
+		model.addAttribute("licenceList", license);*/
 		return "admin/register-vendor";
 	}
 

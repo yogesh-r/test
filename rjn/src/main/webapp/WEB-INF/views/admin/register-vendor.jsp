@@ -73,14 +73,14 @@
 								<option value="Sales Partner">Sales Partner</option>
 							</select>
 						</div>
-						<div class="col-sm-3"> 
+<%-- 						<div class="col-sm-3"> 
 							<span>License Type<label>*</label></span> 
 								<select name="LicensePack" id="licen" class="form-control">
 									 <c:forEach items="${licenceList}" var="thisValue">
 										<option value="${thisValue.lookupType}">${thisValue.lookupCode}</option>
 									</c:forEach>									
 								</select>
-						</div>
+						</div> --%>
 					</div>
 					<!-- row end -->
 					<div class="row">

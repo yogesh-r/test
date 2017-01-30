@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>About Us</title>
 </head>
-<body>==============${headerType}
+<body>
 <c:choose>
 	<c:when test="${headerType eq  'ROLE_ADMIN'}">
 	<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search"/>
