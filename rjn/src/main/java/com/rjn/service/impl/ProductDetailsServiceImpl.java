@@ -18,10 +18,9 @@ public class ProductDetailsServiceImpl implements ProductDetailsService {
 	@SuppressWarnings("unused")
 	@Autowired
 	private ProductDetailsDao productDetailsDao;
-	
+
 	@Override
 	public List<ProductCategory> getProductDetails() {
 		return productDetailsDao.getProductDetails();
 	}
-
 }
