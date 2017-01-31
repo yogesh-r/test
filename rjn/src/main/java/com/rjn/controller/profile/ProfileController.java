@@ -93,7 +93,7 @@ public class ProfileController {
 		List<ProductCategory> product=productService.getProductDetails();
 		System.out.println("product>>>> "+product);
 		model.addAttribute("product", product);
-		return "vendor-profile"; 
+		return "vendor-profile";
 		
 	}
 }
