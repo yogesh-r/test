@@ -133,6 +133,6 @@ public class HeaderController {
     	}
     	
 		model.addAttribute("enquiryId", enquiryId);  
-		return "success/list_your_space_success"; 
+		return "list_your_space_success"; 
 	}
 }

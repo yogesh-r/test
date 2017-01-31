@@ -1,17 +1,13 @@
 package com.rjn.controller.profile;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchMasterDetails;
 import com.rjn.model.core.ProductCategory;
@@ -19,8 +15,6 @@ import com.rjn.service.BranchService;
 import com.rjn.service.ProductDetailsService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
-
-
 
 @Controller
 @RequestMapping("/vendor-profile")
