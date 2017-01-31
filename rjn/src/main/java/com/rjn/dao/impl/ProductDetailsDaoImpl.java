@@ -1,5 +1,6 @@
 package com.rjn.dao.impl;
 
+
 import java.util.List;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
@@ -16,5 +17,4 @@ public class ProductDetailsDaoImpl extends AbstractDao<Integer, ProductCategory>
 		Criteria criteria=createEntityCriteria();
 		return (List<ProductCategory>) criteria.list();
 	}
-
 }
