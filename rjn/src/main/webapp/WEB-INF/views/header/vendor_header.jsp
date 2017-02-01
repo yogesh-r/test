@@ -28,6 +28,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${rc.getContextPath()}/resources/css/member/demo.css">
 </head>
+<%@ taglib prefix="cc" uri="http://java.sun.com/jsp/jstl/core"%>
 <body onunload="bodyUnload();" Onclick="clicked=true;" ng-app="RJN">
 	<header id="header">
 		<div id="topHeader1">
@@ -99,14 +100,16 @@
 													<li><a href="${rc.getContextPath()}/vendor/product/leads">Leads</a></li>
 												</ul></li>
 												
-											<li class="dropdown"><a href="#" data-toggle="dropdown"
-												class="dropdown-toggle"><i class="fa fa-book"></i>
-													View </a>
-												<ul class="dropdown-menu" role="menu">
-													<li><a href="${rc.getContextPath()}/vendor/branch-list">My Profile</a></li>
-												</ul></li>
 												
-												
+											<cc:if test="${PartnerDetails ne null}">
+												<li class="dropdown"><a href="#" data-toggle="dropdown"
+													class="dropdown-toggle"><i class="fa fa-book"></i>
+														View </a>
+													<ul class="dropdown-menu" role="menu">
+														<li><a href="${rc.getContextPath()}/vendor/branch-list">My Profile</a></li>
+													</ul>
+												</li>
+											</cc:if>
 											<li class="dropdown"><a href="#" data-toggle="dropdown"
 												class="dropdown-toggle"><i class="fa fa-cog fa-spin"></i>My
 													Account</a>
