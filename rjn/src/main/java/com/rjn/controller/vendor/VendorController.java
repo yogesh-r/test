@@ -3,11 +3,9 @@ package com.rjn.controller.vendor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
@@ -26,7 +23,6 @@ import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.SequenceGeneratorService;
-import com.rjn.utils.Constant;
 import com.rjn.utils.SeqConstant;
 
 @Controller
@@ -44,14 +40,14 @@ public class VendorController {
 
 	@Autowired
 	private SequenceGeneratorService seqGenerator;
-	
+
 	@Autowired
 	private AccountService accountService;
 
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		//session.setAttribute("thisUserMenu", utils.getMenu(Constant.PARTNER));
+		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
 		return "vendor/vendor_home";
 	}
 
@@ -65,6 +61,8 @@ public class VendorController {
 	@RequestMapping(value = { "/register-branch/{uniqueId}" }, method = RequestMethod.GET)
 	public String partnerEditBranch(ModelMap model, @PathVariable String uniqueId) {
 		VendorProfile loginPartner = getLoginPartnerDetails();
+		model.addAttribute("PartnerDetails", loginPartner);
+		
 		BranchMasterDetails thisBranch = branchService.getBranchByUniqueId(uniqueId);
 		if (loginPartner.getId().equals(thisBranch.getBranchOwner()) ){
 			model.addAttribute("PartnerDetails", loginPartner);
@@ -101,27 +99,10 @@ public class VendorController {
 		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
 		return "vendor/vendor-edit-profile";
 	}
-
-	private VendorProfile getLoginPartnerDetails() {
-		Account loginUser = utils.getLoggedInUser();
-		VendorProfile loginPartner = partnerservice.getPartner(loginUser.getReg_id());
-		return loginPartner;
-	}
-
-	private List<BranchMasterDetails> getLocationListForPartner(String cityId, String partnerId) {
-		List<BranchMasterDetails> locationList = null;
-		locationList = branchService.getLocationByCity(cityId, partnerId);
-		return locationList;
-	}
-
-	private List<BranchMasterDetails> getBranchListForPartner(String cityId,String partnerId, String location) {
-		List<BranchMasterDetails> locationList = null;
-		locationList = branchService.getBranchList(cityId, partnerId, location);
-		return locationList;
-	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
 	public String vendorChangePassword(ModelMap model) {
+		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
 		return "vendor/vendor-change-password"; 
 	}
 	
@@ -146,5 +127,22 @@ public class VendorController {
 		}
 		return null;
 	}
-	
+
+	private VendorProfile getLoginPartnerDetails() {
+		Account loginUser = utils.getLoggedInUser();
+		VendorProfile loginPartner = partnerservice.getPartner(loginUser.getReg_id());
+		return loginPartner;
+	}
+
+	private List<BranchMasterDetails> getLocationListForPartner(String cityId, String partnerId) {
+		List<BranchMasterDetails> locationList = null;
+		locationList = branchService.getLocationByCity(cityId, partnerId);
+		return locationList;
+	}
+
+	private List<BranchMasterDetails> getBranchListForPartner(String cityId,String partnerId, String location) {
+		List<BranchMasterDetails> locationList = null;
+		locationList = branchService.getBranchList(cityId, partnerId, location);
+		return locationList;
+	}
 }
