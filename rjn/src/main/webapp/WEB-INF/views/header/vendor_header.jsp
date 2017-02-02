@@ -106,7 +106,7 @@
 													class="dropdown-toggle"><i class="fa fa-book"></i>
 														View </a>
 													<ul class="dropdown-menu" role="menu">
-														<li><a href="${rc.getContextPath()}/vendor/branch-list">My Profile</a></li>
+														<li><a href="${rc.getContextPath()}/vendor/${PartnerDetails.id}">My Profile</a></li>
 													</ul>
 												</li>
 											</cc:if>

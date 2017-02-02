@@ -3,9 +3,11 @@ package com.rjn.controller.vendor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
@@ -23,6 +26,7 @@ import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.SequenceGeneratorService;
+import com.rjn.utils.Constant;
 import com.rjn.utils.SeqConstant;
 
 @Controller
@@ -44,6 +48,21 @@ public class VendorController {
 	@Autowired
 	private AccountService accountService;
 
+	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
+	public String partnerProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
+		VendorProfile thisVendor = partnerservice.getPartner(partId);
+		model.addAttribute("thisVendor", thisVendor);
+		
+		VendorProfile vendorProfile = getLoginPartnerDetails();
+		model.addAttribute("PartnerDetails", vendorProfile);
+		
+		if (thisVendor.getId().equals(vendorProfile.getId())) {
+			model.addAttribute("showVerifyButton", true);
+		}
+		model.put("headerType", Constant.ROLE_PARTNER);
+		return "vendor-profile";
+	}
+	
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();

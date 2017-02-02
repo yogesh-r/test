@@ -7,15 +7,15 @@
 </head>
 <body>
 <c:choose>
-	<c:when test="${headerType eq  'ROLE_ADMIN'}">
+	<c:when test="${headerType eq 'ROLE_ADMIN'}">
 	<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search"/>
 		<%@include file="admin/admin_header.jsp"%>
 	</c:when>
-	<c:when test="${headerType eq  'ROLE_PARTNER'}">
+	<c:when test="${headerType eq 'ROLE_PARTNER'}">
 	<c:set var="searchUrl" value="${rc.getContextPath()}/vendor/search"/>
 		<%@include file="header/vendor_header.jsp"%>
 	</c:when>
-	<c:when test="${headerType eq  'ROLE_MEMBER'}">
+	<c:when test="${headerType eq 'ROLE_MEMBER'}">
 		<c:set var="searchUrl" value="${rc.getContextPath()}/member/search"/>
 		<%@include file="member/member_header.jsp"%>
 	</c:when>
@@ -38,9 +38,12 @@
    		<c:forEach items="${branch}" var="branch">
    		<tbody>
    				<td><a href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/${branch.uniqueId}">${branch.branchName }</a></td>
-   			
    		</tbody>
    		</c:forEach>
+   		
+   		<c:if test="${showVerifyButton}">
+   			Eligible for verify, please give following link to your customer "${rc.getContextPath()}/vendor-profile/${PartnerDetails.id}"
+   		</c:if>
    	</table>
    	
    	Branch name:======================${branchName.branchOwner}

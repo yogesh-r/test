@@ -1,13 +1,16 @@
 package com.rjn.controller.profile;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchMasterDetails;
 import com.rjn.model.core.ProductCategory;
@@ -15,6 +18,7 @@ import com.rjn.service.BranchService;
 import com.rjn.service.ProductDetailsService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
+import com.rjn.utils.Constant;
 
 @Controller
 @RequestMapping("/vendor-profile")
@@ -39,9 +43,14 @@ public class ProfileController {
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
 		if (loginUser != null) {
-			model.put("headerType", loginUser.get(0));
-		}
-		System.out.println("partner id controller");
+			if (Constant.ROLE_PARTNER.equals((String)loginUser.get(0).toString())) {
+				return "redirect:/vendor/"+thisVendor.getId(); 
+			} else if (Constant.ROLE_MEMBER.equals((String)loginUser.get(0).toString())) {
+				return "redirect:/member/"+thisVendor.getId();
+			}  else if (Constant.ROLE_ADMIN.equals((String)loginUser.get(0).toString())) {
+				return "redirect:/admin/"+thisVendor.getId();
+			}
+		} 
 		return "vendor-profile";
 	}
 	
@@ -59,7 +68,6 @@ public class ProfileController {
 		model.addAttribute("branch",branch_details);
 		System.out.println("branch list id controller");
 		return "vendor-profile";
-		
 	}
 	
 	@RequestMapping(value = { "/{partId}/{uniquieId}" }, method = RequestMethod.GET)

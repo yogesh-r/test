@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.bean.ExcelFile;
 import com.rjn.model.Account;
@@ -31,6 +34,7 @@ import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.LookUpService;
 import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.AppFileHandlingUtils;
+import com.rjn.utils.Constant;
 import com.rjn.utils.SeqConstant;
 
 @Controller
@@ -78,6 +82,14 @@ public class AdminController {
 	}
 	
 	//======================testing=========================================
+	
+	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
+	public String partnerProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
+		VendorProfile thisVendor = partnerservice.getPartner(partId);
+		model.addAttribute("thisVendor", thisVendor);
+		model.put("headerType", Constant.ROLE_ADMIN);
+		return "vendor-profile";
+	}
 	
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody

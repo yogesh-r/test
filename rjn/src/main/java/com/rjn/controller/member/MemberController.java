@@ -1,9 +1,10 @@
 package com.rjn.controller.member;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.bean.SearchBean;
 import com.rjn.model.Account;
@@ -91,6 +93,7 @@ public class MemberController {
 			count = vendorLead.getVisitCount() + 1;
 			vendorLead.setVisitCount(count);
 		}
+		model.put("headerType", Constant.ROLE_MEMBER);
 		utils.saveVendorLead(vendorLead);
 		return "vendor-profile";
 	}
