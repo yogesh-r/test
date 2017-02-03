@@ -19,5 +19,4 @@ public interface EmployeeService {
 	Employee findEmployeeBySsn(String ssn);
 
 	boolean isEmployeeSsnUnique(Integer id, String ssn);
-	
 }

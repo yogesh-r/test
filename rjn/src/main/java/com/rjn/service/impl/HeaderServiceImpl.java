@@ -33,7 +33,6 @@ public class HeaderServiceImpl implements HeaderService  {
 	@Override
 	public void saveMemberRegistration(ProfileMaster profileMaster) {
 		profileMasterdao.saveMemberRegister(profileMaster);
-		
 		Account account = new Account();
 		account.setMy_user_name(profileMaster.getContactEmailId());
 		account.setPassword(profileMaster.getPassword()); 

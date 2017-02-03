@@ -38,7 +38,6 @@ public class BranchServiceImpl implements BranchService {
 	@Override
 	public void saveBranch(BranchMasterDetails branchMasterDetails) {
 		dao.saveBranch(branchMasterDetails);
-		//branchFeatureMasterDao.saveBranchFeatureList(branchMasterDetails.getAminitiesList(), branchMasterDetails.getId(),branchMasterDetails.getBranchName());
 	}
 
 	@Override
@@ -48,10 +47,6 @@ public class BranchServiceImpl implements BranchService {
 
 	@Override
 	public BranchMasterDetails getBranchDetails(String uniqueID) {
-		
 		return dao.getBranchDetails(uniqueID);
 	}
-
-	
-
 }

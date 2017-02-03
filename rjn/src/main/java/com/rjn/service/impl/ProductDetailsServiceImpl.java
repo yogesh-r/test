@@ -10,12 +10,10 @@ import com.rjn.dao.ProductDetailsDao;
 import com.rjn.model.core.ProductCategory;
 import com.rjn.service.ProductDetailsService;
 
-
 @Service("productService")
 @Transactional
 public class ProductDetailsServiceImpl implements ProductDetailsService {
 	
-	@SuppressWarnings("unused")
 	@Autowired
 	private ProductDetailsDao productDetailsDao;
 

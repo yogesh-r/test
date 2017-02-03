@@ -23,9 +23,7 @@ public class PopularCityServiceImpl implements PopularCityService {
 
 	@Override
 	public List<PopularCity> findAll() {
-		
 		dao1.findAll();
-		
 		return dao.findAll();
 	}
 }

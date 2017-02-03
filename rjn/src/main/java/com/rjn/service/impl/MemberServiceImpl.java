@@ -22,8 +22,6 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public void saveMemberDetails(ProfileMaster profileMaster ) {
-		
 		 profileMasterDao.saveMemberRegister(profileMaster);
 	}
-
 }

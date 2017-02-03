@@ -22,6 +22,5 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void updatePassword(Account account) {
 		dao.updateAccount(account);
-		
 	}
 } 
