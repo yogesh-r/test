@@ -31,13 +31,13 @@ import com.rjn.utils.SeqConstant;
 public class VendorProductController {
 
 	@Autowired
-	ApplicationUtils utils;
+	private ApplicationUtils utils;
 	
 	@Autowired
-	VendorService partnerService;
+	private VendorService partnerService;
 	
 	@Autowired
-	VendorProductService productService;
+	private VendorProductService productService;
 	
 	@Autowired
 	private SequenceGeneratorService seqGenerator;
@@ -49,9 +49,7 @@ public class VendorProductController {
 	public String registerProduct(ModelMap model) {
 		model.addAttribute("categoryList", utils.getAllCategory());
 		VendorProfile loginPartner = getLoginPartnerDetails();
-		
 		model.addAttribute("branchList", branchService.getBranchByPartner(loginPartner.getId()));
-		
 		return "vendor/partner_register-product"; 
 	}
 	
@@ -61,10 +59,8 @@ public class VendorProductController {
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	    String currentDate = sdf.format(cal.getTime());
-	    
 		SeqId seqId = seqGenerator.getSeqId(SeqConstant.PRODUCT_UNIQUE_SEQ);
 		String profileNumber = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
-		
 		vendorProduct.setUniqueId(profileNumber);
 		vendorProduct.setPartId(loginPartner.getId());
  		productService.saveProduct(vendorProduct); 
@@ -97,10 +93,8 @@ public class VendorProductController {
 		VendorProfile loginPartner = getLoginPartnerDetails();
 		model.addAttribute("productList", productService.getProductByVendor(loginPartner.getId()));
 		model.addAttribute("leads", utils.getLeadForVendor(loginPartner.getId()));
-		
 		List<BranchMasterDetails> branchList =  branchService.getBranchByPartner(loginPartner.getId());
 		model.addAttribute("branchList", branchList);
-
 		return "vendor/vendor_leads"; 
 	}
 	

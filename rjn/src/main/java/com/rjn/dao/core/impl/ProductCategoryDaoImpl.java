@@ -48,5 +48,4 @@ public class ProductCategoryDaoImpl extends AbstractDao<Integer, ProductCategory
 			i++;
 		}
 	}
-
 }

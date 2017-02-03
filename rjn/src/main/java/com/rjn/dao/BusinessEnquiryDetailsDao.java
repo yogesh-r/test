@@ -6,8 +6,6 @@ import com.rjn.model.BusinessEnquiryDetails;
 
 public interface BusinessEnquiryDetailsDao {
 	void saveListYourOffice(BusinessEnquiryDetails listSpaceData);
-	
 	List<BusinessEnquiryDetails> getBusinessEnquiryList();
-	
 	BusinessEnquiryDetails getBusinessEnquiryByEnquiryId(String enquiryId);
 }

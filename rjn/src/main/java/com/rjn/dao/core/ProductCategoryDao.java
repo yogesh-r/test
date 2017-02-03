@@ -5,12 +5,8 @@ import java.util.List;
 import com.rjn.model.core.ProductCategory;
 
 public interface ProductCategoryDao {
-	
-	void save(ProductCategory productCategory);
-	
-	List<ProductCategory> getAllCategory();
-
-	ProductCategory getCategory(int productCategoryId);
-	
-	void saveInBulk(List<ProductCategory> productCategoryList);
+	public void save(ProductCategory productCategory);
+	public List<ProductCategory> getAllCategory();
+	public ProductCategory getCategory(int productCategoryId);
+	public void saveInBulk(List<ProductCategory> productCategoryList);
 }

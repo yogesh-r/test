@@ -31,25 +31,22 @@ import com.rjn.utils.Constant;
 public class MemberController {
 	
 	@Autowired
-	ApplicationUtils utils;
+	private ApplicationUtils utils;
 	
 	@Autowired
-	VendorService partnerService; 
+	private VendorService partnerService; 
 	
 	@Autowired
-	MemberService memberService;
+	private MemberService memberService;
 	
 	@Autowired  
-	SearchService searchService;
+	private SearchService searchService;
 	
 	@Autowired
 	private AccountService accountService;
 	
 	@RequestMapping(value = { "/home"}, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
-/*		HttpSession session = request.getSession();
-		session.setAttribute("thisUserMenu", utils.getMenu(Constant.MEMBER));
-		Account loginUser = utils.getLoggedInUser();*/
 		return "member/member_home";
 	}
 	
@@ -61,17 +58,14 @@ public class MemberController {
 			model.put("headerType", loginUser.get(0));
 		}
 		String productKeyword = (String) request.getParameter("thisProduct");
-		
 		SearchBean sb = new SearchBean();
 		sb.setSearchProductKeyword(productKeyword);
-		
 		model.put("results", searchService.findVendors(sb));
 		return "/search/search_branch";
 	}
 	
 	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		
 		VendorProfile thisVendor = partnerService.getPartner(partId);
 		model.addAttribute("thisVendor", thisVendor);
 		Account loginUser = utils.getLoggedInUser();
@@ -106,11 +100,9 @@ public class MemberController {
 	public String memberEditProfile(ModelMap model) {
 		Account loginUser = utils.getLoggedInUser();
 		ProfileMaster profileMaster = getMemberDetails(loginUser.getReg_id());
-
 		model.addAttribute("memberDetails", profileMaster);
 		return "member/member-edit-profile"; 
 	}
-	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
 	public String memberUpdateProfile( @Valid ProfileMaster profileMaster, BindingResult result , ModelMap model) {
 		memberService.saveMemberDetails(profileMaster); 

@@ -13,7 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
-import com.rjn.bean.ExcelFile;
+import com.rjn.bean.ExcelFileBean;
 
 public class AppFileHandlingUtils {
 	
@@ -46,9 +46,9 @@ public class AppFileHandlingUtils {
 		
 	}
 	
-	public static List<ExcelFile> readExcelFile(MultipartFile thisFile, String fileName) throws IOException {
+	public static List<ExcelFileBean> readExcelFile(MultipartFile thisFile, String fileName) throws IOException {
 		String extension = getFileExtension(fileName);
-		List<ExcelFile> excelFiles = new ArrayList<ExcelFile>();
+		List<ExcelFileBean> excelFiles = new ArrayList<ExcelFileBean>();
 		if (Constant.EXCEL_2007.equals(extension)) {
 			int i = 0;
 			// Creates a workbook object from the uploaded excelfile
@@ -57,7 +57,7 @@ public class AppFileHandlingUtils {
 			XSSFSheet worksheet = workbook.getSheetAt(0);
 			// Reads the data in excel file until last row is encountered
 			while (i <= worksheet.getLastRowNum()) {
-				ExcelFile excelFile = new ExcelFile();
+				ExcelFileBean excelFile = new ExcelFileBean();
 				// Creates an object for the UserInfo Model
 				// Creates an object representing a single row in excel
 				XSSFRow row = worksheet.getRow(i++);
@@ -101,7 +101,7 @@ public class AppFileHandlingUtils {
 			HSSFSheet sheet = workbook.getSheetAt(0);
 			int i = 0;
 			while (i <= sheet.getLastRowNum()) {
-				ExcelFile excelFile = new ExcelFile();
+				ExcelFileBean excelFile = new ExcelFileBean();
 				HSSFRow row = sheet.getRow(i++);
 				if (row.getCell((short)0) != null) {
 					excelFile.setCol1(row.getCell((short)0).getStringCellValue());

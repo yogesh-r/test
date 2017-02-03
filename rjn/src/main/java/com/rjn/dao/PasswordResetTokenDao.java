@@ -6,5 +6,4 @@ import com.rjn.model.ProfileMaster;
 public interface PasswordResetTokenDao {
 	void saveToken(ProfileMaster profileMaster, String token); 
 	PasswordResetToken getPasswordResetToken(String profileNumber, String token);
-	
 }

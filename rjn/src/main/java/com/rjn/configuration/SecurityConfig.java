@@ -73,11 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				
 				.formLogin()
 					.loginPage("/login")
-/*					.loginProcessingUrl("/j_spring_security_check")
-					.usernameParameter("j_username")
-					.passwordParameter("j_password")*/
 					.permitAll().successHandler(new MYSuccessHandler())
-				
 				.and()
 				.exceptionHandling().accessDeniedPage("/accessdenied");
 	}

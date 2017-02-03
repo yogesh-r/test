@@ -26,14 +26,12 @@ public class AccountDaoImpl extends AbstractDao<Integer, Account> implements Acc
 	@Override
 	public void save(Account account, String role) {
 		persist(account); 
-		
 		String hql = "insert into com.rjn.model.core.AccountRole (accountId, roleId)"
 		        + " select a.id, r.id from com.rjn.model.Account a, "+
 				" com.rjn.model.Role r where r.code = :roleId " +
 		        " and a.my_user_name = :accountId ";
 		
 		Query query = getSession().createQuery(hql);
-		
 		query.setParameter("roleId", role);
 		query.setParameter("accountId", account.getMy_user_name());
 		query.executeUpdate();
@@ -62,7 +60,6 @@ public class AccountDaoImpl extends AbstractDao<Integer, Account> implements Acc
 	@Override
 	public void updateAccount(Account account) {
 		update(account);
-		
 	}
 
 	@Override

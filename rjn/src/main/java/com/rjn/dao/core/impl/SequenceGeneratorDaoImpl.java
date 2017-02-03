@@ -16,12 +16,9 @@ public class SequenceGeneratorDaoImpl extends AbstractDao<Integer, SeqId> implem
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("seqName", sequenceName));
 		SeqId sid = (SeqId) criteria.uniqueResult();
-		
-		
 		SeqId sidNew = sid;
 		sidNew.setSeqNum(sid.getSeqNum() + 1);
 		persist(sidNew);
-		
 		return sid;
 	}
 }

@@ -45,5 +45,4 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 		        .executeUpdate();
 		System.out.println("updatedEntities >> "+updatedEntities);
 	}
-
 }

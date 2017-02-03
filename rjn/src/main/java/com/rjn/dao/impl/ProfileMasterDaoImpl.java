@@ -31,13 +31,6 @@ public class ProfileMasterDaoImpl extends AbstractDao<Integer, ProfileMaster> im
 		criteria.add(objConjunction);
 		return (List<ProfileMaster>) criteria.list();
 	}
-/*
-	@Override
-	public ProfileMaster getProfileMasterById() {
-		Criteria criteria=createEntityCriteria();
-		criteria.add(Restrictions.eq("id",PartnerID));
-		return (ProfileMaster) criteria.uniqueResult();
-	}*/
 
 	@Override
 	public ProfileMaster getProfileMasterByprofileNumber(String profileNumber) {

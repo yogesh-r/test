@@ -5,10 +5,8 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
 import com.rjn.dao.core.AbstractDao;
 import com.rjn.dao.core.CityDao;
-import com.rjn.model.Employee;
 import com.rjn.model.core.City;
 
 @Repository("cityDao")
@@ -40,5 +38,4 @@ public class CityDaoImpl extends AbstractDao<Integer, City> implements CityDao {
 		criteria.add(Restrictions.eq("state", state));
 		return (List<City>) criteria.list();
 	}
-
 }

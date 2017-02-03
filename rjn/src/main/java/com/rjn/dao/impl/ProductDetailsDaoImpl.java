@@ -1,6 +1,5 @@
 package com.rjn.dao.impl;
 
-
 import java.util.List;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;

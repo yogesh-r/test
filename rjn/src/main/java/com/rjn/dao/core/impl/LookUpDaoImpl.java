@@ -27,5 +27,4 @@ public class LookUpDaoImpl extends AbstractDao<Integer, LookupMaster> implements
 		criteria.add(Restrictions.eq("lookupType", lookupType));
 		return (List<LookupMaster>) criteria.list();
 	}
-
 }

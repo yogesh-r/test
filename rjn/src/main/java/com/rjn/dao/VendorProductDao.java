@@ -8,8 +8,6 @@ public interface VendorProductDao {
 	void saveProduct(VendorProduct vendorProduct);
 	List<VendorProduct> getProductByVendor(String vendorId);
 	VendorProduct getProduct(int productID);
-	
 	VendorProduct getProductByUniqueID(String uniqueID);
-	
 	List<String> getKeyWord();
 }

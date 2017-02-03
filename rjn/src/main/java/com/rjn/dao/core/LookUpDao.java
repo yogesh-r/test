@@ -5,6 +5,6 @@ import java.util.List;
 import com.rjn.model.core.LookupMaster;
 
 public interface LookUpDao {
-	List<LookupMaster> getLookUpValuesData(String lookUpValue);
-	List<LookupMaster> getLookupData(String lookupType );
+	public List<LookupMaster> getLookUpValuesData(String lookUpValue);
+	public List<LookupMaster> getLookupData(String lookupType );
 }

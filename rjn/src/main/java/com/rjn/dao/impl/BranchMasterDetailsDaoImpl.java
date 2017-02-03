@@ -62,6 +62,4 @@ public class BranchMasterDetailsDaoImpl extends AbstractDao<Integer, BranchMaste
 		criteria.add(Restrictions.eq("uniqueId",uniqueID));
 		return (BranchMasterDetails) criteria.uniqueResult();
 	}
-
-	
 }

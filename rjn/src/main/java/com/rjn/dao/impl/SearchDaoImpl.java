@@ -98,11 +98,6 @@ public class SearchDaoImpl extends AbstractDao<Integer, SearchBean> implements S
 		    }*/
 			return searchBeanList;
 	}
-
-	
-	
-	
-	
 	
 	@Override
 	public List<SearchBean> findVendors(SearchBean bean) {
@@ -124,7 +119,4 @@ public class SearchDaoImpl extends AbstractDao<Integer, SearchBean> implements S
 			    
 		return results;
 	}
-	
-	
-
 }

@@ -28,14 +28,13 @@ import com.rjn.service.Core.MailService;
 public class ForgetPasswordController {
 	
 	@Autowired
-	HeaderService headerService;
+	private HeaderService headerService;
 	
 	@Autowired 
-	MailService mailService;
+	private MailService mailService;
 	
 	@Autowired
-	AccountDao accountDao;
-	
+	private AccountDao accountDao;
 	
 	@Autowired
 	private ApplicationUtils utils;
@@ -66,13 +65,8 @@ public class ForgetPasswordController {
 	
 	@RequestMapping(value = { "/forgetPassword" }, method = RequestMethod.GET)
 	public String forgetPasswordLink(@RequestParam("id") String profileNumber, @RequestParam("token") String token, HttpServletRequest request,  ModelMap model) {
-		System.out.println("===============================");
-		System.out.println(token);
-		System.out.println(profileNumber);
 		PasswordResetToken passwordResetToken = headerService.getPasswordResetToken(profileNumber, token);
 		// check time also
-		System.out.println("passwordResetToken >> "+passwordResetToken);
-		
 		// crosscheck with user also
 		if (passwordResetToken != null) {
 			model.addAttribute("token", token);
@@ -84,20 +78,13 @@ public class ForgetPasswordController {
 	
 	@RequestMapping(value = { "/header/change-password" }, method = RequestMethod.POST)
 	public String heaerChangePassword(@Valid ChangePassworddBean ChangePassworddBean, BindingResult result, ModelMap model) {
-		
-		System.out.println("profile number >> "+ChangePassworddBean.getProfileNumber());
-		System.out.println("token >> "+ChangePassworddBean.getToken());
-		
 		PasswordResetToken passwordResetToken = headerService.getPasswordResetToken(ChangePassworddBean.getProfileNumber(), ChangePassworddBean.getToken());
-		
 		if (passwordResetToken != null && ChangePassworddBean.getNewPassword().equals(ChangePassworddBean.getConformPassword())) {
 			//load account
 			Account thisAccount =  accountDao.findByRegId(ChangePassworddBean.getProfileNumber());
 			thisAccount.setPassword(utils.encryptPassword(ChangePassworddBean.getNewPassword()));
 			accountDao.updateAccount(thisAccount);
 		}
-		
 		return null;
 	}
-
 }
