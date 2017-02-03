@@ -3,8 +3,6 @@ package com.rjn.schedular;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-
-import com.rjn.model.core.Email;
 import com.rjn.service.Core.MailService;
 
 @Controller 

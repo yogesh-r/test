@@ -3,15 +3,12 @@ package com.rjn.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.rjn.dao.BusinessEnquiryDetailsDao;
-import com.rjn.dao.HeaderDao;
 import com.rjn.dao.PasswordResetTokenDao;
 import com.rjn.dao.ProfileMasterDao;
 import com.rjn.dao.core.AccountDao;
 import com.rjn.model.Account;
 import com.rjn.model.BusinessEnquiryDetails;
-import com.rjn.model.GeneralContactUs;
 import com.rjn.model.PasswordResetToken;
 import com.rjn.model.ProfileMaster;
 import com.rjn.service.HeaderService;
@@ -21,9 +18,6 @@ import com.rjn.utils.Constant;
 @Transactional 
 public class HeaderServiceImpl implements HeaderService  { 
 
-	@Autowired
-	private HeaderDao dao;
-	
 	@Autowired
 	private ProfileMasterDao profileMasterdao;
 	
@@ -35,12 +29,6 @@ public class HeaderServiceImpl implements HeaderService  {
 	
 	@Autowired
 	private PasswordResetTokenDao passwordResetTokenDao;
-	
-	
-	@Override
-	public void saveContactUs(GeneralContactUs contactUs) {
-		dao.saveContactUs(contactUs); 
-	}
 
 	@Override
 	public void saveMemberRegistration(ProfileMaster profileMaster) {

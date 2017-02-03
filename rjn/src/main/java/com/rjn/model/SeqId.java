@@ -5,10 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/*
- * Author Baliram 
- * 20-july-2016
- */
 @Entity
 @Table(name="tx_seq_id")
 public class SeqId {

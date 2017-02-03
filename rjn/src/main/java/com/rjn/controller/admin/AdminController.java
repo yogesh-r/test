@@ -32,7 +32,6 @@ import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
-import com.rjn.service.Core.LookUpService;
 import com.rjn.service.Core.MailService;
 import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.AppFileHandlingUtils;
@@ -42,9 +41,6 @@ import com.rjn.utils.SeqConstant;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
-	@Autowired
-	private LookUpService lookUpService;
 
 	@Autowired
 	private VendorService partnerService;

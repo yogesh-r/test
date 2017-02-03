@@ -122,8 +122,4 @@ public class VendorProduct {
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
-	
-	
-	
-	
 }

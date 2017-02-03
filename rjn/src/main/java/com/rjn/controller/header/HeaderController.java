@@ -2,9 +2,7 @@ package com.rjn.controller.header;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.rjn.model.BusinessEnquiryDetails;
-import com.rjn.model.GeneralContactUs;
 import com.rjn.model.ProfileMaster;
 import com.rjn.model.SeqId;
 import com.rjn.model.core.Email;
@@ -107,11 +103,11 @@ public class HeaderController {
 		return new ModelAndView("login-success.jsp", model);
 	}
 
-	@RequestMapping(value = { "/public/save-contact-us" }, method = RequestMethod.POST)
+/*	@RequestMapping(value = { "/public/save-contact-us" }, method = RequestMethod.POST)
 	public String saveContactUs(@Valid GeneralContactUs contactUs, BindingResult result, ModelMap model) {
 		headerService.saveContactUs(contactUs);
 		return "redirect:/"; 
-	}
+	}*/
 	
 	@RequestMapping(value = { "/public/list_your_space" }, method = RequestMethod.POST)
 	public String saveListData(@Valid BusinessEnquiryDetails listSpace, BindingResult result, ModelMap model) {

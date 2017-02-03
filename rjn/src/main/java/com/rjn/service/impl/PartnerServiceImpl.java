@@ -11,7 +11,6 @@ import com.rjn.dao.BusinessEnquiryDetailsDao;
 import com.rjn.dao.ProfileMasterDao;
 import com.rjn.dao.VendorProfileDao;
 import com.rjn.dao.core.AccountDao;
-import com.rjn.dao.core.LookUpDao;
 import com.rjn.model.Account;
 import com.rjn.model.BusinessEnquiryDetails;
 import com.rjn.model.ProfileMaster;
@@ -31,9 +30,6 @@ public class PartnerServiceImpl implements VendorService {
 	
 	@Autowired
 	private ProfileMasterDao companydao;
-	
-	@Autowired
-	private LookUpDao lookupdao;
 	
 	@Autowired
 	private AssignedToDao assignedToDao;

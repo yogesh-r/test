@@ -7,10 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-/*
- * Baliram 
- * 20-07-2016
- */
 
 @Entity
 @Table(name="tx_profile_master") 

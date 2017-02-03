@@ -1,8 +1,6 @@
 package com.rjn.model.Branch;
 
 import java.io.File;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -34,9 +31,6 @@ public class BranchMasterDetails {
 	@Column(name = "Description", nullable = false)
 	private String description;
 	
-/*	@Column(name = "specialization", nullable = false)
-	private String specialization;*/
-	
 	@Column(name = "StartDate", nullable = false)
 	private String startDate;
 	
@@ -46,17 +40,11 @@ public class BranchMasterDetails {
 	@Column(name = "emailid", nullable = false)
 	private String emailid;
 	
-/*	@Column(name = "panno", nullable = false)
-	private String panno;*/
-	
 	@Column(name = "address", nullable = false)
 	private String address;
 	
 	@Column(name = "city", nullable = false)
 	private String city;
-	
-/*	@Column(name = "City_Name", nullable = false)
-	private String cityName;*/
 	
 	@Column(name = "state", nullable = false)
 	private String state;
@@ -82,29 +70,17 @@ public class BranchMasterDetails {
 	@Column(name = "land_line", nullable = false)
 	private String landLine;
 	
-/*	@Column(name = "house_rule", nullable = false)
-	private String houseRule;*/
-	
 	@Column(name = "location", nullable = false)
 	private String location;
 	
 	@Column(name = "terms_conditions", nullable = false)
 	private String termsConditions;
-	/*
-	@Column(name = "can_policy", nullable = false)
-	private String canPolicy;*/
 	
 	@Column(name = "latitude", nullable = false)
 	private String latitude;
 	
 	@Column(name = "longitude", nullable = false)
 	private String longitude;
-	
-/*	@Column(name = "term_file", nullable = false)
-	private String termFile;
-	
-	@Column(name = "cancel_file", nullable = false)
-	private String cancelFile;*/
 	
 	@Column(name = "location_id", nullable = false)
 	private String locationId;
@@ -130,12 +106,6 @@ public class BranchMasterDetails {
 	@Column(name = "Work_Sunday", nullable = false)
 	private String workSunday;
 	
-/*	@Column(name = "book_thru_enquiry", nullable = false)
-	private String bookThruRnquiry = "Yes";
-	
-	@Column(name = "rating", nullable = false)
-	private String rating;*/
-	
 	@Column(name = "verify", nullable = false)
 	private String verify;
 	
@@ -150,12 +120,6 @@ public class BranchMasterDetails {
 	
 	@Column(name = "last_updated_by", nullable = false)
 	private String lastUpdatedBy;
-	
-/*	@Column(name = "license_key", nullable = false)
-	private String license_key;*/
-	
-	@Transient
-	private List<BranchFeatureMaster> aminitiesList;
 	
 	@Transient
 	private MultipartFile termsAndCondition;
@@ -195,14 +159,6 @@ public class BranchMasterDetails {
 		this.description = description;
 	}
 	
-/*	public String getSpecialization() {
-		return specialization;
-	}
-	
-	public void setSpecialization(String specialization) {
-		this.specialization = specialization;
-	}*/
-	
 	public String getStartDate() {
 		return startDate;
 	}
@@ -227,14 +183,6 @@ public class BranchMasterDetails {
 		this.emailid = emailid;
 	}
 	
-/*	public String getPanno() {
-		return panno;
-	}
-	
-	public void setPanno(String panno) {
-		this.panno = panno;
-	}*/
-	
 	public String getAddress() {
 		return address;
 	}
@@ -250,14 +198,6 @@ public class BranchMasterDetails {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
-/*	public String getCityName() {
-		return cityName;
-	}
-	
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
-	}*/
 	
 	public String getState() {
 		return state;
@@ -316,12 +256,6 @@ public class BranchMasterDetails {
 	public void setLandLine(String landLine) {
 		this.landLine = landLine;
 	}
-/*	public String getHouseRule() {
-		return houseRule;
-	}
-	public void setHouseRule(String houseRule) {
-		this.houseRule = houseRule;
-	}*/
 	public String getLocation() {
 		return location;
 	}
@@ -334,12 +268,6 @@ public class BranchMasterDetails {
 	public void setTermsConditions(String termsConditions) {
 		this.termsConditions = termsConditions;
 	}
-/*	public String getCanPolicy() {
-		return canPolicy;
-	}
-	public void setCanPolicy(String canPolicy) {
-		this.canPolicy = canPolicy;
-	}*/
 	public String getLatitude() {
 		return latitude;
 	}
@@ -352,18 +280,6 @@ public class BranchMasterDetails {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-/*	public String getTermFile() {
-		return termFile;
-	}
-	public void setTermFile(String termFile) {
-		this.termFile = termFile;
-	}
-	public String getCancelFile() {
-		return cancelFile;
-	}
-	public void setCancelFile(String cancelFile) {
-		this.cancelFile = cancelFile;
-	}*/
 	public String getLocationId() {
 		return locationId;
 	}
@@ -412,18 +328,6 @@ public class BranchMasterDetails {
 	public void setWorkSunday(String workSunday) {
 		this.workSunday = workSunday;
 	}
-/*	public String getBookThruRnquiry() {
-		return bookThruRnquiry;
-	}
-	public void setBookThruRnquiry(String bookThruRnquiry) {
-		this.bookThruRnquiry = bookThruRnquiry;
-	}
-	public String getRating() {
-		return rating;
-	}
-	public void setRating(String rating) {
-		this.rating = rating;
-	}*/
 	public String getVerify() {
 		return verify;
 	}
@@ -453,18 +357,6 @@ public class BranchMasterDetails {
 	}
 	public void setLastUpdatedBy(String lastUpdatedBy) {
 		this.lastUpdatedBy = lastUpdatedBy;
-	}
-/*	public String getLicense_key() {
-		return license_key;
-	}
-	public void setLicense_key(String license_key) {
-		this.license_key = license_key;
-	}*/
-	public List<BranchFeatureMaster> getAminitiesList() {
-		return aminitiesList;
-	}
-	public void setAminitiesList(List<BranchFeatureMaster> aminitiesList) {
-		this.aminitiesList = aminitiesList;
 	}
 
 	public MultipartFile getTermsAndCondition() {
@@ -504,8 +396,7 @@ public class BranchMasterDetails {
 				+ workThursday + ", workFriday=" + workFriday + ", workSaturday=" + workSaturday + ", workSunday="
 				+ workSunday + ", verify=" + verify + ", createdDate=" + createdDate + ", created_By=" + created_By
 				+ ", lastUpdatedDate=" + lastUpdatedDate + ", lastUpdatedBy=" + lastUpdatedBy + ", aminitiesList="
-				+ aminitiesList + ", termsAndCondition=" + termsAndCondition + ", cancellationPolicy="
+				+ ", termsAndCondition=" + termsAndCondition + ", cancellationPolicy="
 				+ cancellationPolicy + "]";
 	}
-	
 }

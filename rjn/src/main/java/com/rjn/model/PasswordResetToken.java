@@ -1,6 +1,5 @@
 package com.rjn.model;
 
-import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,12 +37,6 @@ public class PasswordResetToken {
 		this.token = token;
 	}
 
-/*	public Date getExpiryDate() {
-		return expiryDate;
-	}
-	public void setExpiryDate(Date expiryDate) {
-		this.expiryDate = expiryDate;
-	}*/
 	public static int getExpiration() {
 		return EXPIRATION;
 	}

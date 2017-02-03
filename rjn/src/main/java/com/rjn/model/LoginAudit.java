@@ -1,8 +1,4 @@
 package com.rjn.model;
-/*
- * Baliram 
- * 20-07-2016
- */
 
 import org.joda.time.LocalDate;
 

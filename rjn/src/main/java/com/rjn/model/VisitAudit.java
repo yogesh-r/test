@@ -1,9 +1,5 @@
 package com.rjn.model;
 
-/*
- *  Author Baliram
- *  20-july-2016
- */
 public class VisitAudit {
 	
 	private int id;
