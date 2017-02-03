@@ -44,13 +44,11 @@ public class PartnerServiceImpl implements VendorService {
 	@Override 
 	public void savePartnerDetails(VendorProfile partnerDetails) { 
 		partnerDetailsDao.savePartnerDetails(partnerDetails); 
-		if (partnerDetails.getId() == null || "".equals(partnerDetails.getId())) {
-			Account account = new Account(); 
-			account.setMy_user_name(partnerDetails.getEmail()); 
-			account.setPassword(partnerDetails.getPassword()); 
-			account.setReg_id(partnerDetails.getId()); 
-			accountDao.save(account, Constant.ROLE_PARTNER); 
-		}
+		Account account = new Account(); 
+		account.setMy_user_name(partnerDetails.getEmail()); 
+		account.setPassword(partnerDetails.getPassword()); 
+		account.setReg_id(partnerDetails.getId()); 
+		accountDao.save(account, Constant.ROLE_PARTNER); 
 	} 
 	
 	@Override 
@@ -81,5 +79,10 @@ public class PartnerServiceImpl implements VendorService {
 	@Override
 	public void updateVerify(String partId, boolean isVerified) {
 		partnerDetailsDao.updateVerify(partId, isVerified);
+	}
+	
+	@Override
+	public void updatePartnerDetails(VendorProfile partnerDetails) {
+		partnerDetailsDao.updatePartnerDetails(partnerDetails);
 	}
 } 

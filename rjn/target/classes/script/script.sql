@@ -1301,3 +1301,7 @@ INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('partner home
 INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('partner add branch', 'PARTNER');
 
 
+
+
+ALTER TABLE `sosvedu_apna`.`vendor_profile` 
+ADD COLUMN `verified` TINYINT NULL DEFAULT 0 AFTER `longitude`;

@@ -15,13 +15,14 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 
 	@Override
 	public void savePartnerDetails(VendorProfile partnerDetails) {
-		if (partnerDetails.getId() == null || "".equals(partnerDetails.getId())) {
-			persist(partnerDetails);
-		} else {
-			update(partnerDetails); 
-		}
+		persist(partnerDetails);
 	}
 
+	@Override
+	public void updatePartnerDetails(VendorProfile partnerDetails) {
+		update(partnerDetails);
+	}
+	
 	@Override
 	public List<VendorProfile> getAllPartners() {
 		Criteria criteria=createEntityCriteria();

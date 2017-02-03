@@ -9,6 +9,6 @@ public interface VendorProfileDao {
 	void savePartnerDetails(VendorProfile partnerDetails);
 	List<VendorProfile> getAllPartners();
 	VendorProfile getPartner(String PartnerID);
-	
+	void updatePartnerDetails(VendorProfile partnerDetails);
 	void updateVerify(String partId, boolean isVerified);	
 }

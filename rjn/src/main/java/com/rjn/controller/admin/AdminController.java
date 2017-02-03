@@ -26,12 +26,14 @@ import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.core.Email;
 import com.rjn.model.core.ProductCategory;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.LookUpService;
+import com.rjn.service.Core.MailService;
 import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.AppFileHandlingUtils;
 import com.rjn.utils.Constant;
@@ -58,6 +60,11 @@ public class AdminController {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	
+	@Autowired
+	private MailService mailService;
+	
 	
 	//======================testing=========================================
 	@RequestMapping(value = { "/uploadTest" }, method = RequestMethod.GET)
@@ -137,8 +144,17 @@ public class AdminController {
 			partnerDetails.setId(profileNumber);
 			String unEncryptPass = partnerDetails.getPassword();
 			partnerDetails.setPassword(utils.encryptPassword(unEncryptPass));
+			partnerservice.savePartnerDetails(partnerDetails);
+			// write code for email
+			Email email=new Email(); 
+			email.setTo(partnerDetails.getEmail());
+			email.setSubject("vendor created");
+		    email.setBody("vendor is created successfully and your uniqe id is"+partnerDetails.getId());
+		    boolean isEmailSent=mailService.sendEmail(email);
+		    System.out.println("email sent"+isEmailSent);
+		}else {
+			partnerservice.updatePartnerDetails(partnerDetails);
 		}
-		partnerservice.savePartnerDetails(partnerDetails);
 		try {
 			AppFileHandlingUtils.uploadFileToServer(partnerDetails.getVendorLogo(), "yogesh");
 		} catch (IOException e) {
