@@ -13,5 +13,7 @@ public interface VendorService {
     List<ProfileMaster> getCustomerCompany();
     List<ProfileMaster> getAssignedTo(String assignedTo,String partnerID);
     List<BusinessEnquiryDetails> getBusinessEnquiryList();
+    
+    void updateVerify(String partId, boolean isVerified);	
 }
  

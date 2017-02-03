@@ -42,7 +42,8 @@
    		</c:forEach>
    		
    		<c:if test="${showVerifyButton}">
-   			Eligible for verify, please give following link to your customer "${rc.getContextPath()}/vendor-profile/${PartnerDetails.id}"
+   			<a href="${rc.getContextPath()}/vendor/verify">Verify</a>, please give following link to your customer "${rc.getContextPath()}/vendor-profile/${PartnerDetails.id}"
+   			
    		</c:if>
    	</table>
    	

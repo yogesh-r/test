@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
@@ -147,6 +148,15 @@ public class VendorController {
 		return null;
 	}
 
+	
+	@RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
+	public String verify(ModelMap model, HttpServletRequest request) {
+		VendorProfile vendorProfile = getLoginPartnerDetails();
+		partnerservice.updateVerify(vendorProfile.getId(), true);
+		return "vendor/vendor_home";
+	}
+	
+	
 	private VendorProfile getLoginPartnerDetails() {
 		Account loginUser = utils.getLoggedInUser();
 		VendorProfile loginPartner = partnerservice.getPartner(loginUser.getReg_id());

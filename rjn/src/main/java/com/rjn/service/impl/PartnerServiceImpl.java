@@ -77,4 +77,9 @@ public class PartnerServiceImpl implements VendorService {
 	public List<BusinessEnquiryDetails> getBusinessEnquiryList() {
 		return vendorEnquiry.getBusinessEnquiryList(); 
 	}
+
+	@Override
+	public void updateVerify(String partId, boolean isVerified) {
+		partnerDetailsDao.updateVerify(partId, isVerified);
+	}
 } 

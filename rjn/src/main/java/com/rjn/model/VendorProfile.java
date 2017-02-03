@@ -71,6 +71,9 @@ public class VendorProfile {
 	
 	@Column(name = "longitude", nullable = false)
 	private String longitude;
+
+	@Column(name = "verified", nullable = false)
+	private boolean verified = false;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "partId", cascade=CascadeType.ALL)
 	private List<VendorProduct> products = new ArrayList<VendorProduct>();
@@ -247,5 +250,13 @@ public class VendorProfile {
 
 	public void setVendorLogo(MultipartFile vendorLogo) {
 		this.vendorLogo = vendorLogo;
+	}
+
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
 	}
 }

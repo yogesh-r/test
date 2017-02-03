@@ -35,5 +35,14 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 		return (VendorProfile) criteria.uniqueResult();
 	}
 
+	@Override
+	public void updateVerify(String partId, boolean isVerified) {
+		String hqlUpdate = "update VendorProfile c set c.verified = :verified where c.id = :id";
+		int updatedEntities = getSession().createQuery( hqlUpdate )
+		        .setBoolean("verified", isVerified)
+		        .setString("id", partId)
+		        .executeUpdate();
+		System.out.println("updatedEntities >> "+updatedEntities);
+	}
 
 }
