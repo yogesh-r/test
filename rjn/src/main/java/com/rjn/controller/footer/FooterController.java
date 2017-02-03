@@ -23,7 +23,7 @@ public class FooterController {
 	private static final Logger logr = Logger.getLogger(FooterController.class);
 	
 	@Autowired
-	FooterService footerService; 
+	private FooterService footerService; 
  
 	@RequestMapping(value = { "/carrers"}, method = RequestMethod.GET)
 	public String carrers(ModelMap model) {

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rjn.bean.ChangePassworddBean;
-import com.rjn.bean.ExcelFile;
+import com.rjn.bean.ExcelFileBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
@@ -44,10 +44,10 @@ import com.rjn.utils.SeqConstant;
 public class AdminController {
 
 	@Autowired
-	LookUpService lookUpService;
+	private LookUpService lookUpService;
 
 	@Autowired
-	VendorService partnerservice;
+	private VendorService partnerService;
 	
 	@Autowired
 	private SequenceGeneratorService seqGenerator;
@@ -56,15 +56,13 @@ public class AdminController {
 	private ApplicationUtils utils;
 	
 	@Autowired
-	BranchService branchService;
+	private BranchService branchService;
 	
 	@Autowired
 	private AccountService accountService;
 	
-	
 	@Autowired
 	private MailService mailService;
-	
 	
 	//======================testing=========================================
 	@RequestMapping(value = { "/uploadTest" }, method = RequestMethod.GET)
@@ -81,7 +79,7 @@ public class AdminController {
 	public String processExcel2003(ModelMap model, @RequestParam("excelfile2007") MultipartFile excelfile) {
 		try {
 			String fileName = excelfile.getOriginalFilename();
-			List<ExcelFile> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);
+			List<ExcelFileBean> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,7 +90,7 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
 	public String partnerProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = partnerservice.getPartner(partId);
+		VendorProfile thisVendor = partnerService.getPartner(partId);
 		model.addAttribute("thisVendor", thisVendor);
 		model.put("headerType", Constant.ROLE_ADMIN);
 		return "vendor-profile";
@@ -112,23 +110,18 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String whyUs(ModelMap model, HttpServletRequest request) {
-/*		HttpSession session = request.getSession();
-		List<Menu> thisMenu = utils.getMenu(Constant.ADMIN);
-		session.setAttribute("thisUserMenu", thisMenu);*/
 		return "admin/admin_home";
 	}
 
 	@RequestMapping(value = { "/register-vendor/{partId}" }, method = RequestMethod.GET)
 	public String editPartner(ModelMap model, @PathVariable String partId) {
-		VendorProfile thisVendor = partnerservice.getPartner(partId);
+		VendorProfile thisVendor = partnerService.getPartner(partId);
 		model.addAttribute("thisVendor", thisVendor);
 		return "admin/register-vendor";
 	}
 	
 	@RequestMapping(value = { "/register-vendor" }, method = RequestMethod.GET)
 	public String registerPartner(ModelMap model) {
-/*		List<LookupMaster> license = lookUpService.getLookUpValuesData(Constant.LOOKUP_LICENSE);
-		model.addAttribute("licenceList", license);*/
 		return "admin/register-vendor";
 	}
 
@@ -144,7 +137,7 @@ public class AdminController {
 			partnerDetails.setId(profileNumber);
 			String unEncryptPass = partnerDetails.getPassword();
 			partnerDetails.setPassword(utils.encryptPassword(unEncryptPass));
-			partnerservice.savePartnerDetails(partnerDetails);
+			partnerService.savePartnerDetails(partnerDetails);
 			// write code for email
 			Email email=new Email(); 
 			email.setTo(partnerDetails.getEmail());
@@ -153,7 +146,7 @@ public class AdminController {
 		    boolean isEmailSent=mailService.sendEmail(email);
 		    System.out.println("email sent"+isEmailSent);
 		}else {
-			partnerservice.updatePartnerDetails(partnerDetails);
+			partnerService.updatePartnerDetails(partnerDetails);
 		}
 		try {
 			AppFileHandlingUtils.uploadFileToServer(partnerDetails.getVendorLogo(), "yogesh");
@@ -165,12 +158,12 @@ public class AdminController {
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
 	public String registerBranch(ModelMap model) {
-		List<VendorProfile> partnerDetails = partnerservice.getAllPartners();
+		List<VendorProfile> partnerDetails = partnerService.getAllPartners();
 		model.addAttribute("PartnerDetails", partnerDetails);
 		model.addAttribute("allPartners", "Yes");
 		
 		Account loginUser =   utils.getLoggedInUser();
-		partnerservice.getPartner(loginUser.getMy_user_name());
+		partnerService.getPartner(loginUser.getMy_user_name());
 		return "admin/register-branch";
 	}
 	
@@ -195,9 +188,9 @@ public class AdminController {
 	public String bulkSaveCategory(ModelMap model, @RequestParam("excelfile") MultipartFile excelfile) {
 		try {
 			String fileName = excelfile.getOriginalFilename();
-			List<ExcelFile> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);
+			List<ExcelFileBean> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);
 			List<ProductCategory> productCategories = new ArrayList<ProductCategory>();
-			for (ExcelFile e : thisFile) {
+			for (ExcelFileBean e : thisFile) {
 				ProductCategory pc = new ProductCategory();
 				pc.setName(e.getCol1()); 
 				pc.setDescription(e.getCol2());
@@ -209,7 +202,6 @@ public class AdminController {
 		}
 		return "admin/admin_register_category";
 	}
-	
 
 	@RequestMapping(value = { "/product-category-list" }, method = RequestMethod.GET)
 	public String productCategoryList(ModelMap model) {
@@ -219,13 +211,13 @@ public class AdminController {
 
 	@RequestMapping(value = { "/vendor-list" }, method = RequestMethod.GET)
 	public String partnerList(ModelMap model) {
-		model.addAttribute("vendorList", partnerservice.getAllPartners());
+		model.addAttribute("vendorList", partnerService.getAllPartners());
 		return "admin/vendor-list";
 	}
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public String branchList(ModelMap model) {
-		List<VendorProfile> partnerDetails = partnerservice.getAllPartners();
+		List<VendorProfile> partnerDetails = partnerService.getAllPartners();
 		model.addAttribute("PartnerDetails", partnerDetails);
 		model.addAttribute("allPartners", "Yes");
 		return "admin/branch-list";
@@ -243,7 +235,7 @@ public class AdminController {
 
 	@RequestMapping(value = { "/vendor-enquiry" }, method = RequestMethod.GET)
 	public String enquiryList(ModelMap model) {
-		model.addAttribute("vendorEnquirys", partnerservice.getBusinessEnquiryList());
+		model.addAttribute("vendorEnquirys", partnerService.getBusinessEnquiryList());
 		return "admin/vendor-enquiry";
 	}
  
@@ -264,8 +256,6 @@ public class AdminController {
 		return "admin/admin_change_password";
 	}
 	
-	
-	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String adminEditProfile(ModelMap model) {
 		return "admin/admin-edit-profile";
@@ -284,8 +274,7 @@ public class AdminController {
 		} else {
 			return "wrong-password";
 		}
-		
 		return null;
 	
-}
 	}
+}

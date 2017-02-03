@@ -1,7 +1,6 @@
 package com.rjn.bean;
 
 public class ChangePassworddBean {
-	
 	private String oldPassword;
 	private String newPassword;
 	private String conformPassword;

@@ -48,7 +48,6 @@ public class MYSuccessHandler implements AuthenticationSuccessHandler {
         	} else {
         		return "/member/home";
         	}
-        	
         } else {
             throw new IllegalStateException();
         }

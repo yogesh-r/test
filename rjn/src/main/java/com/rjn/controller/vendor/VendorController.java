@@ -3,11 +3,9 @@ package com.rjn.controller.vendor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,8 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
@@ -35,13 +31,13 @@ import com.rjn.utils.SeqConstant;
 public class VendorController {
 
 	@Autowired
-	ApplicationUtils utils;
+	private ApplicationUtils utils;
 
 	@Autowired
-	VendorService partnerservice;
+	private VendorService partnerservice;
 
 	@Autowired
-	BranchService branchService;
+	private BranchService branchService;
 
 	@Autowired
 	private SequenceGeneratorService seqGenerator;
@@ -53,10 +49,8 @@ public class VendorController {
 	public String partnerProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
 		VendorProfile thisVendor = partnerservice.getPartner(partId);
 		model.addAttribute("thisVendor", thisVendor);
-		
 		VendorProfile vendorProfile = getLoginPartnerDetails();
 		model.addAttribute("PartnerDetails", vendorProfile);
-		
 		if (thisVendor.getId().equals(vendorProfile.getId())) {
 			model.addAttribute("showVerifyButton", true);
 		}
@@ -147,7 +141,6 @@ public class VendorController {
 		}
 		return null;
 	}
-
 	
 	@RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
 	public String verify(ModelMap model, HttpServletRequest request) {
@@ -155,7 +148,6 @@ public class VendorController {
 		partnerservice.updateVerify(vendorProfile.getId(), true);
 		return "vendor/vendor_home";
 	}
-	
 	
 	private VendorProfile getLoginPartnerDetails() {
 		Account loginUser = utils.getLoggedInUser();

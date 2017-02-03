@@ -34,10 +34,10 @@ public class HeaderController {
 	private static final Logger logr = Logger.getLogger(HeaderController.class);
 
 	@Autowired
-	VendorService partnerService; 
+	private VendorService partnerService; 
 
 	@Autowired
-	HeaderService headerService;
+	private HeaderService headerService;
 	
 	@Autowired
 	private ApplicationUtils utils;
@@ -46,7 +46,7 @@ public class HeaderController {
 	private SequenceGeneratorService seqGenerator;
 	
 	@Autowired 
-	MailService mailService;
+	private MailService mailService;
 	
 	@RequestMapping(value = { "/why-us"}, method = RequestMethod.GET)
 	public String whyUs(ModelMap model) {

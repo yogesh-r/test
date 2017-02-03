@@ -17,7 +17,7 @@ public class HomeController {
 	private static final Logger logr = Logger.getLogger(HomeController.class);
 	
 	@Autowired 
-	VendorProductService vendorProductService;
+	private VendorProductService vendorProductService;
 	
 	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public String index(ModelMap model) {

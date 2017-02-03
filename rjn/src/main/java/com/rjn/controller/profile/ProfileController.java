@@ -25,16 +25,16 @@ import com.rjn.utils.Constant;
 public class ProfileController {
 	
 	@Autowired
-	ApplicationUtils utils;
+	private ApplicationUtils utils;
 	
 	@Autowired
-	VendorService partnerService; 
+	private VendorService partnerService; 
 	
 	@Autowired
-	BranchService branch_service;
+	private BranchService branch_service;
 	
 	@Autowired
-	ProductDetailsService productService;
+	private ProductDetailsService productService;
 
 	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
@@ -96,6 +96,5 @@ public class ProfileController {
 		System.out.println("product>>>> "+product);
 		model.addAttribute("product", product);
 		return "vendor-profile";
-		
 	}
 }
