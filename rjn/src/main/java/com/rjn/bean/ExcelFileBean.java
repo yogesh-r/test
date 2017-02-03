@@ -1,7 +1,6 @@
 package com.rjn.bean;
 
-public class ExcelFile { 
-
+public class ExcelFileBean { 
 	String col1;
 	String col2; 
 	String col3;
