@@ -28,22 +28,22 @@ public class ProfileController {
 	private ApplicationUtils utils;
 	
 	@Autowired
-	private VendorService partnerService; 
+	private VendorService vendorService; 
 	
 	@Autowired
-	private BranchService branch_service;
+	private BranchService branchService;
 	
 	@Autowired
 	private ProductDetailsService productService;
 
 	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = partnerService.getPartner(partId);
+		VendorProfile thisVendor = vendorService.getVendor(partId);
 		model.addAttribute("thisVendor", thisVendor);
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
 		if (loginUser != null) {
-			if (Constant.ROLE_PARTNER.equals((String)loginUser.get(0).toString())) {
+			if (Constant.ROLE_VENDOR.equals((String)loginUser.get(0).toString())) {
 				return "redirect:/vendor/"+thisVendor.getId(); 
 			} else if (Constant.ROLE_MEMBER.equals((String)loginUser.get(0).toString())) {
 				return "redirect:/member/"+thisVendor.getId();
@@ -61,9 +61,9 @@ public class ProfileController {
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
-		VendorProfile thisVendor = partnerService.getPartner(partId);
+		VendorProfile thisVendor = vendorService.getVendor(partId);
 		model.addAttribute("thisVendor", thisVendor);
-		List<BranchMasterDetails> branch_details=branch_service.getBranchByPartner(partId);
+		List<BranchMasterDetails> branch_details=branchService.getBranchByVendor(partId);
 		System.out.println("branch details?>>> "+branch_details);
 		model.addAttribute("branch",branch_details);
 		System.out.println("branch list id controller");
@@ -78,7 +78,7 @@ public class ProfileController {
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
-		BranchMasterDetails branch_details=branch_service.getBranchDetails(uniquieId);
+		BranchMasterDetails branch_details=branchService.getBranchDetails(uniquieId);
 		System.out.println("branch details>>>> "+branch_details);
 		model.addAttribute("branchName",branch_details);
 		return "vendor-profile";

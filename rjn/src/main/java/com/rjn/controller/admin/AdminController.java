@@ -43,7 +43,7 @@ import com.rjn.utils.SeqConstant;
 public class AdminController {
 
 	@Autowired
-	private VendorService partnerService;
+	private VendorService vendorService;
 	
 	@Autowired
 	private SequenceGeneratorService seqGenerator;
@@ -85,8 +85,8 @@ public class AdminController {
 	//======================testing=========================================
 	
 	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
-	public String partnerProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = partnerService.getPartner(partId);
+	public String vendorProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
+		VendorProfile thisVendor = vendorService.getVendor(partId);
 		model.addAttribute("thisVendor", thisVendor);
 		model.put("headerType", Constant.ROLE_ADMIN);
 		return "vendor-profile";
@@ -110,56 +110,56 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = { "/register-vendor/{partId}" }, method = RequestMethod.GET)
-	public String editPartner(ModelMap model, @PathVariable String partId) {
-		VendorProfile thisVendor = partnerService.getPartner(partId);
+	public String editVendor(ModelMap model, @PathVariable String partId) {
+		VendorProfile thisVendor = vendorService.getVendor(partId);
 		model.addAttribute("thisVendor", thisVendor);
 		return "admin/register-vendor";
 	}
 	
 	@RequestMapping(value = { "/register-vendor" }, method = RequestMethod.GET)
-	public String registerPartner(ModelMap model) {
+	public String registerVendor(ModelMap model) {
 		return "admin/register-vendor";
 	}
 
 	@RequestMapping(value = { "/register-vendor" }, method = RequestMethod.POST)
-	public String savePartner(@Valid VendorProfile partnerDetails, BindingResult result, ModelMap model) {
-		if (partnerDetails.getId() == null || "".equals(partnerDetails.getId())) {
+	public String saveVendor(@Valid VendorProfile vendorDetails, BindingResult result, ModelMap model) {
+		if (vendorDetails.getId() == null || "".equals(vendorDetails.getId())) {
 			Calendar cal = Calendar.getInstance();
 		    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		    String currentDate = sdf.format(cal.getTime());
 		    
-			SeqId seqId = seqGenerator.getSeqId(SeqConstant.PARTNER_SEQ);
+			SeqId seqId = seqGenerator.getSeqId(SeqConstant.VENDOR_SEQ);
 			String profileNumber = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
-			partnerDetails.setId(profileNumber);
-			String unEncryptPass = partnerDetails.getPassword();
-			partnerDetails.setPassword(utils.encryptPassword(unEncryptPass));
-			partnerService.savePartnerDetails(partnerDetails);
+			vendorDetails.setId(profileNumber);
+			String unEncryptPass = vendorDetails.getPassword();
+			vendorDetails.setPassword(utils.encryptPassword(unEncryptPass));
+			vendorService.saveVendorDetails(vendorDetails);
 			// write code for email
 			Email email=new Email(); 
-			email.setTo(partnerDetails.getEmail());
+			email.setTo(vendorDetails.getEmail());
 			email.setSubject("vendor created");
-		    email.setBody("vendor is created successfully and your uniqe id is"+partnerDetails.getId());
+		    email.setBody("vendor is created successfully and your uniqe id is"+vendorDetails.getId());
 		    boolean isEmailSent=mailService.sendEmail(email);
 		    System.out.println("email sent"+isEmailSent);
 		}else {
-			partnerService.updatePartnerDetails(partnerDetails);
+			vendorService.updateVendorDetails(vendorDetails);
 		}
 		try {
-			AppFileHandlingUtils.uploadFileToServer(partnerDetails.getVendorLogo(), "yogesh");
+			AppFileHandlingUtils.uploadFileToServer(vendorDetails.getVendorLogo(), "yogesh");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "admin/register-partner-success";
+		return "admin/register-vendor-success";
 	}
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
 	public String registerBranch(ModelMap model) {
-		List<VendorProfile> partnerDetails = partnerService.getAllPartners();
-		model.addAttribute("PartnerDetails", partnerDetails);
+		List<VendorProfile> vendorDetails = vendorService.getAllVendors();
+		model.addAttribute("PartnerDetails", vendorDetails);
 		model.addAttribute("allPartners", "Yes");
 		
 		Account loginUser =   utils.getLoggedInUser();
-		partnerService.getPartner(loginUser.getMy_user_name());
+		vendorService.getVendor(loginUser.getMy_user_name());
 		return "admin/register-branch";
 	}
 	
@@ -206,15 +206,15 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = { "/vendor-list" }, method = RequestMethod.GET)
-	public String partnerList(ModelMap model) {
-		model.addAttribute("vendorList", partnerService.getAllPartners());
+	public String vendorList(ModelMap model) {
+		model.addAttribute("vendorList", vendorService.getAllVendors());
 		return "admin/vendor-list";
 	}
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public String branchList(ModelMap model) {
-		List<VendorProfile> partnerDetails = partnerService.getAllPartners();
-		model.addAttribute("PartnerDetails", partnerDetails);
+		List<VendorProfile> vendorDetails = vendorService.getAllVendors();
+		model.addAttribute("PartnerDetails", vendorDetails);
 		model.addAttribute("allPartners", "Yes");
 		return "admin/branch-list";
 	}
@@ -231,7 +231,7 @@ public class AdminController {
 
 	@RequestMapping(value = { "/vendor-enquiry" }, method = RequestMethod.GET)
 	public String enquiryList(ModelMap model) {
-		model.addAttribute("vendorEnquirys", partnerService.getBusinessEnquiryList());
+		model.addAttribute("vendorEnquirys", vendorService.getBusinessEnquiryList());
 		return "admin/vendor-enquiry";
 	}
  
@@ -244,7 +244,7 @@ public class AdminController {
 		String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
 		branchMasterDetails.setUniqueId(bracnhUniqueId);
 		branchService.saveBranch(branchMasterDetails);
-		return "partner/partner_register-branch";
+		return "vendor/vendor_register-branch";
 	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)

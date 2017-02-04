@@ -49,7 +49,7 @@ public class VendorProductController {
 	public String registerProduct(ModelMap model) {
 		model.addAttribute("categoryList", utils.getAllCategory());
 		VendorProfile loginPartner = getLoginPartnerDetails();
-		model.addAttribute("branchList", branchService.getBranchByPartner(loginPartner.getId()));
+		model.addAttribute("branchList", branchService.getBranchByVendor(loginPartner.getId()));
 		return "vendor/partner_register-product"; 
 	}
 	
@@ -77,7 +77,7 @@ public class VendorProductController {
 			model.addAttribute("errorMessage", "sorry this product doesnt exist please crate your own product");
 		}
 		model.addAttribute("categoryList", utils.getAllCategory());
-		model.addAttribute("branchList", branchService.getBranchByPartner(loginPartner.getId()));
+		model.addAttribute("branchList", branchService.getBranchByVendor(loginPartner.getId()));
 		return "vendor/partner_register-product"; 
 	}
 	
@@ -93,14 +93,14 @@ public class VendorProductController {
 		VendorProfile loginPartner = getLoginPartnerDetails();
 		model.addAttribute("productList", productService.getProductByVendor(loginPartner.getId()));
 		model.addAttribute("leads", utils.getLeadForVendor(loginPartner.getId()));
-		List<BranchMasterDetails> branchList =  branchService.getBranchByPartner(loginPartner.getId());
+		List<BranchMasterDetails> branchList =  branchService.getBranchByVendor(loginPartner.getId());
 		model.addAttribute("branchList", branchList);
 		return "vendor/vendor_leads"; 
 	}
 	
 	private VendorProfile getLoginPartnerDetails() {
 		Account loginUser = utils.getLoggedInUser();
-		VendorProfile loginPartner = partnerService.getPartner(loginUser.getReg_id());
+		VendorProfile loginPartner = partnerService.getVendor(loginUser.getReg_id());
 		return loginPartner;
 	}
 }

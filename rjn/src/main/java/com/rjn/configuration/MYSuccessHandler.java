@@ -40,7 +40,7 @@ public class MYSuccessHandler implements AuthenticationSuccessHandler {
         Set<String> authorities = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (authorities.contains(Constant.ROLE_ADMIN)) {
         	return "/admin/home";
-        } else if (authorities.contains(Constant.ROLE_PARTNER)) {
+        } else if (authorities.contains(Constant.ROLE_VENDOR)) {
         	return "/vendor/home";
         } else if (authorities.contains(Constant.ROLE_MEMBER)) {
         	if (pageName != null) {

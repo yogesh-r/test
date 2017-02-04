@@ -34,7 +34,7 @@ public class VendorController {
 	private ApplicationUtils utils;
 
 	@Autowired
-	private VendorService partnerservice;
+	private VendorService vendorservice;
 
 	@Autowired
 	private BranchService branchService;
@@ -46,35 +46,35 @@ public class VendorController {
 	private AccountService accountService;
 
 	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
-	public String partnerProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = partnerservice.getPartner(partId);
+	public String vendorProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
+		VendorProfile thisVendor = vendorservice.getVendor(partId);
 		model.addAttribute("thisVendor", thisVendor);
-		VendorProfile vendorProfile = getLoginPartnerDetails();
+		VendorProfile vendorProfile = getLoginVendorDetails();
 		model.addAttribute("PartnerDetails", vendorProfile);
 		if (thisVendor.getId().equals(vendorProfile.getId())) {
 			model.addAttribute("showVerifyButton", true);
 		}
-		model.put("headerType", Constant.ROLE_PARTNER);
+		model.put("headerType", Constant.ROLE_VENDOR);
 		return "vendor-profile";
 	}
 	
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
+		model.addAttribute("PartnerDetails", getLoginVendorDetails());
 		return "vendor/vendor_home";
 	}
 
 	// Master
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
 	public String paernerRegisterBranch(ModelMap model) {
-		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
+		model.addAttribute("PartnerDetails", getLoginVendorDetails());
 		return "vendor/partner_register-branch"; 
 	}
 
 	@RequestMapping(value = { "/register-branch/{uniqueId}" }, method = RequestMethod.GET)
 	public String partnerEditBranch(ModelMap model, @PathVariable String uniqueId) {
-		VendorProfile loginPartner = getLoginPartnerDetails();
+		VendorProfile loginPartner = getLoginVendorDetails();
 		model.addAttribute("PartnerDetails", loginPartner);
 		
 		BranchMasterDetails thisBranch = branchService.getBranchByUniqueId(uniqueId);
@@ -102,27 +102,27 @@ public class VendorController {
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public String paernerBranchList(ModelMap model) {
 		Account loginUser = utils.getLoggedInUser();
-		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
-		List<BranchMasterDetails> branchList =  branchService.getBranchByPartner(loginUser.getReg_id());
+		model.addAttribute("PartnerDetails", getLoginVendorDetails());
+		List<BranchMasterDetails> branchList =  branchService.getBranchByVendor(loginUser.getReg_id());
 		model.addAttribute("branchList", branchList);
 		return "vendor/partner-branch-list";
 	}
 
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String paernerEditProfile(ModelMap model) {
-		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
+		model.addAttribute("PartnerDetails", getLoginVendorDetails());
 		return "vendor/vendor-edit-profile";
 	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
 	public String vendorChangePassword(ModelMap model) {
-		model.addAttribute("PartnerDetails", getLoginPartnerDetails());
+		model.addAttribute("PartnerDetails", getLoginVendorDetails());
 		return "vendor/vendor-change-password"; 
 	}
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
 	public String vendorUpdateProfile(@Valid VendorProfile partnerDetails,BindingResult result, ModelMap model) {
-		partnerservice.savePartnerDetails(partnerDetails);
+		vendorservice.saveVendorDetails(partnerDetails);
 		return "vendor/vendor-edit-profile";
 	}
 
@@ -144,15 +144,15 @@ public class VendorController {
 	
 	@RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
 	public String verify(ModelMap model, HttpServletRequest request) {
-		VendorProfile vendorProfile = getLoginPartnerDetails();
-		partnerservice.updateVerify(vendorProfile.getId(), true);
+		VendorProfile vendorProfile = getLoginVendorDetails();
+		vendorservice.updateVerify(vendorProfile.getId(), true);
 		return "vendor/vendor_home";
 	}
 	
-	private VendorProfile getLoginPartnerDetails() {
+	private VendorProfile getLoginVendorDetails() {
 		Account loginUser = utils.getLoggedInUser();
-		VendorProfile loginPartner = partnerservice.getPartner(loginUser.getReg_id());
-		return loginPartner;
+		VendorProfile loginvendor = vendorservice.getVendor(loginUser.getReg_id());
+		return loginvendor;
 	}
 
 	private List<BranchMasterDetails> getLocationListForPartner(String cityId, String partnerId) {

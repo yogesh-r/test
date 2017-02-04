@@ -38,22 +38,22 @@ public class PartnerServiceImpl implements VendorService {
 	private BusinessEnquiryDetailsDao vendorEnquiry;
 	
 	@Override 
-	public void savePartnerDetails(VendorProfile partnerDetails) { 
+	public void saveVendorDetails(VendorProfile partnerDetails) { 
 		partnerDetailsDao.savePartnerDetails(partnerDetails); 
 		Account account = new Account(); 
 		account.setMy_user_name(partnerDetails.getEmail()); 
 		account.setPassword(partnerDetails.getPassword()); 
 		account.setReg_id(partnerDetails.getId()); 
-		accountDao.save(account, Constant.ROLE_PARTNER); 
+		accountDao.save(account, Constant.ROLE_VENDOR); 
 	} 
 	
 	@Override 
-	public List<VendorProfile> getAllPartners() { 
+	public List<VendorProfile> getAllVendors() { 
 		return partnerDetailsDao.getAllPartners(); 
 	} 
 	
 	@Override 
-	public VendorProfile getPartner(String PartnerID) { 
+	public VendorProfile getVendor(String PartnerID) { 
 		return partnerDetailsDao.getPartner(PartnerID); 
 	}
 
@@ -78,7 +78,7 @@ public class PartnerServiceImpl implements VendorService {
 	}
 	
 	@Override
-	public void updatePartnerDetails(VendorProfile partnerDetails) {
+	public void updateVendorDetails(VendorProfile partnerDetails) {
 		partnerDetailsDao.updatePartnerDetails(partnerDetails);
 	}
 } 

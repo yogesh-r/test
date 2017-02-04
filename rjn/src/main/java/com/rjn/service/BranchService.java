@@ -5,7 +5,7 @@ import java.util.List;
 import com.rjn.model.Branch.BranchMasterDetails;
 
 public interface BranchService {
-	List<BranchMasterDetails> getBranchByPartner(String partnerId);
+	List<BranchMasterDetails> getBranchByVendor(String partnerId);
 	
 	List<BranchMasterDetails> getLocationByCity(String cityId, String partnerId);
 

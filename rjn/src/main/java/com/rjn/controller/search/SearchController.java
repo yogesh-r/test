@@ -25,7 +25,7 @@ public class SearchController {
 	private SearchService searchService;
 	
 	@Autowired
-	private VendorService partnerService; 
+	private VendorService vendorService; 
 
 	@RequestMapping(value = { "/search"}, method = RequestMethod.GET)
 	public String search(ModelMap model, HttpServletRequest request) {
@@ -57,7 +57,7 @@ public class SearchController {
 	public Object vendorList(HttpServletRequest request) {
 		SearchBean bean = new SearchBean();
 		Map<String, Object> model = new HashMap<String, Object>();
-		List<VendorProfile> lists =  partnerService.getAllPartners();
+		List<VendorProfile> lists =  vendorService.getAllVendors();
 		model.put("vendorList", lists);
 		return model;
 	}

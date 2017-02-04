@@ -4,12 +4,12 @@ public class Constant {
 	// constant for MYSuccessHandler
 	public static final String ROLE_ADMIN = "ROLE_ADMIN";
 	public static final String ROLE_USER = "ROLE_USER";
-	public static final String ROLE_PARTNER = "ROLE_PARTNER";
+	public static final String ROLE_VENDOR = "ROLE_PARTNER";
 	public static final String ROLE_MEMBER = "ROLE_MEMBER";
 	
 	// constant for security config
 	public static final String ADMIN = "ADMIN";
-	public static final String PARTNER = "PARTNER";
+	public static final String VENDOR = "PARTNER";
 	public static final String MEMBER = "MEMBER";
 	
 	// constant for sequence

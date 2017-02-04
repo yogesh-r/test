@@ -7,13 +7,13 @@ import com.rjn.model.ProfileMaster;
 import com.rjn.model.VendorProfile;
 
 public interface VendorService {
-    void savePartnerDetails(VendorProfile partnerDetails);
-    List<VendorProfile> getAllPartners();
-    VendorProfile getPartner(String PartnerID);
+    void saveVendorDetails(VendorProfile vendorDetails);
+    List<VendorProfile> getAllVendors();
+    VendorProfile getVendor(String vendorID);
     List<ProfileMaster> getCustomerCompany();
-    List<ProfileMaster> getAssignedTo(String assignedTo,String partnerID);
+    List<ProfileMaster> getAssignedTo(String assignedTo,String vendorID);
     List<BusinessEnquiryDetails> getBusinessEnquiryList();
-    void updatePartnerDetails(VendorProfile partnerDetails);
+    void updateVendorDetails(VendorProfile vendorDetails);
     void updateVerify(String partId, boolean isVerified);	
 }
  

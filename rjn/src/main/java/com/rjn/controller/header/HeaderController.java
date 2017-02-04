@@ -30,7 +30,7 @@ public class HeaderController {
 	private static final Logger logr = Logger.getLogger(HeaderController.class);
 
 	@Autowired
-	private VendorService partnerService; 
+	private VendorService vendorService; 
 
 	@Autowired
 	private HeaderService headerService;

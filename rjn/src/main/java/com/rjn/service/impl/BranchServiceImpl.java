@@ -16,7 +16,7 @@ public class BranchServiceImpl implements BranchService {
 	private BranchMasterDetailsDao dao;
 	
 	@Override
-	public List<BranchMasterDetails> getBranchByPartner(String partnerId) {
+	public List<BranchMasterDetails> getBranchByVendor(String partnerId) {
 		return dao.getBranchByPartner(partnerId);
 	}
 

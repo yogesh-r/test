@@ -34,7 +34,7 @@ public class MemberController {
 	private ApplicationUtils utils;
 	
 	@Autowired
-	private VendorService partnerService; 
+	private VendorService vendorService; 
 	
 	@Autowired
 	private MemberService memberService;
@@ -66,7 +66,7 @@ public class MemberController {
 	
 	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = partnerService.getPartner(partId);
+		VendorProfile thisVendor = vendorService.getVendor(partId);
 		model.addAttribute("thisVendor", thisVendor);
 		Account loginUser = utils.getLoggedInUser();
 		ProfileMaster profileMaster = getMemberDetails(loginUser.getReg_id());
