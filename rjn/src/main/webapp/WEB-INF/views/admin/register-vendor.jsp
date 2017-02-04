@@ -29,25 +29,15 @@
 							<input type="text"
 								id="lnam" name="partSurname" class="form-control" value="${thisVendor.partSurname}" required>
 						</div>
-				<%-- 		<div class="col-sm-3">
-							<span>Company Registration Date</span> 
-								<input type='text' value="${thisVendor.DOB}"
-								class="form-control" id="inputField" name="DOB" required />
-						</div> --%>
 					</div>
 					<!--  row end -->
 					<div class="row">
 						<div class="col-sm-2"></div>
-					<%-- 	<div class="col-sm-3">
-							<span>Company name<label>*</label></span> <input type="text"
-								name="compName" value="${thisVendor.compName}" class="form-control" required />
-						</div> --%>
 						<div class="col-sm-3">
 							<span>Email Id<label>*</label></span> <input type="text"
 								name="email" value="${thisVendor.email}" class="form-control"
 								id="contact_email_id" required />
 						</div>
-						
 						<c:if test="${thisVendor.id eq null}">
 							<div class="col-sm-3">
 								<span>Password<label>*</label></span> <input type="password"
@@ -73,24 +63,10 @@
 								<option value="Sales Partner">Sales Partner</option>
 							</select>
 						</div>
-<%-- 						<div class="col-sm-3"> 
-							<span>License Type<label>*</label></span> 
-								<select name="LicensePack" id="licen" class="form-control">
-									 <c:forEach items="${licenceList}" var="thisValue">
-										<option value="${thisValue.lookupType}">${thisValue.lookupCode}</option>
-									</c:forEach>									
-								</select>
-						</div> --%>
 					</div>
 					<!-- row end -->
 					<div class="row">
 						<div class="col-sm-2"></div>
-						<%-- <div class="col-sm-3">
-							<span>Enter Company URL<label>*</label></span> <input
-								type="text" name="url" id="compURL" class="form-control"
-								value="${thisVendor.url}" required />
-						</div> --%>
-						
 						<div class="col-sm-3">
 							<span>Enter Company Logo<label>*</label></span>
 							<input type="file" name="vendorLogo">

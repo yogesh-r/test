@@ -1,7 +1,3 @@
-<!doctype html>
-<html lang="en-gb">
-<head>
-<title>RJN</title>
 <link rel="stylesheet" type="text/css"
 	href="${rc.getContextPath()}/resources/css/admin/reset.css">
 <link rel="stylesheet" type="text/css"
