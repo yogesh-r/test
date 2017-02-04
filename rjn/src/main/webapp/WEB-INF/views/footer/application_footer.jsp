@@ -20,11 +20,9 @@
                             <li><a href="${rc.getContextPath()}/member-policy">Member Policy</a></li>
                             <li><a href="${rc.getContextPath()}/terms-and-conditions">Terms & Conditions</a></li>
                             <li><a href="${rc.getContextPath()}/space-provide-policy">Space Provider Policy</a></li>
-                            
                         </ul>
                     </div>
                 </div>
-
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-block">
                         <h3 class="title">Customer Support</h3>
@@ -36,7 +34,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-block brand">
                         <p class="text-center">
@@ -52,9 +49,7 @@
                         </ul>
                     </div>
                 </div>
-
             </div><!--/.row -->
-
             <div class="row copyrights">
 			<br>
 			  <div class="col-md-9">
@@ -66,8 +61,6 @@
 			      <p class="text-center"  > <a href="#">No of visit: 22</a></p>
 			  </div>
             </div><!--/.row.copyrights -->
-
         </div><!--/.container -->
     </footer><!--/.site-footer -->
-    
     <%@include file="../include/js_include.jsp"%>

@@ -8,7 +8,6 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-3">
-					
 							<span>Vendor<label></label></span>
 							<c:choose>
 								<c:when test="${allPartners ne null}">
