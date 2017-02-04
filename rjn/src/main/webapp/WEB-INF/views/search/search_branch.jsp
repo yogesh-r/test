@@ -77,9 +77,3 @@
 		<%@include file="../footer/application_footer.jsp"%>
 	</c:otherwise>
 </c:choose>
-
-
-
-
-
-

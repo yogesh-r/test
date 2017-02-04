@@ -1,7 +1,7 @@
 <%@include file="../include/css_include.jsp"%>
-		<script type="text/javascript">
-			var _context = '${rc.getContextPath()}';
-		</script>
+<script type="text/javascript">
+	var _context = '${rc.getContextPath()}';
+</script>
 <header class="site-header" ng-app="RJN">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -25,24 +25,17 @@
                         <li><a href="${rc.getContextPath()}/contact-us">Contact us</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-actions navbar-right">
-                    
-                    
 	                    <li><a class="btn btn-default navbar-btn btn-block" data-toggle="modal" data-target="#myModal" >Sign in</a></li>
 	                    <li><a class="btn btn-default navbar-btn btn-block" href="${rc.getContextPath()}/member/register">Sign up</a></li>
-					
 	                </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.row -->
         </div><!--/.container -->
     </nav><!--/.navbar-default -->
 </header>
-
-
-
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -67,24 +60,17 @@
 		      <input name="pageName" type="hidden" value="${pageName}"/>
 		      <input name="searchKeyWord" type="hidden" value="${param.thisProduct}"/>
 		  </form>
-		  
 		  <a data-toggle="modal" data-target="#forgetPasswordModal">Forget Password ??</a>
-		  
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerModal">Register</button>
       </div>
     </div>
-
   </div>
 </div>
-
-
-
 <!-- 
 ======================================== -->
-
 <!-- Modal -->
 <div id="registerModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -133,11 +119,6 @@
 
   </div>
 </div>
-
-
-
-
-
 <!-- ====================================================== -->
 <!-- Modal -->
 <div id="forgetPasswordModal" class="modal fade" role="dialog">
