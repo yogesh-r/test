@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.rjn.model.BusinessEnquiryDetails;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.BusinessEnquiry;
+import com.rjn.model.CustomerProfile;
 import com.rjn.model.SeqId;
 import com.rjn.model.core.Email;
 import com.rjn.service.HeaderService;
@@ -44,16 +44,6 @@ public class HeaderController {
 	@Autowired 
 	private MailService mailService;
 	
-	@RequestMapping(value = { "/why-us"}, method = RequestMethod.GET)
-	public String whyUs(ModelMap model) {
-		return "why-us";
-	}
-	
-	@RequestMapping(value = { "/how-it-work"}, method = RequestMethod.GET)
-	public String howItWorks(ModelMap model) {
-		return "how-it-works";
-	}
-	
 	@RequestMapping(value = { "/contact-us"}, method = RequestMethod.GET)
 	public String contact(ModelMap model) {
 		return "contact-us";
@@ -70,7 +60,7 @@ public class HeaderController {
 	}
 
 	@RequestMapping(value = { "/member/register"}, method = RequestMethod.POST)
-	public String saveMemberRegisteration(@Valid ProfileMaster profileMaster, BindingResult result, ModelMap model, RedirectAttributes redirectAttributes) {
+	public String saveMemberRegisteration(@Valid CustomerProfile profileMaster, BindingResult result, ModelMap model, RedirectAttributes redirectAttributes) {
 		String unEncryptPass = profileMaster.getPassword();
 		profileMaster.setPassword(utils.encryptPassword(unEncryptPass));
 		SeqId seqId = seqGenerator.getSeqId(SeqConstant.CUSTOMER_SEQ);
@@ -110,7 +100,7 @@ public class HeaderController {
 	}*/
 	
 	@RequestMapping(value = { "/public/list_your_space" }, method = RequestMethod.POST)
-	public String saveListData(@Valid BusinessEnquiryDetails listSpace, BindingResult result, ModelMap model) {
+	public String saveListData(@Valid BusinessEnquiry listSpace, BindingResult result, ModelMap model) {
 		SeqId seqId = seqGenerator.getSeqId(SeqConstant.VENDOR_REGISTRATION_ENQUIRY_SEQ);
 		String enquiryId = seqId.getSeqName() +"-"+ seqId.getSeqNum();
 		listSpace.setEnquiryId(enquiryId);
@@ -123,7 +113,7 @@ public class HeaderController {
     	thisEmail.setBody("Test Body enquiry id = "+enquiryId);
     	boolean isEmailSent = mailService.sendEmail(thisEmail);
     	if (isEmailSent) {
-        	BusinessEnquiryDetails thisListSpace = headerService.getBusinessEnquiryByEnquiryId(enquiryId);
+        	BusinessEnquiry thisListSpace = headerService.getBusinessEnquiryByEnquiryId(enquiryId);
         	thisListSpace.setEmailStatus("Sent");
         	headerService.saveListYourOffice(thisListSpace);
     	}

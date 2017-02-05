@@ -14,34 +14,34 @@ import com.rjn.model.VendorProfile;
 public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> implements VendorProfileDao {
 
 	@Override
-	public void savePartnerDetails(VendorProfile partnerDetails) {
-		persist(partnerDetails);
+	public void saveVendorDetails(VendorProfile vendorDetails) {
+		persist(vendorDetails);
 	}
 
 	@Override
-	public void updatePartnerDetails(VendorProfile partnerDetails) {
-		update(partnerDetails);
+	public void updateVendorDetails(VendorProfile vendorDetails) {
+		update(vendorDetails);
 	}
 	
 	@Override
-	public List<VendorProfile> getAllPartners() {
+	public List<VendorProfile> getAllVendors() {
 		Criteria criteria=createEntityCriteria();
 		return (List<VendorProfile>) criteria.list();
 	}
 
 	@Override
-	public VendorProfile getPartner(String PartnerID) {
+	public VendorProfile getVendor(String vendorID) {
 		Criteria criteria=createEntityCriteria();
-		criteria.add(Restrictions.eq("id",PartnerID));
+		criteria.add(Restrictions.eq("id",vendorID));
 		return (VendorProfile) criteria.uniqueResult();
 	}
 
 	@Override
-	public void updateVerify(String partId, boolean isVerified) {
+	public void updateVerify(String vendorId, boolean isVerified) {
 		String hqlUpdate = "update VendorProfile c set c.verified = :verified where c.id = :id";
 		int updatedEntities = getSession().createQuery( hqlUpdate )
 		        .setBoolean("verified", isVerified)
-		        .setString("id", partId)
+		        .setString("id", vendorId)
 		        .executeUpdate();
 		System.out.println("updatedEntities >> "+updatedEntities);
 	}

@@ -9,18 +9,18 @@ import org.springframework.stereotype.Repository;
 
 import com.rjn.dao.ProfileMasterDao;
 import com.rjn.dao.core.AbstractDao;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 
 @Repository("profileMasterDao")
-public class ProfileMasterDaoImpl extends AbstractDao<Integer, ProfileMaster> implements ProfileMasterDao {
+public class ProfileMasterDaoImpl extends AbstractDao<Integer, CustomerProfile> implements ProfileMasterDao {
 
 	@Override
-	public void saveMemberRegister(ProfileMaster profileMaster) {
+	public void saveMemberRegister(CustomerProfile profileMaster) {
 		persist(profileMaster);
 	}
 
 	@Override
-	public List<ProfileMaster> getAllCustomerCompany() {
+	public List<CustomerProfile> getAllCustomerCompany() {
 		Criteria criteria = createEntityCriteria();
 		String nullcheck = "null";
 		Conjunction objConjunction = Restrictions.conjunction();
@@ -29,20 +29,20 @@ public class ProfileMasterDaoImpl extends AbstractDao<Integer, ProfileMaster> im
 		objConjunction.add(Restrictions.isNotNull("companyName"));
 		criteria.add(Restrictions.ne("companyName", nullcheck));
 		criteria.add(objConjunction);
-		return (List<ProfileMaster>) criteria.list();
+		return (List<CustomerProfile>) criteria.list();
 	}
 
 	@Override
-	public ProfileMaster getProfileMasterByprofileNumber(String profileNumber) {
+	public CustomerProfile getProfileMasterByprofileNumber(String profileNumber) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("profileNumber", profileNumber));
-		return (ProfileMaster) criteria.uniqueResult();
+		return (CustomerProfile) criteria.uniqueResult();
 	}
 
 	@Override
-	public ProfileMaster getProfileMasterByEmail(String contactEmailId) {
+	public CustomerProfile getProfileMasterByEmail(String contactEmailId) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("contactEmailId", contactEmailId));
-		return (ProfileMaster) criteria.uniqueResult();
+		return (CustomerProfile) criteria.uniqueResult();
 	}
 }

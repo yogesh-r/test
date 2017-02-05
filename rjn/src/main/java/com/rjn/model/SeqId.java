@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tx_seq_id")
+@Table(name="seq_id")
 public class SeqId {
 	
 	@Id

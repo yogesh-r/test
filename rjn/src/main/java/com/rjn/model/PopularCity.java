@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tx_popular_cities") 
+@Table(name="popular_cities") 
 public class PopularCity {
 
 	@Id

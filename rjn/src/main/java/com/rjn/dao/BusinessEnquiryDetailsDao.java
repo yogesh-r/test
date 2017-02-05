@@ -2,10 +2,10 @@ package com.rjn.dao;
 
 import java.util.List;
 
-import com.rjn.model.BusinessEnquiryDetails;
+import com.rjn.model.BusinessEnquiry;
 
 public interface BusinessEnquiryDetailsDao {
-	void saveListYourOffice(BusinessEnquiryDetails listSpaceData);
-	List<BusinessEnquiryDetails> getBusinessEnquiryList();
-	BusinessEnquiryDetails getBusinessEnquiryByEnquiryId(String enquiryId);
+	void saveListYourOffice(BusinessEnquiry listSpaceData);
+	List<BusinessEnquiry> getBusinessEnquiryList();
+	BusinessEnquiry getBusinessEnquiryByEnquiryId(String enquiryId);
 }

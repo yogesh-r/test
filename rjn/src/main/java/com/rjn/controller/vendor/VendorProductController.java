@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 import com.rjn.model.product.VendorProduct;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorProductService;
@@ -34,7 +34,7 @@ public class VendorProductController {
 	private ApplicationUtils utils;
 	
 	@Autowired
-	private VendorService partnerService;
+	private VendorService vendorService;
 	
 	@Autowired
 	private VendorProductService productService;
@@ -48,59 +48,59 @@ public class VendorProductController {
 	@RequestMapping(value = { "/register-product" }, method = RequestMethod.GET)
 	public String registerProduct(ModelMap model) {
 		model.addAttribute("categoryList", utils.getAllCategory());
-		VendorProfile loginPartner = getLoginPartnerDetails();
-		model.addAttribute("branchList", branchService.getBranchByVendor(loginPartner.getId()));
-		return "vendor/partner_register-product"; 
+		VendorProfile loginVendor = getLoginVendorDetails();
+		model.addAttribute("branchList", branchService.getBranchByVendor(loginVendor.getId()));
+		return "vendor/vendor_register-product"; 
 	}
 	
 	@RequestMapping(value = { "/register-product" }, method = RequestMethod.POST)
 	public String saveProduct(@Valid VendorProduct vendorProduct, BindingResult result, ModelMap model) {
-		VendorProfile loginPartner = getLoginPartnerDetails();
+		VendorProfile loginVendor = getLoginVendorDetails();
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	    String currentDate = sdf.format(cal.getTime());
 		SeqId seqId = seqGenerator.getSeqId(SeqConstant.PRODUCT_UNIQUE_SEQ);
 		String profileNumber = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
 		vendorProduct.setUniqueId(profileNumber);
-		vendorProduct.setPartId(loginPartner.getId());
+		vendorProduct.setVendorId(loginVendor.getId());
  		productService.saveProduct(vendorProduct); 
-		return "vendor/partner_register-product";
+		return "vendor/vendor_register-product";
 	}
 	
 	@RequestMapping(value = { "/register-product/{uniqueId}" }, method = RequestMethod.GET)
 	public String editProduct(ModelMap model, @PathVariable String uniqueId) {
-		VendorProfile loginPartner = getLoginPartnerDetails();
+		VendorProfile loginVendor = getLoginVendorDetails();
 		VendorProduct vendorProduct = productService.getProductByUniqueID(uniqueId);
-		if (vendorProduct.getPartId().equals(loginPartner.getId())) {
+		if (vendorProduct.getVendorId().equals(loginVendor.getId())) {
 			model.addAttribute("thisVendor", vendorProduct);
 		} else {
 			model.addAttribute("errorMessage", "sorry this product doesnt exist please crate your own product");
 		}
 		model.addAttribute("categoryList", utils.getAllCategory());
-		model.addAttribute("branchList", branchService.getBranchByVendor(loginPartner.getId()));
-		return "vendor/partner_register-product"; 
+		model.addAttribute("branchList", branchService.getBranchByVendor(loginVendor.getId()));
+		return "vendor/vendor_register-product"; 
 	}
 	
 	@RequestMapping(value = { "/product-list" }, method = RequestMethod.GET)
 	public String productList(ModelMap model) {
-		VendorProfile loginPartner = getLoginPartnerDetails();
-		model.addAttribute("productList", productService.getProductByVendor(loginPartner.getId()));
-		return "vendor/partner_product_list"; 
+		VendorProfile loginVendor = getLoginVendorDetails();
+		model.addAttribute("productList", productService.getProductByVendor(loginVendor.getId()));
+		return "vendor/vendor_product_list"; 
 	}
 	
 	@RequestMapping(value = { "/leads" }, method = RequestMethod.GET)
 	public String leads(ModelMap model) {
-		VendorProfile loginPartner = getLoginPartnerDetails();
-		model.addAttribute("productList", productService.getProductByVendor(loginPartner.getId()));
-		model.addAttribute("leads", utils.getLeadForVendor(loginPartner.getId()));
-		List<BranchMasterDetails> branchList =  branchService.getBranchByVendor(loginPartner.getId());
+		VendorProfile loginVendor = getLoginVendorDetails();
+		model.addAttribute("productList", productService.getProductByVendor(loginVendor.getId()));
+		model.addAttribute("leads", utils.getLeadForVendor(loginVendor.getId()));
+		List<BranchProfile> branchList =  branchService.getBranchByVendor(loginVendor.getId());
 		model.addAttribute("branchList", branchList);
 		return "vendor/vendor_leads"; 
 	}
 	
-	private VendorProfile getLoginPartnerDetails() {
+	private VendorProfile getLoginVendorDetails() {
 		Account loginUser = utils.getLoggedInUser();
-		VendorProfile loginPartner = partnerService.getVendor(loginUser.getReg_id());
-		return loginPartner;
+		VendorProfile loginVendor = vendorService.getVendor(loginUser.getReg_id());
+		return loginVendor;
 	}
 }

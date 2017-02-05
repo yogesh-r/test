@@ -15,7 +15,7 @@ import com.rjn.dao.core.ProductCategoryDao;
 import com.rjn.dao.core.VendorLeadDao;
 import com.rjn.model.Account;
 import com.rjn.model.VendorProfile;
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 import com.rjn.model.core.City;
 import com.rjn.model.core.Menu;
 import com.rjn.model.core.ProductCategory;
@@ -57,8 +57,8 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	}
 
 	@Override
-	public String getUniqueIdForBranch(String branchName, String partnerName) {
-		String uniqueId = partnerName.replaceAll(" ", "-").toLowerCase() + "-" + branchName.replaceAll(" ", "-").toLowerCase();
+	public String getUniqueIdForBranch(String branchName, String vendorName) {
+		String uniqueId = vendorName.replaceAll(" ", "-").toLowerCase() + "-" + branchName.replaceAll(" ", "-").toLowerCase();
 		
 		boolean canWeUse = checkUniqueIdIsAvailableOrNot(uniqueId);
 		
@@ -66,7 +66,7 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 		
 		if (!canWeUse) {
 			for (int i = 0; i < 100; i++) {
-				finalUniqueId = partnerName.replaceAll(" ", "-").toLowerCase() + "-" + branchName.replaceAll(" ", "-").toLowerCase() + i;
+				finalUniqueId = vendorName.replaceAll(" ", "-").toLowerCase() + "-" + branchName.replaceAll(" ", "-").toLowerCase() + i;
 				if (checkUniqueIdIsAvailableOrNot(finalUniqueId)) {
 					return finalUniqueId;
 				}
@@ -76,7 +76,7 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	}
 	
 	private boolean checkUniqueIdIsAvailableOrNot(String uniqueId) {
-		 BranchMasterDetails branchMasterDetails =  branchMasterDetailsDao.getBranchByUniqueId(uniqueId);
+		 BranchProfile branchMasterDetails =  branchMasterDetailsDao.getBranchByUniqueId(uniqueId);
 		 if (branchMasterDetails == null) {
 			 // not available
 			 return false;
@@ -92,7 +92,7 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	}
 
 	@Override
-	public void savePartnerRegistration(VendorProfile partnerDetails) {
+	public void saveVendorRegistration(VendorProfile vendorDetails) {
 		
 	}
 

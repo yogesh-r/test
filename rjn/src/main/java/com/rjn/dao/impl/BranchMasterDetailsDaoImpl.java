@@ -8,46 +8,46 @@ import org.springframework.stereotype.Repository;
 
 import com.rjn.dao.BranchMasterDetailsDao;
 import com.rjn.dao.core.AbstractDao;
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 
 @Repository("branchMasterDetailsDao")
-public class BranchMasterDetailsDaoImpl extends AbstractDao<Integer, BranchMasterDetails> implements BranchMasterDetailsDao {
+public class BranchMasterDetailsDaoImpl extends AbstractDao<Integer, BranchProfile> implements BranchMasterDetailsDao {
 
 	@Override
-	public BranchMasterDetails getBranchByUniqueId(String uniqueId) {
+	public BranchProfile getBranchByUniqueId(String uniqueId) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("uniqueId", uniqueId));
-		return (BranchMasterDetails) criteria.uniqueResult();
+		return (BranchProfile) criteria.uniqueResult();
 	}
 
 	@Override
-	public List<BranchMasterDetails> getBranchByPartner(String partnerId) {
+	public List<BranchProfile> getBranchByVendor(String vendorId) {
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("branchOwner", partnerId));
-		return (List<BranchMasterDetails>) criteria.list();
+		criteria.add(Restrictions.eq("branchOwner", vendorId));
+		return (List<BranchProfile>) criteria.list();
 	}
 
 	@Override
-	public List<BranchMasterDetails> getLocationByCity(String cityId, String partnerId) {
+	public List<BranchProfile> getLocationByCity(String cityId, String vendorId) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("city", cityId));
-		criteria.add(Restrictions.eq("branchOwner", partnerId));
-		return (List<BranchMasterDetails>) criteria.list();
+		criteria.add(Restrictions.eq("branchOwner", vendorId));
+		return (List<BranchProfile>) criteria.list();
 	}
 
 	@Override
-	public List<BranchMasterDetails> getBranchList(String cityId, String partnerId, String location) {
+	public List<BranchProfile> getBranchList(String cityId, String vendorId, String location) {
 		Criteria criteria = createEntityCriteria();
 		if (location != null) {
 			criteria.add(Restrictions.eq("location", location));
 		}
 		criteria.add(Restrictions.eq("city", cityId));
-		criteria.add(Restrictions.eq("branchOwner", partnerId));
-		return (List<BranchMasterDetails>) criteria.list();
+		criteria.add(Restrictions.eq("branchOwner", vendorId));
+		return (List<BranchProfile>) criteria.list();
 	}
 
 	@Override
-	public void saveBranch(BranchMasterDetails branchMasterDetails) {
+	public void saveBranch(BranchProfile branchMasterDetails) {
 		if (branchMasterDetails.getId() <= 0) {
 			persist(branchMasterDetails);
 		} else {
@@ -57,9 +57,9 @@ public class BranchMasterDetailsDaoImpl extends AbstractDao<Integer, BranchMaste
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public BranchMasterDetails getBranchDetails(String uniqueID) {
+	public BranchProfile getBranchDetails(String uniqueID) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("uniqueId",uniqueID));
-		return (BranchMasterDetails) criteria.uniqueResult();
+		return (BranchProfile) criteria.uniqueResult();
 	}
 }

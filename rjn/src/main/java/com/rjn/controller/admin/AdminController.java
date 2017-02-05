@@ -25,7 +25,7 @@ import com.rjn.bean.ExcelFileBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 import com.rjn.model.core.Email;
 import com.rjn.model.core.ProductCategory;
 import com.rjn.service.AccountService;
@@ -84,9 +84,9 @@ public class AdminController {
 	
 	//======================testing=========================================
 	
-	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
-	public String vendorProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = vendorService.getVendor(partId);
+	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
+	public String vendorProfile(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
 		model.put("headerType", Constant.ROLE_ADMIN);
 		return "vendor-profile";
@@ -109,9 +109,9 @@ public class AdminController {
 		return "admin/admin_home";
 	}
 
-	@RequestMapping(value = { "/register-vendor/{partId}" }, method = RequestMethod.GET)
-	public String editVendor(ModelMap model, @PathVariable String partId) {
-		VendorProfile thisVendor = vendorService.getVendor(partId);
+	@RequestMapping(value = { "/register-vendor/{vendorId}" }, method = RequestMethod.GET)
+	public String editVendor(ModelMap model, @PathVariable String vendorId) {
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
 		return "admin/register-vendor";
 	}
@@ -155,8 +155,8 @@ public class AdminController {
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
 	public String registerBranch(ModelMap model) {
 		List<VendorProfile> vendorDetails = vendorService.getAllVendors();
-		model.addAttribute("PartnerDetails", vendorDetails);
-		model.addAttribute("allPartners", "Yes");
+		model.addAttribute("vendorDetails", vendorDetails);
+		model.addAttribute("allVendors", "Yes");
 		
 		Account loginUser =   utils.getLoggedInUser();
 		vendorService.getVendor(loginUser.getMy_user_name());
@@ -214,8 +214,8 @@ public class AdminController {
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public String branchList(ModelMap model) {
 		List<VendorProfile> vendorDetails = vendorService.getAllVendors();
-		model.addAttribute("PartnerDetails", vendorDetails);
-		model.addAttribute("allPartners", "Yes");
+		model.addAttribute("vendorDetails", vendorDetails);
+		model.addAttribute("allVendors", "Yes");
 		return "admin/branch-list";
 	}
 
@@ -236,7 +236,7 @@ public class AdminController {
 	}
  
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
-	public String paernerSaveRegister(@Valid BranchMasterDetails branchMasterDetails, BindingResult result, ModelMap model) {
+	public String paernerSaveRegister(@Valid BranchProfile branchMasterDetails, BindingResult result, ModelMap model) {
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	    String currentDate = sdf.format(cal.getTime());

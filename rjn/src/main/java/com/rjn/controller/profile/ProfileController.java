@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rjn.model.VendorProfile;
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 import com.rjn.model.core.ProductCategory;
 import com.rjn.service.BranchService;
 import com.rjn.service.ProductDetailsService;
@@ -36,9 +36,9 @@ public class ProfileController {
 	@Autowired
 	private ProductDetailsService productService;
 
-	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
-	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = vendorService.getVendor(partId);
+	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
+	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
@@ -54,23 +54,23 @@ public class ProfileController {
 		return "vendor-profile";
 	}
 	
-	@RequestMapping(value = { "/{partId}/branch-list" }, method = RequestMethod.GET)
-	public String branchList(HttpServletRequest request,ModelMap model,@PathVariable String partId) {
+	@RequestMapping(value = { "/{vendorId}/branch-list" }, method = RequestMethod.GET)
+	public String branchList(HttpServletRequest request,ModelMap model,@PathVariable String vendorId) {
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
-		VendorProfile thisVendor = vendorService.getVendor(partId);
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
-		List<BranchMasterDetails> branch_details=branchService.getBranchByVendor(partId);
+		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
 		System.out.println("branch details?>>> "+branch_details);
 		model.addAttribute("branch",branch_details);
 		System.out.println("branch list id controller");
 		return "vendor-profile";
 	}
 	
-	@RequestMapping(value = { "/{partId}/{uniquieId}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/{vendorId}/{uniquieId}" }, method = RequestMethod.GET)
 	public String branchData(HttpServletRequest request,ModelMap model,@PathVariable String uniquieId){
 		System.out.println("branch id controller");
 		Object object =  request.getSession().getAttribute("authorities");
@@ -78,14 +78,14 @@ public class ProfileController {
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
-		BranchMasterDetails branch_details=branchService.getBranchDetails(uniquieId);
+		BranchProfile branch_details=branchService.getBranchDetails(uniquieId);
 		System.out.println("branch details>>>> "+branch_details);
 		model.addAttribute("branchName",branch_details);
 		return "vendor-profile";
 		
 	}
 	
-	@RequestMapping(value = { "/{partId}/product-list" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/{vendorId}/product-list" }, method = RequestMethod.GET)
 	public String productData(HttpServletRequest request,ModelMap model){
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;

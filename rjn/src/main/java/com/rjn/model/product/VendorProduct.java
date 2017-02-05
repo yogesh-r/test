@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tx_vendor_product")
+@Table(name="vendor_product")
 public class VendorProduct { 
 	
 	@Id
@@ -31,17 +31,17 @@ public class VendorProduct {
 	@Column(name = "image_id", nullable = false)
 	private int imageId;
 	
-	@Column(name = "Part_Id", nullable = false)
-	private String partId;
+	@Column(name = "vendor_id", nullable = false)
+	private String vendorId;
+	
+	@Column(name = "branch_name")
+	private String branchName;
 	
 	@Column(name = "keyword")
 	private String keyWord;
 
 	@Column(name = "branch_id")
 	private int branchId;
-
-	@Column(name = "branch_name")
-	private String branchName;
 	
 	public int getId() {
 		return id;
@@ -91,12 +91,12 @@ public class VendorProduct {
 		this.imageId = imageId;
 	}
 
-	public String getPartId() {
-		return partId;
+	public String getVendorId() {
+		return vendorId;
 	}
 
-	public void setPartId(String partId) {
-		this.partId = partId;
+	public void setVendorId(String vendorId) {
+		this.vendorId = vendorId;
 	}
 
 	public String getKeyWord() {

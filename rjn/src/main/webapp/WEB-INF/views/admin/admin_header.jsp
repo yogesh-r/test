@@ -1,23 +1,11 @@
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/admin/reset.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/admin/menu.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/admin/admin_style.css">
-</head>
 <body ng-app="RJN">
 	<header id="header">
 		<div id="topHeader1">
 			<div class="wrapper">
 				<div class="top_nav">
 					<div class="container">
-						<div class="right">
-							<ul>
-								<li>&nbsp;&nbsp; Login ID: ${sessionScope.uname}
-								<li><a href="${rc.getContextPath()}/logout">Logout&nbsp;&nbsp;
-										<i class="fa fa-sign-out"></i>
-								</a></li>
-							</ul>
+						<div class="pull-right">
+								&nbsp;&nbsp;Welcome ${sessionScope.uname}
 						</div>
 					</div>
 				</div>

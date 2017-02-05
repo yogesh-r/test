@@ -17,7 +17,7 @@ import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
@@ -45,12 +45,12 @@ public class VendorController {
 	@Autowired
 	private AccountService accountService;
 
-	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
-	public String vendorProfile(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = vendorservice.getVendor(partId);
+	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
+	public String vendorProfile(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
+		VendorProfile thisVendor = vendorservice.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
 		VendorProfile vendorProfile = getLoginVendorDetails();
-		model.addAttribute("PartnerDetails", vendorProfile);
+		model.addAttribute("vendorDetails", vendorProfile);
 		if (thisVendor.getId().equals(vendorProfile.getId())) {
 			model.addAttribute("showVerifyButton", true);
 		}
@@ -61,34 +61,34 @@ public class VendorController {
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		model.addAttribute("PartnerDetails", getLoginVendorDetails());
+		model.addAttribute("vendorDetails", getLoginVendorDetails());
 		return "vendor/vendor_home";
 	}
 
 	// Master
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
 	public String paernerRegisterBranch(ModelMap model) {
-		model.addAttribute("PartnerDetails", getLoginVendorDetails());
-		return "vendor/partner_register-branch"; 
+		model.addAttribute("vendorDetails", getLoginVendorDetails());
+		return "vendor/vendor_register-branch"; 
 	}
 
 	@RequestMapping(value = { "/register-branch/{uniqueId}" }, method = RequestMethod.GET)
-	public String partnerEditBranch(ModelMap model, @PathVariable String uniqueId) {
-		VendorProfile loginPartner = getLoginVendorDetails();
-		model.addAttribute("PartnerDetails", loginPartner);
+	public String vendorEditBranch(ModelMap model, @PathVariable String uniqueId) {
+		VendorProfile loginVendor = getLoginVendorDetails();
+		model.addAttribute("vendorDetails", loginVendor);
 		
-		BranchMasterDetails thisBranch = branchService.getBranchByUniqueId(uniqueId);
-		if (loginPartner.getId().equals(thisBranch.getBranchOwner()) ){
-			model.addAttribute("PartnerDetails", loginPartner);
+		BranchProfile thisBranch = branchService.getBranchByUniqueId(uniqueId);
+		if (loginVendor.getId().equals(thisBranch.getBranchOwner()) ){
+			model.addAttribute("vendorDetails", loginVendor);
 			model.addAttribute("thisBranch", branchService.getBranchByUniqueId(uniqueId) );	
 		} else {
 			model.addAttribute("errorMessage", "Sorry this branch dosent exist please register your own branch" );
 		}
-		return "vendor/partner_register-branch";
+		return "vendor/vendor_register-branch";
 	}
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
-	public String paernerSaveRegister(@Valid BranchMasterDetails branchMasterDetails, BindingResult result, ModelMap model) {
+	public String paernerSaveRegister(@Valid BranchProfile branchMasterDetails, BindingResult result, ModelMap model) {
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	    String currentDate = sdf.format(cal.getTime());
@@ -96,33 +96,33 @@ public class VendorController {
 		String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
 		branchMasterDetails.setUniqueId(bracnhUniqueId);
 		branchService.saveBranch(branchMasterDetails);
-		return "vendor/partner_register-branch";
+		return "vendor/vendor_register-branch";
 	}
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public String paernerBranchList(ModelMap model) {
 		Account loginUser = utils.getLoggedInUser();
-		model.addAttribute("PartnerDetails", getLoginVendorDetails());
-		List<BranchMasterDetails> branchList =  branchService.getBranchByVendor(loginUser.getReg_id());
+		model.addAttribute("vendorDetails", getLoginVendorDetails());
+		List<BranchProfile> branchList =  branchService.getBranchByVendor(loginUser.getReg_id());
 		model.addAttribute("branchList", branchList);
-		return "vendor/partner-branch-list";
+		return "vendor/vendor-branch-list";
 	}
 
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String paernerEditProfile(ModelMap model) {
-		model.addAttribute("PartnerDetails", getLoginVendorDetails());
+		model.addAttribute("vendorDetails", getLoginVendorDetails());
 		return "vendor/vendor-edit-profile";
 	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
 	public String vendorChangePassword(ModelMap model) {
-		model.addAttribute("PartnerDetails", getLoginVendorDetails());
+		model.addAttribute("vendorDetails", getLoginVendorDetails());
 		return "vendor/vendor-change-password"; 
 	}
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
-	public String vendorUpdateProfile(@Valid VendorProfile partnerDetails,BindingResult result, ModelMap model) {
-		vendorservice.saveVendorDetails(partnerDetails);
+	public String vendorUpdateProfile(@Valid VendorProfile vendorDetails,BindingResult result, ModelMap model) {
+		vendorservice.saveVendorDetails(vendorDetails);
 		return "vendor/vendor-edit-profile";
 	}
 
@@ -155,15 +155,15 @@ public class VendorController {
 		return loginvendor;
 	}
 
-	private List<BranchMasterDetails> getLocationListForPartner(String cityId, String partnerId) {
-		List<BranchMasterDetails> locationList = null;
-		locationList = branchService.getLocationByCity(cityId, partnerId);
+	private List<BranchProfile> getLocationListForVendor(String cityId, String vendorId) {
+		List<BranchProfile> locationList = null;
+		locationList = branchService.getLocationByCity(cityId, vendorId);
 		return locationList;
 	}
 
-	private List<BranchMasterDetails> getBranchListForPartner(String cityId,String partnerId, String location) {
-		List<BranchMasterDetails> locationList = null;
-		locationList = branchService.getBranchList(cityId, partnerId, location);
+	private List<BranchProfile> getBranchListForVendor(String cityId,String vendorId, String location) {
+		List<BranchProfile> locationList = null;
+		locationList = branchService.getBranchList(cityId, vendorId, location);
 		return locationList;
 	}
 }

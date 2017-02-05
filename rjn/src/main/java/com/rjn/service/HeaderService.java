@@ -1,17 +1,17 @@
 package com.rjn.service;
 
 import com.rjn.model.Account;
-import com.rjn.model.BusinessEnquiryDetails;
+import com.rjn.model.BusinessEnquiry;
 import com.rjn.model.PasswordResetToken;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 
 public interface HeaderService { 
 
-	void saveMemberRegistration(ProfileMaster profileMaster);
-	void saveListYourOffice(BusinessEnquiryDetails listYourSpace);
-	BusinessEnquiryDetails getBusinessEnquiryByEnquiryId(String enquiryId);
-	public ProfileMaster getProfileMasterByEmail(String contactEmailId);
-	void saveToken(ProfileMaster profileMaster, String token);
+	void saveMemberRegistration(CustomerProfile profileMaster);
+	void saveListYourOffice(BusinessEnquiry listYourSpace);
+	BusinessEnquiry getBusinessEnquiryByEnquiryId(String enquiryId);
+	public CustomerProfile getProfileMasterByEmail(String contactEmailId);
+	void saveToken(CustomerProfile profileMaster, String token);
 	PasswordResetToken getPasswordResetToken(String profileNumber, String token);
 	Account findByRegId(String regId);
 }

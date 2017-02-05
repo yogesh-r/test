@@ -1,58 +1,10 @@
-<!doctype html>
-<html lang="en-gb" class="no-js">
-<head>
-<title>Office</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/member_style.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/responsive-leyouts.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/sticky.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/menu.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/demo.css">
-<style>
-.navbar-default {
-	background-color: #ffffff !important;
-	border-color: #ffffff !important;
-}
-
-.navbar {
-	margin-bottom: 0px !important;
-	box-shadow: none !important;
-}
-</style>
-<!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico">
-<!-- this styles only adds some repairs on idevices  -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
 <body ng-app="RJN">
 	<header id="header">
 		<div id="topHeader1">
 			<div class="wrapper">
 				<div class="top_nav">
 					<div class="container">
-						<div class="right">
-							<ul>
-								<li>Member/Panel &nbsp;&nbsp; Login ID: <a
-									class="action-btn" href="#"> <font color="white"> <!--Welcome,&nbsp;-->
-									</font> <font color="red">${sessionScope.uname}</font>
-								</a> <a href="${rc.getContextPath()}/logout">&nbsp;Logout&nbsp;&nbsp;
-										<i class="fa fa-sign-out"></i>
-								</a>
-								</li>
-							</ul>
-						</div>
+						<div class="pull-right"> welcome, ${sessionScope.uname}</div>
 					</div>
 				</div>
 			</div>
@@ -85,17 +37,18 @@
 									<div id="navbar-collapse-1"
 										class="navbar-collapse collapse pull-right">
 										<ul class="nav navbar-nav">
-											<li class="dropdown"><a href="member_home.jsp"
+											<li class="dropdown"><a href="${rc.getContextPath()}/member/home"
 												class="dropdown-toggle"><i class="fa fa-home"></i> Home</a>
 											</li>
-											<li class="dropdown"><a href="" class="dropdown-toggle">
-													<i class="fa fa-gift" aria-hidden="true"></i>List
-											</a>
+											
+											<li class="dropdown"><a href="#" data-toggle="dropdown"
+												class="dropdown-toggle"><i class="fa fa-cog fa-spin"></i>Search</a>
 												<ul class="dropdown-menu" role="menu">
 													<li><a
 														href="${rc.getContextPath()}/member/search">Search</a></li>
-															
-												</ul></li>
+												</ul>
+											</li>
+												
 											<li class="dropdown"><a href="#" data-toggle="dropdown"
 												class="dropdown-toggle"><i class="fa fa-cog fa-spin"></i>My
 													Account</a>

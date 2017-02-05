@@ -11,8 +11,8 @@ import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table(name="tx_branch_master_details")
-public class BranchMasterDetails { 
+@Table(name="branch_profile")
+public class BranchProfile { 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,10 +35,10 @@ public class BranchMasterDetails {
 	private String startDate;
 	
 	@Column(name = "contactno", nullable = false)
-	private String contactno;
+	private String contactNo;
 	
 	@Column(name = "emailid", nullable = false)
-	private String emailid;
+	private String emailId;
 	
 	@Column(name = "address", nullable = false)
 	private String address;
@@ -113,7 +113,7 @@ public class BranchMasterDetails {
 	private String createdDate;
 	
 	@Column(name = "created_by", nullable = false)
-	private String created_By;
+	private String createdBy;
 	
 	@Column(name = "last_updated_date", nullable = false)
 	private String lastUpdatedDate;
@@ -167,20 +167,20 @@ public class BranchMasterDetails {
 		this.startDate = startDate;
 	}
 	
-	public String getContactno() {
-		return contactno;
+	public String getContactNo() {
+		return contactNo;
 	}
 	
-	public void setContactno(String contactno) {
-		this.contactno = contactno;
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
 	}
 	
-	public String getEmailid() {
-		return emailid;
+	public String getEmailId() {
+		return emailId;
 	}
 	
-	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+	public void setEmailId(String emailid) {
+		this.emailId = emailid;
 	}
 	
 	public String getAddress() {
@@ -340,11 +340,11 @@ public class BranchMasterDetails {
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
-	public String getCreated_By() {
-		return created_By;
+	public String getCreatedBy() {
+		return createdBy;
 	}
-	public void setCreated_By(String created_By) {
-		this.created_By = created_By;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 	public String getLastUpdatedDate() {
 		return lastUpdatedDate;
@@ -387,14 +387,14 @@ public class BranchMasterDetails {
 	public String toString() {
 		return "BranchMasterDetails [id=" + id + ", uniqueId=" + uniqueId + ", branchName=" + branchName
 				+ ", branchOwner=" + branchOwner + ", description=" + description + ", startDate=" + startDate
-				+ ", contactno=" + contactno + ", emailid=" + emailid + ", address=" + address + ", city=" + city
+				+ ", contactno=" + contactNo + ", emailid=" + emailId + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", country=" + country + ", zipcode=" + zipcode + ", status=" + status
 				+ ", managerName=" + managerName + ", managerEmail=" + managerEmail + ", managerMobile=" + managerMobile
 				+ ", landLine=" + landLine + ", location=" + location + ", termsConditions=" + termsConditions
 				+ ", latitude=" + latitude + ", longitude=" + longitude + ", locationId=" + locationId + ", workMonday="
 				+ workMonday + ", workTuesday=" + workTuesday + ", workWednesday=" + workWednesday + ", workThursday="
 				+ workThursday + ", workFriday=" + workFriday + ", workSaturday=" + workSaturday + ", workSunday="
-				+ workSunday + ", verify=" + verify + ", createdDate=" + createdDate + ", created_By=" + created_By
+				+ workSunday + ", verify=" + verify + ", createdDate=" + createdDate + ", created_By=" + createdBy
 				+ ", lastUpdatedDate=" + lastUpdatedDate + ", lastUpdatedBy=" + lastUpdatedBy + ", aminitiesList="
 				+ ", termsAndCondition=" + termsAndCondition + ", cancellationPolicy="
 				+ cancellationPolicy + "]";

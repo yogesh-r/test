@@ -8,9 +8,9 @@ import com.rjn.dao.PasswordResetTokenDao;
 import com.rjn.dao.ProfileMasterDao;
 import com.rjn.dao.core.AccountDao;
 import com.rjn.model.Account;
-import com.rjn.model.BusinessEnquiryDetails;
+import com.rjn.model.BusinessEnquiry;
 import com.rjn.model.PasswordResetToken;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 import com.rjn.service.HeaderService;
 import com.rjn.utils.Constant;
 
@@ -31,7 +31,7 @@ public class HeaderServiceImpl implements HeaderService  {
 	private PasswordResetTokenDao passwordResetTokenDao;
 
 	@Override
-	public void saveMemberRegistration(ProfileMaster profileMaster) {
+	public void saveMemberRegistration(CustomerProfile profileMaster) {
 		profileMasterdao.saveMemberRegister(profileMaster);
 		Account account = new Account();
 		account.setMy_user_name(profileMaster.getContactEmailId());
@@ -41,22 +41,22 @@ public class HeaderServiceImpl implements HeaderService  {
 	}
 
 	@Override
-	public void saveListYourOffice(BusinessEnquiryDetails listYourSpace) {
+	public void saveListYourOffice(BusinessEnquiry listYourSpace) {
 		listDao.saveListYourOffice(listYourSpace);
 	}
 
 	@Override
-	public BusinessEnquiryDetails getBusinessEnquiryByEnquiryId(String enquiryId) {
+	public BusinessEnquiry getBusinessEnquiryByEnquiryId(String enquiryId) {
 		return listDao.getBusinessEnquiryByEnquiryId(enquiryId); 
 	}
 
 	@Override
-	public ProfileMaster getProfileMasterByEmail(String contactEmailId) {
+	public CustomerProfile getProfileMasterByEmail(String contactEmailId) {
 		return profileMasterdao.getProfileMasterByEmail(contactEmailId);
 	}
 
 	@Override
-	public void saveToken(ProfileMaster profileMaster, String token) {
+	public void saveToken(CustomerProfile profileMaster, String token) {
 		 passwordResetTokenDao.saveToken(profileMaster, token);
 	}
 

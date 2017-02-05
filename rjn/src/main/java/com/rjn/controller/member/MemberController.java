@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.bean.SearchBean;
 import com.rjn.model.Account;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.core.VendorLead;
 import com.rjn.service.AccountService;
@@ -64,12 +64,12 @@ public class MemberController {
 		return "/search/search_branch";
 	}
 	
-	@RequestMapping(value = { "/{partId}" }, method = RequestMethod.GET)
-	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String partId) {
-		VendorProfile thisVendor = vendorService.getVendor(partId);
+	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
+	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
 		Account loginUser = utils.getLoggedInUser();
-		ProfileMaster profileMaster = getMemberDetails(loginUser.getReg_id());
+		CustomerProfile profileMaster = getMemberDetails(loginUser.getReg_id());
 		VendorLead vendorLead = utils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
 		if (vendorLead == null) {
 			vendorLead = new VendorLead();
@@ -92,19 +92,19 @@ public class MemberController {
 		return "vendor-profile";
 	}
 	
-	private ProfileMaster getMemberDetails(String regId){
+	private CustomerProfile getMemberDetails(String regId){
 		return memberService.getProfileMasterByprofileNumber(regId);
 	}
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String memberEditProfile(ModelMap model) {
 		Account loginUser = utils.getLoggedInUser();
-		ProfileMaster profileMaster = getMemberDetails(loginUser.getReg_id());
+		CustomerProfile profileMaster = getMemberDetails(loginUser.getReg_id());
 		model.addAttribute("memberDetails", profileMaster);
 		return "member/member-edit-profile"; 
 	}
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
-	public String memberUpdateProfile( @Valid ProfileMaster profileMaster, BindingResult result , ModelMap model) {
+	public String memberUpdateProfile( @Valid CustomerProfile profileMaster, BindingResult result , ModelMap model) {
 		memberService.saveMemberDetails(profileMaster); 
 		return "member/member-edit-profile";
 	}

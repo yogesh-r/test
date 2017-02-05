@@ -1,5 +1,4 @@
 <%@include file="../admin/admin_header.jsp"%>
-<%@include file="../include/date_include.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <body>
 	<div class="container">

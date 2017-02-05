@@ -1,3 +1,0 @@
-src\main\webapp\resources\images\logo\logo.png
-
-src\main\webapp\resources\images\home\logo-white.png

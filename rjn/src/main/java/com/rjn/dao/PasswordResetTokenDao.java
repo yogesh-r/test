@@ -1,9 +1,9 @@
 package com.rjn.dao;
 
 import com.rjn.model.PasswordResetToken;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 
 public interface PasswordResetTokenDao {
-	void saveToken(ProfileMaster profileMaster, String token); 
+	void saveToken(CustomerProfile profileMaster, String token); 
 	PasswordResetToken getPasswordResetToken(String profileNumber, String token);
 }

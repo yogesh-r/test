@@ -68,7 +68,7 @@
 								class="form-control btn-primary" type="submit"></td>
 						</tr>
 						<input type="hidden" name="id" value="${thisVendor.id}" />
-						<input type="hidden" name="partId" value="${thisVendor.partId}" />
+						<input type="hidden" name="id" value="${thisVendor.id}" />
 					</tbody>
 				</table>
 			</form>

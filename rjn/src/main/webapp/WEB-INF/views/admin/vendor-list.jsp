@@ -29,8 +29,8 @@
 						varStatus="status">
 						<tr>
 							<td>${thisVendor.id}</td>
-							<td>${thisVendor.partFName}</td>
-							<td>${thisVendor.addr}</td>
+							<td>${thisVendor.vendorFirstName}</td>
+							<td>${thisVendor.address}</td>
 							<td>${thisVendor.city}</td>
 							<td><a href="${rc.getContextPath()}/admin/register-vendor/${thisVendor.id}">edit</a></td>
 						</tr>
@@ -39,4 +39,3 @@
 			</table>
 	</div>
 </div>
-<script src="${rc.getContextPath()}/resources/js/developerJs/vendor-list.js"></script>

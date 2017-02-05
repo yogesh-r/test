@@ -18,7 +18,7 @@ import com.rjn.bean.ChangePassworddBean;
 import com.rjn.dao.core.AccountDao;
 import com.rjn.model.Account;
 import com.rjn.model.PasswordResetToken;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 import com.rjn.model.core.Email;
 import com.rjn.service.HeaderService;
 import com.rjn.service.Core.ApplicationUtils;
@@ -41,7 +41,7 @@ public class ForgetPasswordController {
 	
 	@RequestMapping(value = { "/forgetPassword" }, method = RequestMethod.POST)
 	public String forgetPassword(ModelMap model, @RequestParam("email") String contactEmailId, HttpServletRequest request) {
-		ProfileMaster profileMaster = headerService.getProfileMasterByEmail(contactEmailId);
+		CustomerProfile profileMaster = headerService.getProfileMasterByEmail(contactEmailId);
 		if (profileMaster == null) {
 			throw new UsernameNotFoundException(contactEmailId);
 		} else {

@@ -2,8 +2,8 @@
 <script type="text/javascript">
 	var _context = '${rc.getContextPath()}';
 </script>
-<header class="site-header" ng-app="RJN">
-    <nav class="navbar navbar-default navbar-fixed-top">
+<header ng-app="RJN">
+    <nav class="navbar navbar-fixed-top">
         <div class="container">
             <div class="row">
                 <div class="navbar-header">
@@ -19,20 +19,20 @@
                 </div><!--/.navbar-header -->
                 <div id="site-navigation" class="navbar-collapse collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="${rc.getContextPath()}/why-us">Why us?</a></li>
-                        <li><a href="${rc.getContextPath()}/how-it-work">How it works?</a></li>
-                        <li><a href="${rc.getContextPath()}/blog" target="_blank">Blog</a></li>
+                        <li><a href="${rc.getContextPath()}/list-your-shop">Enquiry</a></li>
                         <li><a href="${rc.getContextPath()}/contact-us">Contact us</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-actions navbar-right">
-	                    <li><a class="btn btn-default navbar-btn btn-block" data-toggle="modal" data-target="#myModal" >Sign in</a></li>
-	                    <li><a class="btn btn-default navbar-btn btn-block" href="${rc.getContextPath()}/member/register">Sign up</a></li>
+	                    <li><a data-toggle="modal" data-target="#myModal" >Login</a></li>
+	                    <li><a href="${rc.getContextPath()}/member/register">Customer regestration</a></li>
 	                </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.row -->
         </div><!--/.container -->
     </nav><!--/.navbar-default -->
 </header>
+
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -82,7 +82,7 @@
         <h4 class="modal-title">login</h4>
       </div>
       <div class="modal-body">
-				<form:form method="POST" modelAttribute="partner" action="${rc.getContextPath()}/member/register">
+				<form:form method="POST" modelAttribute="vendor" action="${rc.getContextPath()}/member/register">
 					<div class="form-group">
                         <label for="first_name">First Name *</label>
                         <input type="text" id="first_name" name="firstName" required title="Please enter your first name" class="form-control" value="" >

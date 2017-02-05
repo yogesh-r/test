@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.rjn.dao.BranchMasterDetailsDao;
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 import com.rjn.service.BranchService;
 
 @Service("branchService")
@@ -16,37 +16,37 @@ public class BranchServiceImpl implements BranchService {
 	private BranchMasterDetailsDao dao;
 	
 	@Override
-	public List<BranchMasterDetails> getBranchByVendor(String partnerId) {
-		return dao.getBranchByPartner(partnerId);
+	public List<BranchProfile> getBranchByVendor(String vendorId) {
+		return dao.getBranchByVendor(vendorId);
 	}
 
 	@Override
-	public List<BranchMasterDetails> getLocationByCity(String cityId, String partnerId) {
-		return dao.getLocationByCity(cityId, partnerId);
+	public List<BranchProfile> getLocationByCity(String cityId, String vendorId) {
+		return dao.getLocationByCity(cityId, vendorId);
 	}
 
 	@Override
-	public List<BranchMasterDetails> getBranchByCity(String cityId, String partnerId) {
+	public List<BranchProfile> getBranchByCity(String cityId, String vendorId) {
 		return null;
 	}
 
 	@Override
-	public List<BranchMasterDetails> getBranchList(String cityId, String partnerId, String location) {
-		return dao.getLocationByCity(cityId, partnerId);
+	public List<BranchProfile> getBranchList(String cityId, String vendorId, String location) {
+		return dao.getLocationByCity(cityId, vendorId);
 	}
 
 	@Override
-	public void saveBranch(BranchMasterDetails branchMasterDetails) {
+	public void saveBranch(BranchProfile branchMasterDetails) {
 		dao.saveBranch(branchMasterDetails);
 	}
 
 	@Override
-	public BranchMasterDetails getBranchByUniqueId(String uniqueId) {
+	public BranchProfile getBranchByUniqueId(String uniqueId) {
 		return dao.getBranchByUniqueId(uniqueId);
 	}
 
 	@Override
-	public BranchMasterDetails getBranchDetails(String uniqueID) {
+	public BranchProfile getBranchDetails(String uniqueID) {
 		return dao.getBranchDetails(uniqueID);
 	}
 }

@@ -8,19 +8,19 @@ import org.springframework.stereotype.Repository;
 
 import com.rjn.dao.AssignedToDao;
 import com.rjn.dao.core.AbstractDao;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 
 @Repository("AssignedToDao")
-public class AssignedToDaoImpl extends AbstractDao<Integer,ProfileMaster> implements AssignedToDao{
+public class AssignedToDaoImpl extends AbstractDao<Integer,CustomerProfile> implements AssignedToDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ProfileMaster> getAssignedTo(String assignedTo,String partnerID) {
+	public List<CustomerProfile> getAssignedTo(String assignedTo,String vendorID) {
 		Criteria criteria=createEntityCriteria();
 			if(assignedTo!=null){
 			criteria.add(Restrictions.eq("profileCategory", assignedTo));
-			criteria.add(Restrictions.eq("partnerId", partnerID));
+			criteria.add(Restrictions.eq("vendorId", vendorID));
 			}
-		return (List<ProfileMaster>) criteria.list();
+		return (List<CustomerProfile>) criteria.list();
 	}
 }

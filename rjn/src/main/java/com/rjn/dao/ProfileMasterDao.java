@@ -2,11 +2,11 @@ package com.rjn.dao;
 
 import java.util.List;
 
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 
 public interface ProfileMasterDao {
-	void saveMemberRegister(ProfileMaster profileMaster ); 
-	List<ProfileMaster> getAllCustomerCompany();
-	public ProfileMaster getProfileMasterByprofileNumber(String profileNumber);
-	public ProfileMaster getProfileMasterByEmail(String contactEmailId);
+	void saveMemberRegister(CustomerProfile profileMaster ); 
+	List<CustomerProfile> getAllCustomerCompany();
+	public CustomerProfile getProfileMasterByprofileNumber(String profileNumber);
+	public CustomerProfile getProfileMasterByEmail(String contactEmailId);
 }

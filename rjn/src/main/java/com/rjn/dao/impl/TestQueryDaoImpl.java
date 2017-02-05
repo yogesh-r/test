@@ -27,7 +27,7 @@ public class TestQueryDaoImpl extends AbstractDao<Integer, SearchBean> implement
 				"   * COS(RADIANS(p.longpoint) - RADIANS(a.longitude))"+
 				"   + SIN(RADIANS(p.latpoint))"+
 				"   * SIN(RADIANS(a.latitude))))),2) distance "+
-				"  FROM tx_branch_master_details a , tx_branch_images b, tx_facility_master fm, tx_facility_price fp"+ 
+				"  FROM branch_profile a , tx_branch_images b, tx_facility_master fm, tx_facility_price fp"+ 
 				"  JOIN (   /* these are the query parameters */"+
 				"   SELECT  '' AS latpoint,  '' AS longpoint,"+
 				"         50.0 AS radius,      111.045 AS distance_unit"+

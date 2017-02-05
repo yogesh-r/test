@@ -2,20 +2,20 @@ package com.rjn.service;
 
 import java.util.List;
 
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 
 public interface BranchService {
-	List<BranchMasterDetails> getBranchByVendor(String partnerId);
+	List<BranchProfile> getBranchByVendor(String vendorId);
 	
-	List<BranchMasterDetails> getLocationByCity(String cityId, String partnerId);
+	List<BranchProfile> getLocationByCity(String cityId, String vendorId);
 
-	List<BranchMasterDetails> getBranchByCity(String cityId, String partnerId);
+	List<BranchProfile> getBranchByCity(String cityId, String vendorId);
 	
-	List<BranchMasterDetails> getBranchList(String cityId, String partnerId, String location);
+	List<BranchProfile> getBranchList(String cityId, String vendorId, String location);
 	
-	void saveBranch(BranchMasterDetails branchMasterDetails);
+	void saveBranch(BranchProfile branchMasterDetails);
 	
-	BranchMasterDetails getBranchByUniqueId(String uniqueId);
+	BranchProfile getBranchByUniqueId(String uniqueId);
 	
-	BranchMasterDetails getBranchDetails(String uniqueID);
+	BranchProfile getBranchDetails(String uniqueID);
 }

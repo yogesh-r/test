@@ -5,9 +5,9 @@ import java.util.List;
 import com.rjn.model.VendorProfile;
 
 public interface VendorProfileDao {
-	void savePartnerDetails(VendorProfile partnerDetails);
-	List<VendorProfile> getAllPartners();
-	VendorProfile getPartner(String PartnerID);
-	void updatePartnerDetails(VendorProfile partnerDetails);
-	void updateVerify(String partId, boolean isVerified);	
+	void saveVendorDetails(VendorProfile vendorDetails);
+	List<VendorProfile> getAllVendors();
+	VendorProfile getVendor(String vendorID);
+	void updateVendorDetails(VendorProfile vendorDetails);
+	void updateVerify(String vendorId, boolean isVerified);	
 }

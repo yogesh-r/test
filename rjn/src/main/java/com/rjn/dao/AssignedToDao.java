@@ -2,8 +2,8 @@ package com.rjn.dao;
 
 import java.util.List;
 
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 
 public interface AssignedToDao {
-	List<ProfileMaster> getAssignedTo(String assignedTo,String partnerID);
+	List<CustomerProfile> getAssignedTo(String assignedTo,String vendorID);
 }

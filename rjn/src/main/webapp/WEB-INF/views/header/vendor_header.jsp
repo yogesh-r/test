@@ -1,33 +1,3 @@
-<!doctype html>
-<html lang="en-gb" class="no-js">
-<!--<![endif]-->
-<head>
-<title>RJN</title>
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/bootstrap.min.css">
-<!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico">
-<!-- this styles only adds some repairs on idevices  -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ######### CSS STYLES ######### -->
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/partner/reset.css">
-<link rel="stylesheet"
-	href="${rc.getContextPath()}/resources/css/partner/partner_style.css"
-	type="text/css" />
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/css/font-awesome.min.css">
-<!-- responsive devices styles -->
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/responsive-leyouts.css">
-<!-- mega menu -->
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/sticky.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/menu.css">
-<link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/member/demo.css">
-</head>
 <%@ taglib prefix="cc" uri="http://java.sun.com/jsp/jstl/core"%>
 <body onunload="bodyUnload();" Onclick="clicked=true;" ng-app="RJN">
 	<header id="header">
@@ -35,17 +5,7 @@
 			<div class="wrapper">
 				<div class="top_nav">
 					<div class="container">
-						<div class="right">
-							<ul>
-								<li>Partner/Panel &nbsp;&nbsp; Login ID: <a
-									class="action-btn" href="#"> <font color="white"> <!--Welcome,&nbsp;-->
-									</font> <font color="red">${sessionScope.uname}</font>
-								</a> <a href="${rc.getContextPath()}/logout">&nbsp;Logout&nbsp;&nbsp;
-										<i class="fa fa-sign-out"></i>
-								</a>
-								</li>
-							</ul>
-						</div>
+						<div class="pull-right"> welcome ${sessionScope.uname}</div>
 					</div>
 				</div>
 			</div>
@@ -98,12 +58,12 @@
 													<li><a href="${rc.getContextPath()}/vendor/product/product-list">Product List</a></li>
 													<li><a href="${rc.getContextPath()}/vendor/product/leads">Leads</a></li>
 												</ul></li>
-											<cc:if test="${PartnerDetails ne null}">
+											<cc:if test="${vendorDetails ne null}">
 												<li class="dropdown"><a href="#" data-toggle="dropdown"
 													class="dropdown-toggle"><i class="fa fa-book"></i>
 														View </a>
 													<ul class="dropdown-menu" role="menu">
-														<li><a href="${rc.getContextPath()}/vendor/${PartnerDetails.id}">My Profile</a></li>
+														<li><a href="${rc.getContextPath()}/vendor/${vendorDetails.id}">My Profile</a></li>
 													</ul>
 												</li>
 											</cc:if>

@@ -8,13 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import com.rjn.dao.BusinessEnquiryDetailsDao;
 import com.rjn.dao.core.AbstractDao;
-import com.rjn.model.BusinessEnquiryDetails;
+import com.rjn.model.BusinessEnquiry;
 
 @Repository("businessEnquiryDetailsDao")
-public class BusinessEnquiryDetailsDaoImpl extends AbstractDao<Integer, BusinessEnquiryDetails> implements BusinessEnquiryDetailsDao{
+public class BusinessEnquiryDetailsDaoImpl extends AbstractDao<Integer, BusinessEnquiry> implements BusinessEnquiryDetailsDao{
 
 	@Override
-	public void saveListYourOffice(BusinessEnquiryDetails listSpaceData) {
+	public void saveListYourOffice(BusinessEnquiry listSpaceData) {
 		if (listSpaceData.getId() <= 0) {
 			persist(listSpaceData);	
 		}else {
@@ -23,15 +23,15 @@ public class BusinessEnquiryDetailsDaoImpl extends AbstractDao<Integer, Business
 	}
 
 	@Override
-	public List<BusinessEnquiryDetails> getBusinessEnquiryList() {
+	public List<BusinessEnquiry> getBusinessEnquiryList() {
 		Criteria criteria = createEntityCriteria();
-		return (List<BusinessEnquiryDetails>) criteria.list();
+		return (List<BusinessEnquiry>) criteria.list();
 	}
 
 	@Override
-	public BusinessEnquiryDetails getBusinessEnquiryByEnquiryId(String enquiryId) {
+	public BusinessEnquiry getBusinessEnquiryByEnquiryId(String enquiryId) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("enquiryId", enquiryId));
-		return (BusinessEnquiryDetails) criteria.uniqueResult();
+		return (BusinessEnquiry) criteria.uniqueResult();
 	}
 }

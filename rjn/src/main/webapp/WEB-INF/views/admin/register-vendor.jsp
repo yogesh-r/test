@@ -21,13 +21,13 @@
 						<div class="col-sm-3">
 							<span class="mem_reg">First Name <label>*</label></span> 
 							<input
-								type="text" id="fname" name="partFName" class="form-control" value="${thisVendor.partFName}"
+								type="text" id="fname" name="vendorFirstName" class="form-control" value="${thisVendor.vendorFirstName}"
 								required>
 						</div>
 						<div class="col-sm-3">
 							<span>Last Name <label>*</label></span> 
 							<input type="text"
-								id="lnam" name="partSurname" class="form-control" value="${thisVendor.partSurname}" required>
+								id="lnam" name="vendorSurname" class="form-control" value="${thisVendor.vendorSurname}" required>
 						</div>
 					</div>
 					<!--  row end -->
@@ -58,9 +58,9 @@
 						<div class="col-sm-3">
 							<span>Category Type<label>*</label></span> <select
 								name="category" class="form-control">
-								<option value="Retail Partner">Retail Partner</option>
-								<option value="Channel Partner">Channel Partner</option>
-								<option value="Sales Partner">Sales Partner</option>
+								<option value="Retail Vendor">Retail Vendor</option>
+								<option value="Channel Vendor">Channel Vendor</option>
+								<option value="Sales Vendor">Sales Vendor</option>
 							</select>
 						</div>
 					</div>
@@ -158,10 +158,10 @@
 				<div class="col-sm-2"></div>
 				<div class="col-sm-3"></div>
 				<div class="col-sm-3">
-					<c:if test="${thisVendor.partFName eq null}">
+					<c:if test="${thisVendor.vendorFirstName eq null}">
 						<input type="submit" id="submit" value="Create Vendor" class="form-control btn-primary">
 					</c:if>
-					<c:if test="${thisVendor.partFName ne null}">
+					<c:if test="${thisVendor.vendorFirstName ne null}">
 						<input type="submit" id="submit" value="Update vendor" class="form-control btn-primary">
 					</c:if>
 				</div>

@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
-    <title>Register Partner</title>
+    <title>Register Vendor</title>
 	<style>
 		.section {
 			color: red;
@@ -13,7 +13,6 @@
 	</style>
 </head>
 <body>
-<script src="${rc.getContextPath()}/resources/js/member/member-register.js"></script>
 <%@include file="header/application_header.jsp"%>
 <main class="main-contents">
     <div class="container">
@@ -22,8 +21,7 @@
 		<div>
 			<div class="section" style="display:block;"> <i class="fa fa-warning"></i></div>
 		</div>
-                <h3>Register with Us</h3> <hr>
-				<form:form method="POST" modelAttribute="partner" action="${rc.getContextPath()}/member/register">
+				<form:form method="POST" modelAttribute="vendor" action="${rc.getContextPath()}/member/register">
 					<div class="form-group">
                         <label for="first_name">First Name *</label>
                         <input type="text" id="first_name" name="firstName" required title="Please enter your first name" class="form-control" value="" >
@@ -52,18 +50,6 @@
                         <button type="submit" class="btn btn-default-alt js-submit-button">Register</button>
                     </div>
 				</form:form>
-            </div>
-
-            <div class="col-md-5 col-md-offset-1">
-                <div>
-                    <h3 class="text-center">Register an account and get these benefits</h3>
-                    <div class="break-line"></div>
-                    <ul>
-                        <li class="search">Access to largest network of co-working spaces around you.</li>
-                        <li class="budget">Flexible subscription plans that meet your needs - Book it for a day or a week or months.</li>
-                        <li class="plug-play">Plug 'n' Play - Access amenities like WiFi, Board Room, Meeting Room and Private Cabins.</li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>

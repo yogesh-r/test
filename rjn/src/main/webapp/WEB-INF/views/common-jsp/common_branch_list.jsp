@@ -10,10 +10,10 @@
 					<div class="col-sm-3">
 							<span>Vendor<label></label></span>
 							<c:choose>
-								<c:when test="${allPartners ne null}">
+								<c:when test="${allVendors ne null}">
 									<select
 										name="branchOwner" class="form-control" id="branch_owner">
-										<c:forEach items="${PartnerDetails}" var="thisVendor" >
+										<c:forEach items="${vendorDetails}" var="thisVendor" >
 											<option value="${thisVendor.id}">${thisVendor.id}</option>
 										</c:forEach>
 									</select>
@@ -21,7 +21,7 @@
 								<c:otherwise>
 									<select
 										name="branchOwner" class="form-control" id="branch_owner">
-										<option value="${PartnerDetails.id}">${PartnerDetails.id}</option>
+										<option value="${vendorDetails.id}">${vendorDetails.id}</option>
 									</select>
 								</c:otherwise>
 							</c:choose>

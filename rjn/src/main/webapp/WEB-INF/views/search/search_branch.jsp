@@ -4,7 +4,7 @@
 	<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search"/>
 		<%@include file="../admin/admin_header.jsp"%>
 	</c:when>
-	<c:when test="${headerType eq  'ROLE_PARTNER'}">
+	<c:when test="${headerType eq  'ROLE_VENDOR'}">
 	<c:set var="searchUrl" value="${rc.getContextPath()}/vendor/search"/>
 		<%@include file="../header/vendor_header.jsp"%>
 	</c:when>
@@ -40,23 +40,11 @@
 </div>
 <div class="blog">
 	<div class="container search-continer">
-		<div class="col-md-3 blog-sidebar panel panel-success"
-			style="height: auto">
-			<div class="blog-list1" style="height: 350px">
-				<h4 class="text-center">
-					<font size="2" style="text-decoration: blink;">Popular
-						Vendors</font>
-				</h4>
-				<marquee direction="down" height="350px"
-					onMouseOver="this.setAttribute('scrollamount', 0, 0);"
-					onload="this.stop();"> </marquee>
-			</div>
-		</div>
 		<div class="col-md-9 blog-head panel panel-default">
 			<ul class='list-unstyled list-inline'>
 				<c:forEach items="${results}" var="thisResult">
 					<c:choose>
-						<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_PARTNER' || headerType eq 'ROLE_MEMBER'}">
+						<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_VENDOR' || headerType eq 'ROLE_MEMBER'}">
 							<li><a href="${rc.getContextPath()}/vendor-profile/${thisResult.vendorId}">${thisResult.vendorName}</a></li>
 						</c:when>
 						<c:otherwise>
@@ -72,7 +60,7 @@
 </main>
 
 <c:choose>
-	<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_PARTNER' || headerType eq 'ROLE_MEMBER'}"></c:when>
+	<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_VENDOR' || headerType eq 'ROLE_MEMBER'}"></c:when>
 	<c:otherwise>
 		<%@include file="../footer/application_footer.jsp"%>
 	</c:otherwise>

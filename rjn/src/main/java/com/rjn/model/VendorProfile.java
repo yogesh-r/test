@@ -18,23 +18,20 @@ import com.rjn.model.product.VendorProduct;
 public class VendorProfile {
 	
 	@Id
-	@Column(name = "Part_Id", nullable = false)
+	@Column(name = "vendor_Id", nullable = false)
 	private String id;
 	
-	@Column(name = "Part_F_name", nullable = false)
-	private String partFName;
+	@Column(name = "vendor_first_name", nullable = false)
+	private String vendorFirstName;
 	
-	@Column(name = "Part_Surname", nullable = false)
-	private String partSurname;
+	@Column(name = "vendor_surname", nullable = false)
+	private String vendorSurname;
 	
-	@Column(name = "PAN", nullable = false)
-	private String PAN;
+	@Column(name = "pan_card_no", nullable = false)
+	private String panCardNo;
 	
-	@Column(name = "addr", nullable = false)
-	private String addr;
-	
-	@Column(name = "add_1", nullable = false)
-	private String add1;
+	@Column(name = "address", nullable = false)
+	private String address;
 	
 	@Column(name = "city", nullable = false)
 	private String city;
@@ -50,12 +47,6 @@ public class VendorProfile {
 	
 	@Column(name = "email", nullable = false)
 	private String email;
-	
-	@Column(name = "unique_id", nullable = false)
-	private String uniqueId;
-	
-	@Column(name = "user_id", nullable = false)
-	private String userId;
 	
 	@Column(name = "partner_logo", nullable = false)
 	private String partnerLogo;
@@ -75,7 +66,7 @@ public class VendorProfile {
 	@Column(name = "verified", nullable = false)
 	private boolean verified = false;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "partId", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vendorId", cascade=CascadeType.ALL)
 	private List<VendorProduct> products = new ArrayList<VendorProduct>();
 
 	@Transient
@@ -92,44 +83,36 @@ public class VendorProfile {
 		this.id = id;
 	}
 
-	public String getPartFName() {
-		return partFName;
+	public String getVendorFirstName() {
+		return vendorFirstName;
 	}
 
-	public void setPartFName(String partFName) {
-		this.partFName = partFName;
+	public void setVendorFirstName(String vendorFirstName) {
+		this.vendorFirstName = vendorFirstName;
 	}
 
-	public String getPartSurname() {
-		return partSurname;
+	public String getVendorSurname() {
+		return vendorSurname;
 	}
 
-	public void setPartSurname(String partSurname) {
-		this.partSurname = partSurname;
+	public void setVendorSurname(String vendorSurname) {
+		this.vendorSurname = vendorSurname;
 	}
 
-	public String getPAN() {
-		return PAN;
+	public String getPanCardNo() {
+		return panCardNo;
 	}
 
-	public void setPAN(String pAN) {
-		PAN = pAN;
+	public void setPanCardNo(String pAN) {
+		panCardNo = pAN;
 	}
 
-	public String getAddr() {
-		return addr;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-
-	public String getAdd1() {
-		return add1;
-	}
-
-	public void setAdd1(String add1) {
-		this.add1 = add1;
+	public void setAddress(String addr) {
+		this.address = addr;
 	}
 
 	public String getCity() {
@@ -170,22 +153,6 @@ public class VendorProfile {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getUniqueId() {
-		return uniqueId;
-	}
-
-	public void setUniqueId(String uniqueId) {
-		this.uniqueId = uniqueId;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getPartnerLogo() {

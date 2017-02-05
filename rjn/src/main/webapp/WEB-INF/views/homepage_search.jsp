@@ -1,14 +1,5 @@
-<%@ page import="java.util.*"%>
-<div class="apna-office-search">
-	<div class="apna-office-search-form">
 		<div class="text-center"></div>
-		<div class="text-center">
-			<h3 class="title">
-				<small class="description">We help you to improve your
-					business</small>
-			</h3>
-		</div>
-		<div class="container">
+		<div class="container"><br><br><br><br><br><br>
 			<form action="${rc.getContextPath()}/search"
 				class="row form-horizontal">
 				<div class="col-xs-12 col-md-4 col-md-offset-2">
@@ -21,5 +12,3 @@
 				</div>
 			</form>
 		</div>
-	</div>
-</div>

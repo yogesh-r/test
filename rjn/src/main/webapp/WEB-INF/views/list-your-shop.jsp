@@ -12,7 +12,7 @@
 		<div class="row no-gutter">
 			<div class="col-md-6">
 				<h4>Business Enquiry</h4>
-				<form class="business-enquiry-form" action="${rc.getContextPath()}/public/list_your_space"
+				<form class="business-enquiry-form" action="${rc.getContextPath()}/public/vendor-enquiry"
 					method="post">
 					<div class="form-group">
 						<label for="contact_person">Contact Person</label> <input
@@ -52,11 +52,6 @@
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
-			</div>
-			<div class="col-md-5 col-md-offset-1">
-				<img
-					src="${rc.getContextPath()}/resources/images/list-your-space/fb.jpg"
-					alt="List your space" class="img-responsive">
 			</div>
 		</div>
 	</div>

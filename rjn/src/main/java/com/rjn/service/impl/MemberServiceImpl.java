@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rjn.dao.ProfileMasterDao;
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 import com.rjn.service.MemberService;
 
 @Service("memberService")
@@ -16,12 +16,12 @@ public class MemberServiceImpl implements MemberService{
 	ProfileMasterDao profileMasterDao;
 	
 	@Override
-	public ProfileMaster getProfileMasterByprofileNumber(String profileNumber) {
+	public CustomerProfile getProfileMasterByprofileNumber(String profileNumber) {
 		return profileMasterDao.getProfileMasterByprofileNumber(profileNumber);
 	}
 	
 	@Override
-	public void saveMemberDetails(ProfileMaster profileMaster ) {
+	public void saveMemberDetails(CustomerProfile profileMaster ) {
 		 profileMasterDao.saveMemberRegister(profileMaster);
 	}
 }

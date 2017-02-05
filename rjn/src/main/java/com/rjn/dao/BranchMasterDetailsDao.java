@@ -2,16 +2,16 @@ package com.rjn.dao;
 
 import java.util.List;
 
-import com.rjn.model.Branch.BranchMasterDetails;
+import com.rjn.model.Branch.BranchProfile;
 
 public interface BranchMasterDetailsDao {
 	
-	BranchMasterDetails getBranchByUniqueId(String uniqueId);
-	List<BranchMasterDetails> getBranchByPartner(String partnerId);
-	List<BranchMasterDetails> getLocationByCity(String cityId, String partnerId);
-	List<BranchMasterDetails> getBranchList(String cityId, String partnerId, String location);
-	void saveBranch(BranchMasterDetails branchMasterDetails);
-	BranchMasterDetails getBranchDetails(String uniqueID);
+	BranchProfile getBranchByUniqueId(String uniqueId);
+	List<BranchProfile> getBranchByVendor(String vendorId);
+	List<BranchProfile> getLocationByCity(String cityId, String vendorId);
+	List<BranchProfile> getBranchList(String cityId, String vendorId, String location);
+	void saveBranch(BranchProfile branchMasterDetails);
+	BranchProfile getBranchDetails(String uniqueID);
 }
 
 

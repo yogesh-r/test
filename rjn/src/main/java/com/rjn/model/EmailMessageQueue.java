@@ -12,7 +12,7 @@ import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="tx_email_message_queue")
+@Table(name="email_message_queue")
 public class EmailMessageQueue {
 	
 	@Id

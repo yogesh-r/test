@@ -14,11 +14,11 @@ public interface ApplicationUtils {
 	
 	public List<Menu> getMenu(String role);
 	
-	public String getUniqueIdForBranch(String branchName, String partnerName);
+	public String getUniqueIdForBranch(String branchName, String vendorName);
 	
 	public Account getLoggedInUser();
 	
-	void savePartnerRegistration(VendorProfile partnerDetails);
+	void saveVendorRegistration(VendorProfile vendorDetails);
 	
 	List<City> getAllCity();
 	

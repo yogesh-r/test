@@ -1,9 +1,9 @@
 package com.rjn.service;
 
-import com.rjn.model.ProfileMaster;
+import com.rjn.model.CustomerProfile;
 
 public interface MemberService {
 
-	public ProfileMaster getProfileMasterByprofileNumber(String profileNumber);
-	public void saveMemberDetails(ProfileMaster profileMaster);
+	public CustomerProfile getProfileMasterByprofileNumber(String profileNumber);
+	public void saveMemberDetails(CustomerProfile profileMaster);
 }

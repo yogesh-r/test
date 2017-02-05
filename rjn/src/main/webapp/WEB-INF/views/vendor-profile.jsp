@@ -11,7 +11,7 @@
 	<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search"/>
 		<%@include file="admin/admin_header.jsp"%>
 	</c:when>
-	<c:when test="${headerType eq 'ROLE_PARTNER'}">
+	<c:when test="${headerType eq 'ROLE_VENDOR'}">
 	<c:set var="searchUrl" value="${rc.getContextPath()}/vendor/search"/>
 		<%@include file="header/vendor_header.jsp"%>
 	</c:when>
@@ -27,7 +27,7 @@
 <main class="main-contents">
     <div class="container">
         <div class="row page">
-				Shop owners / vendor Profile =====================${thisVendor.partFName}
+				Shop owners / vendor Profile =====================${thisVendor.vendorFirstName}
         </div>
     </div>
     <a href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/branch-list">Branch List</a>
@@ -42,7 +42,7 @@
    		</c:forEach>
    		
    		<c:if test="${showVerifyButton}">
-   			<a href="${rc.getContextPath()}/vendor/verify">Verify</a>, please give following link to your customer "${rc.getContextPath()}/vendor-profile/${PartnerDetails.id}"
+   			<a href="${rc.getContextPath()}/vendor/verify">Verify</a>, please give following link to your customer "${rc.getContextPath()}/vendor-profile/${vendorDetails.id}"
    			
    		</c:if>
    	</table>
@@ -65,7 +65,7 @@
    	
 </main>
 <c:choose>
-	<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_PARTNER' || headerType eq 'ROLE_MEMBER'}"></c:when>
+	<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_VENDOR' || headerType eq 'ROLE_MEMBER'}"></c:when>
 	<c:otherwise>
 		<%@include file="footer/application_footer.jsp"%>
 	</c:otherwise>
