@@ -1,19 +1,6 @@
 <%@include file="admin_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="container" ng-controller="vendorsListCtrl">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<center>Vendors</center>
-		</div>
-		<div class="panel-body">
-			<div class="row">
-				<div class="col-sm-3">
-					<span>Search<label></label></span> 
-						<input name="branch_owner" class="form-control"></input>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="container">
 	<div style="overflow-x: scroll; height: 450px; width: 100%;">
 			<table class="table table-striped">
 				<thead>

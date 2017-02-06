@@ -182,7 +182,7 @@ PRIMARY KEY (`branch_id`)
 ) 
 
 
-CREATE TABLE IF NOT EXISTS `tx_branch_master_details` ( 
+CREATE TABLE IF NOT EXISTS `branch_profile` ( 
 `BranchCode` int(40) NOT NULL AUTO_INCREMENT, 
 `BranchName` varchar(45) DEFAULT NULL, 
 `BranchOwner` varchar(45) DEFAULT NULL, 
@@ -231,7 +231,7 @@ PRIMARY KEY (`BranchCode`)
 ) 
 
 
-CREATE TABLE IF NOT EXISTS `tx_business_enquiry_details` ( 
+CREATE TABLE IF NOT EXISTS `business_enquiry` ( 
 `enquiry_id` int(10) NOT NULL AUTO_INCREMENT, 
 `Venue_Manager_Name` varchar(200) NOT NULL, 
 `Property_Name` varchar(255) NOT NULL, 
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `tx_campaign_master` (
 `email_body` varchar(1000) DEFAULT NULL, 
 `href_link` varchar(200) DEFAULT NULL, 
 `audience` varchar(50) DEFAULT 'Customers', 
-`partner_id` varchar(50) DEFAULT 'PREG-00-0000-000', 
+`vendor_id` varchar(50) DEFAULT 'PREG-00-0000-000', 
 PRIMARY KEY (`campaign_id`) 
 ) 
 
@@ -351,7 +351,7 @@ PRIMARY KEY (`rule_id`)
 
 CREATE TABLE IF NOT EXISTS `tx_campaign_run_details` ( 
 `campaign_run_id` int(30) NOT NULL AUTO_INCREMENT, 
-`partner_id` varchar(30) DEFAULT NULL, 
+`vendor_id` varchar(30) DEFAULT NULL, 
 `campaign_id` varchar(30) DEFAULT NULL, 
 `campaign_file_name` varchar(150) DEFAULT NULL, 
 `profile_id` varchar(30) DEFAULT NULL, 
@@ -366,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `cy_category_master` (
 ) 
 
 
-CREATE TABLE IF NOT EXISTS `cy_city` ( 
+CREATE TABLE IF NOT EXISTS `city` ( 
 `id` int(11) NOT NULL AUTO_INCREMENT, 
 `State` varchar(255) DEFAULT NULL, 
 `Country` varchar(255) DEFAULT NULL, 
@@ -377,7 +377,7 @@ UNIQUE KEY `State` (`State`,`City`)
 ) 
 
 
-CREATE TABLE IF NOT EXISTS `tx_email_message_queue` ( 
+CREATE TABLE IF NOT EXISTS `email_message_queue` ( 
 `ID` int(11) DEFAULT NULL, 
 `reg_id` varchar(255) DEFAULT NULL, 
 `stud_name` varchar(255) DEFAULT NULL, 
@@ -402,103 +402,6 @@ CREATE TABLE IF NOT EXISTS `tx_email_message_queue` (
 `email_seq_id` int(11) NOT NULL AUTO_INCREMENT, 
 PRIMARY KEY (`email_seq_id`) 
 ) 
-
-
-CREATE TABLE IF NOT EXISTS `tx_facility_master` ( 
-`fac_id` varchar(50) NOT NULL, 
-`fac_name` varchar(100) NOT NULL, 
-`fac_type` varchar(50) NOT NULL, 
-`fac_size` varchar(50) DEFAULT NULL, 
-`fac_capcity` varchar(50) DEFAULT NULL, 
-`fac_comment` varchar(500) DEFAULT NULL, 
-`fac_shared` varchar(50) DEFAULT NULL, 
-`base_price` decimal(10,3) DEFAULT NULL, 
-`base_discount` decimal(10,3) DEFAULT NULL, 
-`base_share` decimal(10,3) DEFAULT NULL, 
-`field_1` varchar(50) DEFAULT NULL, 
-`field_2` varchar(50) DEFAULT NULL, 
-`field_3` varchar(50) DEFAULT NULL, 
-`field_4` varchar(50) DEFAULT NULL, 
-`field_5` varchar(50) DEFAULT NULL, 
-`field_6` varchar(50) DEFAULT NULL, 
-`field_7` varchar(50) DEFAULT NULL, 
-`Branch_id` varchar(50) DEFAULT NULL, 
-`branch_name` varchar(100) NOT NULL, 
-`start_date` date NOT NULL, 
-`end_date` date NOT NULL, 
-`branch_owner` varchar(100) NOT NULL, 
-`fac_avail` varchar(50) DEFAULT NULL, 
-`floor` varchar(50) NOT NULL, 
-`floor_id` varchar(10) DEFAULT NULL, 
-`fac_gran` varchar(50) DEFAULT NULL, 
-`partner_id` varchar(100) DEFAULT NULL, 
-`fac_layout_id` varchar(30) DEFAULT NULL, 
-`fac_layout_name` varchar(50) DEFAULT NULL, 
-`created_date` varchar(50) DEFAULT NULL, 
-`created_by` varchar(50) DEFAULT NULL, 
-`last_updated_date` varchar(50) DEFAULT NULL, 
-`last_updated_by` varchar(50) DEFAULT NULL 
-) 
-
-
-CREATE TABLE IF NOT EXISTS `tx_facility_price` ( 
-`branch_id` varchar(50) NOT NULL, 
-`branch_name` varchar(50) NOT NULL, 
-`facility_id` varchar(50) NOT NULL, 
-`facility_name` varchar(50) NOT NULL, 
-`tariff_id` varchar(50) DEFAULT NULL, 
-`category` varchar(50) NOT NULL, 
-`base_price` int(11) DEFAULT NULL, 
-`discount` int(50) DEFAULT NULL, 
-`partner_share` int(50) DEFAULT NULL, 
-`display` varchar(10) DEFAULT NULL, 
-`commnet` varchar(200) DEFAULT NULL, 
-`field_1` varchar(100) DEFAULT NULL, 
-`field_2` varchar(100) DEFAULT NULL, 
-`field_3` varchar(100) DEFAULT NULL, 
-`partner_name` varchar(100) NOT NULL, 
-`start_date` datetime NOT NULL, 
-`end_date` date NOT NULL, 
-`search_display` varchar(10) DEFAULT NULL, 
-`standard_price` varchar(10) DEFAULT NULL, 
-`corporate_price` varchar(10) DEFAULT NULL, 
-`standard_disc` varchar(10) DEFAULT NULL, 
-`corporate_disc` varchar(10) DEFAULT NULL, 
-`created_date` varchar(50) DEFAULT NULL, 
-`created_by` varchar(50) DEFAULT NULL, 
-`last_updated_date` varchar(50) DEFAULT NULL, 
-`last_updated_by` varchar(50) DEFAULT NULL 
-) 
-
-
-CREATE TABLE IF NOT EXISTS `tx_feature_master` ( 
-`feature_id` varchar(50) NOT NULL, 
-`feature_name` varchar(50) NOT NULL, 
-`fac_id` varchar(50) NOT NULL, 
-`fac_name` varchar(50) NOT NULL, 
-`status` varchar(10) NOT NULL, 
-`chargeable` varchar(10) NOT NULL, 
-`base_price` decimal(10,3) NOT NULL, 
-`base_discount` int(10) NOT NULL, 
-`part_share` decimal(10,3) DEFAULT NULL, 
-`field_1` int(50) DEFAULT NULL, 
-`field_2` int(50) DEFAULT NULL, 
-`field_3` int(50) DEFAULT NULL, 
-`field_4` int(50) DEFAULT NULL, 
-`field_5` int(50) DEFAULT NULL, 
-`start_date` date NOT NULL, 
-`end_date` date NOT NULL, 
-`feat_avail` varchar(50) DEFAULT NULL, 
-`partner_id` varchar(100) DEFAULT NULL, 
-`branch_id` varchar(50) DEFAULT NULL, 
-`branch_name` varchar(100) DEFAULT NULL, 
-`comment` varchar(500) DEFAULT NULL, 
-`created_date` varchar(50) DEFAULT NULL, 
-`created_by` varchar(50) DEFAULT NULL, 
-`last_updated_date` varchar(50) DEFAULT NULL, 
-`last_updated_by` varchar(50) DEFAULT NULL 
-) 
-
 
 CREATE TABLE IF NOT EXISTS `tx_floor_layout_details` ( 
 `seat_id` int(10) NOT NULL AUTO_INCREMENT, 
@@ -553,7 +456,7 @@ CREATE TABLE IF NOT EXISTS `tx_holiday_master` (
 `holiday_date` date DEFAULT NULL, 
 `holiday_type` varchar(60) DEFAULT 'Public Holiday', 
 `status` varchar(30) DEFAULT 'Active', 
-`Partner_Id` varchar(30) DEFAULT NULL, 
+`vendor_Id` varchar(30) DEFAULT NULL, 
 `Branch_Id` varchar(20) DEFAULT NULL, 
 PRIMARY KEY (`holiday_id`), 
 UNIQUE KEY `holiday_date` (`holiday_date`) 
@@ -649,7 +552,7 @@ CREATE TABLE IF NOT EXISTS `tx_license_details` (
 `valid_to` varchar(50) DEFAULT NULL, 
 `status` varchar(50) DEFAULT 'Active', 
 `license_price_id` varchar(50) DEFAULT NULL, 
-`partner_id` varchar(50) DEFAULT NULL, 
+`vendor_id` varchar(50) DEFAULT NULL, 
 `auto_renewal` varchar(50) DEFAULT 'No', 
 `renewed_date` varchar(50) DEFAULT NULL, 
 `renewed_license_id` varchar(50) DEFAULT NULL, 
@@ -658,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `tx_license_details` (
 `last_updated_date` varchar(50) DEFAULT NULL, 
 `last_updated_by` varchar(100) DEFAULT NULL, 
 PRIMARY KEY (`license_id`), 
-UNIQUE KEY `license_key` (`license_key`,`partner_id`) 
+UNIQUE KEY `license_key` (`license_key`,`vendor_id`) 
 ) 
 
 
@@ -702,7 +605,7 @@ PRIMARY KEY (`price_id`)
 ) 
 
 
-CREATE TABLE IF NOT EXISTS `cy_location` ( 
+CREATE TABLE IF NOT EXISTS `location` ( 
 `location_id` int(6) NOT NULL AUTO_INCREMENT, 
 `city_id` int(6) NOT NULL, 
 `location_name` varchar(100) NOT NULL, 
@@ -825,7 +728,7 @@ PRIMARY KEY (`ID`)
  
 CREATE TABLE IF NOT EXISTS `cy_meter_details` ( 
 `meter_id` int(30) NOT NULL AUTO_INCREMENT, 
-`partner_id` varchar(50) NOT NULL, 
+`vendor_id` varchar(50) NOT NULL, 
 `entity_name` varchar(100) NOT NULL, 
 `limit_value` int(20) NOT NULL DEFAULT '0', 
 `consumed_value` int(20) DEFAULT '0', 
@@ -960,9 +863,9 @@ CREATE TABLE IF NOT EXISTS `tx_partner_enquiry_master` (
 
 
 CREATE TABLE IF NOT EXISTS `tx_partner_pay_share` ( 
-`Partner_id` varchar(30) NOT NULL, 
+`vendor_id` varchar(30) NOT NULL, 
 `Per_amt` int(3) DEFAULT NULL, 
-`Partner_tax_per` int(3) DEFAULT NULL, 
+`vendor_tax_per` int(3) DEFAULT NULL, 
 `start_date` datetime NOT NULL, 
 `end_date` datetime NOT NULL, 
 `comment` varchar(100) DEFAULT NULL, 
@@ -970,10 +873,10 @@ CREATE TABLE IF NOT EXISTS `tx_partner_pay_share` (
 `field_2` varchar(50) DEFAULT NULL, 
 `pay_share_based_on` varchar(50) NOT NULL, 
 `fix_amt` int(10) NOT NULL, 
-`Partner_name` varchar(50) NOT NULL, 
+`vendor_name` varchar(50) NOT NULL, 
 `reg_id` varchar(30) DEFAULT NULL, 
-PRIMARY KEY (`Partner_id`), 
-UNIQUE KEY `Partner_id` (`Partner_id`) 
+PRIMARY KEY (`vendor_id`), 
+UNIQUE KEY `vendor_id` (`vendor_id`) 
 ) 
 
 
@@ -987,7 +890,7 @@ PRIMARY KEY (`payment_term_id`)
 ) 
 
 
-CREATE TABLE IF NOT EXISTS `tx_popular_cities` ( 
+CREATE TABLE IF NOT EXISTS `popular_cities` ( 
 `popular_id` int(50) NOT NULL AUTO_INCREMENT, 
 `city_id` varchar(50) DEFAULT NULL, 
 `city_name` varchar(100) DEFAULT NULL, 
@@ -1002,7 +905,7 @@ PRIMARY KEY (`popular_id`)
 
 
 
-CREATE TABLE IF NOT EXISTS `tx_profile_master` ( 
+CREATE TABLE IF NOT EXISTS `customer_profile` ( 
 `profile_id` int(10) NOT NULL AUTO_INCREMENT, 
 `profile_number` varchar(30) DEFAULT NULL, 
 `profile_type` varchar(30) DEFAULT 'Individual', 
@@ -1145,13 +1048,11 @@ CREATE TABLE IF NOT EXISTS `tx_seat_availability_details` (
 PRIMARY KEY (`Seat_Availability_Id`) 
 ) 
 
-
-CREATE TABLE IF NOT EXISTS `tx_seq_id` ( 
+CREATE TABLE IF NOT EXISTS `seq_id` ( 
 `Seq_name` varchar(255) NOT NULL DEFAULT '', 
 `Seq_Num` int(11) DEFAULT NULL, 
 PRIMARY KEY (`Seq_name`) 
 ) 
-
 
 CREATE TABLE IF NOT EXISTS `tx_server_admin` ( 
 `server_type` varchar(255) NOT NULL DEFAULT '', 
@@ -1254,14 +1155,14 @@ CREATE TABLE `sosvedu_apna`.`cy_menu` (
 );
 
 
-CREATE TABLE IF NOT EXISTS `cy_product_category` ( 
+CREATE TABLE IF NOT EXISTS `product_category` ( 
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) DEFAULT NULL,
 	`description` varchar(255) DEFAULT NULL,
 	PRIMARY KEY (`id`) 
 ) ;
 
-CREATE TABLE IF NOT EXISTS `tx_vendor_product` (
+CREATE TABLE IF NOT EXISTS `vendor_product` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`unique_id` varchar(20) NOT NULL,
 	`name` varchar(255) DEFAULT NULL,
@@ -1273,7 +1174,7 @@ CREATE TABLE IF NOT EXISTS `tx_vendor_product` (
 );
 
 
-CREATE TABLE IF NOT EXISTS `cy_vendor_lead` (
+CREATE TABLE IF NOT EXISTS `vendor_lead` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`user_id` INT,	
 	`name` varchar(255) DEFAULT NULL,
@@ -1297,8 +1198,8 @@ CREATE TABLE IF NOT EXISTS `password_reset_token` (
 
 
 INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('member home', 'MEMBER');
-INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('partner home', 'PARTNER');
-INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('partner add branch', 'PARTNER');
+INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('vendor home', 'VENDOR');
+INSERT INTO `sosvedu_apna`.`cy_menu` (`menu_name`, `role`) VALUES ('vendor add branch', 'VENDOR');
 
 
 

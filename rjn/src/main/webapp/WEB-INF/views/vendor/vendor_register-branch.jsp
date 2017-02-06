@@ -6,7 +6,7 @@
      ${errorMessage}
    </c:when>
 		<c:otherwise>
-			<form action="${rc.getContextPath()}/vendor/register-branch" method="post">
+			<form class="form-horizontal" action="${rc.getContextPath()}/vendor/register-branch" method="post">
 					<%@include file="../common-jsp/add_branch.jsp"%>
 			</form>
 		</c:otherwise>
