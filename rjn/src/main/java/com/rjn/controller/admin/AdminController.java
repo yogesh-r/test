@@ -35,6 +35,7 @@ import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.MailService;
 import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.AppFileHandlingUtils;
+import com.rjn.utils.AppUtils;
 import com.rjn.utils.Constant;
 import com.rjn.utils.SeqConstant;
 
@@ -131,17 +132,20 @@ public class AdminController {
 			SeqId seqId = seqGenerator.getSeqId(SeqConstant.VENDOR_SEQ);
 			String profileNumber = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
 			vendorDetails.setId(profileNumber);
-			String unEncryptPass = vendorDetails.getPassword();
+			
+			String unEncryptPass = AppUtils.getRandorPassword(vendorDetails.getVendorFirstName());
 			vendorDetails.setPassword(utils.encryptPassword(unEncryptPass));
 			vendorService.saveVendorDetails(vendorDetails);
 			// write code for email
 			Email email=new Email(); 
 			email.setTo(vendorDetails.getEmail());
 			email.setSubject("vendor created");
-		    email.setBody("vendor is created successfully and your uniqe id is"+vendorDetails.getId());
+			String emailBody = "vendor is created successfully and your uniqe id is "+vendorDetails.getId() +
+					" and your password is " + unEncryptPass;
+		    email.setBody(emailBody);
 		    boolean isEmailSent=mailService.sendEmail(email);
 		    System.out.println("email sent"+isEmailSent);
-		}else {
+		} else {
 			vendorService.updateVendorDetails(vendorDetails);
 		}
 		try {

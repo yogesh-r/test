@@ -3,185 +3,142 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdrHIPbEWvJF1K_BCTfKS9Aupm54Q9KGk&libraries=places&callback=initAutocomplete"
 	async defer></script>
+
 <div class="main">
 	<div class="container">
-		<form action="${rc.getContextPath()}/admin/register-vendor" method="POST" id="myform" enctype="multipart/form-data">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<center>
-						<h4>
-							<font color="brown">Vendor Registration </font>
-						</h4>
-					</center>
+		<div class="col-md-10">
+			<form class="form-horizontal"
+				action="${rc.getContextPath()}/admin/register-vendor" method="POST"
+				enctype="multipart/form-data">
+				<div class="form-group">
+					<label class="control-label col-sm-2">First Name:</label>
+					<div class="col-sm-10">
+						<input type="text" name="vendorFirstName" class="form-control"
+							value="${thisVendor.vendorFirstName}" required>
+					</div>
 				</div>
-				<!-- class="panel-heading" -->
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-3">
-							<span class="mem_reg">First Name <label>*</label></span> 
-							<input
-								type="text" id="fname" name="vendorFirstName" class="form-control" value="${thisVendor.vendorFirstName}"
-								required>
-						</div>
-						<div class="col-sm-3">
-							<span>Last Name <label>*</label></span> 
-							<input type="text"
-								id="lnam" name="vendorSurname" class="form-control" value="${thisVendor.vendorSurname}" required>
-						</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Last Name:</label>
+					<div class="col-sm-10">
+						<input type="text" name="vendorSurname" class="form-control"
+							value="${thisVendor.vendorSurname}" required>
 					</div>
-					<!--  row end -->
-					<div class="row">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-3">
-							<span>Email Id<label>*</label></span> <input type="text"
-								name="email" value="${thisVendor.email}" class="form-control"
-								id="contact_email_id" required />
-						</div>
-						<c:if test="${thisVendor.id eq null}">
-							<div class="col-sm-3">
-								<span>Password<label>*</label></span> <input type="password"
-									name="password" class="form-control" required />
-							</div>
-						</c:if>
-						
-					</div>
-					<!--  row end -->
-					<div class="row">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-3">
-							<span>Contact Number<label>*</label></span> <input type="text"
-								name="pContact" id="text" class="form-control" required
-								pattern=[0-9]{10} maxlength="10" value="${thisVendor.pContact}"
-								title="contact no should be 10 digits(Ex:9749692397)">
-						</div>
-						<div class="col-sm-3">
-							<span>Category Type<label>*</label></span> <select
-								name="category" class="form-control">
-								<option value="Retail Vendor">Retail Vendor</option>
-								<option value="Channel Vendor">Channel Vendor</option>
-								<option value="Sales Vendor">Sales Vendor</option>
-							</select>
-						</div>
-					</div>
-					<!-- row end -->
-					<div class="row">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-3">
-							<span>Enter Company Logo<label>*</label></span>
-							<input type="file" name="vendorLogo">
-						</div>
-						
-					</div>
-					<!-- Div Row Complted -->
 				</div>
-				<!-- panel body end -->
-			</div>
-			<!-- panel end -->
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<center>Vendor Address Information</center>
-				</div>
-				<!-- class="panel-heading" -->
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-2"></div>
-						<div id="locationField">
-							<div class="col-sm-8">
-								<input id="autocomplete" name = "add1" placeholder="Enter your address"
-									value="${thisVendor.add1}" type="text" class="form-control"></input>
-							</div>
-						</div>
-					</div>
-					<!-- row end -->
-					<br>
-					<div class="row">
-						<div class="col-md-2"></div>
-						<div class="col-sm-3">
-							<span>Address Line 1<label></label></span> <input
-								value="${thisVendor.addr}" class="field form-control" id="street_number" name="addr"
-								placeholder="Enter Your Door No." required></input>
-						</div>
-						<div class="col-sm-3">
-							<span>Address Line 2<label></label></span> <input
-								value="${thisVendor.addr}" class="field form-control" id="route" name="route"></input>
-						</div>
-						<div class="col-sm-3">
-							<span>Location</span> <input class="field form-control"
-								value="${thisVendor.location}" id="sublocality_level_1" name="location" readOnly required></input>
-						</div>
-					</div>
-					<!--  row end -->
-					<div class="row">
-						<div class="col-md-2"></div>
-						<div class="col-sm-3">
-							<span>City<label></label></span> <input
-								class="field form-control" id="locality" id="locality"
-								value="${thisVendor.city}" name="city" required readOnly></input>
-						</div>
-						<div class="col-sm-3">
-							<span>State<label></label></span> <input
-								class="field form-control" name="state"
-								value="${thisVendor.state}" id="administrative_area_level_1" readOnly></input>
-						</div>
-						<div class="col-sm-3">
-							<span>Country<label></label></span> <input
-								value="${thisVendor.country}" class="field form-control" name="country" id="country" readOnly></input>
-						</div>
-					</div>
-					<!--  row end -->
-					<div class="row">
-						<div class="col-md-2"></div>
-						<div class="col-sm-3">
-							<span>ZipCode*<label></label></span> <input type="text"
-								name="zipCode" id="postal_code" ng-model="event_name"
-								value="${thisVendor.zipCode}" class="field form-control" readOnly>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<input type="hidden" class="field form-control" id="latitude"
-								value="${thisVendor.latitude}"name="latitude"></input>
-						</div>
-						<div class="col-sm-3">
-							<input type="hidden" class="field form-control" id="longitude"
-								value="${thisVendor.longitude}" name="longitude"></input>
-								<input type="hidden" class="field form-control"
-								value="${thisVendor.id}" name="id"></input>
-						</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Email Id:</label>
+					<div class="col-sm-10">
+						<input type="text" name="email" value="${thisVendor.email}"
+							class="form-control" required />
 					</div>
 				</div>
-			</div>
-			<!-- panel end -->
-			<div class="row" align="center">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-3"></div>
-				<div class="col-sm-3">
-					<c:if test="${thisVendor.vendorFirstName eq null}">
-						<input type="submit" id="submit" value="Create Vendor" class="form-control btn-primary">
-					</c:if>
-					<c:if test="${thisVendor.vendorFirstName ne null}">
-						<input type="submit" id="submit" value="Update vendor" class="form-control btn-primary">
-					</c:if>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Contact Number:</label>
+					<div class="col-sm-10">
+						<input type="text" name="pContact" class="form-control" required
+							pattern=[0-9]{10} maxlength="10" value="${thisVendor.pContact}">
+					</div>
 				</div>
-			</div>
-			<!-- padding -->
-			<div style="height: 10px; line-height: 40px; font-size: 40px;"></div>
-		</form>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Company Logo:</label>
+					<div class="col-sm-10">
+						<input type="file" name="vendorLogo">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Address:</label>
+					<div class="col-sm-10">
+						<input id="autocomplete" name="add1"
+							placeholder="Enter your address" value="${thisVendor.address}"
+							type="text" class="form-control"></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Address Line 1:</label>
+					<div class="col-sm-10">
+						<input value="${thisVendor.address}" class="field form-control"
+							id="street_number" name="addr" placeholder="Enter Your Door No."
+							required></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Address Line 2:</label>
+					<div class="col-sm-10">
+						<input value="${thisVendor.address}" class="field form-control"
+							id="route" name="route"></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Location:</label>
+					<div class="col-sm-10">
+						<input class="field form-control" value="${thisVendor.location}"
+							id="sublocality_level_1" name="location" readOnly required></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">City:</label>
+					<div class="col-sm-10">
+						<input class="field form-control" id="locality"
+							value="${thisVendor.city}" name="city" required readOnly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">State:</label>
+					<div class="col-sm-10">
+						<input class="field form-control" name="state"
+							value="${thisVendor.state}" id="administrative_area_level_1"
+							readOnly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Country:</label>
+					<div class="col-sm-10">
+						<input value="${thisVendor.country}" class="field form-control"
+							name="country" id="country" readOnly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">ZipCode:</label>
+					<div class="col-sm-10">
+						<input type="text" name="zipCode" id="postal_code"
+							value="${thisVendor.zipCode}" class="field form-control" readOnly>
+					</div>
+				</div>
+
+				<input type="hidden" class="field form-control" id="latitude"
+					value="${thisVendor.latitude}" name="latitude"></input> <input
+					type="hidden" class="field form-control" id="longitude"
+					value="${thisVendor.longitude}" name="longitude"></input> <input
+					type="hidden" class="field form-control" value="${thisVendor.id}"
+					name="id"></input>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<c:if test="${thisVendor.vendorFirstName eq null}">
+							<input type="submit" id="submit" value="Create Vendor"
+								class="form-control btn-primary">
+						</c:if>
+						<c:if test="${thisVendor.vendorFirstName ne null}">
+							<input type="submit" id="submit" value="Update vendor"
+								class="form-control btn-primary">
+						</c:if>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-2"></div>
 	</div>
 </div>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('body').on('focus', "#duedate", function() {
-			$(this).datetimepicker({
-				format : 'DD-MM-YYYY',
-				pickTime : false,
-				autoclose : true
-			});
-		});
-	});
 
+<script type="text/javascript">
 	var placeSearch, autocomplete;
 	var componentForm = {
 		street_number : 'long_name',
