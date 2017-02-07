@@ -22,6 +22,7 @@
 								Branch</a></li>
 						<li><a href="${rc.getContextPath()}/admin/register-category">Register
 								Category</a></li>
+						<li><a href="${rc.getContextPath()}/admin/map">Demo</a></li>
 
 					</ul></li>
 				<li class="dropdown"><a href="#" data-toggle="dropdown"
