@@ -39,6 +39,15 @@
 </div>
 
 <div class="form-group">
+	<label class="control-label col-sm-2">contact No:</label>
+	<div class="col-sm-10">
+		<input value="${thisBranch.contactNo}" type='text'
+			class="form-control" name="contactNo"
+			placeholder="Contact No" required />
+	</div>
+</div>
+
+<div class="form-group">
 	<label class="control-label col-sm-2">Description:</label>
 	<div class="col-sm-10">
 		<TEXTAREA name="description" class="form-control" rows="4"
@@ -49,15 +58,15 @@
 <div class="form-group">
 	<label class="control-label col-sm-2">Address:</label>
 	<div class="col-sm-10">
-		<input id="autocomplete" name="add1" placeholder="Enter your address"
-			value="${thisVendor.add1}" type="text" class="form-control"></input>
+		<input id="autocomplete" name="address" placeholder="Enter your address"
+			value="${thisBranch.address}" type="text" class="form-control"></input>
 	</div>
 </div>
 
 <div class="form-group">
 	<label class="control-label col-sm-2">Address Line 1:</label>
 	<div class="col-sm-10">
-		<input value="${thisVendor.addr}" class="field form-control"
+		<input value="${thisBranch.address}" class="field form-control"
 			id="street_number" name="addr" placeholder="Enter Your Door No."
 			required></input>
 	</div>
@@ -66,7 +75,7 @@
 <div class="form-group">
 	<label class="control-label col-sm-2">Address Line 2:</label>
 	<div class="col-sm-10">
-		<input value="${thisVendor.addr}" class="field form-control"
+		<input value="${thisBranch.address}" class="field form-control"
 			id="route" name="route"></input>
 	</div>
 </div>
@@ -74,7 +83,7 @@
 <div class="form-group">
 	<label class="control-label col-sm-2">Location:</label>
 	<div class="col-sm-10">
-		<input class="field form-control" value="${thisVendor.location}"
+		<input class="field form-control" value="${thisBranch.location}"
 			id="sublocality_level_1" name="location" readOnly required></input>
 	</div>
 </div>
@@ -83,7 +92,7 @@
 	<label class="control-label col-sm-2">City:</label>
 	<div class="col-sm-10">
 		<input class="field form-control" id="locality"
-			value="${thisVendor.city}" name="city" required readOnly></input>
+			value="${thisBranch.city}" name="city" required readOnly></input>
 	</div>
 </div>
 
@@ -91,14 +100,14 @@
 	<label class="control-label col-sm-2">State:</label>
 	<div class="col-sm-10">
 		<input class="field form-control" name="state"
-			value="${thisVendor.state}" id="administrative_area_level_1" readOnly></input>
+			value="${thisBranch.state}" id="administrative_area_level_1" readOnly></input>
 	</div>
 </div>
 
 <div class="form-group">
 	<label class="control-label col-sm-2">Country:</label>
 	<div class="col-sm-10">
-		<input value="${thisVendor.country}" class="field form-control"
+		<input value="${thisBranch.country}" class="field form-control"
 			name="country" id="country" readOnly></input>
 	</div>
 </div>
@@ -106,16 +115,16 @@
 <div class="form-group">
 	<label class="control-label col-sm-2">ZipCode:</label>
 	<div class="col-sm-10">
-		<input type="text" name="zipCode" id="postal_code"
-			value="${thisVendor.zipCode}" class="field form-control" readOnly>
+		<input type="text" name="zipcode" id="postal_code"
+			value="${thisBranch.zipcode}" class="field form-control" readOnly>
 	</div>
 </div>
 
 <input type="hidden" class="field form-control" id="latitude"
-	value="${thisVendor.latitude}" name="latitude"></input>
+	value="${thisBranch.latitude}" name="latitude"></input>
 <input type="hidden" class="field form-control" id="longitude"
-	value="${thisVendor.longitude}" name="longitude"></input>
-<input type="hidden" class="field form-control" value="${thisVendor.id}"
+	value="${thisBranch.longitude}" name="longitude"></input>
+<input type="hidden" class="field form-control" value="${thisBranch.id}"
 	name="id"></input>
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">

@@ -1,8 +1,8 @@
-<%@include file="../include/css_include.jsp"%>
+<%-- <%@include file="../include/css_include.jsp"%> --%>
 <script type="text/javascript">
 	var _context = '${rc.getContextPath()}';
 </script>
-<header ng-app="RJN">
+<header>
     <nav class="navbar navbar-fixed-top">
         <div class="container">
             <div class="row">
@@ -31,8 +31,6 @@
         </div><!--/.container -->
     </nav><!--/.navbar-default -->
 </header>
-
-
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">

@@ -5,7 +5,7 @@
 	<div class="container">
 		<!-- Logo -->
 		<div class="logo">
-			<a href="member_home.jsp"> <img
+			<a href="${rc.getContextPath()}/member/home"> <img
 				src="${rc.getContextPath()}/resources/images/logo/logo.png"
 				class="img-resposive" width="80%" height="" border="0"
 				alt="Not found">

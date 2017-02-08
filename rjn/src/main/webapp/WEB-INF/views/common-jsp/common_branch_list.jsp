@@ -12,7 +12,7 @@
 							<th>Branch Name</th>
 							<th>Contact No</th>
 							<th>Address</th>
-							<th>=====</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody id="ResultArea">
@@ -21,7 +21,7 @@
 							<tr>
 								<td>${thisBranch.id}</td>
 								<td>${thisBranch.branchName}</td>
-								<td>${thisBranch.contactno}</td>
+								<td>${thisBranch.contactNo}</td>
 								<td>${thisBranch.address}</td>
 								<td><a
 									href="${rc.getContextPath()}/vendor/register-branch/${thisBranch.uniqueId}">edit</a></td>
