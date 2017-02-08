@@ -277,4 +277,8 @@ public class AdminController {
 		return null;
 	
 	}
+	@RequestMapping(value = { "/map" }, method = RequestMethod.GET)
+	public String demo(ModelMap model) {
+		return "admin/Demo";
+	}
 }
