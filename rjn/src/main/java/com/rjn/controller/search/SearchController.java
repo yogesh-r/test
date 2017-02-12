@@ -42,7 +42,7 @@ public class SearchController {
 		return "/search/search_branch"; 
 	}
 
-	@ResponseBody
+/*	@ResponseBody
 	@RequestMapping(value = { "/public/getBranchs"}, method = RequestMethod.GET)
 	public Object branchList(HttpServletRequest request) {
 		SearchBean bean = new SearchBean();
@@ -60,5 +60,5 @@ public class SearchController {
 		List<VendorProfile> lists =  vendorService.getAllVendors();
 		model.put("vendorList", lists);
 		return model;
-	}
+	}*/
 }
