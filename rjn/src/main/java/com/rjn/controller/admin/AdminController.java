@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -179,8 +180,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = { "/register-category" }, method = RequestMethod.POST)
-	public String saveCategory(@Valid ProductCategory productCategory, BindingResult result,ModelMap model) {
-		utils.saveCategory(productCategory);
+	public String saveCategory(@RequestBody ProductCategory productCategory, BindingResult result,ModelMap model) {
+		System.out.println("------------------"+productCategory);
+		utils.saveCategory(productCategory); 
 		return "admin/admin_register_category";
 	}
 	

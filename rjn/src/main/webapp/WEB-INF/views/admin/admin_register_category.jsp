@@ -1,8 +1,8 @@
 <%@include file="admin_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="col-md-10 col-md-offset-1">
-	<form action="${rc.getContextPath()}/admin/register-category"
-		method="post">
+<div class="col-md-10 col-md-offset-1" ng-controller="registerCategoryCtrl">
+<%-- 	<form action="${rc.getContextPath()}/admin/register-category"
+		method="post"> --%>
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
@@ -16,25 +16,25 @@
 					<td><span>Name</span></td>
 					<td>
 						<div class='form-group'>
-							<input type='text' name='name' value="${thisCategory.name}"
+							<input type='text' name='name' ng-model ="thisCategory.name" value="${thisCategory.name}"
 								class='form-control' />
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td><span>Description</span></td>
-					<td colspan='3'><textarea style='resize: none;'
+					<td colspan='3'><textarea ng-model ="thisCategory.description" style='resize: none;'
 							class="form-control" name="description" required >${thisCategory.description}</textarea>
 					</td>
 				</tr>
 				<tr>
-					<td colspan='3'><input value="Save Category"
-						class="form-control btn-primary" type="submit"></td>
+					<td colspan='3'><input value="Save Category" ng-click="saveCategory(thisCategory)"
+						class="form-control btn-primary" type="button"></td>
 				</tr>
 				<input type="hidden" name="id" value="${thisCategory.id}" />
 			</tbody>
 		</table>
-	</form>
+	<!-- </form> -->
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
@@ -46,3 +46,7 @@
 		<div class="col-md-3"></div>
 	</div>
 </div>
+
+<script src="${rc.getContextPath()}/resources/develoepr-js/register-category.js"></script>
+
+

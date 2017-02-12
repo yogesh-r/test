@@ -1,4 +1,4 @@
-<body>
+<body ng-app="RJN">
 	<div class="container">
 		<div class="pull-right">&nbsp;&nbsp;Welcome,
 			${sessionScope.uname}</div>

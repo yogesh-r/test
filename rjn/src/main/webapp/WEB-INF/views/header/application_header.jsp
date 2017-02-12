@@ -2,35 +2,37 @@
 <script type="text/javascript">
 	var _context = '${rc.getContextPath()}';
 </script>
-<header>
-    <nav class="navbar navbar-fixed-top">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#site-navigation" aria-expanded="false" aria-controls="site-navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="${rc.getContextPath()}">
-                        <img class="brand-logo" src="${rc.getContextPath()}/resources/images/logo/logo.png" alt="Logo">
-                    </a>
-                </div><!--/.navbar-header -->
-                <div id="site-navigation" class="navbar-collapse collapse navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li><a href="${rc.getContextPath()}/list-your-shop">Enquiry</a></li>
-                        <li><a href="${rc.getContextPath()}/contact-us">Contact us</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-actions navbar-right">
-	                    <li><a data-toggle="modal" data-target="#myModal" >Login</a></li>
-	                    <li><a href="${rc.getContextPath()}/member/register">Customer regestration</a></li>
-	                </ul>
-                </div><!--/.nav-collapse -->
-            </div><!--/.row -->
-        </div><!--/.container -->
-    </nav><!--/.navbar-default -->
-</header>
+<body ng-app="RJN"> ------------------------{{3+4}}
+	<header>
+	    <nav class="navbar navbar-fixed-top">
+	        <div class="container">
+	            <div class="row">
+	                <div class="navbar-header">
+	                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#site-navigation" aria-expanded="false" aria-controls="site-navigation">
+	                        <span class="sr-only">Toggle navigation</span>
+	                        <span class="icon-bar"></span>
+	                        <span class="icon-bar"></span>
+	                        <span class="icon-bar"></span>
+	                    </button>
+	                    <a class="navbar-brand" href="${rc.getContextPath()}">
+	                        <img class="brand-logo" src="${rc.getContextPath()}/resources/images/logo/logo.png" alt="Logo">
+	                    </a>
+	                </div><!--/.navbar-header -->
+	                <div id="site-navigation" class="navbar-collapse collapse navbar-right">
+	                    <ul class="nav navbar-nav">
+	                        <li><a href="${rc.getContextPath()}/list-your-shop">Enquiry</a></li>
+	                        <li><a href="${rc.getContextPath()}/contact-us">Contact us</a></li>
+	                    </ul>
+	                    <ul class="nav navbar-nav navbar-actions navbar-right">
+		                    <li><a data-toggle="modal" data-target="#myModal" >Login</a></li>
+		                    <li><a href="${rc.getContextPath()}/member/register">Customer regestration</a></li>
+		                </ul>
+	                </div><!--/.nav-collapse -->
+	            </div><!--/.row -->
+	        </div><!--/.container -->
+	    </nav><!--/.navbar-default -->
+	</header>
+</body>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">

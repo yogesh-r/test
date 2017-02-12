@@ -4,7 +4,7 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdrHIPbEWvJF1K_BCTfKS9Aupm54Q9KGk&libraries=places&callback=initAutocomplete"
 	async defer></script>
 
-<div class="main">
+<div class="main" ng-controller="registerVendorCtrl">
 	<div class="container">
 		<div class="col-md-10">
 			<form class="form-horizontal"
@@ -138,6 +138,7 @@
 	</div>
 </div>
 
+<script src="${rc.getContextPath()}/resources/develoepr-js/register-vendor.js"></script> 
 <script type="text/javascript">
 	var placeSearch, autocomplete;
 	var componentForm = {
