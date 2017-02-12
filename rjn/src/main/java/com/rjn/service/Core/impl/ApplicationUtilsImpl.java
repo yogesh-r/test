@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rjn.dao.BranchMasterDetailsDao;
+import com.rjn.dao.BranchProfileDao;
 import com.rjn.dao.core.AccountDao;
 import com.rjn.dao.core.CityDao;
 import com.rjn.dao.core.MenuDao;
@@ -33,7 +33,7 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	private AccountDao accountDao;
 	
 	@Autowired
-	private BranchMasterDetailsDao branchMasterDetailsDao;
+	private BranchProfileDao branchMasterDetailsDao;
 	
 	@Autowired
 	private CityDao cityDao;

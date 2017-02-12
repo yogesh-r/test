@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rjn.dao.AssignedToDao;
-import com.rjn.dao.BusinessEnquiryDetailsDao;
+import com.rjn.dao.BusinessEnquiryDao;
 import com.rjn.dao.ProfileMasterDao;
 import com.rjn.dao.VendorProfileDao;
 import com.rjn.dao.core.AccountDao;
@@ -35,7 +35,7 @@ public class VendorServiceImpl implements VendorService {
 	private AssignedToDao assignedToDao;
 	
 	@Autowired
-	private BusinessEnquiryDetailsDao vendorEnquiry;
+	private BusinessEnquiryDao vendorEnquiry;
 	
 	@Override 
 	public void saveVendorDetails(VendorProfile vendorDetails) { 

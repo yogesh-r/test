@@ -3,7 +3,7 @@ package com.rjn.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.rjn.dao.BusinessEnquiryDetailsDao;
+import com.rjn.dao.BusinessEnquiryDao;
 import com.rjn.dao.PasswordResetTokenDao;
 import com.rjn.dao.ProfileMasterDao;
 import com.rjn.dao.core.AccountDao;
@@ -25,7 +25,7 @@ public class HeaderServiceImpl implements HeaderService  {
 	private AccountDao accountDao;
 
 	@Autowired
-	private BusinessEnquiryDetailsDao listDao;
+	private BusinessEnquiryDao listDao;
 	
 	@Autowired
 	private PasswordResetTokenDao passwordResetTokenDao;

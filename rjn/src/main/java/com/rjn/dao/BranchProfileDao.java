@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.rjn.model.Branch.BranchProfile;
 
-public interface BranchMasterDetailsDao {
+public interface BranchProfileDao {
 	
 	BranchProfile getBranchByUniqueId(String uniqueId);
 	List<BranchProfile> getBranchByVendor(String vendorId);

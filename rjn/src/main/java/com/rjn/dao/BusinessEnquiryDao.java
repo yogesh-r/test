@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.rjn.model.BusinessEnquiry;
 
-public interface BusinessEnquiryDetailsDao {
+public interface BusinessEnquiryDao {
 	void saveListYourOffice(BusinessEnquiry listSpaceData);
 	List<BusinessEnquiry> getBusinessEnquiryList();
 	BusinessEnquiry getBusinessEnquiryByEnquiryId(String enquiryId);
+	
+	long getRowCount();
 }

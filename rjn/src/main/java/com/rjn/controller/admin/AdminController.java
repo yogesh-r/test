@@ -31,6 +31,7 @@ import com.rjn.model.core.Email;
 import com.rjn.model.core.ProductCategory;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
+import com.rjn.service.RowCountService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.MailService;
@@ -61,6 +62,9 @@ public class AdminController {
 	
 	@Autowired
 	private MailService mailService;
+	
+	@Autowired
+	private RowCountService countService;
 	
 	//======================testing=========================================
 	@RequestMapping(value = { "/uploadTest" }, method = RequestMethod.GET)
@@ -181,7 +185,6 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/register-category" }, method = RequestMethod.POST)
 	public String saveCategory(@RequestBody ProductCategory productCategory, BindingResult result,ModelMap model) {
-		System.out.println("------------------"+productCategory);
 		utils.saveCategory(productCategory); 
 		return "admin/admin_register_category";
 	}
@@ -237,6 +240,9 @@ public class AdminController {
 
 	@RequestMapping(value = { "/vendor-enquiry" }, method = RequestMethod.GET)
 	public String enquiryList(ModelMap model) {
+		long count = countService.getBusinessEnquiryRowCount();
+		System.out.println("count >>>>>>>>>>>. "+count);
+		model.addAttribute("totalRowCount", countService.getBusinessEnquiryRowCount());
 		model.addAttribute("vendorEnquirys", vendorService.getBusinessEnquiryList());
 		return "admin/vendor-enquiry";
 	}

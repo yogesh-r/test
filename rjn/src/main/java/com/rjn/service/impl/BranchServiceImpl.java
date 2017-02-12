@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.rjn.dao.BranchMasterDetailsDao;
+import com.rjn.dao.BranchProfileDao;
 import com.rjn.model.Branch.BranchProfile;
 import com.rjn.service.BranchService;
 
@@ -13,7 +13,7 @@ import com.rjn.service.BranchService;
 public class BranchServiceImpl implements BranchService {
 
 	@Autowired
-	private BranchMasterDetailsDao dao;
+	private BranchProfileDao dao;
 	
 	@Override
 	public List<BranchProfile> getBranchByVendor(String vendorId) {

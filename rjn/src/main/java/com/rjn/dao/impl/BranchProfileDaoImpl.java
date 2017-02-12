@@ -6,12 +6,12 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.rjn.dao.BranchMasterDetailsDao;
+import com.rjn.dao.BranchProfileDao;
 import com.rjn.dao.core.AbstractDao;
 import com.rjn.model.Branch.BranchProfile;
 
 @Repository("branchMasterDetailsDao")
-public class BranchMasterDetailsDaoImpl extends AbstractDao<Integer, BranchProfile> implements BranchMasterDetailsDao {
+public class BranchProfileDaoImpl extends AbstractDao<Integer, BranchProfile> implements BranchProfileDao {
 
 	@Override
 	public BranchProfile getBranchByUniqueId(String uniqueId) {
