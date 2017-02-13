@@ -8,11 +8,11 @@ import com.rjn.model.VendorProfile;
 
 public interface VendorService {
     void saveVendorDetails(VendorProfile vendorDetails);
-    List<VendorProfile> getAllVendors();
+    List<VendorProfile> getAllVendors(int limit, int startingPage);
     VendorProfile getVendor(String vendorID);
     List<CustomerProfile> getCustomerCompany();
     List<CustomerProfile> getAssignedTo(String assignedTo,String vendorID);
-    List<BusinessEnquiry> getBusinessEnquiryList();
+    List<BusinessEnquiry> getBusinessEnquiryList(int limit, int startingPage);
     void updateVendorDetails(VendorProfile vendorDetails);
     void updateVerify(String vendorId, boolean isVerified);	
 }

@@ -12,4 +12,4 @@ public class TransactionInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("Got request to save data : name:"+request.getParameter("name"));
 		return true;
 	}
-} 
+}

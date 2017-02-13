@@ -1,21 +1,21 @@
-RJN.controller('vendorEnquiryCtrl', [ '$scope', '$http' , function ($scope, $http) {
-	$scope.enquiryList = [];
+RJN.controller('vendorListCtrl', [ '$scope', '$http' , function ($scope, $http) {
+	$scope.vendorList = [];
 	$scope.startingPage = 0; 
 	$scope.totalRow = 0; 
 	$scope.isLoadMore = true;
 
 	$scope.init = function(value) {
 		$scope.totalRow = value;
-		$http.get(_context+'/admin/rest/enquiry-list?pageNo='+$scope.startingPage).then(function(response) {
- 			$scope.enquiryList = response.data.vendorEnquirys;
+		$http.get(_context+'/admin/rest/vendor-list?pageNo='+$scope.startingPage).then(function(response) {
+ 			$scope.vendorList = response.data.vendorList;
  		});
     };
     
 	$scope.loadMore = function() {
 		$scope.startingPage = $scope.startingPage +1;
-  		$http.get(_context+'/admin/rest/enquiry-list?pageNo='+$scope.startingPage).then(function(response) {
-            angular.forEach(response.data.vendorEnquirys, function(item){
-                $scope.enquiryList.push(item);
+  		$http.get(_context+'/admin/rest/vendor-list?pageNo='+$scope.startingPage).then(function(response) {
+            angular.forEach(response.data.vendorList, function(item){
+                $scope.vendorList.push(item);
             });
  		});
   		$scope.totalPage = $scope.totalRow / 2;

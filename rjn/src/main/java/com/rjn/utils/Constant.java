@@ -35,5 +35,9 @@ public class Constant {
 	// constant for excel file extension
 	public static final String EXCEL_2003 = ".xls";
 	public static final String EXCEL_2007 = ".xlsx";
+	
+	// pagination limit
+	public static final int PAGINATION_LIMIT = 2;
+	public static final int NOT_APPLICABLE = -1;
 }
 

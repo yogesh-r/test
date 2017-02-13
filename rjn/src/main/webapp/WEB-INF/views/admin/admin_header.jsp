@@ -1,3 +1,6 @@
+<script type="text/javascript">
+	var _context = '${rc.getContextPath()}';
+</script>
 <body ng-app="RJN">
 	<div class="container">
 		<div class="pull-right">&nbsp;&nbsp;Welcome,

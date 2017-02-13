@@ -3,12 +3,15 @@ package com.rjn.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.rjn.dao.VendorProfileDao;
 import com.rjn.dao.core.AbstractDao;
 import com.rjn.model.VendorProfile;
+import com.rjn.utils.Constant;
 
 @Repository("partnerDetailsDao")
 public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> implements VendorProfileDao {
@@ -24,8 +27,14 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 	}
 	
 	@Override
-	public List<VendorProfile> getAllVendors() {
+	public List<VendorProfile> getAllVendors(int limit, int startingPage) {
 		Criteria criteria=createEntityCriteria();
+		if (limit != Constant.NOT_APPLICABLE && startingPage != Constant.NOT_APPLICABLE) {
+			criteria.addOrder(Order.asc("id"));
+			int offset = startingPage * limit;
+			criteria.setFirstResult(offset);// offset
+			criteria.setMaxResults(limit); //limit
+		}
 		return (List<VendorProfile>) criteria.list();
 	}
 
@@ -43,6 +52,11 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 		        .setBoolean("verified", isVerified)
 		        .setString("id", vendorId)
 		        .executeUpdate();
-		System.out.println("updatedEntities >> "+updatedEntities);
+	}
+
+	@Override
+	public long getRowCount() {
+		Criteria criteria = createEntityCriteria();
+		 return (long) criteria.setProjection(Projections.rowCount()).uniqueResult();
 	}
 }

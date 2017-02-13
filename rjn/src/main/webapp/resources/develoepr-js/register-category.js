@@ -6,15 +6,10 @@ RJN.controller('registerCategoryCtrl', [ '$scope', '$http' , function ($scope, $
 
 	
 	$scope.saveCategory = function(thisCategoryForm) {
-		
-		
-		
 		$http.post('register-category', thisCategoryForm).then(function(response) {
 					$scope.thisCategory = {};
 					toastr.success('Register Successfully');
 		});
-		
-		
 	};
 	
 	

@@ -66,7 +66,7 @@ public class VendorProfile {
 	@Column(name = "verified", nullable = false)
 	private boolean verified = false;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vendorId", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vendorId", cascade=CascadeType.ALL)
 	private List<VendorProduct> products = new ArrayList<VendorProduct>();
 
 	@Transient

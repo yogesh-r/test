@@ -48,8 +48,8 @@ public class VendorServiceImpl implements VendorService {
 	} 
 	
 	@Override 
-	public List<VendorProfile> getAllVendors() { 
-		return vendorDetailsDao.getAllVendors(); 
+	public List<VendorProfile> getAllVendors(int limit, int startingPage) { 
+		return vendorDetailsDao.getAllVendors(limit, startingPage); 
 	} 
 	
 	@Override 
@@ -68,8 +68,8 @@ public class VendorServiceImpl implements VendorService {
 	}
 
 	@Override
-	public List<BusinessEnquiry> getBusinessEnquiryList() {
-		return vendorEnquiry.getBusinessEnquiryList(); 
+	public List<BusinessEnquiry> getBusinessEnquiryList(int limit, int startingPage) {
+		return vendorEnquiry.getBusinessEnquiryList(limit, startingPage); 
 	}
 
 	@Override

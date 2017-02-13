@@ -64,22 +64,18 @@ public class ProfileController {
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
 		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
-		System.out.println("branch details?>>> "+branch_details);
 		model.addAttribute("branch",branch_details);
-		System.out.println("branch list id controller");
 		return "vendor-profile";
 	}
 	
 	@RequestMapping(value = { "/{vendorId}/{uniquieId}" }, method = RequestMethod.GET)
 	public String branchData(HttpServletRequest request,ModelMap model,@PathVariable String uniquieId){
-		System.out.println("branch id controller");
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
 		BranchProfile branch_details=branchService.getBranchDetails(uniquieId);
-		System.out.println("branch details>>>> "+branch_details);
 		model.addAttribute("branchName",branch_details);
 		return "vendor-profile";
 		
@@ -93,7 +89,6 @@ public class ProfileController {
 			model.put("headerType", loginUser.get(0));
 		}
 		List<ProductCategory> product=productService.getProductDetails();
-		System.out.println("product>>>> "+product);
 		model.addAttribute("product", product);
 		return "vendor-profile";
 	}

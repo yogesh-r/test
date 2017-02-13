@@ -3,6 +3,7 @@ package com.rjn.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -24,8 +25,12 @@ public class BusinessEnquiryDaoImpl extends AbstractDao<Integer, BusinessEnquiry
 	}
 
 	@Override
-	public List<BusinessEnquiry> getBusinessEnquiryList() {
+	public List<BusinessEnquiry> getBusinessEnquiryList(int limit, int startingPage) {
 		Criteria criteria = createEntityCriteria();
+		criteria.addOrder(Order.asc("id"));
+		int offset = startingPage * limit;
+		criteria.setFirstResult(offset);// offset
+		criteria.setMaxResults(limit); //limit
 		return (List<BusinessEnquiry>) criteria.list();
 	}
 

@@ -10,4 +10,6 @@ public interface VendorProductDao {
 	VendorProduct getProduct(int productID);
 	VendorProduct getProductByUniqueID(String uniqueID);
 	List<String> getKeyWord();
+	
+	public long getRowCount();
 }

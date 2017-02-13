@@ -163,7 +163,7 @@ public class AdminController {
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
 	public String registerBranch(ModelMap model) {
-		List<VendorProfile> vendorDetails = vendorService.getAllVendors();
+		List<VendorProfile> vendorDetails = vendorService.getAllVendors(Constant.NOT_APPLICABLE, Constant.NOT_APPLICABLE);
 		model.addAttribute("vendorDetails", vendorDetails);
 		model.addAttribute("allVendors", "Yes");
 		
@@ -216,13 +216,14 @@ public class AdminController {
 
 	@RequestMapping(value = { "/vendor-list" }, method = RequestMethod.GET)
 	public String vendorList(ModelMap model) {
-		model.addAttribute("vendorList", vendorService.getAllVendors());
+		long count = countService.getVendorProfileRowCount();
+		model.addAttribute("vendorProfileRowCount", count);
 		return "admin/vendor-list";
 	}
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public String branchList(ModelMap model) {
-		List<VendorProfile> vendorDetails = vendorService.getAllVendors();
+		List<VendorProfile> vendorDetails = vendorService.getAllVendors(Constant.NOT_APPLICABLE, Constant.NOT_APPLICABLE);
 		model.addAttribute("vendorDetails", vendorDetails);
 		model.addAttribute("allVendors", "Yes");
 		return "admin/branch-list";
@@ -241,9 +242,8 @@ public class AdminController {
 	@RequestMapping(value = { "/vendor-enquiry" }, method = RequestMethod.GET)
 	public String enquiryList(ModelMap model) {
 		long count = countService.getBusinessEnquiryRowCount();
-		System.out.println("count >>>>>>>>>>>. "+count);
-		model.addAttribute("totalRowCount", countService.getBusinessEnquiryRowCount());
-		model.addAttribute("vendorEnquirys", vendorService.getBusinessEnquiryList());
+		model.addAttribute("totalRowCount", count);
+
 		return "admin/vendor-enquiry";
 	}
  

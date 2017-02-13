@@ -50,4 +50,10 @@ public class VendorProductDaoImpl extends AbstractDao<Integer, VendorProduct> im
 		criteria.setProjection(Projections.distinct(Projections.property("keyWord")));
 		return criteria.list();
 	}
+
+	@Override
+	public long getRowCount() {
+		Criteria criteria = createEntityCriteria();
+		 return (long) criteria.setProjection(Projections.rowCount()).uniqueResult();
+	}
 }
