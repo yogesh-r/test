@@ -2,17 +2,24 @@ package com.rjn.controller.vendor;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
@@ -88,7 +95,8 @@ public class VendorController {
 	}
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
-	public String paernerSaveRegister(@Valid BranchProfile branchMasterDetails, BindingResult result, ModelMap model) {
+	public @ResponseBody Object paernerSaveRegister(@RequestBody BranchProfile branchMasterDetails) {
+		Map<String, Object> model = new HashMap<String, Object>();
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	    String currentDate = sdf.format(cal.getTime());
@@ -96,7 +104,8 @@ public class VendorController {
 		String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
 		branchMasterDetails.setUniqueId(bracnhUniqueId);
 		branchService.saveBranch(branchMasterDetails);
-		return "vendor/vendor_register-branch";
+		model.put("message", "success");
+		return model;
 	}
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)

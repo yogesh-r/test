@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -41,7 +43,7 @@ import com.rjn.utils.AppUtils;
 import com.rjn.utils.Constant;
 import com.rjn.utils.SeqConstant;
 
-@Controller
+@Controller 
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -90,14 +92,6 @@ public class AdminController {
 	
 	//======================testing=========================================
 	
-	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
-	public String vendorProfile(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
-		VendorProfile thisVendor = vendorService.getVendor(vendorId);
-		model.addAttribute("thisVendor", thisVendor);
-		model.put("headerType", Constant.ROLE_ADMIN);
-		return "vendor-profile";
-	}
-	
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody
 	String uploadFileHandler(@RequestParam("file") MultipartFile file) {
@@ -128,7 +122,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = { "/register-vendor" }, method = RequestMethod.POST)
-	public String saveVendor(@Valid VendorProfile vendorDetails, BindingResult result, ModelMap model) {
+	public @ResponseBody Object saveVendor(@RequestBody VendorProfile vendorDetails) {
+		Map<String, Object> model = new HashMap<String, Object>();
 		if (vendorDetails.getId() == null || "".equals(vendorDetails.getId())) {
 			Calendar cal = Calendar.getInstance();
 		    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -153,12 +148,14 @@ public class AdminController {
 		} else {
 			vendorService.updateVendorDetails(vendorDetails);
 		}
-		try {
+		/*try {
 			AppFileHandlingUtils.uploadFileToServer(vendorDetails.getVendorLogo(), "yogesh");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		return "admin/register-vendor-success";
+			model.put("message", "failure");
+		}*/
+		model.put("message", "success");
+		return model;
 	}
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
@@ -177,16 +174,23 @@ public class AdminController {
 		return "admin/admin_register_category";
 	}
 	
-	@RequestMapping(value = { "/register-category/{categoryId}" }, method = RequestMethod.GET)
+/*	@RequestMapping(value = { "/register-category/{categoryId}" }, method = RequestMethod.GET)
 	public String editCategory(@PathVariable int categoryId, ModelMap model) {
 		model.addAttribute("thisCategory", utils.getCategory(categoryId));
 		return "admin/admin_register_category";
-	}
+	}*/
 	
 	@RequestMapping(value = { "/register-category" }, method = RequestMethod.POST)
-	public String saveCategory(@RequestBody ProductCategory productCategory, BindingResult result,ModelMap model) {
-		utils.saveCategory(productCategory); 
-		return "admin/admin_register_category";
+	public @ResponseBody Object saveCategory(@RequestBody ProductCategory productCategory) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		try {
+			utils.saveCategory(productCategory);
+			model.put("message", "success");
+			return model;
+		} catch(Exception e) {
+			model.put("message", "failure");
+			return model;
+		}
 	}
 	
 	@RequestMapping(value = { "/bulk-register-category" }, method = RequestMethod.POST)

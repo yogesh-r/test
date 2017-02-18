@@ -6,52 +6,52 @@
 
 <div class="main" ng-controller="registerVendorCtrl">
 	<div class="container">
-		<div class="col-md-10">
+		<div class="col-md-10"> ============={{editVendor}}
 			<form class="form-horizontal"
 				action="${rc.getContextPath()}/admin/register-vendor" method="POST"
 				enctype="multipart/form-data">
 				<div class="form-group">
 					<label class="control-label col-sm-2">First Name:</label>
 					<div class="col-sm-10">
-						<input type="text" name="vendorFirstName" class="form-control"
-							value="${thisVendor.vendorFirstName}" required>
+						<input type="text" ng-model="editVendor.vendorFirstName" class="form-control"
+							value="{{editVendor.vendorFirstName}}" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Last Name:</label>
 					<div class="col-sm-10">
-						<input type="text" name="vendorSurname" class="form-control"
-							value="${thisVendor.vendorSurname}" required>
+						<input type="text" ng-model="" name="vendorSurname" class="form-control"
+							value="{{editVendor.vendorSurname}}" required>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-2">Email Id:</label>
 					<div class="col-sm-10">
-						<input type="text" name="email" value="${thisVendor.email}"
+						<input type="text" ng-model="" name="email" value="{{editVendor.email}}"
 							class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Contact Number:</label>
 					<div class="col-sm-10">
-						<input type="text" name="pContact" class="form-control" required
-							pattern=[0-9]{10} maxlength="10" value="${thisVendor.pContact}">
+						<input type="text" ng-model="" name="pContact" class="form-control" required
+							pattern=[0-9]{10} maxlength="10" value="{{editVendor.pContact}}">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-2">Company Logo:</label>
 					<div class="col-sm-10">
-						<input type="file" name="vendorLogo">
+						<input type="file" ng-model="" name="vendorLogo">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-2">Address:</label>
 					<div class="col-sm-10">
-						<input id="autocomplete" name="add1"
-							placeholder="Enter your address" value="${thisVendor.address}"
+						<input id="autocomplete" ng-model="" name="add1"
+							placeholder="Enter your address" value="{{editVendor.address}}"
 							type="text" class="form-control"></input>
 					</div>
 				</div>
@@ -59,8 +59,8 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">Address Line 1:</label>
 					<div class="col-sm-10">
-						<input value="${thisVendor.address}" class="field form-control"
-							id="street_number" name="addr" placeholder="Enter Your Door No."
+						<input value="{{editVendor.address}}" class="field form-control"
+							id="street_number" ng-model="" name="addr" placeholder="Enter Your Door No."
 							required></input>
 					</div>
 				</div>
@@ -68,16 +68,16 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">Address Line 2:</label>
 					<div class="col-sm-10">
-						<input value="${thisVendor.address}" class="field form-control"
-							id="route" name="route"></input>
+						<input value="{{editVendor.address}}" class="field form-control"
+							id="route" ng-model="" name="route"></input>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-2">Location:</label>
 					<div class="col-sm-10">
-						<input class="field form-control" value="${thisVendor.location}"
-							id="sublocality_level_1" name="location" readOnly required></input>
+						<input class="field form-control" value="{{editVendor.location}}"
+							id="sublocality_level_1" ng-model="" name="location" readOnly required></input>
 					</div>
 				</div>
 
@@ -85,15 +85,15 @@
 					<label class="control-label col-sm-2">City:</label>
 					<div class="col-sm-10">
 						<input class="field form-control" id="locality"
-							value="${thisVendor.city}" name="city" required readOnly></input>
+							value="{{editVendor.city}}" ng-model="" name="city" required readOnly></input>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-2">State:</label>
 					<div class="col-sm-10">
-						<input class="field form-control" name="state"
-							value="${thisVendor.state}" id="administrative_area_level_1"
+						<input class="field form-control" ng-model="" name="state"
+							value="{{editVendor.state}}" id="administrative_area_level_1"
 							readOnly></input>
 					</div>
 				</div>
@@ -101,7 +101,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">Country:</label>
 					<div class="col-sm-10">
-						<input value="${thisVendor.country}" class="field form-control"
+						<input ng-model="" value="{{editVendor.country}}" class="field form-control"
 							name="country" id="country" readOnly></input>
 					</div>
 				</div>
@@ -109,27 +109,21 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">ZipCode:</label>
 					<div class="col-sm-10">
-						<input type="text" name="zipCode" id="postal_code"
-							value="${thisVendor.zipCode}" class="field form-control" readOnly>
+						<input ng-model="" type="text" name="zipCode" id="postal_code"
+							value="{{editVendor.zipCode}}" class="field form-control" readOnly>
 					</div>
 				</div>
 
-				<input type="hidden" class="field form-control" id="latitude"
-					value="${thisVendor.latitude}" name="latitude"></input> <input
-					type="hidden" class="field form-control" id="longitude"
-					value="${thisVendor.longitude}" name="longitude"></input> <input
-					type="hidden" class="field form-control" value="${thisVendor.id}"
+				<input type="hidden" ng-model="" class="field form-control" id="latitude"
+					value="{{editVendor.latitude}" name="latitude"></input> <input
+					ng-model="" type="hidden" class="field form-control" id="longitude"
+					value="{{editVendor.longitude}" name="longitude"></input> <input
+					ng-model="" type="hidden" class="field form-control" value="{{editVendor.id}}"
 					name="id"></input>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<c:if test="${thisVendor.vendorFirstName eq null}">
-							<input type="submit" id="submit" value="Create Vendor"
+							<input type="submit" id="submit" value="Save"
 								class="form-control btn-primary">
-						</c:if>
-						<c:if test="${thisVendor.vendorFirstName ne null}">
-							<input type="submit" id="submit" value="Update vendor"
-								class="form-control btn-primary">
-						</c:if>
 					</div>
 				</div>
 			</form>

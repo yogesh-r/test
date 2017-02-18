@@ -3,6 +3,8 @@ RJN.controller('vendorListCtrl', [ '$scope', '$http' , function ($scope, $http) 
 	$scope.startingPage = 0; 
 	$scope.totalRow = 0; 
 	$scope.isLoadMore = true;
+	$scope.editVendor = {};
+	$scope.displayAddForm = false;
 
 	$scope.init = function(value) {
 		$scope.totalRow = value;
@@ -10,6 +12,14 @@ RJN.controller('vendorListCtrl', [ '$scope', '$http' , function ($scope, $http) 
  			$scope.vendorList = response.data.vendorList;
  		});
     };
+	$scope.closeForm = function() {
+		$scope.displayAddForm = false;
+	};
+	
+	$scope.addForm = function() {
+		$scope.editVendor = {};
+		$scope.displayAddForm = true;
+	};
     
 	$scope.loadMore = function() {
 		$scope.startingPage = $scope.startingPage +1;
@@ -25,5 +35,19 @@ RJN.controller('vendorListCtrl', [ '$scope', '$http' , function ($scope, $http) 
   		} else {
   			$scope.isLoadMore = false;
   		}
+	};
+	$scope.editForm = function(thisId) {
+		$http.get(_context+'/admin/rest/register-vendor/' + thisId).then(function(response) {
+ 			$scope.editVendor = response.data.thisVendor;
+ 			$scope.displayAddForm = true;
+ 		});
+    };
+	$scope.saveVendor = function(thisVendorForm) {
+		$http.post(_context+'/admin/register-vendor', thisVendorForm).then(function(response) {
+			$scope.editVendor = {};
+			toastr.success('Successfully Saved');
+			$scope.displayAddForm = false;
+			$scope.init(0);
+		});
 	};
 }]);
