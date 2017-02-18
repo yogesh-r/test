@@ -80,18 +80,19 @@ public class VendorController {
 	}
 
 	@RequestMapping(value = { "/register-branch/{uniqueId}" }, method = RequestMethod.GET)
-	public String vendorEditBranch(ModelMap model, @PathVariable String uniqueId) {
+	public @ResponseBody Object vendorEditBranch(@PathVariable String uniqueId) {
+		Map<String, Object> model = new HashMap<String, Object>();
 		VendorProfile loginVendor = getLoginVendorDetails();
-		model.addAttribute("vendorDetails", loginVendor);
+		model.put("vendorDetails", loginVendor);
 		
 		BranchProfile thisBranch = branchService.getBranchByUniqueId(uniqueId);
 		if (loginVendor.getId().equals(thisBranch.getBranchOwner()) ){
-			model.addAttribute("vendorDetails", loginVendor);
-			model.addAttribute("thisBranch", branchService.getBranchByUniqueId(uniqueId) );	
+			model.put("vendorDetails", loginVendor);
+			model.put("thisBranch", branchService.getBranchByUniqueId(uniqueId) );	
 		} else {
-			model.addAttribute("errorMessage", "Sorry this branch dosent exist please register your own branch" );
+			model.put("errorMessage", "Sorry this branch dosent exist please register your own branch" );
 		}
-		return "vendor/vendor_register-branch";
+		return model;
 	}
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)

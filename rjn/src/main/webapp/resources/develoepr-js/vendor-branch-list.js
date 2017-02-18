@@ -12,8 +12,9 @@ RJN.controller('vendorBranchListCtrl', [ '$scope', '$http' , function ($scope, $
     };
     
 	$scope.editForm = function(thisId) {
-		$http.get(_context+'/admin/register-branch/' + thisId).then(function(response) {
- 			$scope.thisBranch = response.data.thisCategory;
+		console.log("thisId >> "+thisId);
+		$http.get(_context+'/vendor/register-branch/' + thisId).then(function(response) {
+ 			$scope.thisBranch = response.data.thisBranch;
  			$scope.displayAddForm = true;
  		});
     };

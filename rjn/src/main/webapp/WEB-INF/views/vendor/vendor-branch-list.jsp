@@ -154,10 +154,10 @@
 					<td>{{thisBranch.branchName}}</td>
 					<td>{{thisBranch.contactNo}}</td>
 					<td>{{thisBranch.address}}</td>
-					<td><a
-						href="${rc.getContextPath()}/vendor/register-branch/{{thisBranch.uniqueId}}">edit</a></td>
+					<td><div ng-click="editForm(thisBranch.uniqueId);">edit</div></td>
 				</tr>
 			</tbody>
+			<input type="hidden" name="id" value="{{thisBranch.id}}" />
 		</table>
 	</div>
 </div>
