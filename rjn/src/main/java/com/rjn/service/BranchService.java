@@ -17,5 +17,11 @@ public interface BranchService {
 	
 	BranchProfile getBranchByUniqueId(String uniqueId);
 	
+	
+	BranchProfile getBranchData(int branchId);
+	List<BranchProfile> getBranchDetails();
 	BranchProfile getBranchDetails(String uniqueID);
+	
+	
+	
 }

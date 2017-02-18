@@ -1,23 +1,32 @@
 package com.rjn.controller.admin;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
+import com.rjn.model.Branch.BranchProfile;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
+import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.Constant;
+import com.rjn.utils.SeqConstant;
 
 @Controller
 @RequestMapping("/admin/rest")
@@ -31,6 +40,9 @@ public class AdminDataController {
 	
 	@Autowired
 	private ApplicationUtils utils;
+	
+	@Autowired
+	private SequenceGeneratorService seqGenerator;
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public @ResponseBody ModelMap branchList(ModelMap model) {
@@ -71,8 +83,29 @@ public class AdminDataController {
 		return model;
 	}
 	
+	@RequestMapping(value = { "/branch-details" }, method = RequestMethod.GET)
+	public @ResponseBody Object branchData(HttpServletRequest request) {
+		Map<String,Object>model=new HashMap<String,Object>();
+		model.put("thisBranch", branchService.getBranchDetails());
+		return model;
+		
+	}
 	
+	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
+	public @ResponseBody Object paernerSaveRegister(@RequestBody  BranchProfile branchMasterDetails) {
+		Map<String,Object>model=new HashMap<String,Object>();
+		branchService.saveBranch(branchMasterDetails);
+		model.put("thisCategory", "success");
+		return model;
+	}
 	
+	@RequestMapping(value = { "/edit-branch/{branchId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object editBranch(@PathVariable int branchId,HttpServletRequest request) {
+		Map<String,Object>model=new HashMap<String,Object>();
+		model.put("editBranch", branchService.getBranchData(branchId));
+		return model;
+		
+	}
 	
 	
 	@RequestMapping(value = { "/register-vendor/{vendorId}" }, method = RequestMethod.GET)
