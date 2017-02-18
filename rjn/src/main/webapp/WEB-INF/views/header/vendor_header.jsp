@@ -1,5 +1,3 @@
-
-
 <script type="text/javascript">
 	var _context = '${rc.getContextPath()}';
 </script>
@@ -66,7 +64,7 @@
 	<ul class="nav nav-list collapse in" id="dashboard-menu"
 		style="height: 246px;" aria-expanded="true">
 		<li><a href="${rc.getContextPath()}/vendor/branch-list">Branches</a></li>
-		<li><a href="#">Profile</a></li>
+		<li><a href="${rc.getContextPath()}/vendor/edit-profile">Profile</a></li>
 		<li><a href="${rc.getContextPath()}/admin/change-password">Change Password</a></li>
 	</ul>
 </div>

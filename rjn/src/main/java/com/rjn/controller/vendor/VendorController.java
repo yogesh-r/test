@@ -120,7 +120,7 @@ public class VendorController {
 
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String paernerEditProfile(ModelMap model) {
-		model.addAttribute("vendorDetails", getLoginVendorDetails());
+		//model.addAttribute("vendorDetails", getLoginVendorDetails());
 		return "vendor/vendor-edit-profile";
 	}
 	
@@ -131,9 +131,11 @@ public class VendorController {
 	}
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
-	public String vendorUpdateProfile(@Valid VendorProfile vendorDetails,BindingResult result, ModelMap model) {
-		vendorservice.saveVendorDetails(vendorDetails);
-		return "vendor/vendor-edit-profile";
+	public @ResponseBody Object vendorUpdateProfile(@RequestBody VendorProfile vendorDetails) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		vendorservice.updateVendorDetails(vendorDetails);
+		model.put("success", "success");
+		return model;
 	}
 
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
