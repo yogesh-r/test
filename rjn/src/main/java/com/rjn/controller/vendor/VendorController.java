@@ -139,19 +139,24 @@ public class VendorController {
 	}
 
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
-	public String updateVendorPassword(@Valid ChangePassworddBean forgetPasswordBean,BindingResult result,ModelMap model) {
+	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
+		Map<String, Object> model = new HashMap<String, Object>();
 		Account loginUser = utils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
 		String newpassword=forgetPasswordBean.getNewPassword();
 		
+		System.out.println("uiOldpassword >> "+uiOldpassword);
+		System.out.println("dbPassword ?? "+dbPassword);
 		if (utils.matchPassword(uiOldpassword, dbPassword)) {
 			loginUser.setPassword(utils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
 		} else {
-			return "wrong-password";
+			model.put("result", "Failure");
+			return model;
 		}
-		return null;
+		model.put("result", "success");
+		return model;
 	}
 	
 	@RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
