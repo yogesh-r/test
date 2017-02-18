@@ -68,6 +68,7 @@
 		<li><a href="${rc.getContextPath()}/vendor/edit-profile">My Profile</a></li>
 		<li><a href="#">Leads</a></li>
 		<li><a href="${rc.getContextPath()}/admin/change-password">Change Password</a></li>
+		<li><a href="${rc.getContextPath()}/vendor/${vendorDetails.id}" target="_blank">Verify Profile</a></li>
 	</ul>
 </div>
 

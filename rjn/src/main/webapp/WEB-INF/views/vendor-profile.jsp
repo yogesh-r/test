@@ -1,23 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body onload="initialize()">
-	<c:choose>
-		<c:when test="${headerType eq 'ROLE_ADMIN'}">
-			<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search" />
-			<%@include file="admin/admin_header.jsp"%>
-		</c:when>
-		<c:when test="${headerType eq 'ROLE_VENDOR'}">
-			<c:set var="searchUrl" value="${rc.getContextPath()}/vendor/search" />
-			<%@include file="header/vendor_header.jsp"%>
-		</c:when>
-		<c:when test="${headerType eq 'ROLE_MEMBER'}">
-			<c:set var="searchUrl" value="${rc.getContextPath()}/member/search" />
-			<%@include file="member/member_header.jsp"%>
-		</c:when>
-		<c:otherwise>
-			<c:set var="searchUrl" value="${rc.getContextPath()}/search" />
-			<%@include file="header/application_header.jsp"%>
-		</c:otherwise>
-	</c:choose>
 	<main class="main-contents">
 	<div class="container">
 		<div class="row page">Shop owners / vendor Profile
