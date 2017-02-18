@@ -2,17 +2,18 @@ package com.rjn.controller.vendor;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-
-import javax.validation.Valid;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
@@ -54,7 +55,9 @@ public class VendorProductController {
 	}
 	
 	@RequestMapping(value = { "/register-product" }, method = RequestMethod.POST)
-	public String saveProduct(@Valid VendorProduct vendorProduct, BindingResult result, ModelMap model) {
+	public @ResponseBody Object saveProduct(@RequestBody VendorProduct vendorProduct) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		
 		VendorProfile loginVendor = getLoginVendorDetails();
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -64,27 +67,30 @@ public class VendorProductController {
 		vendorProduct.setUniqueId(profileNumber);
 		vendorProduct.setVendorId(loginVendor.getId());
  		productService.saveProduct(vendorProduct); 
-		return "vendor/vendor_register-product";
+ 		model.put("success", "success");
+		return model;
 	}
 	
 	@RequestMapping(value = { "/register-product/{uniqueId}" }, method = RequestMethod.GET)
-	public String editProduct(ModelMap model, @PathVariable String uniqueId) {
+	public @ResponseBody Object editProduct(@PathVariable String uniqueId) {
+		Map<String, Object> model = new HashMap<String, Object>();
 		VendorProfile loginVendor = getLoginVendorDetails();
 		VendorProduct vendorProduct = productService.getProductByUniqueID(uniqueId);
 		if (vendorProduct.getVendorId().equals(loginVendor.getId())) {
-			model.addAttribute("thisVendor", vendorProduct);
+			model.put("thisVendor", vendorProduct);
 		} else {
-			model.addAttribute("errorMessage", "sorry this product doesnt exist please crate your own product");
+			model.put("errorMessage", "sorry this product doesnt exist please crate your own product");
 		}
-		model.addAttribute("categoryList", utils.getAllCategory());
-		model.addAttribute("branchList", branchService.getBranchByVendor(loginVendor.getId()));
-		return "vendor/vendor_register-product"; 
+		/*model.put("categoryList", utils.getAllCategory());
+		model.put("branchList", branchService.getBranchByVendor(loginVendor.getId()));*/
+		return model; 
 	}
 	
 	@RequestMapping(value = { "/product-list" }, method = RequestMethod.GET)
 	public String productList(ModelMap model) {
 		VendorProfile loginVendor = getLoginVendorDetails();
-		model.addAttribute("productList", productService.getProductByVendor(loginVendor.getId()));
+		model.addAttribute("categoryList", utils.getAllCategory());
+		model.addAttribute("branchList", branchService.getBranchByVendor(loginVendor.getId()));
 		return "vendor/vendor_product_list"; 
 	}
 	

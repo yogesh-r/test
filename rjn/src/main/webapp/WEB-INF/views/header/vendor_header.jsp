@@ -64,19 +64,13 @@
 	<ul class="nav nav-list collapse in" id="dashboard-menu"
 		style="height: 246px;" aria-expanded="true">
 		<li><a href="${rc.getContextPath()}/vendor/branch-list">Branches</a></li>
-		<li><a href="${rc.getContextPath()}/vendor/edit-profile">Profile</a></li>
+		<li><a href="${rc.getContextPath()}/vendor/product/product-list">Products</a></li>
+		<li><a href="${rc.getContextPath()}/vendor/edit-profile">My Profile</a></li>
+		<li><a href="#">Leads</a></li>
 		<li><a href="${rc.getContextPath()}/admin/change-password">Change Password</a></li>
 	</ul>
 </div>
-<div class="sidebar-nav">
-	<a data-toggle="collapse" class="nav-header collapsed"
-		href="#dashboard-menu"><i class="icon-dashboard"></i>Menu</a>
-	<ul class="nav nav-list collapse" id="dashboard-menu"
-		style="height: 0px;">
-		<li><a href="${rc.getContextPath()}/corpyogi/kv/test">Start
-				Test</a></li>
-	</ul>
-</div>
+
 
 
 
