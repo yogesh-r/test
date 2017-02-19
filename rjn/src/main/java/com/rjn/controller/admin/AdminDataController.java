@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rjn.bean.ChangePassworddBean;
+import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
+import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
@@ -43,6 +46,9 @@ public class AdminDataController {
 	
 	@Autowired
 	private SequenceGeneratorService seqGenerator;
+	
+	@Autowired
+	private AccountService accountService;
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public @ResponseBody ModelMap branchList(ModelMap model) {
@@ -113,6 +119,28 @@ public class AdminDataController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.put("thisVendor", thisVendor);
+		return model;
+	}
+	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
+	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		Account loginUser = utils.getLoggedInUser();
+		System.out.println("login user "+loginUser);
+		String dbPassword = loginUser.getPassword();
+		System.out.println("dbPassword "+dbPassword);
+		String uiOldpassword =forgetPasswordBean.getOldPassword();
+		String newpassword=forgetPasswordBean.getNewPassword();
+		
+		System.out.println("uiOldpassword >> "+uiOldpassword);
+		System.out.println("dbPassword ?? "+dbPassword);
+		if (utils.matchPassword(uiOldpassword, dbPassword)) {
+			loginUser.setPassword(utils.encryptPassword(newpassword));
+			accountService.updatePassword(loginUser);
+		} else {
+			model.put("result", "Failure");
+			return model;
+		}
+		model.put("result", "success");
 		return model;
 	}
 
