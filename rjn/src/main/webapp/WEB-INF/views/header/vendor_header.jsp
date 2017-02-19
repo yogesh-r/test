@@ -37,23 +37,10 @@
 				<li><a href="${rc.getContextPath()}/admin/home"><i
 						class="fa fa-home"></i><span> Home</span></a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" data-toggle="dropdown"
-					class="dropdown-toggle">Welcome  <b class="caret"></b>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="#"><i class="fa fa-shopping-cart"></i> <span>My
-									Account</span></a></li>
-						<li><a href="#"><i class="fa fa-cog"></i><span>
-									Application Settings</span></a></li>
-						<li><a
-							href="${rc.getContextPath()}/corpyogi/administration/userinfo"><i
-								class="fa fa-users"></i> <span>User Administration</span></a></li>
-						<li class="divider"></li>
-						<li><a href="${rc.getContextPath()}/logout"><i
-								class="fa fa-sign-out"></i> <span>Log Out</span></a></li>
-					</ul></li>
-			</ul>
+			
+			<div class="pull-right" style="color:white;">
+				Welcome, ${sessionScope.uname}: <a href="${rc.getContextPath()}/logout">Logout</a>
+				</div>
 		</div>
 	</div>
 	<!-- /.container-fluid -->

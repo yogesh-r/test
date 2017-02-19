@@ -9,13 +9,6 @@
 <main class="main-contents">
     <%@include file="homepage_search.jsp"%>
     
-    
-    
-    
-    
-    
-    
-    
     <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

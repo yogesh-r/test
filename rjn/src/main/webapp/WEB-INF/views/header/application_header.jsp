@@ -2,7 +2,7 @@
 <script type="text/javascript">
 	var _context = '${rc.getContextPath()}';
 </script>
-<body ng-app="RJN"> ------------------------{{3+4}}
+<body ng-app="RJN">
 	<header>
 	    <nav class="navbar navbar-fixed-top">
 	        <div class="container">
@@ -72,6 +72,19 @@
 <!-- 
 ======================================== -->
 <!-- Modal -->
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/font-awesome.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/toastr.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/jquery.jqplot.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/angular-wizard.min.css">
+	
 <div id="registerModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
