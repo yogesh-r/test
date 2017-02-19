@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${rc.getContextPath()}/resources/css/angular-wizard.min.css">
 <link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/corpyogi.css">
+	href="${rc.getContextPath()}/resources/css/application.css">
 <body ng-app="RJN">
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
@@ -28,7 +28,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<img src="${rc.getContextPath()}/resources/img/CorpYogiLogo.png"
+			<img src="${rc.getContextPath()}/resources/img/"
 				alt="Corp Yogi" style="cursor: pointer;"></img>
 		</div>
 		<div class="collapse navbar-collapse"

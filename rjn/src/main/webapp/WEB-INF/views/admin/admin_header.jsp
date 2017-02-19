@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${rc.getContextPath()}/resources/css/angular-wizard.min.css">
 <link rel="stylesheet" type="text/css"
-	href="${rc.getContextPath()}/resources/css/corpyogi.css">
+	href="${rc.getContextPath()}/resources/css/application.css">
 <body ng-app="RJN">
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
@@ -28,7 +28,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<img src="${rc.getContextPath()}/resources/img/CorpYogiLogo.png"
+			<img src="${rc.getContextPath()}/resources/img/"
 				alt="Corp Yogi" style="cursor: pointer;"></img>
 		</div>
 		<div class="collapse navbar-collapse"
@@ -41,18 +41,7 @@
 				<li class="dropdown"><a href="#" data-toggle="dropdown"
 					class="dropdown-toggle">Welcome  <b class="caret"></b>
 				</a>
-					<ul class="dropdown-menu">
-						<li><a href="#"><i class="fa fa-shopping-cart"></i> <span>My
-									Account</span></a></li>
-						<li><a href="#"><i class="fa fa-cog"></i><span>
-									Application Settings</span></a></li>
-						<li><a
-							href="${rc.getContextPath()}/corpyogi/administration/userinfo"><i
-								class="fa fa-users"></i> <span>User Administration</span></a></li>
-						<li class="divider"></li>
-						<li><a href="${rc.getContextPath()}/logout"><i
-								class="fa fa-sign-out"></i> <span>Log Out</span></a></li>
-					</ul></li>
+					</li>
 			</ul>
 		</div>
 	</div>
@@ -69,15 +58,6 @@
 		<li><a href="${rc.getContextPath()}/admin/branch-list">Branches</a></li>
 		<li><a href="#">Profile</a></li>
 		<li><a href="${rc.getContextPath()}/admin/change-password">Change Password</a></li>
-	</ul>
-</div>
-<div class="sidebar-nav">
-	<a data-toggle="collapse" class="nav-header collapsed"
-		href="#dashboard-menu"><i class="icon-dashboard"></i>Menu</a>
-	<ul class="nav nav-list collapse" id="dashboard-menu"
-		style="height: 0px;">
-		<li><a href="${rc.getContextPath()}/corpyogi/kv/test">Start
-				Test</a></li>
 	</ul>
 </div>
 
