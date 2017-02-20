@@ -37,12 +37,10 @@
 				<li><a href="${rc.getContextPath()}/admin/home"><i
 						class="fa fa-home"></i><span> Home</span></a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" data-toggle="dropdown"
-					class="dropdown-toggle">Welcome  <b class="caret"></b>
-				</a>
-					</li>
-			</ul>
+						
+			<div class="pull-right" style="color:white;">
+				Welcome, ${sessionScope.uname}: <a href="${rc.getContextPath()}/logout">Logout</a>
+				</div>
 		</div>
 	</div>
 	<!-- /.container-fluid -->

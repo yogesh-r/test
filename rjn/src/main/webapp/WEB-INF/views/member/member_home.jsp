@@ -1,2 +1,4 @@
 <%@include file="member_header.jsp"%>
-member home
+<div class="content">
+<br><br><br><br><br><br><br><br><br><br>member home
+</div>
