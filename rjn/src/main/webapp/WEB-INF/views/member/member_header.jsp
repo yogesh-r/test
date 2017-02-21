@@ -51,7 +51,7 @@
 	<ul class="nav nav-list collapse in" id="dashboard-menu" style="height: 246px;" aria-expanded="true">
 		<li><a href="${rc.getContextPath()}/member/search">Search</a></li>
 		<li><a href="${rc.getContextPath()}/member/edit-profile">Profile</a></li>
-		<li><a href="${rc.getContextPath()}/admin/change-password">Change Password</a></li>
+		<li><a href="${rc.getContextPath()}/member/change-password">Change Password</a></li>
 	</ul>
 </div>
 

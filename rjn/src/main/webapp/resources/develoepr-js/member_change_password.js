@@ -1,10 +1,10 @@
 /**
- * Arnab
+ *Arnab 
  */
-RJN.controller('adminChangePasswordCtrl', [ '$scope', '$http' , function ($scope, $http) {
+RJN.controller('memberChangePasswordCtrl', [ '$scope', '$http' , function ($scope, $http) {
 	$scope.changePassword = {};
 	$scope.saveChangePassword = function() {
-		$http.post(_context + '/admin/rest/change-password',
+		$http.post(_context + '/member/change-password',
 				$scope.changePassword).then(function(response) {
 					console.log()
 					if (response.data.result == "success") {

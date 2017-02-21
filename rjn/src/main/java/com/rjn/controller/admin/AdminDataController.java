@@ -136,12 +136,13 @@ public class AdminDataController {
 		if (utils.matchPassword(uiOldpassword, dbPassword)) {
 			loginUser.setPassword(utils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
+			model.put("result", "success");
+			return model;
 		} else {
 			model.put("result", "Failure");
 			return model;
 		}
-		model.put("result", "success");
-		return model;
+		
 	}
 
 }
