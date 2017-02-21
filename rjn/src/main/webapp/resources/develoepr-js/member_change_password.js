@@ -10,7 +10,7 @@ RJN.controller('memberChangePasswordCtrl', [ '$scope', '$http' , function ($scop
 					if (response.data.result == "success") {
 						toastr.success('Profile saved successfully.');
 					} else {
-						toastr.success('Password didnt match please try again.');
+						toastr.warning('Password didnt match please try again.');
 					}
 					
 					$scope.changePassword = {}; 
