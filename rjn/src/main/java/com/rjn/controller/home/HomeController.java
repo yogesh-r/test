@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rjn.service.VendorProductService;
 
-@Controller 
+@Controller
 public class HomeController {
 	
 	private static final Logger logr = Logger.getLogger(HomeController.class);
 	
 	@Autowired 
 	private VendorProductService vendorProductService;
-	
+	 
 	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public String index(ModelMap model) {
 		List<String> keywords = vendorProductService.getKeyWord();

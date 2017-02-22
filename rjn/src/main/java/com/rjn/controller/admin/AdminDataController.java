@@ -1,26 +1,18 @@
 package com.rjn.controller.admin;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
-import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
 import com.rjn.service.AccountService;
@@ -29,7 +21,6 @@ import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.Constant;
-import com.rjn.utils.SeqConstant;
 
 @Controller
 @RequestMapping("/admin/rest")
@@ -136,13 +127,12 @@ public class AdminDataController {
 		if (utils.matchPassword(uiOldpassword, dbPassword)) {
 			loginUser.setPassword(utils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
-			model.put("result", "success");
-			return model;
 		} else {
 			model.put("result", "Failure");
 			return model;
 		}
-		
+		model.put("result", "success");
+		return model;
 	}
 
 }

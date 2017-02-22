@@ -1,12 +1,13 @@
 <%@include file="admin_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="content" ng-controller="vendorListCtrl">
-	<div class="col-md-1">
-		<input ng-click="addForm();"
-			class="form-control btn-primary pull-left" value="Add" />
+	<div ng-if="!displayAddForm" class="col-md-1">
+		<button ng-click="addForm();" class="form-control btn-primary pull-left">Add</button>
 	</div>
 	<div ng-if="displayAddForm">
-		</br> </br> </br>
+		<div class="row"></br>
+			<div class="text-center"><b>Register Vendor<b></div>
+		</div>
 		<div class="col-md-10">
 			<div class="form-horizontal">
 				<div class="form-group">
@@ -112,6 +113,15 @@
 							class="field form-control" readOnly>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<div class="col-md-2">
+						<button ng-click="saveVendor(editVendor)" class="form-control btn-primary">Save</button>
+					</div>
+					<div class="col-md-2">
+						<button ng-click="closeForm();" class="form-control btn-primary">Close</button>
+					</div>
+				</div>
 
 				<input type="hidden" ng-model="editVendor.latitude"
 					class="field form-control" id="latitude"
@@ -122,25 +132,9 @@
 					ng-model="editVendor.id" type="hidden" class="field form-control"
 					value="{{editVendor.id}}" name="id"></input>
 				<div class="form-group">
-				
-				
-				
-				
-				
-					<div class="col-sm-offset-2 col-sm-10">
-						<input type="button"  value="Save"
-							ng-click="saveVendor(editVendor)" class="form-control btn-primary">
-					</div>
-					
-					
-					
-					
-					
 				</div>
 			</div>
 		</div>
-		<input ng-click="closeForm();" class="form-control btn-primary"
-			value="Close" />
 	</div>
 
 	<div ng-if="!displayAddForm">
@@ -161,7 +155,7 @@
 					<td>{{thisVendor.vendorFirstName}}</td>
 					<td>{{thisVendor.address}}</td>
 					<td>{{thisVendor.city}}</td>
-					<td><div ng-click="editForm(thisVendor.id);">edit</div></td>
+					<td><div ng-click="editForm(thisVendor.id);"><a style="cursor:pointer;">edit</a></div></td>
 				</tr>
 			</tbody>
 		</table>
