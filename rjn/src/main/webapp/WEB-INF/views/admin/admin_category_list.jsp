@@ -1,6 +1,11 @@
 <%@include file="admin_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="content" ng-controller="categoryListCtrl">
+
+	<input type="file" file-model="myFile"/>
+    <button ng-click="uploadFile()">upload me</button> </br></br></br>
+    
+    
 	<div ng-if="!displayAddForm" class="col-md-1">
 		<button ng-click="addForm();" class="form-control btn-primary pull-left">Add</button>
 	</div>

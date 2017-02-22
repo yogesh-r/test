@@ -1,4 +1,5 @@
 RJN.controller('vendorProductListCtrl', [ '$scope', '$http' , function ($scope, $http) {
+	
 	$scope.productList = {};
 	$scope.thisProduct = {};
 	$scope.displayAddForm = false;

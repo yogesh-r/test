@@ -1,4 +1,13 @@
-RJN.controller('categoryListCtrl', [ '$scope', '$http' , function ($scope, $http) {
+RJN.controller('categoryListCtrl', [ '$scope', '$http', 'fileUpload' , function ($scope, $http, fileUpload) {
+	
+    $scope.uploadFile = function(){
+        var file = $scope.myFile;
+        var uploadUrl = _context + "/admin/bulk-register-category";
+        fileUpload.uploadFileToUrl(file, uploadUrl);
+        $scope.loadData();
+        $scope.displayAddForm = false;
+    };
+    
 	$scope.categoryList = [];
 	$scope.editCategory = {};
 	$scope.displayAddForm = false;

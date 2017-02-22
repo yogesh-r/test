@@ -1,14 +1,6 @@
 <%@include file="../header/vendor_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="content" ng-controller="vendorProductListCtrl">
-
-	<div class="col-md-1">
-		<input ng-click="addForm();" class="form-control btn-primary pull-left" value="Add" />
-		
-		<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
-		
-		
-	</div>
 	<div ng-if="displayAddForm"></br></br></br></br></br>
 				<%-- <form action="${rc.getContextPath()}/vendor/product/register-product" method="POST"> --%>
 				<table class="table table-bordered">

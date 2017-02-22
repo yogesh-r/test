@@ -195,7 +195,8 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/bulk-register-category" }, method = RequestMethod.POST)
 	public String bulkSaveCategory(ModelMap model, @RequestParam("excelfile") MultipartFile excelfile) {
-		try {
+		System.out.println("excelfile >>>>>>>>>>. "+excelfile);
+		try { 
 			String fileName = excelfile.getOriginalFilename();
 			List<ExcelFileBean> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);
 			List<ProductCategory> productCategories = new ArrayList<ProductCategory>();
