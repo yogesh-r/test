@@ -105,6 +105,9 @@ public class SearchDaoImpl extends AbstractDao<Integer, SearchBean> implements S
 		Criteria criteria = getSession().createCriteria(VendorProfile.class,"pd") 
 			    .createAlias("pd.products","vp")
 			    .add(Restrictions.eq("vp.keyWord", bean.getSearchProductKeyword()));
+		
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
 			    List list = criteria.list();
 			    Iterator itr = list.iterator();
 			    

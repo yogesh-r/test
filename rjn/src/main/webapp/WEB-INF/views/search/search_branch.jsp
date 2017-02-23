@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%></br></br></br></br>
 <c:choose>
 	<c:when test="${headerType eq  'ROLE_ADMIN'}">
 	<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search"/>
@@ -17,7 +17,7 @@
 		<%@include file="../header/application_header.jsp"%>
 	</c:otherwise>
 </c:choose>
-
+<div class="content">
 <main class="main-contents">
 <div id="sticky-anchor">
 	<div class="reservation_banner" id="sticky">
@@ -58,6 +58,7 @@
 	</div>
 </div>
 </main>
+</div>
 
 <c:choose>
 	<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_VENDOR' || headerType eq 'ROLE_MEMBER'}"></c:when>
