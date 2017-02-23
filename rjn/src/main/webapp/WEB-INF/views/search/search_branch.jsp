@@ -60,9 +60,9 @@
 </main>
 </div>
 
-<c:choose>
+<%-- <c:choose>
 	<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_VENDOR' || headerType eq 'ROLE_MEMBER'}"></c:when>
-	<c:otherwise>
+	<c:otherwise> --%>
 		<%@include file="../footer/application_footer.jsp"%>
-	</c:otherwise>
-</c:choose>
+	<%-- </c:otherwise>
+</c:choose> --%>

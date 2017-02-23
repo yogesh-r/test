@@ -1,4 +1,36 @@
 <%-- <%@include file="../include/css_include.jsp"%> --%>
+<link href="${rc.getContextPath()}/resources/UI/css/common.css" rel="stylesheet" type="text/css" />
+<!----Media queries css--->
+<link href="${rc.getContextPath()}/resources/UI/css/style.css"
+	type="text/css" rel="stylesheet" />
+<link href="${rc.getContextPath()}/resources/UI/css/theme1024.css"
+	rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/resources/UI/css/theme990.css"
+	rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/resources/UI/css/theme768.css"
+	rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/resources/UI/css/theme480.css"
+	rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/resources/UI/css/theme320.css"
+	rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/resources/UI/css/theme319.css"
+	rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/resources/UI/css/quickweb.css"
+	rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/resources/UI/fonts/style.css"
+	rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/resources/UI/css/slider_css.css"
+	type="text/css" rel="stylesheet" />
+<link
+	href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900'
+	rel='stylesheet' type='text/css' />
+<script src="${rc.getContextPath()}/resources/UI/js/jquery-ui.js"></script>
+<script
+	src="${rc.getContextPath()}/resources/UI/js/jquery-1.11.3.min.js"></script>
+<script src="${rc.getContextPath()}/resources/UI/js/slider.js"></script>
+<script src="${rc.getContextPath()}/resources/UI/js/plugin.js"></script>
+
+
 <script type="text/javascript">
 	var _context = '${rc.getContextPath()}';
 </script>
