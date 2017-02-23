@@ -1,31 +1,66 @@
 <%@include file="member_header.jsp"%>
 <div class="main">
-	<div class="container">
+	<div class="content" ng-controller="memberEditProfileCtrl">
 		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-4">
-				<form action="${rc.getContextPath()}/member/edit-profile"
-					method="post">
-					<label for="first name">First Name</label> <input type="text"
-						class="form-control" name="firstName"
-						value="${memberDetails.firstName} "> <label
-						for="last name">Last Name</label> <input type="text"
-						class="form-control" name="lastName"
-						value="${memberDetails.lastName}"> <label
-						for="phone number">Phone Number</label> <input type="text"
-						class="form-control" name="contactMobileNo"
-						value="${memberDetails.contactMobileNo}"> <label
-						for="address">Address</label> <input type="text"
-						class="form-control" name="address"
-						value="${memberDetails.address}">
+			<div class="col-md-2"></div>
+			<div class="col-md-6">
+				<br>
+				
+				<div ng-show="enableEdit">
+					<div class="pull-right ng-scope">
+						<div ng-click="enableEditFunction();">Edit</div>
+					</div>
+					<div class="data-row">
+						<label>First Name: </label>
+						<div>{{thisProfile.firstName}}</div>
+					</div>
+					<div class="col-lg-12">
+						<br>
+					</div>
+					<div class="data-row">
+						<label>Last Name: </label>
+						<div>{{thisProfile.lastName}}</div>
+					</div>
+					<div class="col-lg-12">
+						<br>
+					</div>
+					<div class="data-row">
+						<label>Phone Number: </label>
+						<div>{{thisProfile.contactMobileNo}}</div>
+					</div>
+					<div class="col-lg-12">
+						<br>
+					</div>
+					<div class="data-row">
+						<label>Address: </label>
+						<div>{{thisProfile.address}}</div>
+					</div>
+				</div>
 
-					<button type="submit" class="btn btn-default">Submit</button>
-					<button type="submit" class="btn btn-default">Cancel</button>
-					<input type="hidden" name="id" value="${memberDetails.id} ">
-					<input type="hidden" name="profileNumber"
-						value="${memberDetails.profileNumber} ">
-				</form>
+				<div ng-show="!enableEdit">
+					<label for="first name">First Name</label> <input type="text"
+						ng-model="thisProfile.firstName" class="form-control"
+						name="vendorFirstName" value="{{thisProfile.firstName}}">
+
+					<label for="last name">Last Name</label> <input type="text"
+						ng-model="thisProfile.lastName" class="form-control"
+						name="vendorSurname" value="{{thisProfile.lastName}}">
+
+					<label for="phone number">Phone Number</label> <input type="text"
+						ng-model="thisProfile.contactMobileNo" class="form-control"
+						name="pContact" value="{{thisProfile.contactMobileNo}}"> <label
+						for="address">Address</label> <input
+						ng-model="thisProfile.address" type="textarea"
+						class="form-control" name="addr" value="{{thisProfile.address}}">
+					<input type="hidden" name="id" value="{{thisProfile.id}} ">
+
+					<button ng-click="saveMemberProfile();" class="btn btn-default">Submit</button>
+					<div ng-click="enableEditFunction();" class="btn btn-default">Close</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<%@include file="../include/js_include.jsp"%>
+<script
+	src="${rc.getContextPath()}/resources/develoepr-js/member-edit-profile.js"></script>

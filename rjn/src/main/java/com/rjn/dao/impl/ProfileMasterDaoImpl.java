@@ -45,4 +45,10 @@ public class ProfileMasterDaoImpl extends AbstractDao<Integer, CustomerProfile> 
 		criteria.add(Restrictions.eq("contactEmailId", contactEmailId));
 		return (CustomerProfile) criteria.uniqueResult();
 	}
+
+	@Override
+	public void saveOrUpdateMember(CustomerProfile profileMaster) {
+			update(profileMaster);
+		
+	}
 }

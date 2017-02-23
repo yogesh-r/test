@@ -24,4 +24,10 @@ public class MemberServiceImpl implements MemberService{
 	public void saveMemberDetails(CustomerProfile profileMaster ) {
 		 profileMasterDao.saveMemberRegister(profileMaster);
 	}
+	
+	@Override
+	public void saveOrUpdateMember(CustomerProfile profileMaster) {
+		profileMasterDao.saveOrUpdateMember(profileMaster);
+		
+	}
 }

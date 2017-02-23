@@ -9,4 +9,6 @@ public interface ProfileMasterDao {
 	List<CustomerProfile> getAllCustomerCompany();
 	public CustomerProfile getProfileMasterByprofileNumber(String profileNumber);
 	public CustomerProfile getProfileMasterByEmail(String contactEmailId);
+	public void saveOrUpdateMember(CustomerProfile profileMaster);
+	
 }
