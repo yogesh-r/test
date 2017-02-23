@@ -3,16 +3,12 @@ package com.rjn.controller.vendor;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.rjn.model.Account;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
@@ -49,14 +45,6 @@ public class VendorDataController {
 		model.put("branchList", branchList);
 		return model;
 	}
-	
-/*	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
-	public @ResponseBody Object vendorChangePassword(HttpServletRequest request) {
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("vendorDetails", getLoginVendorDetails());
-		return model; 
-	}*/
-	
 	private VendorProfile getLoginVendorDetails() {
 		Account loginUser = utils.getLoggedInUser();
 		VendorProfile loginvendor = vendorservice.getVendor(loginUser.getReg_id());

@@ -144,7 +144,7 @@ public class AdminController {
 					" and your password is " + unEncryptPass;
 		    email.setBody(emailBody);
 		    boolean isEmailSent=mailService.sendEmail(email);
-		    System.out.println("email sent"+isEmailSent);
+		    System.out.println("is email sent:"+isEmailSent);
 		} else {
 			vendorService.updateVendorDetails(vendorDetails);
 		}
@@ -195,7 +195,6 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/bulk-register-category" }, method = RequestMethod.POST)
 	public String bulkSaveCategory(ModelMap model, @RequestParam("excelfile") MultipartFile excelfile) {
-		System.out.println("excelfile >>>>>>>>>>. "+excelfile);
 		try { 
 			String fileName = excelfile.getOriginalFilename();
 			List<ExcelFileBean> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);

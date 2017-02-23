@@ -37,7 +37,6 @@ public class MemberDataController {
 	public @ResponseBody Object memberEditProfile(HttpServletRequest request) {
 		Account loginUser = utils.getLoggedInUser();
 		CustomerProfile profileMaster = getMemberDetails(loginUser.getReg_id());
-		System.out.println("profile master "+profileMaster);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("profileMaster", profileMaster);
 		return model; 
@@ -49,7 +48,6 @@ public class MemberDataController {
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
 	public @ResponseBody Object memberUpdateProfile(@RequestBody CustomerProfile profileMaster) {
-		System.out.println("within controleer");
 		memberService.saveOrUpdateMember(profileMaster);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("result", "success");

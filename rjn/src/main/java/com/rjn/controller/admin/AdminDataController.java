@@ -116,14 +116,9 @@ public class AdminDataController {
 	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		Account loginUser = utils.getLoggedInUser();
-		System.out.println("login user "+loginUser);
 		String dbPassword = loginUser.getPassword();
-		System.out.println("dbPassword "+dbPassword);
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
 		String newpassword=forgetPasswordBean.getNewPassword();
-		
-		System.out.println("uiOldpassword >> "+uiOldpassword);
-		System.out.println("dbPassword ?? "+dbPassword);
 		if (utils.matchPassword(uiOldpassword, dbPassword)) {
 			loginUser.setPassword(utils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);

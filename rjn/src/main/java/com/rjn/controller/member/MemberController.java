@@ -70,6 +70,7 @@ public class MemberController {
 		model.addAttribute("thisVendor", thisVendor);
 		Account loginUser = utils.getLoggedInUser();
 		CustomerProfile profileMaster = getMemberDetails(loginUser.getReg_id());
+		
 		VendorLead vendorLead = utils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
 		if (vendorLead == null) {
 			vendorLead = new VendorLead();

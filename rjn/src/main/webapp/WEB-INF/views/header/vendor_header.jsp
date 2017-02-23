@@ -53,7 +53,7 @@
 		<li><a href="${rc.getContextPath()}/vendor/branch-list">Branches</a></li>
 		<li><a href="${rc.getContextPath()}/vendor/product/product-list">Products</a></li>
 		<li><a href="${rc.getContextPath()}/vendor/edit-profile">My Profile</a></li>
-		<li><a href="#">Leads</a></li>
+		<li><a href="${rc.getContextPath()}/vendor/product/leads">Leads</a></li>
 		<li><a href="${rc.getContextPath()}/vendor/change-password">Change Password</a></li>
 		<li><a href="${rc.getContextPath()}/vendor/${vendorDetails.id}" target="_blank">Verify Profile</a></li>
 	</ul>

@@ -8,25 +8,22 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
+import com.rjn.model.core.VendorLead;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
@@ -64,6 +61,29 @@ public class VendorController {
 			model.addAttribute("showVerifyButton", true);
 		}
 		model.put("headerType", Constant.ROLE_VENDOR);
+		
+		// saving leads
+		Account loginUser = utils.getLoggedInUser();
+		VendorLead vendorLead = utils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
+		if (vendorLead == null) {
+			vendorLead = new VendorLead();
+		}
+		vendorLead.setVendorId(thisVendor.getId());
+		vendorLead.setUserId(loginUser.getId());
+		vendorLead.setName(loginUser.getMy_user_name());
+		
+		vendorLead.setMobileNo(thisVendor.getpContact());
+		vendorLead.setAddress(thisVendor.getAddress());
+		vendorLead.setEmail(thisVendor.getEmail());
+		
+		int count = 0;
+		if (vendorLead.getId() != null) {
+			count = vendorLead.getVisitCount() + 1;
+			vendorLead.setVisitCount(count);
+		}
+		model.put("headerType", Constant.ROLE_MEMBER);
+		utils.saveVendorLead(vendorLead);
+		
 		return "vendor-profile";
 	}
 	
@@ -122,7 +142,6 @@ public class VendorController {
 
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String paernerEditProfile(ModelMap model) {
-		//model.addAttribute("vendorDetails", getLoginVendorDetails());
 		return "vendor/vendor-edit-profile";
 	}
 	
@@ -147,9 +166,6 @@ public class VendorController {
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
 		String newpassword=forgetPasswordBean.getNewPassword();
-		
-		System.out.println("uiOldpassword >> "+uiOldpassword);
-		System.out.println("dbPassword ?? "+dbPassword);
 		if (utils.matchPassword(uiOldpassword, dbPassword)) {
 			loginUser.setPassword(utils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);

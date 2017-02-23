@@ -58,7 +58,7 @@ public class ForgetPasswordController {
 	    	thisEmail.setSubject("Test subject");
 	    	thisEmail.setBody("Forgot password link = "+forgotPasswordLink);
 	    	boolean isEmailSent = mailService.sendEmail(thisEmail);
-	    	System.out.println("isEmailSent >>> "+isEmailSent);
+	    	System.out.println("isEmailSent: "+isEmailSent);
 		}
 		return null;
 	}

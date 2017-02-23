@@ -48,8 +48,6 @@ public class BranchProfileDaoImpl extends AbstractDao<Integer, BranchProfile> im
 
 	@Override
 	public void saveBranch(BranchProfile branchMasterDetails) {
-		System.out.println("11111");
-		System.out.println(branchMasterDetails.getId());
 		if (branchMasterDetails.getId() <= 0) {
 			persist(branchMasterDetails);
 		} else {
