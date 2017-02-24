@@ -2,7 +2,9 @@ package com.rjn.controller.admin;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
+import com.rjn.model.core.VendorLead;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorService;
@@ -50,8 +54,15 @@ public class AdminDataController {
 	@RequestMapping(value = { "/lead-list" }, method = RequestMethod.GET)
 	public @ResponseBody Object leadsList(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		System.out.println("controller calledd >>>>");
-		model.put("leads", utils.getLeadsForAdmin());
+		String status = request.getParameter("status");
+		if (Constant.ADMIN_LEAD_STATUS_READ.equals(status)) {
+			model.put("leads", utils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_READ));
+		} else if(Constant.ADMIN_LEAD_STATUS_UNREAD.equals(status)) {
+			model.put("leads", utils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_UNREAD));
+		} else {
+			model.put("leads", "No data found");
+		}
+
 		return model;
 	}
 	
@@ -109,9 +120,7 @@ public class AdminDataController {
 		Map<String,Object>model=new HashMap<String,Object>();
 		model.put("editBranch", branchService.getBranchData(branchId));
 		return model;
-		
 	}
-	
 	
 	@RequestMapping(value = { "/register-vendor/{vendorId}" }, method = RequestMethod.GET)
 	public @ResponseBody Object vendorProfile(HttpServletRequest request, @PathVariable String vendorId) {
@@ -120,6 +129,7 @@ public class AdminDataController {
 		model.put("thisVendor", thisVendor);
 		return model;
 	}
+	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -138,4 +148,26 @@ public class AdminDataController {
 		return model;
 	}
 
+	@RequestMapping(value = { "/update-lead-status/{leadId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object updateLeadStatus(HttpServletRequest request, @PathVariable long leadId) {
+		System.out.println("leadId >> "+leadId);
+		
+		String leadStatus =	request.getParameter("status");
+		System.out.println("leadStatus >> "+leadStatus);
+		
+		VendorLead thisLead = utils.getLeadById(leadId);
+		
+		if (Constant.ADMIN_LEAD_STATUS_READ.equals(leadStatus)) {
+			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_READ);
+		} else if (Constant.ADMIN_LEAD_STATUS_UNREAD.equals(leadStatus)) {
+			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_UNREAD);
+		}
+		
+		utils.updateLead(thisLead);
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("isStatusUpdated", "yes");
+		return model;
+	}
+	
 }

@@ -10,17 +10,18 @@
 				<th>Phone no</th>
 				<th>Hits</th>
 				<th>Status</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
-				<tr ng-repeat="thisLeads in leadList">
-					<td>{{thisLeads.name}}</td>
-					<td>{{thisLeads.vendorName}}</td>
-					<td>{{thisLeads.mobileNo}}</td>
-					<td>{{thisLeads.visitCount}}</td>
-					<td>{{thisLeads.adminStatus}}</td>
-					
-				</tr>
+			<tr ng-repeat="thisLeads in leadList">
+				<td>{{thisLeads.name}}</td>
+				<td>{{thisLeads.vendorName}}</td>
+				<td>{{thisLeads.mobileNo}}</td>
+				<td>{{thisLeads.visitCount}}</td>
+				<td>{{thisLeads.adminStatus}}</td>
+				<td><button ng-click="markRead(thisLeads.id)">Mark as Read</button></td>
+			</tr>
 		</tbody>
 	</table>
 </div>

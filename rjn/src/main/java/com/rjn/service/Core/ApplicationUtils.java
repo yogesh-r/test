@@ -38,5 +38,9 @@ public interface ApplicationUtils {
 	
 	void bulkCategoryInsert(List<ProductCategory> productCategoryList);
 	
-	public List<VendorLead> getLeadsForAdmin();
+	public List<VendorLead> getLeadsForAdmin(String status);
+	
+	void updateLead(VendorLead vendorLead);
+	
+	public VendorLead getLeadById(long leadId);
 }

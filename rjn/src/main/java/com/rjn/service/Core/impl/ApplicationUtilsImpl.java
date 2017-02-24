@@ -144,8 +144,18 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	}
 
 	@Override
-	public List<VendorLead> getLeadsForAdmin() {
-		return vendorLeadDao.getLeadsForAdmin();
+	public List<VendorLead> getLeadsForAdmin(String status) {
+		return vendorLeadDao.getLeadsForAdmin(status);
+	}
+
+	@Override
+	public void updateLead(VendorLead vendorLead) {
+		vendorLeadDao.updateLead(vendorLead);
+	}
+
+	@Override
+	public VendorLead getLeadById(long leadId) {
+		return vendorLeadDao.getLeadById(leadId);
 	}
 }
 
