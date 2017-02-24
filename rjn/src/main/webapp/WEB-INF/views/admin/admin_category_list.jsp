@@ -57,7 +57,6 @@
 					<td><div ng-click="editForm(thisCategory.id);"><a style="cursor:pointer;">edit</a></div></td>
 					<td>{{thisCategory.name}}</td>
 					<td>{{thisCategory.description}}</td>
-
 				</tr>
 			</tbody>
 		</table>

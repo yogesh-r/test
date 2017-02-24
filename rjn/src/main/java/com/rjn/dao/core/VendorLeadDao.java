@@ -8,4 +8,7 @@ public interface VendorLeadDao {
 	public void saveVendorLead(VendorLead vendorLead);
 	public List<VendorLead> getLeadsForVendor(String vendorId);
 	public VendorLead getLeadsByVendorAndUserId(long userId, String vendorId);
+	
+	public List<VendorLead> getLeadsForAdmin();
+	
 }

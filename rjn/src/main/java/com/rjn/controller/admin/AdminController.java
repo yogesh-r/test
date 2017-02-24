@@ -108,6 +108,11 @@ public class AdminController {
 	public String whyUs(ModelMap model, HttpServletRequest request) {
 		return "admin/admin_home";
 	}
+	
+	@RequestMapping(value = { "/leads" }, method = RequestMethod.GET)
+	public String Leads(ModelMap model, HttpServletRequest request) {
+		return "admin/admin_leads_list";
+	}
 
 	@RequestMapping(value = { "/register-vendor/{vendorId}" }, method = RequestMethod.GET)
 	public String editVendor(ModelMap model, @PathVariable String vendorId) {

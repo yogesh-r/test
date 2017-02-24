@@ -69,6 +69,7 @@ public class VendorController {
 			vendorLead = new VendorLead();
 		}
 		vendorLead.setVendorId(thisVendor.getId());
+		vendorLead.setVendorName(thisVendor.getVendorFirstName());
 		vendorLead.setUserId(loginUser.getId());
 		vendorLead.setName(loginUser.getMy_user_name());
 		

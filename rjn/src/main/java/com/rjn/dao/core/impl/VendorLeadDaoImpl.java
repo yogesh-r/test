@@ -36,4 +36,9 @@ public class VendorLeadDaoImpl extends AbstractDao<Integer, VendorLead> implemen
 		criteria.add(Restrictions.eq("userId",userId));
 		return (VendorLead) criteria.uniqueResult();
 	}
+
+	@Override
+	public List<VendorLead> getLeadsForAdmin() {
+		return (List<VendorLead>) createEntityCriteria().list();
+	}
 }

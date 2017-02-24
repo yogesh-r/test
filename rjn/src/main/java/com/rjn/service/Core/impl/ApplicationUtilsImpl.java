@@ -142,5 +142,10 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 		productCategoryDao.saveInBulk(productCategoryList);
 		
 	}
+
+	@Override
+	public List<VendorLead> getLeadsForAdmin() {
+		return vendorLeadDao.getLeadsForAdmin();
+	}
 }
 

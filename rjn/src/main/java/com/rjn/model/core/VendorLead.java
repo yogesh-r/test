@@ -34,8 +34,14 @@ public class VendorLead {
 	@Column(name = "vendor_id", nullable = false)
 	private String vendorId;
 	
+	@Column(name = "vendor_name", nullable = false)
+	private String vendorName;
+	
 	@Column(name = "product_id", nullable = false)
 	private String productId;
+	
+	@Column(name = "admin_status", nullable = false)
+	private String adminStatus;
 	
 	@Column(name = "visit_count", nullable = false)
 	private int visitCount = 0;
@@ -110,5 +116,21 @@ public class VendorLead {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public String getVendorName() {
+		return vendorName;
+	}
+
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
+	}
+
+	public String getAdminStatus() {
+		return adminStatus;
+	}
+
+	public void setAdminStatus(String adminStatus) {
+		this.adminStatus = adminStatus;
+	}
+
 }

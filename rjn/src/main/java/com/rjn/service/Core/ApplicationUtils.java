@@ -37,4 +37,6 @@ public interface ApplicationUtils {
 	public boolean matchPassword(String password,String encriptedPassword);
 	
 	void bulkCategoryInsert(List<ProductCategory> productCategoryList);
+	
+	public List<VendorLead> getLeadsForAdmin();
 }

@@ -47,6 +47,14 @@ public class AdminDataController {
 		return model;
 	}
 	
+	@RequestMapping(value = { "/lead-list" }, method = RequestMethod.GET)
+	public @ResponseBody Object leadsList(HttpServletRequest request) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		System.out.println("controller calledd >>>>");
+		model.put("leads", utils.getLeadsForAdmin());
+		return model;
+	}
+	
 	@RequestMapping(value = { "/enquiry-list" }, method = RequestMethod.GET)
 	public @ResponseBody Object enquiryList(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<String, Object>();

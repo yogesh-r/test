@@ -39,5 +39,9 @@ public class Constant {
 	// pagination limit
 	public static final int PAGINATION_LIMIT = 2;
 	public static final int NOT_APPLICABLE = -1;
+	
+	// admin lead status
+	public static final String ADMIN_LEAD_STATUS_UNREAD = "unread";
+	public static final String ADMIN_LEAD_STATUS_READ = "read";
 }
 
