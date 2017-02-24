@@ -1,4 +1,4 @@
-<%@include file="../header/vendor_header.jsp"%>
+<%@include file="admin_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <br>
 <div class="content" ng-controller="adminLeadsCtrl">

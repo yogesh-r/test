@@ -2,7 +2,7 @@ RJN.controller('adminLeadsCtrl', [ '$scope', '$http' , function ($scope, $http) 
 	
 	$scope.leadList = {};
 	$scope.leadStatus = 'unread';
-	
+
 	$scope.loadData = function() {
 		$http.get(_context+'/admin/rest/lead-list?status='+$scope.leadStatus).then(function(response) {
  			$scope.leadList = response.data.leads;
