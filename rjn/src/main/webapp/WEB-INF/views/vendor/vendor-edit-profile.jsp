@@ -7,7 +7,7 @@
 				<br>
 				<div ng-show="enableEdit">
 					<div class="pull-right ng-scope">
-						<div ng-click="enableEditFunction();">Edit</div>
+						<div ng-click="enableEditFunction();" style="cursor:pointer;"><a>Edit</a></div>
 					</div>
 					<div class="data-row">
 						<label>First Name: </label>
