@@ -43,6 +43,9 @@ public class VendorLead {
 	@Column(name = "admin_status", nullable = false)
 	private String adminStatus;
 	
+	@Column(name = "vendor_status", nullable = false)
+	private String vendorStatus;
+	
 	@Column(name = "visit_count", nullable = false)
 	private int visitCount = 0;
 
@@ -133,4 +136,11 @@ public class VendorLead {
 		this.adminStatus = adminStatus;
 	}
 
+	public String getVendorStatus() {
+		return vendorStatus;
+	}
+
+	public void setVendorStatus(String vendorStatus) {
+		this.vendorStatus = vendorStatus;
+	}
 }

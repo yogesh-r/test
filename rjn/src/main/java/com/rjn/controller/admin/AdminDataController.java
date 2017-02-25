@@ -150,21 +150,14 @@ public class AdminDataController {
 
 	@RequestMapping(value = { "/update-lead-status/{leadId}" }, method = RequestMethod.GET)
 	public @ResponseBody Object updateLeadStatus(HttpServletRequest request, @PathVariable long leadId) {
-		System.out.println("leadId >> "+leadId);
-		
 		String leadStatus =	request.getParameter("status");
-		System.out.println("leadStatus >> "+leadStatus);
-		
 		VendorLead thisLead = utils.getLeadById(leadId);
-		
 		if (Constant.ADMIN_LEAD_STATUS_READ.equals(leadStatus)) {
 			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_READ);
 		} else if (Constant.ADMIN_LEAD_STATUS_UNREAD.equals(leadStatus)) {
 			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_UNREAD);
 		}
-		
 		utils.updateLead(thisLead);
-		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("isStatusUpdated", "yes");
 		return model;

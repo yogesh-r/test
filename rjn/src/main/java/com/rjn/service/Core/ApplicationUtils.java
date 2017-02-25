@@ -30,7 +30,7 @@ public interface ApplicationUtils {
 	
 	void saveVendorLead(VendorLead vendorLead);
 	
-	List<VendorLead> getLeadForVendor(String vendorId);
+	List<VendorLead> getLeadForVendor(String vendorId, String status);
 	
 	VendorLead getLeadsByVendorAndUserId(long userId, String vendorId);
 	

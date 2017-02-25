@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,12 +21,14 @@ import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
+import com.rjn.model.core.VendorLead;
 import com.rjn.model.product.VendorProduct;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorProductService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.SequenceGeneratorService;
+import com.rjn.utils.Constant;
 import com.rjn.utils.SeqConstant;
 
 @Controller
@@ -96,12 +100,37 @@ public class VendorProductController {
 	
 	@RequestMapping(value = { "/leads" }, method = RequestMethod.GET)
 	public String leads(ModelMap model) {
-		VendorProfile loginVendor = getLoginVendorDetails();
-		model.addAttribute("productList", productService.getProductByVendor(loginVendor.getId()));
-		model.addAttribute("leads", utils.getLeadForVendor(loginVendor.getId()));
-		List<BranchProfile> branchList =  branchService.getBranchByVendor(loginVendor.getId());
-		model.addAttribute("branchList", branchList);
 		return "vendor/vendor_leads"; 
+	}
+	
+	@RequestMapping(value = { "/rest/leads" }, method = RequestMethod.GET)
+	public @ResponseBody Object leadsDataForVendor(HttpServletRequest request) {
+		String status = request.getParameter("status");
+		VendorProfile loginVendor = getLoginVendorDetails();
+		Map<String, Object> model = new HashMap<String, Object>();
+		if (Constant.VENDOR_LEAD_STATUS_READ.equals(status)) {
+			model.put("leads", utils.getLeadForVendor(loginVendor.getId(), Constant.VENDOR_LEAD_STATUS_READ));
+		} else if(Constant.VENDOR_LEAD_STATUS_UNREAD.equals(status)) {
+			model.put("leads", utils.getLeadForVendor(loginVendor.getId(), Constant.VENDOR_LEAD_STATUS_UNREAD));
+		} else {
+			model.put("leads", "No data found");
+		}
+		return model;
+	}
+	
+	@RequestMapping(value = { "/rest/update-lead-status/{leadId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object updateLeadStatus(HttpServletRequest request, @PathVariable long leadId) {
+		String leadStatus =	request.getParameter("status");
+		VendorLead thisLead = utils.getLeadById(leadId);
+		if (Constant.VENDOR_LEAD_STATUS_READ.equals(leadStatus)) {
+			thisLead.setVendorStatus(Constant.VENDOR_LEAD_STATUS_READ);
+		} else if (Constant.VENDOR_LEAD_STATUS_UNREAD.equals(leadStatus)) {
+			thisLead.setVendorStatus(Constant.VENDOR_LEAD_STATUS_UNREAD);
+		}
+		utils.updateLead(thisLead);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("isStatusUpdated", "yes");
+		return model;
 	}
 	
 	private VendorProfile getLoginVendorDetails() {

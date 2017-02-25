@@ -23,9 +23,10 @@ public class VendorLeadDaoImpl extends AbstractDao<Integer, VendorLead> implemen
 	}
 
 	@Override
-	public List<VendorLead> getLeadsForVendor(String vendorId) {
+	public List<VendorLead> getLeadsForVendor(String vendorId, String status) {
 		Criteria criteria=createEntityCriteria();
-		criteria.add(Restrictions.eq("vendorId",vendorId));
+		criteria.add(Restrictions.eq("vendorId", vendorId));
+		criteria.add(Restrictions.eq("vendorStatus", status));
 		return (List<VendorLead>) criteria.list();
 	}
 
@@ -39,7 +40,6 @@ public class VendorLeadDaoImpl extends AbstractDao<Integer, VendorLead> implemen
 
 	@Override
 	public List<VendorLead> getLeadsForAdmin(String status) {
-		
 		Criteria criteria=createEntityCriteria();
 		criteria.add(Restrictions.eq("adminStatus",status));
 		return (List<VendorLead>) criteria.list();

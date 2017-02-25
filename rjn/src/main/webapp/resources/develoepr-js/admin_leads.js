@@ -1,5 +1,4 @@
 RJN.controller('adminLeadsCtrl', [ '$scope', '$http' , function ($scope, $http) {
-	
 	$scope.leadList = {};
 	$scope.leadStatus = 'unread';
 
@@ -16,5 +15,4 @@ RJN.controller('adminLeadsCtrl', [ '$scope', '$http' , function ($scope, $http) 
 			$scope.loadData();
 		});
     };
-    
 }]);

@@ -2,14 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="content" ng-controller="vendorProductListCtrl">
 	<div ng-if="!displayAddForm" class="col-md-1">
-		<button ng-click="addForm();" class="form-control btn-primary pull-left">Add</button>
+		<button ng-click="addForm();"
+			class="form-control btn-primary pull-left">Add</button>
 	</div>
 	<div ng-if="displayAddForm">
-		</br>
-		</br>
-		</br>
-		</br>
-		</br>
+		</br> </br> </br> </br> </br>
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
@@ -66,21 +63,17 @@
 				</tr>
 			</tbody>
 		</table>
-		
-		
-		
-		
 		<div class="row">
 			<div class="col-md-1">
 				<button ng-click="saveProduct(thisProduct);"
-						class="form-control btn-primary"> Save</button>
+					class="form-control btn-primary">Save</button>
 			</div>
 			<div class="col-md-1">
-				<button ng-click="closeForm();" class="form-control btn-primary"/>Close</button>
+				<button ng-click="closeForm();" class="form-control btn-primary" />
+				Close
+				</button>
 			</div>
 		</div>
-		
-		
 	</div>
 	<div ng-if="!displayAddForm">
 		<table id="myTable" class="table table-striped">
@@ -95,7 +88,10 @@
 				<tr ng-repeat="thisProduct in productList">
 					<td>{{thisProduct.name}}</td>
 					<td>{{thisProduct.description}}</td>
-					<td><div ng-click="editForm(thisProduct.uniqueId);">edit</div></td>
+					<td><div style="cursor: pointer;"
+							ng-click="editForm(thisProduct.uniqueId);">
+							<a>edit</a>
+						</div></td>
 				</tr>
 			</tbody>
 		</table>
