@@ -47,12 +47,10 @@ public class BranchProfileDaoImpl extends AbstractDao<Integer, BranchProfile> im
 	}
 
 	@Override
-	public void saveBranch(BranchProfile branchMasterDetails) {
-		if (branchMasterDetails.getId() <= 0) {
-			persist(branchMasterDetails);
-		} else {
+	public void updateBranch(BranchProfile branchMasterDetails) {
+		
 			update(branchMasterDetails); 
-		}
+		
 	}
 
 	
@@ -77,5 +75,11 @@ public class BranchProfileDaoImpl extends AbstractDao<Integer, BranchProfile> im
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("uniqueId",uniqueID));
 		return (BranchProfile) criteria.uniqueResult();
+	}
+
+	@Override
+	public void saveBranch(BranchProfile branchMasterDetails) {
+		persist(branchMasterDetails);
+		
 	}
 }

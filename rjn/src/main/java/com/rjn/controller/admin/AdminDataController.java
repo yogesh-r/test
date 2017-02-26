@@ -1,5 +1,7 @@
 package com.rjn.controller.admin;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
+import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
 import com.rjn.model.core.VendorLead;
@@ -25,6 +28,7 @@ import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.Constant;
+import com.rjn.utils.SeqConstant;
 
 @Controller
 @RequestMapping("/admin/rest")
@@ -72,6 +76,8 @@ public class AdminDataController {
 		int limit = Constant.PAGINATION_LIMIT;
 		int startingPage = Integer.parseInt(request.getParameter("pageNo"));
 		model.put("vendorEnquirys", vendorService.getBusinessEnquiryList(limit,startingPage));
+		System.out.println(">>>>>>>>>>>>>>>>");
+		System.out.println(vendorService.getBusinessEnquiryList(limit,startingPage));
 		return model;
 	}
 	
@@ -110,15 +116,25 @@ public class AdminDataController {
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
 	public @ResponseBody Object paernerSaveRegister(@RequestBody  BranchProfile branchMasterDetails) {
 		Map<String,Object>model=new HashMap<String,Object>();
-		branchService.saveBranch(branchMasterDetails);
+		if (branchMasterDetails.getId() == null||"".equals(branchMasterDetails.getId())){
+			Calendar cal = Calendar.getInstance();
+		    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		    String currentDate = sdf.format(cal.getTime());
+			SeqId seqId = seqGenerator.getSeqId(SeqConstant.BRANCH_UNIQUE_SEQ);
+			String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
+			branchMasterDetails.setUniqueId(bracnhUniqueId);
+			branchService.saveBranch(branchMasterDetails);
+		}else{
+		    branchService.updateBranch(branchMasterDetails);
+		}
 		model.put("thisCategory", "success");
 		return model;
 	}
 	
-	@RequestMapping(value = { "/edit-branch/{branchId}" }, method = RequestMethod.GET)
-	public @ResponseBody Object editBranch(@PathVariable int branchId,HttpServletRequest request) {
+	@RequestMapping(value = { "/edit-branch/{uniqueID}" }, method = RequestMethod.GET)
+	public @ResponseBody Object editBranch(@PathVariable String uniqueID,HttpServletRequest request) {
 		Map<String,Object>model=new HashMap<String,Object>();
-		model.put("editBranch", branchService.getBranchData(branchId));
+		model.put("editBranch", branchService.getBranchDetails(uniqueID));
 		return model;
 	}
 	
@@ -150,14 +166,21 @@ public class AdminDataController {
 
 	@RequestMapping(value = { "/update-lead-status/{leadId}" }, method = RequestMethod.GET)
 	public @ResponseBody Object updateLeadStatus(HttpServletRequest request, @PathVariable long leadId) {
+		System.out.println("leadId >> "+leadId);
+		
 		String leadStatus =	request.getParameter("status");
+		System.out.println("leadStatus >> "+leadStatus);
+		
 		VendorLead thisLead = utils.getLeadById(leadId);
+		
 		if (Constant.ADMIN_LEAD_STATUS_READ.equals(leadStatus)) {
 			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_READ);
 		} else if (Constant.ADMIN_LEAD_STATUS_UNREAD.equals(leadStatus)) {
 			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_UNREAD);
 		}
+		
 		utils.updateLead(thisLead);
+		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("isStatusUpdated", "yes");
 		return model;

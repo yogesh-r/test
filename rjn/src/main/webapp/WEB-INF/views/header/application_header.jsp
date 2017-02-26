@@ -56,7 +56,7 @@
 	                        <li><a href="${rc.getContextPath()}/contact-us">Contact us</a></li>
 	                    </ul>
 	                    <ul class="nav navbar-nav navbar-actions navbar-right">
-		                    <li><a data-toggle="modal" data-target="#myModal" >Login</a></li>
+		                    <li><a href="" data-toggle="modal" data-target="#myModal" >Login</a></li>
 		                    <li><a href="${rc.getContextPath()}/member/register">Customer regestration</a></li>
 		                </ul>
 	                </div><!--/.nav-collapse -->
@@ -72,23 +72,26 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">`</h4>
+        <h4 class="modal-title">Login</h4>
       </div>
       <div class="modal-body">
           <form name='f' action="login" method='POST'>
-		      <table>
-		         <tr>
-		            <td>User Id:</td>
-		            <td><input type='text' name='username' value=''></td>
-		         </tr>
-		         <tr>
-		            <td>Password:</td>
-		            <td><input type='password' name='password' /></td>
-		         </tr>
-		         <tr>
-		            <td><input name="submit" type="submit" value="submit" /></td>
-		         </tr>
-		      </table>
+		     
+		        <div class="form-group">
+		             <label>User Id:</label>
+		            <input type='text' class="form-control" name='username' value=''>
+		        </div>
+		         
+		        <div class="form-group">
+		            Password:
+		            <input type='password' class="form-control" name='password' />
+		        </div>
+		        
+		         <div class="form-group">
+		            <input name="submit" type="submit" value="submit" class="btn btn-primary"/>
+		         </div>
+		        
+		      
 		      <input name="pageName" type="hidden" value="${pageName}"/>
 		      <input name="searchKeyWord" type="hidden" value="${param.thisProduct}"/>
 		  </form>
@@ -124,7 +127,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">login</h4>
+        <h4 class="modal-title">Register</h4>
       </div>
       <div class="modal-body">
 				<form:form method="POST" modelAttribute="vendor" action="${rc.getContextPath()}/member/register">
@@ -153,7 +156,7 @@
                         <input type="password" name="cpwd" id="pass2"  class="form-control" onkeyup="checkPass(); return false;" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default-alt js-submit-button">Register</button>
+                        <button type="submit" class="btn btn-primary js-submit-button">Register</button>
                     </div>
 				</form:form>
       </div>

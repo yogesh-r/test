@@ -23,10 +23,19 @@ RJN.controller('memberEditProfileCtrl', [ '$scope', '$http' , function ($scope, 
 	};
 	
 	$scope.saveMemberProfile = function() {
+		
 		$http.post(_context + '/member/rest/edit-profile',
 				$scope.thisProfile).then(function(response) {
-					toastr.success('Profile saved successfully.');
-					$scope.enableEdit = !$scope.enableEdit; 
+					console.log($scope.thisProfile.firstName);
+					if(($scope.thisProfile.firstName)){
+						alert("success");
+						toastr.success('Profile saved successfully.');
+						$scope.enableEdit = !$scope.enableEdit; 
+					}else{
+					alert("wrong");
+					}
+					
 		});
+		
 	};
 }]);

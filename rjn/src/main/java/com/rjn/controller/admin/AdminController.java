@@ -298,4 +298,9 @@ public class AdminController {
 	public String demo(ModelMap model) {
 		return "admin/Demo";
 	}
+	
+	@RequestMapping(value = { "/enquiry-list" }, method = RequestMethod.GET)
+	public String enquiry_list(ModelMap model) {
+		return "admin/enquiry_list";
+	}
 }

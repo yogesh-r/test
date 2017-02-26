@@ -10,10 +10,11 @@ public interface BranchProfileDao {
 	List<BranchProfile> getBranchByVendor(String vendorId);
 	List<BranchProfile> getLocationByCity(String cityId, String vendorId);
 	List<BranchProfile> getBranchList(String cityId, String vendorId, String location);
-	void saveBranch(BranchProfile branchMasterDetails);
+	void updateBranch(BranchProfile branchMasterDetails);
 	BranchProfile getBranchData(int branchId);
 	List<BranchProfile> getBranchDetails();
 	BranchProfile getBranchDetails(String uniqueID);
+	void saveBranch(BranchProfile branchMasterDetails);
 	
 }
 

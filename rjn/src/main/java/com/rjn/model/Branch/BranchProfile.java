@@ -17,7 +17,7 @@ public class BranchProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BranchCode", nullable = false)
-	private int id;
+	private String id;
 	
 	@Column(name = "bracnh_unique_Id", nullable = false)
 	private String uniqueId;
@@ -127,11 +127,11 @@ public class BranchProfile {
 	@Transient
 	private File cancellationPolicy;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
