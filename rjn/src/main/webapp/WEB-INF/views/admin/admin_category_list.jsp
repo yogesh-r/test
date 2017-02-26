@@ -1,8 +1,7 @@
 <%@include file="admin_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="content" ng-controller="categoryListCtrl">
-	<input type="file" file-model="myFile"/>
-    <button ng-click="uploadFile()">upload me</button> </br></br></br>
+	
 	<div ng-if="!displayAddForm" class="col-md-1">
 		<button ng-click="addForm();" class="form-control btn-primary pull-left">Add</button>
 	</div>
@@ -30,6 +29,13 @@
 				<input type="hidden" name="id" value="{{editCategory.id}}" />
 			</tbody>
 		</table>
+		<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<input type="file" file-model="myFile"/>
+				<button ng-click="uploadFile()">upload me</button> </br></br>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-1">
 				<button ng-click="saveCategory(editCategory)"
