@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <br>
 <div class="content" ng-controller="adminLeadsCtrl">
+	<div class="col-md-3" ng-click="readLead();">
+		<a style="cursor:pointer;">Read lead</a>
+	</div>
 	<table id="myTable" class="table table-striped">
 		<thead>
 			<tr>
@@ -20,7 +23,12 @@
 				<td>{{thisLeads.mobileNo}}</td>
 				<td>{{thisLeads.visitCount}}</td>
 				<td>{{thisLeads.adminStatus}}</td>
-				<td><button ng-click="markRead(thisLeads.id)">Mark as Read</button></td>
+				<td ng-if="thisLeads.adminStatus == 'read'">
+				Read Lead
+				</td>
+				<td ng-if="thisLeads.adminStatus == 'unread'">
+				<button ng-click="markRead(thisLeads.id)">Mark as Read</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>

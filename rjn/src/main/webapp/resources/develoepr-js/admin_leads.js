@@ -15,4 +15,10 @@ RJN.controller('adminLeadsCtrl', [ '$scope', '$http' , function ($scope, $http) 
 			$scope.loadData();
 		});
     };
+    
+    $scope.readLead = function() {
+		$http.get(_context+'/admin/rest/lead-list?status=read').then(function(response) {
+			$scope.leadList = response.data.leads;
+		});
+    };
 }]);

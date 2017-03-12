@@ -186,4 +186,10 @@ public class AdminDataController {
 		return model;
 	}
 	
+	@RequestMapping(value = { "/readLead" }, method = RequestMethod.GET)
+	public @ResponseBody Object readLead(HttpServletRequest request) {
+		return null;
+		
+	}
+	
 }
