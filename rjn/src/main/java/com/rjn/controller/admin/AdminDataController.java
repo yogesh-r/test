@@ -186,9 +186,12 @@ public class AdminDataController {
 		return model;
 	}
 	
-	@RequestMapping(value = { "/readLead" }, method = RequestMethod.GET)
-	public @ResponseBody Object readLead(HttpServletRequest request) {
-		return null;
+	@RequestMapping(value = { "/allLead" }, method = RequestMethod.GET)
+	public @ResponseBody Object allLead(HttpServletRequest request) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		System.out.println("utils>>>"+utils.allLead());
+		model.put("allLead", utils.allLead());
+		return model;
 		
 	}
 	

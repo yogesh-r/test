@@ -5,6 +5,9 @@
 	<div class="col-md-3" ng-click="readLead();">
 		<a style="cursor:pointer;">Read lead</a>
 	</div>
+	<div class="col-md-2" ng-click="allLead();">
+		<a style="cursor:pointer;">All leads</a>
+	</div>
 	<table id="myTable" class="table table-striped">
 		<thead>
 			<tr>

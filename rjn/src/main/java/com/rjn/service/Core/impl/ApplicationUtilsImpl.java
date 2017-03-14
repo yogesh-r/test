@@ -157,5 +157,10 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	public VendorLead getLeadById(long leadId) {
 		return vendorLeadDao.getLeadById(leadId);
 	}
+
+	@Override
+	public List<VendorLead> allLead() {
+		return vendorLeadDao.allLead();
+	}
 }
 

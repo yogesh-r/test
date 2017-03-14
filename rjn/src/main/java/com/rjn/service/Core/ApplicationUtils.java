@@ -43,4 +43,6 @@ public interface ApplicationUtils {
 	void updateLead(VendorLead vendorLead);
 	
 	public VendorLead getLeadById(long leadId);
+	
+	public List<VendorLead> allLead();
 }
