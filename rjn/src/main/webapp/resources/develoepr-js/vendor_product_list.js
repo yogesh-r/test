@@ -24,6 +24,13 @@ RJN.controller('vendorProductListCtrl', [ '$scope', '$http' , function ($scope, 
  			$scope.displayAddForm = true;
  		});
     };
+    
+	$scope.deleteProduct = function(thisId) {
+		$http.get(_context+'/vendor/product/delete/' + thisId).then(function(response) {
+ 			$scope.thisProduct = response.data.thisVendor;
+ 			$scope.displayAddForm = true;
+ 		});
+    };
 
 	$scope.addForm = function() {
 		$scope.displayAddForm = true;

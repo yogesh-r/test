@@ -88,10 +88,12 @@
 				<tr ng-repeat="thisProduct in productList">
 					<td>{{thisProduct.name}}</td>
 					<td>{{thisProduct.description}}</td>
-					<td><div style="cursor: pointer;"
-							ng-click="editForm(thisProduct.uniqueId);">
-							<a>edit</a>
-						</div></td>
+					<td>
+						<div>
+							<a style="cursor: pointer;" ng-click="editForm(thisProduct.uniqueId);">edit</a>,
+							<a style="cursor: pointer;" ng-click="deleteProduct(thisProduct.id);">delete</a>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>

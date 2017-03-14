@@ -3,11 +3,8 @@ package com.rjn.controller.vendor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
-import com.rjn.model.Branch.BranchProfile;
 import com.rjn.model.core.VendorLead;
 import com.rjn.model.product.VendorProduct;
 import com.rjn.service.BranchService;
@@ -61,7 +56,6 @@ public class VendorProductController {
 	@RequestMapping(value = { "/register-product" }, method = RequestMethod.POST)
 	public @ResponseBody Object saveProduct(@RequestBody VendorProduct vendorProduct) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		
 		VendorProfile loginVendor = getLoginVendorDetails();
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -85,8 +79,6 @@ public class VendorProductController {
 		} else {
 			model.put("errorMessage", "sorry this product doesnt exist please crate your own product");
 		}
-		/*model.put("categoryList", utils.getAllCategory());
-		model.put("branchList", branchService.getBranchByVendor(loginVendor.getId()));*/
 		return model; 
 	}
 	
@@ -96,7 +88,7 @@ public class VendorProductController {
 		model.addAttribute("categoryList", utils.getAllCategory());
 		model.addAttribute("branchList", branchService.getBranchByVendor(loginVendor.getId()));
 		return "vendor/vendor_product_list"; 
-	}
+	} 
 	
 	@RequestMapping(value = { "/leads" }, method = RequestMethod.GET)
 	public String leads(ModelMap model) {
