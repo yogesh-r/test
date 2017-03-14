@@ -56,4 +56,9 @@ public class VendorProductDaoImpl extends AbstractDao<Integer, VendorProduct> im
 		Criteria criteria = createEntityCriteria();
 		 return (long) criteria.setProjection(Projections.rowCount()).uniqueResult();
 	}
+
+	@Override
+	public void deleteProduct(VendorProduct vendorProduct) {
+		delete(vendorProduct);
+	}
 }

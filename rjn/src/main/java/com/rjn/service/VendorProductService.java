@@ -10,4 +10,5 @@ public interface VendorProductService {
 	VendorProduct getProduct(int productID);
 	VendorProduct getProductByUniqueID(String uniqueID);
 	List<String> getKeyWord();
+	void deleteProduct(VendorProduct vendorProduct);
 }

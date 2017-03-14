@@ -91,7 +91,7 @@
 					<td>
 						<div>
 							<a style="cursor: pointer;" ng-click="editForm(thisProduct.uniqueId);">edit</a>,
-							<a style="cursor: pointer;" ng-click="deleteProduct(thisProduct.id);">delete</a>
+							<a style="cursor: pointer;" ng-click="deleteProduct(thisProduct.uniqueId);">delete</a>
 						</div>
 					</td>
 				</tr>

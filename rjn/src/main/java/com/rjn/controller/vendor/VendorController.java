@@ -85,7 +85,7 @@ public class VendorController {
 		model.put("headerType", Constant.ROLE_MEMBER);
 		utils.saveVendorLead(vendorLead);
 		
-		return "vendor-profile";
+		return "vendor-profile/vendor-profile";
 	}
 	
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)

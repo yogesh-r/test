@@ -91,7 +91,7 @@ public class MemberController {
 		}
 		model.put("headerType", Constant.ROLE_MEMBER);
 		utils.saveVendorLead(vendorLead);
-		return "vendor-profile";
+		return "vendor-profile/vendor-profile";
 	}
 	
 	private CustomerProfile getMemberDetails(String regId){

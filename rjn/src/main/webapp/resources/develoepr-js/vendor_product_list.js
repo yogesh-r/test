@@ -10,7 +10,6 @@ RJN.controller('vendorProductListCtrl', [ '$scope', '$http' , function ($scope, 
     };
     $scope.loadData();
 	$scope.saveProduct = function(thisProduct) {
-		console.log(thisProduct);
 		$http.post(_context+'/vendor/product/register-product', thisProduct).then(function(response) {
 			toastr.success('Successfully Saved');
 			$scope.displayAddForm = false;
@@ -27,8 +26,9 @@ RJN.controller('vendorProductListCtrl', [ '$scope', '$http' , function ($scope, 
     
 	$scope.deleteProduct = function(thisId) {
 		$http.get(_context+'/vendor/product/delete/' + thisId).then(function(response) {
- 			$scope.thisProduct = response.data.thisVendor;
- 			$scope.displayAddForm = true;
+ 			$scope.thisProduct = response.data.message;
+ 			toastr.success($scope.thisProduct); 
+ 			$scope.loadData();
  		});
     };
 

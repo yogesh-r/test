@@ -2,7 +2,7 @@ package com.rjn.bean;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileUploadBean{ 
+public class FileUploadBean { 
 	
 	MultipartFile file;
 

@@ -41,4 +41,9 @@ public class VendorProductServiceImpl implements VendorProductService {
 	public List<String> getKeyWord() {
 		return dao.getKeyWord();
 	}
+
+	@Override
+	public void deleteProduct(VendorProduct vendorProduct) {
+		dao.deleteProduct(vendorProduct);
+	}
 }

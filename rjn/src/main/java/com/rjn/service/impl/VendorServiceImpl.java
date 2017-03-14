@@ -18,7 +18,7 @@ import com.rjn.model.VendorProfile;
 import com.rjn.service.VendorService;
 import com.rjn.utils.Constant;
 
-@Service("partnerService") 
+@Service("vendorService") 
 @Transactional 
 public class VendorServiceImpl implements VendorService { 
 

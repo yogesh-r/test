@@ -53,6 +53,23 @@ public class VendorProductController {
 		return "vendor/vendor_register-product"; 
 	}
 	
+	
+	@RequestMapping(value = { "/delete/{uniqueId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object deleteProduct(@PathVariable String uniqueId) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		VendorProfile loginVendor = getLoginVendorDetails();
+		VendorProduct vendorProduct = productService.getProductByUniqueID(uniqueId);
+		if (vendorProduct.getVendorId().equals(loginVendor.getId())) {
+			productService.deleteProduct(vendorProduct);
+			model.put("message", "Product deleted successfully");
+		} else {
+			model.put("message", "sorry this product doesnt exist please create your own product");
+		}
+		return model; 
+	}
+	
+	
+	
 	@RequestMapping(value = { "/register-product" }, method = RequestMethod.POST)
 	public @ResponseBody Object saveProduct(@RequestBody VendorProduct vendorProduct) {
 		Map<String, Object> model = new HashMap<String, Object>();

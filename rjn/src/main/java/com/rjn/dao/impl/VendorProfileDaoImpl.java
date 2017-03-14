@@ -13,7 +13,7 @@ import com.rjn.dao.core.AbstractDao;
 import com.rjn.model.VendorProfile;
 import com.rjn.utils.Constant;
 
-@Repository("partnerDetailsDao")
+@Repository("vendorDetailsDao")
 public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> implements VendorProfileDao {
 
 	@Override

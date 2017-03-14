@@ -51,7 +51,19 @@ public class ProfileController {
 				return "redirect:/admin/"+thisVendor.getId();
 			}
 		} 
-		return "vendor-profile";
+		return "vendor-profile/vendor-profile";
+	}
+	
+	@RequestMapping(value = { "/{vendorId}/{uniquieId}" }, method = RequestMethod.GET)
+	public String branchData(HttpServletRequest request,ModelMap model,@PathVariable String uniquieId){
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		BranchProfile branch_details=branchService.getBranchDetails(uniquieId);
+		model.addAttribute("branchName",branch_details);
+		return "vendor-profile/vendor-profile";
 	}
 	
 	@RequestMapping(value = { "/{vendorId}/branch-list" }, method = RequestMethod.GET)
@@ -65,31 +77,35 @@ public class ProfileController {
 		model.addAttribute("thisVendor", thisVendor);
 		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
 		model.addAttribute("branch",branch_details);
-		return "vendor-profile";
-	}
-	
-	@RequestMapping(value = { "/{vendorId}/{uniquieId}" }, method = RequestMethod.GET)
-	public String branchData(HttpServletRequest request,ModelMap model,@PathVariable String uniquieId){
-		Object object =  request.getSession().getAttribute("authorities");
-		List loginUser  = (List)object;
-		if (loginUser != null) {
-			model.put("headerType", loginUser.get(0));
-		}
-		BranchProfile branch_details=branchService.getBranchDetails(uniquieId);
-		model.addAttribute("branchName",branch_details);
-		return "vendor-profile";
-		
+		return "vendor-profile/vendor-profile-branches";
 	}
 	
 	@RequestMapping(value = { "/{vendorId}/product-list" }, method = RequestMethod.GET)
-	public String productData(HttpServletRequest request,ModelMap model){
+	public String productData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
+		
 		List<ProductCategory> product=productService.getProductDetails();
 		model.addAttribute("product", product);
-		return "vendor-profile";
+		return "vendor-profile/vendor-profile-products";
+	}
+	
+	@RequestMapping(value = { "/{vendorId}/map" }, method = RequestMethod.GET)
+	public String mapData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
+		return "vendor-profile-map";
 	}
 }
