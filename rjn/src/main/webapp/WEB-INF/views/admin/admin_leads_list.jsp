@@ -2,11 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <br>
 <div class="content" ng-controller="adminLeadsCtrl">
-	<div class="col-md-3" ng-click="readLead();">
+	<!--  <div class="col-md-3" ng-click="readLead(read);">
 		<a style="cursor:pointer;">Read lead</a>
 	</div>
+	
 	<div class="col-md-2" ng-click="allLead();">
 		<a style="cursor:pointer;">All leads</a>
+	</div>-->
+	<div class="col-md-3" >
+		<select name="change" id="change" ng-model="change" ng-change="readLead(change)">
+			<option value="read">read</option>
+			<option value="unread">unread</option>
+			<option value="all">all</option>
+		</select>
 	</div>
 	<table id="myTable" class="table table-striped">
 		<thead>
@@ -30,7 +38,7 @@
 				Read Lead
 				</td>
 				<td ng-if="thisLeads.adminStatus == 'unread'">
-				<button ng-click="markRead(thisLeads.id)">Mark as Read</button>
+				<button ng-click="markRead(thisLeads.id,thisLeads.adminStatus)">Mark as Read</button>
 				</td>
 			</tr>
 		</tbody>

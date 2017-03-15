@@ -63,7 +63,10 @@ public class AdminDataController {
 			model.put("leads", utils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_READ));
 		} else if(Constant.ADMIN_LEAD_STATUS_UNREAD.equals(status)) {
 			model.put("leads", utils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_UNREAD));
-		} else {
+		} else if(Constant.ADMIN_LEAD_STATUS_All.equals(status)){
+			model.put("leads", utils.allLead());
+		}
+		else {
 			model.put("leads", "No data found");
 		}
 

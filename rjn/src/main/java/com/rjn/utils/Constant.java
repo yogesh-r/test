@@ -43,9 +43,11 @@ public class Constant {
 	// admin lead status
 	public static final String ADMIN_LEAD_STATUS_UNREAD = "unread";
 	public static final String ADMIN_LEAD_STATUS_READ = "read";
+	public static final String ADMIN_LEAD_STATUS_All="all";
 	
 	// vendor lead status
 	public static final String VENDOR_LEAD_STATUS_UNREAD = "unread";
 	public static final String VENDOR_LEAD_STATUS_READ = "read";
+	
 }
 
