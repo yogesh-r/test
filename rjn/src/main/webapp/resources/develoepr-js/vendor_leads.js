@@ -15,4 +15,10 @@ RJN.controller('vendorLeadsCtrl', [ '$scope', '$http' , function ($scope, $http)
 			$scope.loadData();
 		});
     };
+    $scope.readLead = function(change) {
+    	console.log(change);
+		$http.get(_context+'/vendor/product/rest/leads?status='+change).then(function(response) {
+			$scope.leadList = response.data.leads;
+		});
+    };
 }]);

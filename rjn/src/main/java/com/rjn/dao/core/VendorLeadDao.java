@@ -12,4 +12,5 @@ public interface VendorLeadDao {
 	void updateLead(VendorLead vendorLead);
 	public VendorLead getLeadById(long leadId);
 	public List<VendorLead> allLead();
+	public List<VendorLead> allLead(String vendor_id);
 }

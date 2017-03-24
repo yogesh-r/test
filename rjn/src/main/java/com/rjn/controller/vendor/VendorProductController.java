@@ -121,6 +121,9 @@ public class VendorProductController {
 			model.put("leads", utils.getLeadForVendor(loginVendor.getId(), Constant.VENDOR_LEAD_STATUS_READ));
 		} else if(Constant.VENDOR_LEAD_STATUS_UNREAD.equals(status)) {
 			model.put("leads", utils.getLeadForVendor(loginVendor.getId(), Constant.VENDOR_LEAD_STATUS_UNREAD));
+		} 
+		else if(Constant.VENDOR_LEAD_STATUS_All.equals(status)) {
+			model.put("leads", utils.allLead(loginVendor.getId()));
 		} else {
 			model.put("leads", "No data found");
 		}

@@ -162,5 +162,10 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	public List<VendorLead> allLead() {
 		return vendorLeadDao.allLead();
 	}
+
+	@Override
+	public List<VendorLead> allLead(String vendor_id) {
+		return vendorLeadDao.allLead(vendor_id);
+	}
 }
 

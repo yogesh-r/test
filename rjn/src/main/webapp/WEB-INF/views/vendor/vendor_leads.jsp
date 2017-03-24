@@ -2,6 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <br>
 <div class="content" ng-controller="vendorLeadsCtrl">
+	<div class="col-md-3" >
+		<select name="change" id="change" ng-model="change" ng-change="readLead(change)">
+			<option selected value="read">read</option>
+			<option value="unread">unread</option>
+			<option value="all">all</option>
+		</select>
+	</div>
 	<table id="myTable" class="table table-striped">
 		<thead>
 			<tr>
