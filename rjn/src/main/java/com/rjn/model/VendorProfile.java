@@ -34,7 +34,7 @@ public class VendorProfile {
 	private String address;
 	
 	@Column(name = "city", nullable = false)
-	private String city;
+	private int city;
 	
 	@Column(name = "state", nullable = false)
 	private String state;
@@ -115,11 +115,11 @@ public class VendorProfile {
 		this.address = addr;
 	}
 
-	public String getCity() {
+	public int getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(int city) {
 		this.city = city;
 	}
 

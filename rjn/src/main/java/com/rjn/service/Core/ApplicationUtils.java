@@ -20,7 +20,7 @@ public interface ApplicationUtils {
 	
 	void saveVendorRegistration(VendorProfile vendorDetails);
 	
-	List<City> getAllCity();
+
 	
 	public List<ProductCategory> getAllCategory();
 	
@@ -28,16 +28,12 @@ public interface ApplicationUtils {
 	
 	ProductCategory getCategory(int productCategoryId);
 	
-	void saveVendorLead(VendorLead vendorLead);
-	
-	List<VendorLead> getLeadForVendor(String vendorId, String status);
-	
-	VendorLead getLeadsByVendorAndUserId(long userId, String vendorId);
-	
 	public boolean matchPassword(String password,String encriptedPassword);
 	
 	void bulkCategoryInsert(List<ProductCategory> productCategoryList);
 	
+	
+	// Leads
 	public List<VendorLead> getLeadsForAdmin(String status);
 	
 	void updateLead(VendorLead vendorLead);
@@ -45,5 +41,17 @@ public interface ApplicationUtils {
 	public VendorLead getLeadById(long leadId);
 	
 	public List<VendorLead> allLead();
+	
 	public List<VendorLead> allLead(String vendor_id);
+	
+	List<VendorLead> getLeadForVendor(String vendorId, String status);
+	
+	VendorLead getLeadsByVendorAndUserId(long userId, String vendorId);
+	
+	void saveVendorLead(VendorLead vendorLead);
+	
+	// city
+	List<City> getAllCity();
+	
+	public List<City> getCitiesByState(String state);
 }

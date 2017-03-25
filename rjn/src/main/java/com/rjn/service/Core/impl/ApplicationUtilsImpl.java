@@ -167,5 +167,10 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	public List<VendorLead> allLead(String vendor_id) {
 		return vendorLeadDao.allLead(vendor_id);
 	}
+
+	@Override
+	public List<City> getCitiesByState(String state) {
+		return cityDao.getCitiesByState(state);
+	}
 }
 

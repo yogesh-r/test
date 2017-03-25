@@ -102,33 +102,3 @@
 		<div id="map" style="height: 50%; width: 70%;"></div>
 	</div>
 </body>
-<script>
-	var profileLatitude = "${thisVendor.latitude}";
-	var profileLongitude = "${thisVendor.longitude}";
-	console.log(profileLatitude);
-	console.log(profileLongitude);
-	var contentString = 'Description here';
-	function initialize() {
-		var myLatLng = new google.maps.LatLng(profileLatitude, profileLongitude);
-		var map = new google.maps.Map(document.getElementById("map"), {
-			zoom : 17,
-			center : myLatLng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		});
-
-		var marker = new google.maps.Marker({
-			position : myLatLng,
-			map : map,
-			title : 'Rajya Sabha'
-		});
-
-		var infowindow = new google.maps.InfoWindow({
-			content : contentString
-		});
-
-		marker.addListener('click', function() {
-			infowindow.open(map, marker);
-		});
-	}
-</script>
-<%-- <%@include file="../google-api/google-api-key.jsp"%> --%>

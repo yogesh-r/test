@@ -60,6 +60,8 @@ public class AdminDataController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		String status = request.getParameter("status");
 		if (Constant.ADMIN_LEAD_STATUS_READ.equals(status)) {
+			
+			 
 			model.put("leads", utils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_READ));
 		} else if(Constant.ADMIN_LEAD_STATUS_UNREAD.equals(status)) {
 			model.put("leads", utils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_UNREAD));

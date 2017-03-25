@@ -50,5 +50,8 @@ public class Constant {
 	public static final String VENDOR_LEAD_STATUS_READ = "read";
 	public static final String VENDOR_LEAD_STATUS_All = "all";
 	
+	// state name constant
+	public static final String STATE_CHHATTISGARH = "Chhattisgarh";
+	
 }
 

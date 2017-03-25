@@ -8,6 +8,7 @@ public class SearchBean {
 	private float productPrice;
 	private String img1;
 	private String verify;
+	private int cityId;
 	
 	private String searchProductKeyword;
 
@@ -52,5 +53,11 @@ public class SearchBean {
 	}
 	public void setSearchProductKeyword(String searchProductKeyword) {
 		this.searchProductKeyword = searchProductKeyword;
+	}
+	public int getCityId() {
+		return cityId;
+	}
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 }

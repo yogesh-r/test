@@ -54,7 +54,14 @@
 				<div class="row">
 					<div class="col-xs-4">
 						<form action="${searchUrl}" class="row form-horizontal">
-							<div class="col-xs-12 col-md-4 col-md-offset-2">
+							<div class="col-xs-12 col-md-4">
+								<select name="cityId" class="form-control">
+									<c:forEach items="${cityList}" var="thisCity">
+										<option value="${thisCity.id}">${thisCity.city}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="col-xs-12 col-md-4">
 								<input class="form-control" name="thisProduct" />
 							</div>
 							<div class="col-xs-12 col-md-2">
@@ -68,7 +75,7 @@
 			</div>
 		</div>
 
-			<%--
+		<%--
 				<c:forEach items="${results}" var="thisResult">
 					<c:choose>
 						<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_VENDOR' || headerType eq 'ROLE_MEMBER'}">
@@ -79,14 +86,15 @@
 						</c:otherwise>
 					</c:choose>
 				</c:forEach> --%>
-			<!-- </ul> -->
-			<!-- </div> -->
-			
-			
+		<!-- </ul> -->
+		<!-- </div> -->
+
+
 		<div class="clearfix"></div>
-	</div></br>
-</br>
-</br>
+	</div>
+	</br>
+	</br>
+	</br>
 	<div class="blog">
 		<div class="container search-continer">
 			<div class="row">

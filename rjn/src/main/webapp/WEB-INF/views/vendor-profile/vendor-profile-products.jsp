@@ -74,40 +74,47 @@
 			</thead>
 			<c:forEach items="${product}" var="product">
 				<tbody>
-					<td>${product.name}</a></td>
-
+					<td>${product.name}</td>
+					<td>,<a href="" data-toggle="modal"  data-target="#productDetailModal">View</a></td>
 				</tbody>
 			</c:forEach>
 		</table>
 	</div>
 </body>
-<script>
-	var profileLatitude = "${thisVendor.latitude}";
-	var profileLongitude = "${thisVendor.longitude}";
-	console.log(profileLatitude);
-	console.log(profileLongitude);
-	var contentString = 'Description here';
-	function initialize() {
-		var myLatLng = new google.maps.LatLng(profileLatitude, profileLongitude);
-		var map = new google.maps.Map(document.getElementById("map"), {
-			zoom : 17,
-			center : myLatLng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		});
 
-		var marker = new google.maps.Marker({
-			position : myLatLng,
-			map : map,
-			title : 'Rajya Sabha'
-		});
 
-		var infowindow = new google.maps.InfoWindow({
-			content : contentString
-		});
 
-		marker.addListener('click', function() {
-			infowindow.open(map, marker);
-		});
-	}
-</script>
-<%-- <%@include file="../google-api/google-api-key.jsp"%> --%>
+
+<!-- Modal -->
+<div id="productDetailModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Product Details</h4>
+      </div>
+      <div class="modal-body">
+			Product Details
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerModal">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/font-awesome.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/toastr.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/jquery.jqplot.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.getContextPath()}/resources/css/angular-wizard.min.css">
