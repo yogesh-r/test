@@ -200,6 +200,7 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/bulk-register-category" }, method = RequestMethod.POST)
 	public String bulkSaveCategory(ModelMap model, @RequestParam("excelfile") MultipartFile excelfile) {
+		System.out.println("Bulk upload ontroller called ??????????????? ");
 		try { 
 			String fileName = excelfile.getOriginalFilename();
 			List<ExcelFileBean> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);

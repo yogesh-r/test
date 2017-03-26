@@ -54,7 +54,8 @@
 				<div class="row">
 					<div class="col-xs-4">
 						<form action="${searchUrl}" class="row form-horizontal">
-							<div class="col-xs-12 col-md-4">
+							<di
+							v class="col-xs-12 col-md-4">
 								<select name="cityId" class="form-control">
 									<c:forEach items="${cityList}" var="thisCity">
 										<option value="${thisCity.id}">${thisCity.city}</option>
