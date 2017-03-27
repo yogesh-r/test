@@ -38,12 +38,14 @@ public class SearchController {
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
-		
+
 		String productKeyword = (String) request.getParameter("thisProduct");
 		int cityId = Integer.valueOf(request.getParameter("cityId"));
-		
+
+		model.put("productKeyword", productKeyword);
+		model.put("cityId", cityId);
 		model.put("cityList", applicationUtils.getCitiesByState(Constant.STATE_CHHATTISGARH));
-		
+
 		SearchBean sb = new SearchBean();
 		sb.setSearchProductKeyword(productKeyword);
 		sb.setCityId(cityId);
@@ -51,24 +53,4 @@ public class SearchController {
 		model.put("pageName", "searchPage");
 		return "/search/search_branch"; 
 	}
-
-/*	@ResponseBody
-	@RequestMapping(value = { "/public/getBranchs"}, method = RequestMethod.GET)
-	public Object branchList(HttpServletRequest request) {
-		SearchBean bean = new SearchBean();
-		Map<String, Object> model = new HashMap<String, Object>();
-		List<SearchBean> lists =  searchService.findBranches(bean);
-		model.put("branchList", lists);
-		return model;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = { "/public/getVendors"}, method = RequestMethod.GET)
-	public Object vendorList(HttpServletRequest request) {
-		SearchBean bean = new SearchBean();
-		Map<String, Object> model = new HashMap<String, Object>();
-		List<VendorProfile> lists =  vendorService.getAllVendors();
-		model.put("vendorList", lists);
-		return model;
-	}*/
 }

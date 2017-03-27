@@ -58,9 +58,15 @@ public class MemberController {
 			model.put("headerType", loginUser.get(0));
 		}
 		String productKeyword = (String) request.getParameter("thisProduct");
+		int cityId = Integer.valueOf(request.getParameter("cityId"));
+		
 		SearchBean sb = new SearchBean();
 		sb.setSearchProductKeyword(productKeyword);
+		sb.setCityId(cityId);
 		model.put("results", searchService.findVendors(sb));
+		model.put("cityList", utils.getCitiesByState(Constant.STATE_CHHATTISGARH));
+		model.put("cityId", cityId);
+
 		return "/search/search_branch";
 	}
 	

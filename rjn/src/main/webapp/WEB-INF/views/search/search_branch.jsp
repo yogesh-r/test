@@ -24,10 +24,7 @@
 }
 </style>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%></br>
-</br>
-</br>
-</br>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:choose>
 	<c:when test="${headerType eq  'ROLE_ADMIN'}">
 		<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search" />
@@ -43,7 +40,7 @@
 	</c:when>
 	<c:otherwise>
 		<c:set var="searchUrl" value="${rc.getContextPath()}/search" />
-		<%@include file="../header/application_header.jsp"%>
+		<br><br><br><br><%@include file="../header/application_header.jsp"%>
 	</c:otherwise>
 </c:choose>
 <div class="content">
@@ -54,68 +51,62 @@
 				<div class="row">
 					<div class="col-xs-4">
 						<form action="${searchUrl}" class="row form-horizontal">
-							<di
-							v class="col-xs-12 col-md-4">
-								<select name="cityId" class="form-control">
-									<c:forEach items="${cityList}" var="thisCity">
-										<option value="${thisCity.id}">${thisCity.city}</option>
-									</c:forEach>
-								</select>
-							</div>
-							<div class="col-xs-12 col-md-4">
-								<input class="form-control" name="thisProduct" />
-							</div>
-							<div class="col-xs-12 col-md-2">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-search"></i> Search
-								</button>
-							</div>
-						</form>
+							<di v class="col-xs-12 col-md-4"> <select name="cityId"
+								class="form-control">
+								<c:forEach items="${cityList}" var="thisCity">
+									<option <c:if test="${thisCity.id eq cityId}">selected</c:if>
+										value="${thisCity.id}">${thisCity.city}</option>
+								</c:forEach>
+							</select>
 					</div>
+					<div class="col-xs-12 col-md-4">
+						<input class="form-control" name="thisProduct" />
+					</div>
+					<div class="col-xs-12 col-md-2">
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-search"></i> Search
+						</button>
+					</div>
+					</form>
 				</div>
 			</div>
 		</div>
-
-		<%--
-				<c:forEach items="${results}" var="thisResult">
-					<c:choose>
-						<c:when test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_VENDOR' || headerType eq 'ROLE_MEMBER'}">
-							<li><a href="${rc.getContextPath()}/vendor-profile/${thisResult.vendorId}">${thisResult.vendorName}</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="" data-toggle="modal" data-target="#myModal">${thisResult.vendorName}</a></li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach> --%>
-		<!-- </ul> -->
-		<!-- </div> -->
-
-
-		<div class="clearfix"></div>
 	</div>
-	</br>
-	</br>
-	</br>
-	<div class="blog">
-		<div class="container search-continer">
-			<div class="row">
-				<c:forEach items="${results}" var="thisResult">
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-block">
-								<h3 class="card-title">${thisResult.vendorName}</h3>
-								<p class="card-text">With supporting text below as a natural
-									lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Details</a>
-							</div>
+	<div class="clearfix"></div>
+</div>
+</br>
+</br>
+</br>
+<div class="blog">
+	<div class="container search-continer">
+		<div class="row">
+			<c:forEach items="${results}" var="thisResult">
+				<div class="col-sm-6">
+					<div class="card">
+						<div class="card-block">
+							<h3 class="card-title">${thisResult.vendorName}</h3>
+							<p class="card-text">With supporting text below as a natural
+								lead-in to additional content.</p>
+							<c:choose>
+								<c:when
+									test="${headerType eq 'ROLE_ADMIN' || headerType eq 'ROLE_VENDOR' || headerType eq 'ROLE_MEMBER'}">
+									<a class="btn btn-primary"
+										href="${rc.getContextPath()}/vendor-profile/${thisResult.vendorId}">Details</a>
+								</c:when>
+								<c:otherwise>
+									<a href="" class="btn btn-primary" data-toggle="modal"
+										data-target="#myModal">Details</a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
-				</c:forEach>
-			</div>
-			<div class="clearfix"></div>
+				</div>
+			</c:forEach>
 		</div>
+		<div class="clearfix"></div>
 	</div>
-	</main>
+</div>
+</main>
 </div>
 
 <%@include file="../footer/application_footer.jsp"%>

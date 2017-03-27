@@ -49,7 +49,7 @@
 	<a data-toggle="collapse" class="nav-header collapsed"
 		href="#dashboard-menu"><i class="icon-dashboard"></i>Menu</a>
 	<ul class="nav nav-list collapse in" id="dashboard-menu" style="height: 246px;" aria-expanded="true">
-		<li><a href="${rc.getContextPath()}/member/search">Search</a></li>
+		<li><a href="${rc.getContextPath()}/member/search?cityId=0&thisProduct=">Search</a></li>
 		<li><a href="${rc.getContextPath()}/member/edit-profile">Profile</a></li>
 		<li><a href="${rc.getContextPath()}/member/change-password">Change Password</a></li>
 	</ul>

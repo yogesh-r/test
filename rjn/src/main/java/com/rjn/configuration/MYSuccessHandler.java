@@ -44,7 +44,7 @@ public class MYSuccessHandler implements AuthenticationSuccessHandler {
         	return "/vendor/home";
         } else if (authorities.contains(Constant.ROLE_MEMBER)) {
         	if (pageName != null) {
-        		return "/member/search?thisProduct="+searchKeyWord;
+        		return "/member/search?cityId=0&thisProduct="+searchKeyWord;
         	} else {
         		return "/member/home";
         	}
