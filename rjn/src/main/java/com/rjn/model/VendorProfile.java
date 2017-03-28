@@ -64,7 +64,7 @@ public class VendorProfile {
 	private String longitude;
 
 	@Column(name = "verified", nullable = false)
-	private boolean verified = false;
+	private int verified;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vendorId", cascade=CascadeType.ALL)
 	private List<VendorProduct> products = new ArrayList<VendorProduct>();
@@ -219,11 +219,11 @@ public class VendorProfile {
 		this.vendorLogo = vendorLogo;
 	}
 
-	public boolean isVerified() {
+	public int isVerified() {
 		return verified;
 	}
 
-	public void setVerified(boolean verified) {
+	public void setVerified(int verified) {
 		this.verified = verified;
 	}
 }

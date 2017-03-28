@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.rjn.model.Account;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
 import com.rjn.model.core.ProductCategory;
@@ -36,6 +37,7 @@ public class ProfileController {
 	@Autowired
 	private ProductDetailsService productService;
 
+	
 	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
@@ -107,5 +109,36 @@ public class ProfileController {
 		model.addAttribute("thisVendor", thisVendor);
 		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
 		return "vendor-profile-map";
+	}
+	
+	
+	@RequestMapping(value = { "/{vendorId}/overview" }, method = RequestMethod.GET)
+	public String overview(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
+		
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		VendorProfile loginvendor = vendorService.getVendor(vendorId);
+		if (loginUser!=null) {
+				if(loginvendor.isVerified()==1){
+					model.addAttribute("showVerifyButton", false);
+				}else{
+					model.addAttribute("showVerifyButton", true);
+				}
+		}
+		
+		return "vendor/overview";
+		
+	}
+	
+	private VendorProfile getLoginVendorDetails() {
+		Account loginUser = utils.getLoggedInUser();
+		VendorProfile loginvendor = vendorService.getVendor(loginUser.getReg_id());
+		System.out.println("login data"+loginvendor);
+		return loginvendor;
 	}
 }
