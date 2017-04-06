@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.rjn.bean.ChangePassworddBean;
+import com.rjn.bean.ChangePasswordBean;
 import com.rjn.bean.SearchBean;
 import com.rjn.model.Account;
 import com.rjn.model.CustomerProfile;
@@ -132,7 +132,7 @@ public class MemberNavigationController {
 	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
-	public @ResponseBody Object updateMemberPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
+	public @ResponseBody Object updateMemberPassword(@RequestBody ChangePasswordBean forgetPasswordBean) {
 		Map<String, Object> model1 = new HashMap<String, Object>();
 		Account loginUser = applicationUtils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();

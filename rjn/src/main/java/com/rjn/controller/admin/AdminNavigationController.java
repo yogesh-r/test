@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import com.rjn.bean.ChangePassworddBean;
+import com.rjn.bean.ChangePasswordBean;
 import com.rjn.bean.ExcelFileBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
@@ -276,7 +276,7 @@ public class AdminNavigationController {
 	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
-	public String adminChangePassword(@Valid ChangePassworddBean forgetPasswordBean,BindingResult result,ModelMap model) {
+	public String adminChangePassword(@Valid ChangePasswordBean forgetPasswordBean,BindingResult result,ModelMap model) {
 		Account loginUser = applicationUtils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();

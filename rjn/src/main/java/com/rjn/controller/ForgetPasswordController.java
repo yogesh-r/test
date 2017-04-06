@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.rjn.bean.ChangePassworddBean;
+import com.rjn.bean.ChangePasswordBean;
 import com.rjn.dao.core.AccountDao;
 import com.rjn.model.Account;
 import com.rjn.model.PasswordResetToken;
@@ -77,7 +77,7 @@ public class ForgetPasswordController {
 	}
 	
 	@RequestMapping(value = { "/header/change-password" }, method = RequestMethod.POST)
-	public String heaerChangePassword(@Valid ChangePassworddBean ChangePassworddBean, BindingResult result, ModelMap model) {
+	public String heaerChangePassword(@Valid ChangePasswordBean ChangePassworddBean, BindingResult result, ModelMap model) {
 		PasswordResetToken passwordResetToken = headerService.getPasswordResetToken(ChangePassworddBean.getProfileNumber(), ChangePassworddBean.getToken());
 		if (passwordResetToken != null && ChangePassworddBean.getNewPassword().equals(ChangePassworddBean.getConformPassword())) {
 			//load account

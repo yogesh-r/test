@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.rjn.bean.ChangePassworddBean;
+import com.rjn.bean.ChangePasswordBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
@@ -161,7 +161,7 @@ public class VendorNavigationController {
 	}
 
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
-	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
+	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePasswordBean forgetPasswordBean) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		Account loginUser = applicationUtils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
