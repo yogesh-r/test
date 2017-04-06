@@ -22,7 +22,7 @@ public class VendorProductDataController {
 	private VendorService vendorService;
 	
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 	
 	@Autowired
 	private VendorProductService productService;
@@ -37,7 +37,7 @@ public class VendorProductDataController {
 	}
 	
 	private VendorProfile getLoginVendorDetails() {
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		VendorProfile loginVendor = vendorService.getVendor(loginUser.getReg_id());
 		return loginVendor;
 	}

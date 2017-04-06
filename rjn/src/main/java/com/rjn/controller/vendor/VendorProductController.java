@@ -31,7 +31,7 @@ import com.rjn.utils.SeqConstant;
 public class VendorProductController {
 
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 	
 	@Autowired
 	private VendorService vendorService;
@@ -47,7 +47,7 @@ public class VendorProductController {
 	
 	@RequestMapping(value = { "/register-product" }, method = RequestMethod.GET)
 	public String registerProduct(ModelMap model) {
-		model.addAttribute("categoryList", utils.getAllCategory());
+		model.addAttribute("categoryList", applicationUtils.getAllCategory());
 		VendorProfile loginVendor = getLoginVendorDetails();
 		model.addAttribute("branchList", branchService.getBranchByVendor(loginVendor.getId()));
 		return "vendor/vendor_register-product"; 
@@ -102,7 +102,7 @@ public class VendorProductController {
 	@RequestMapping(value = { "/product-list" }, method = RequestMethod.GET)
 	public String productList(ModelMap model) {
 		VendorProfile loginVendor = getLoginVendorDetails();
-		model.addAttribute("categoryList", utils.getAllCategory());
+		model.addAttribute("categoryList", applicationUtils.getAllCategory());
 		model.addAttribute("branchList", branchService.getBranchByVendor(loginVendor.getId()));
 		return "vendor/vendor_product_list"; 
 	} 
@@ -118,12 +118,12 @@ public class VendorProductController {
 		VendorProfile loginVendor = getLoginVendorDetails();
 		Map<String, Object> model = new HashMap<String, Object>();
 		if (Constant.VENDOR_LEAD_STATUS_READ.equals(status)) {
-			model.put("leads", utils.getLeadForVendor(loginVendor.getId(), Constant.VENDOR_LEAD_STATUS_READ));
+			model.put("leads", applicationUtils.getLeadForVendor(loginVendor.getId(), Constant.VENDOR_LEAD_STATUS_READ));
 		} else if(Constant.VENDOR_LEAD_STATUS_UNREAD.equals(status)) {
-			model.put("leads", utils.getLeadForVendor(loginVendor.getId(), Constant.VENDOR_LEAD_STATUS_UNREAD));
+			model.put("leads", applicationUtils.getLeadForVendor(loginVendor.getId(), Constant.VENDOR_LEAD_STATUS_UNREAD));
 		} 
 		else if(Constant.VENDOR_LEAD_STATUS_All.equals(status)) {
-			model.put("leads", utils.allLead(loginVendor.getId()));
+			model.put("leads", applicationUtils.allLead(loginVendor.getId()));
 		} else {
 			model.put("leads", "No data found");
 		}
@@ -133,20 +133,20 @@ public class VendorProductController {
 	@RequestMapping(value = { "/rest/update-lead-status/{leadId}" }, method = RequestMethod.GET)
 	public @ResponseBody Object updateLeadStatus(HttpServletRequest request, @PathVariable long leadId) {
 		String leadStatus =	request.getParameter("status");
-		VendorLead thisLead = utils.getLeadById(leadId);
+		VendorLead thisLead = applicationUtils.getLeadById(leadId);
 		if (Constant.VENDOR_LEAD_STATUS_READ.equals(leadStatus)) {
 			thisLead.setVendorStatus(Constant.VENDOR_LEAD_STATUS_READ);
 		} else if (Constant.VENDOR_LEAD_STATUS_UNREAD.equals(leadStatus)) {
 			thisLead.setVendorStatus(Constant.VENDOR_LEAD_STATUS_UNREAD);
 		}
-		utils.updateLead(thisLead);
+		applicationUtils.updateLead(thisLead);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("isStatusUpdated", "yes");
 		return model;
 	}
 	
 	private VendorProfile getLoginVendorDetails() {
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		VendorProfile loginVendor = vendorService.getVendor(loginUser.getReg_id());
 		return loginVendor;
 	}

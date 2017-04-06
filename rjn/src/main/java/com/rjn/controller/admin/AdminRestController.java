@@ -6,13 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
@@ -28,9 +29,9 @@ import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.Constant;
 import com.rjn.utils.SeqConstant;
 
-@Controller
+@RestController
 @RequestMapping("/admin/rest")
-public class AdminDataController {
+public class AdminRestController {
 	
 	@Autowired
 	private BranchService branchService;
@@ -172,21 +173,14 @@ public class AdminDataController {
 
 	@RequestMapping(value = { "/update-lead-status/{leadId}" }, method = RequestMethod.GET)
 	public @ResponseBody Object updateLeadStatus(HttpServletRequest request, @PathVariable long leadId) {
-		System.out.println("leadId >> "+leadId);
-		
 		String leadStatus =	request.getParameter("status");
-		System.out.println("leadStatus >> "+leadStatus);
-		
 		VendorLead thisLead = applicationUtils.getLeadById(leadId);
-		
 		if (Constant.ADMIN_LEAD_STATUS_READ.equals(leadStatus)) {
 			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_READ);
 		} else if (Constant.ADMIN_LEAD_STATUS_UNREAD.equals(leadStatus)) {
 			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_UNREAD);
 		}
-		
 		applicationUtils.updateLead(thisLead);
-		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("isStatusUpdated", "yes");
 		return model;
@@ -195,7 +189,6 @@ public class AdminDataController {
 	@RequestMapping(value = { "/allLead" }, method = RequestMethod.GET)
 	public @ResponseBody Object allLead(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		System.out.println("utils>>>"+applicationUtils.allLead());
 		model.put("allLead", applicationUtils.allLead());
 		return model;
 		

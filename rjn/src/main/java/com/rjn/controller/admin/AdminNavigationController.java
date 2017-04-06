@@ -42,7 +42,7 @@ import com.rjn.utils.SeqConstant;
 
 @Controller 
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminNavigationController {
 
 	@Autowired
 	private VendorService vendorService;
@@ -51,7 +51,7 @@ public class AdminController {
 	private SequenceGeneratorService seqGenerator;
 
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 	
 	@Autowired
 	private BranchService branchService;
@@ -136,7 +136,7 @@ public class AdminController {
 			vendorDetails.setId(profileNumber);
 			
 			String unEncryptPass = AppUtils.getRandorPassword(vendorDetails.getVendorFirstName());
-			vendorDetails.setPassword(utils.encryptPassword(unEncryptPass));
+			vendorDetails.setPassword(applicationUtils.encryptPassword(unEncryptPass));
 			vendorService.saveVendorDetails(vendorDetails);
 			// write code for email
 			Email email=new Email(); 
@@ -166,7 +166,7 @@ public class AdminController {
 		model.addAttribute("vendorDetails", vendorDetails);
 		model.addAttribute("allVendors", "Yes");
 		
-		Account loginUser =   utils.getLoggedInUser();
+		Account loginUser =   applicationUtils.getLoggedInUser();
 		vendorService.getVendor(loginUser.getMy_user_name());
 		return "admin/register-branch";
 	}
@@ -186,7 +186,7 @@ public class AdminController {
 	public @ResponseBody Object saveCategory(@RequestBody ProductCategory productCategory) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
-			utils.saveCategory(productCategory);
+			applicationUtils.saveCategory(productCategory);
 			model.put("message", "success");
 			return model;
 		} catch(Exception e) {
@@ -197,7 +197,6 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/bulk-register-category" }, method = RequestMethod.POST)
 	public String bulkSaveCategory(ModelMap model, @RequestParam("excelfile") MultipartFile excelfile) {
-		System.out.println("Bulk upload ontroller called ??????????????? ");
 		try { 
 			String fileName = excelfile.getOriginalFilename();
 			List<ExcelFileBean> thisFile = 	AppFileHandlingUtils.readExcelFile(excelfile, fileName);
@@ -208,7 +207,7 @@ public class AdminController {
 				pc.setDescription(e.getCol2());
 				productCategories.add(pc);
 			}
-			utils.bulkCategoryInsert(productCategories);
+			applicationUtils.bulkCategoryInsert(productCategories);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -217,7 +216,7 @@ public class AdminController {
 
 	@RequestMapping(value = { "/product-category-list" }, method = RequestMethod.GET)
 	public String productCategoryList(ModelMap model) {
-		model.addAttribute("categoryList", utils.getAllCategory());
+		model.addAttribute("categoryList", applicationUtils.getAllCategory());
 		return "admin/admin_category_list";
 	}
 
@@ -278,13 +277,13 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public String adminChangePassword(@Valid ChangePassworddBean forgetPasswordBean,BindingResult result,ModelMap model) {
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
 		String newpassword=forgetPasswordBean.getNewPassword();
 		
-		if (utils.matchPassword(uiOldpassword, dbPassword)) {
-			loginUser.setPassword(utils.encryptPassword(newpassword));
+		if (applicationUtils.matchPassword(uiOldpassword, dbPassword)) {
+			loginUser.setPassword(applicationUtils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
 		} else {
 			return "wrong-password";

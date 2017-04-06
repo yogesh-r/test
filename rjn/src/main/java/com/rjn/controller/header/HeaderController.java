@@ -36,7 +36,7 @@ public class HeaderController {
 	private HeaderService headerService;
 	
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 	
 	@Autowired
 	private SequenceGeneratorService seqGenerator;
@@ -62,7 +62,7 @@ public class HeaderController {
 	@RequestMapping(value = { "/member/register"}, method = RequestMethod.POST)
 	public String saveMemberRegisteration(@Valid CustomerProfile profileMaster, BindingResult result, ModelMap model, RedirectAttributes redirectAttributes) {
 		String unEncryptPass = profileMaster.getPassword();
-		profileMaster.setPassword(utils.encryptPassword(unEncryptPass));
+		profileMaster.setPassword(applicationUtils.encryptPassword(unEncryptPass));
 		SeqId seqId = seqGenerator.getSeqId(SeqConstant.CUSTOMER_SEQ);
 		String profileNumber = seqId.getSeqName() +"-"+ seqId.getSeqNum();
 		profileMaster.setProfileNumber(profileNumber);

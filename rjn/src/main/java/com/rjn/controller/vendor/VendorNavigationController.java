@@ -34,10 +34,10 @@ import com.rjn.utils.SeqConstant;
 
 @Controller
 @RequestMapping("/vendor")
-public class VendorController {
+public class VendorNavigationController {
 
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 
 	@Autowired
 	private VendorService vendorservice;
@@ -63,8 +63,8 @@ public class VendorController {
 		model.put("headerType", Constant.ROLE_VENDOR);
 		
 		// saving leads
-		Account loginUser = utils.getLoggedInUser();
-		VendorLead vendorLead = utils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
+		Account loginUser = applicationUtils.getLoggedInUser();
+		VendorLead vendorLead = applicationUtils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
 		if (vendorLead == null) {
 			vendorLead = new VendorLead();
 		}
@@ -83,7 +83,7 @@ public class VendorController {
 			vendorLead.setVisitCount(count);
 		}
 		model.put("headerType", Constant.ROLE_MEMBER);
-		utils.saveVendorLead(vendorLead);
+		applicationUtils.saveVendorLead(vendorLead);
 		
 		return "vendor-profile/vendor-profile";
 	}
@@ -134,7 +134,7 @@ public class VendorController {
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public String paernerBranchList(ModelMap model) {
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		model.addAttribute("vendorDetails", getLoginVendorDetails());
 		List<BranchProfile> branchList =  branchService.getBranchByVendor(loginUser.getReg_id());
 		model.addAttribute("branchList", branchList);
@@ -163,12 +163,12 @@ public class VendorController {
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
 		String newpassword=forgetPasswordBean.getNewPassword();
-		if (utils.matchPassword(uiOldpassword, dbPassword)) {
-			loginUser.setPassword(utils.encryptPassword(newpassword));
+		if (applicationUtils.matchPassword(uiOldpassword, dbPassword)) {
+			loginUser.setPassword(applicationUtils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
 		} else {
 			model.put("result", "Failure");
@@ -186,7 +186,7 @@ public class VendorController {
 	}
 	
 	private VendorProfile getLoginVendorDetails() {
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		VendorProfile loginvendor = vendorservice.getVendor(loginUser.getReg_id());
 		return loginvendor;
 	}

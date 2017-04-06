@@ -28,10 +28,10 @@ import com.rjn.utils.Constant;
 
 @Controller
 @RequestMapping("/member")
-public class MemberController {
+public class MemberNavigationController {
 	
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 	
 	@Autowired
 	private VendorService vendorService; 
@@ -57,14 +57,19 @@ public class MemberController {
 		if (loginUser != null) {
 			model.put("headerType", loginUser.get(0));
 		}
+		
 		String productKeyword = (String) request.getParameter("thisProduct");
 		int cityId = Integer.valueOf(request.getParameter("cityId"));
-		
+
+		model.put("productKeyword", productKeyword);
+		model.put("cityId", cityId);
+		model.put("cityList", applicationUtils.getCitiesByState(Constant.STATE_CHHATTISGARH));
+
 		SearchBean sb = new SearchBean();
 		sb.setSearchProductKeyword(productKeyword);
 		sb.setCityId(cityId);
 		model.put("results", searchService.findVendors(sb));
-		model.put("cityList", utils.getCitiesByState(Constant.STATE_CHHATTISGARH));
+		model.put("cityList", applicationUtils.getCitiesByState(Constant.STATE_CHHATTISGARH));
 		model.put("cityId", cityId);
 
 		return "/search/search_branch";
@@ -74,10 +79,10 @@ public class MemberController {
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		CustomerProfile profileMaster = getMemberDetails(loginUser.getReg_id());
 		
-		VendorLead vendorLead = utils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
+		VendorLead vendorLead = applicationUtils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
 		if (vendorLead == null) {
 			vendorLead = new VendorLead();
 		}
@@ -96,7 +101,7 @@ public class MemberController {
 			vendorLead.setVisitCount(count);
 		}
 		model.put("headerType", Constant.ROLE_MEMBER);
-		utils.saveVendorLead(vendorLead);
+		applicationUtils.saveVendorLead(vendorLead);
 		return "vendor-profile/vendor-profile";
 	}
 	
@@ -106,7 +111,7 @@ public class MemberController {
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String memberEditProfile(ModelMap model) {
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		CustomerProfile profileMaster = getMemberDetails(loginUser.getReg_id());
 		model.addAttribute("memberDetails", profileMaster);
 		return "member/member-edit-profile"; 
@@ -124,13 +129,13 @@ public class MemberController {
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public String updateMemberPassword(@Valid ChangePassworddBean forgetPasswordBean,BindingResult result, ModelMap model) {
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
 		String newpassword=forgetPasswordBean.getNewPassword();
 		
-		if (utils.matchPassword(uiOldpassword, dbPassword)) {
-			loginUser.setPassword(utils.encryptPassword(newpassword));
+		if (applicationUtils.matchPassword(uiOldpassword, dbPassword)) {
+			loginUser.setPassword(applicationUtils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
 		} else {
 			return "wrong-password";

@@ -37,7 +37,7 @@ public class ForgetPasswordController {
 	private AccountDao accountDao;
 	
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 	
 	@RequestMapping(value = { "/forgetPassword" }, method = RequestMethod.POST)
 	public String forgetPassword(ModelMap model, @RequestParam("email") String contactEmailId, HttpServletRequest request) {
@@ -82,7 +82,7 @@ public class ForgetPasswordController {
 		if (passwordResetToken != null && ChangePassworddBean.getNewPassword().equals(ChangePassworddBean.getConformPassword())) {
 			//load account
 			Account thisAccount =  accountDao.findByRegId(ChangePassworddBean.getProfileNumber());
-			thisAccount.setPassword(utils.encryptPassword(ChangePassworddBean.getNewPassword()));
+			thisAccount.setPassword(applicationUtils.encryptPassword(ChangePassworddBean.getNewPassword()));
 			accountDao.updateAccount(thisAccount);
 		}
 		return null;

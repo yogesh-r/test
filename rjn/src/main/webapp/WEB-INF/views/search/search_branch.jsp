@@ -25,6 +25,8 @@
 </style>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <c:choose>
 	<c:when test="${headerType eq  'ROLE_ADMIN'}">
 		<c:set var="searchUrl" value="${rc.getContextPath()}/admin/search" />
@@ -40,7 +42,10 @@
 	</c:when>
 	<c:otherwise>
 		<c:set var="searchUrl" value="${rc.getContextPath()}/search" />
-		<br><br><br><br><%@include file="../header/application_header.jsp"%>
+		<br>
+		<br>
+		<br>
+		<br><%@include file="../header/application_header.jsp"%>
 	</c:otherwise>
 </c:choose>
 <div class="content">
@@ -72,12 +77,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="clearfix"></div>
-</div>
-</br>
-</br>
-</br>
-<div class="blog">
+	<div class="blog">
 	<div class="container search-continer">
 		<div class="row">
 			<c:forEach items="${results}" var="thisResult">
@@ -106,7 +106,8 @@
 		<div class="clearfix"></div>
 	</div>
 </div>
-</main>
+	<div class="clearfix"></div>
+	</main>
 </div>
 
 <%@include file="../footer/application_footer.jsp"%>

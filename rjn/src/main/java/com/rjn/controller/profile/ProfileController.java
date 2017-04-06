@@ -130,15 +130,12 @@ public class ProfileController {
 					model.addAttribute("showVerifyButton", true);
 				}
 		}
-		
 		return "vendor/overview";
-		
 	}
 	
 	private VendorProfile getLoginVendorDetails() {
 		Account loginUser = utils.getLoggedInUser();
 		VendorProfile loginvendor = vendorService.getVendor(loginUser.getReg_id());
-		System.out.println("login data"+loginvendor);
 		return loginvendor;
 	}
 }

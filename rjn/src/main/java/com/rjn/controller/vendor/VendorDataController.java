@@ -21,7 +21,7 @@ import com.rjn.service.Core.ApplicationUtils;
 public class VendorDataController {
 	
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 
 	@Autowired
 	private BranchService branchService;
@@ -39,14 +39,14 @@ public class VendorDataController {
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public @ResponseBody Object paernerBranchList(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		model.put("vendorDetails", getLoginVendorDetails());
 		List<BranchProfile> branchList =  branchService.getBranchByVendor(loginUser.getReg_id());
 		model.put("branchList", branchList);
 		return model;
 	}
 	private VendorProfile getLoginVendorDetails() {
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		VendorProfile loginvendor = vendorservice.getVendor(loginUser.getReg_id());
 		return loginvendor;
 	}

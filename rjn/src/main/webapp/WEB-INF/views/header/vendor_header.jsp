@@ -34,7 +34,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav" style="margin-left: 103px;">
-				<li><a href="${rc.getContextPath()}/admin/home"><i
+				<li><a href="${rc.getContextPath()}/vendor/home"><i
 						class="fa fa-home"></i><span> Home</span></a></li>
 			</ul>
 			
