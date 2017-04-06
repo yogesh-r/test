@@ -23,9 +23,11 @@ import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
+import com.rjn.model.core.ProductCategory;
 import com.rjn.model.core.VendorLead;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
+import com.rjn.service.ProductDetailsService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.SequenceGeneratorService;
@@ -50,7 +52,14 @@ public class VendorNavigationController {
 
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private VendorService vendorService; 
+	
+	@Autowired
+	private ProductDetailsService productService;
 
+	// ********************* vendor profile *****************************************
 	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
 	public String vendorProfile(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
 		VendorProfile thisVendor = vendorservice.getVendor(vendorId);
@@ -84,10 +93,63 @@ public class VendorNavigationController {
 		}
 		model.put("headerType", Constant.ROLE_MEMBER);
 		applicationUtils.saveVendorLead(vendorLead);
-		
+		model.put("url", "vendor");
 		return "vendor-profile/vendor-profile";
 	}
 	
+	
+	@RequestMapping(value = { "/{vendorId}/product-list" }, method = RequestMethod.GET)
+	public String productData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
+		
+		List<ProductCategory> product=productService.getProductDetails();
+		model.addAttribute("product", product);
+		model.put("url", "vendor");
+		return "vendor-profile/vendor-profile-products";
+	}
+	
+	@RequestMapping(value = { "/{vendorId}/map" }, method = RequestMethod.GET)
+	public String mapData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		model.put("url", "vendor");
+		return "vendor-profile-map";
+	}
+	
+	@RequestMapping(value = { "/{vendorId}/branch-list" }, method = RequestMethod.GET)
+	public String branchList(HttpServletRequest request,ModelMap model,@PathVariable String vendorId) {
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
+		model.addAttribute("branch",branch_details);
+		model.put("url", "vendor");
+		return "vendor-profile/vendor-profile-branches";
+	}
+	@RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
+	public String verify(ModelMap model, HttpServletRequest request) {
+		VendorProfile vendorProfile = getLoginVendorDetails();
+		vendorservice.updateVerify(vendorProfile.getId(), true);
+		return "vendor/vendor_home";
+	}
+	
+	// ******************** vendor navigation after login ***********************
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -95,7 +157,6 @@ public class VendorNavigationController {
 		return "vendor/vendor_home";
 	}
 
-	// Master
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.GET)
 	public String paernerRegisterBranch(ModelMap model) {
 		model.addAttribute("vendorDetails", getLoginVendorDetails());
@@ -141,15 +202,10 @@ public class VendorNavigationController {
 		return "vendor/vendor-branch-list";
 	}
 
+	// ********************** vendor Edit profile ********************
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String paernerEditProfile(ModelMap model) {
 		return "vendor/vendor-edit-profile";
-	}
-	
-	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
-	public String vendorChangePassword(ModelMap model) {
-		model.addAttribute("vendorDetails", getLoginVendorDetails());
-		return "vendor/vendor-change-password"; 
 	}
 	
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.POST)
@@ -160,6 +216,13 @@ public class VendorNavigationController {
 		return model;
 	}
 
+	// *********************** change password ***************************
+	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
+	public String vendorChangePassword(ModelMap model) {
+		model.addAttribute("vendorDetails", getLoginVendorDetails());
+		return "vendor/vendor-change-password"; 
+	}
+	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePasswordBean forgetPasswordBean) {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -178,13 +241,7 @@ public class VendorNavigationController {
 		return model;
 	}
 	
-	@RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
-	public String verify(ModelMap model, HttpServletRequest request) {
-		VendorProfile vendorProfile = getLoginVendorDetails();
-		vendorservice.updateVerify(vendorProfile.getId(), true);
-		return "vendor/vendor_home";
-	}
-	
+	// *************************** private methods ********************************
 	private VendorProfile getLoginVendorDetails() {
 		Account loginUser = applicationUtils.getLoggedInUser();
 		VendorProfile loginvendor = vendorservice.getVendor(loginUser.getReg_id());

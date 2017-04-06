@@ -22,9 +22,13 @@ import com.rjn.bean.SearchBean;
 import com.rjn.model.Account;
 import com.rjn.model.CustomerProfile;
 import com.rjn.model.VendorProfile;
+import com.rjn.model.Branch.BranchProfile;
+import com.rjn.model.core.ProductCategory;
 import com.rjn.model.core.VendorLead;
 import com.rjn.service.AccountService;
+import com.rjn.service.BranchService;
 import com.rjn.service.MemberService;
+import com.rjn.service.ProductDetailsService;
 import com.rjn.service.SearchService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
@@ -49,6 +53,13 @@ public class MemberNavigationController {
 	@Autowired
 	private AccountService accountService;
 	
+	@Autowired
+	private BranchService branchService;
+	
+	@Autowired
+	private ProductDetailsService productService;
+	
+	// ****************** home and search *******************
 	@RequestMapping(value = { "/home"}, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request) {
 		return "member/member_home";
@@ -79,6 +90,7 @@ public class MemberNavigationController {
 		return "/search/search_branch";
 	}
 	
+	// ****************** vendor profile ************************
 	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
@@ -104,15 +116,58 @@ public class MemberNavigationController {
 			count = vendorLead.getVisitCount() + 1;
 			vendorLead.setVisitCount(count);
 		}
-		model.put("headerType", Constant.ROLE_MEMBER);
 		applicationUtils.saveVendorLead(vendorLead);
+		model.put("headerType", Constant.ROLE_MEMBER);
+		model.put("url", "member");
 		return "vendor-profile/vendor-profile";
 	}
 	
-	private CustomerProfile getMemberDetails(String regId){
-		return memberService.getProfileMasterByprofileNumber(regId);
+	@RequestMapping(value = { "/{vendorId}/product-list" }, method = RequestMethod.GET)
+	public String productData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
+		
+		List<ProductCategory> product=productService.getProductDetails();
+		model.addAttribute("product", product);
+		model.put("url", "member");
+		return "vendor-profile/vendor-profile-products";
 	}
 	
+	@RequestMapping(value = { "/{vendorId}/map" }, method = RequestMethod.GET)
+	public String mapData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		model.put("url", "member");
+		return "vendor-profile-map";
+	}
+	
+	@RequestMapping(value = { "/{vendorId}/branch-list" }, method = RequestMethod.GET)
+	public String branchList(HttpServletRequest request,ModelMap model,@PathVariable String vendorId) {
+		Object object =  request.getSession().getAttribute("authorities");
+		List loginUser  = (List)object;
+		if (loginUser != null) {
+			model.put("headerType", loginUser.get(0));
+		}
+		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		model.addAttribute("thisVendor", thisVendor);
+		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
+		model.addAttribute("branch",branch_details);
+		model.put("url", "member");
+		return "vendor-profile/vendor-profile-branches";
+	}
+
+	// ************** Edit profile ******************************
 	@RequestMapping(value = { "/edit-profile" }, method = RequestMethod.GET)
 	public String memberEditProfile(ModelMap model) {
 		Account loginUser = applicationUtils.getLoggedInUser();
@@ -126,6 +181,7 @@ public class MemberNavigationController {
 		return "member/member-edit-profile";
 	}
 	
+	// ***************** change password ******************** 
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.GET)
 	public String memberChangePassword(ModelMap model) {
 		return "member/member_change_password"; 
@@ -149,5 +205,9 @@ public class MemberNavigationController {
 			return model1;
 		}
 		//return null;
+	}
+	// *************************** private methods ***************************
+	private CustomerProfile getMemberDetails(String regId){
+		return memberService.getProfileMasterByprofileNumber(regId);
 	}
 }

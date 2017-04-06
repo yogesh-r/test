@@ -54,10 +54,10 @@
 		<ul class="nav nav-list collapse in" id="dashboard-menu"
 			style="height: 246px;" aria-expanded="true">
 			<li><a
-				href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/branch-list">Branches</a></li>
+				href="${rc.getContextPath()}/${url}/${thisVendor.id}/branch-list">Branches</a></li>
 			<li><a
-				href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/product-list">Products</a></li>
-			<li><a href="${rc.getContextPath()}/vendor-profile/${thisVendor.id}/map">Map</a></li>
+				href="${rc.getContextPath()}/${url}/${thisVendor.id}/product-list">Products</a></li>
+			<li><a href="${rc.getContextPath()}/${url}/${thisVendor.id}/map">Map</a></li>
 		</ul>
 	</div>
 	<div class="row page"

@@ -23,10 +23,10 @@ import com.rjn.utils.Constant;
 
 @Controller
 @RequestMapping("/vendor-profile")
-public class ProfileController {
+public class VendorProfileController {
 	
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 	
 	@Autowired
 	private VendorService vendorService; 
@@ -36,9 +36,8 @@ public class ProfileController {
 	
 	@Autowired
 	private ProductDetailsService productService;
-
 	
-	@RequestMapping(value = { "/{vendorId}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/{vendorId}", "/{vendorId}/{uniquieId}" , "/{vendorId}/branch-list",  "/{vendorId}/product-list", "/{vendorId}/map", "/{vendorId}/overview" }, method = RequestMethod.GET)
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
@@ -53,10 +52,10 @@ public class ProfileController {
 				return "redirect:/admin/"+thisVendor.getId();
 			}
 		} 
-		return "vendor-profile/vendor-profile";
+		return "redirect:/login/";
 	}
 	
-	@RequestMapping(value = { "/{vendorId}/{uniquieId}" }, method = RequestMethod.GET)
+/*	@RequestMapping(value = { "/{vendorId}/{uniquieId}" }, method = RequestMethod.GET)
 	public String branchData(HttpServletRequest request,ModelMap model,@PathVariable String uniquieId){
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
@@ -65,10 +64,11 @@ public class ProfileController {
 		}
 		BranchProfile branch_details=branchService.getBranchDetails(uniquieId);
 		model.addAttribute("branchName",branch_details);
+		model.put("url", "vendor-profile");
 		return "vendor-profile/vendor-profile";
-	}
+	}*/
 	
-	@RequestMapping(value = { "/{vendorId}/branch-list" }, method = RequestMethod.GET)
+/*	@RequestMapping(value = { "/{vendorId}/branch-list" }, method = RequestMethod.GET)
 	public String branchList(HttpServletRequest request,ModelMap model,@PathVariable String vendorId) {
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
@@ -79,10 +79,11 @@ public class ProfileController {
 		model.addAttribute("thisVendor", thisVendor);
 		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
 		model.addAttribute("branch",branch_details);
+		model.put("url", "vendor-profile");
 		return "vendor-profile/vendor-profile-branches";
-	}
+	}*/
 	
-	@RequestMapping(value = { "/{vendorId}/product-list" }, method = RequestMethod.GET)
+/*	@RequestMapping(value = { "/{vendorId}/product-list" }, method = RequestMethod.GET)
 	public String productData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
@@ -91,14 +92,13 @@ public class ProfileController {
 		}
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
-		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
-		
 		List<ProductCategory> product=productService.getProductDetails();
 		model.addAttribute("product", product);
+		model.put("url", "vendor-profile");
 		return "vendor-profile/vendor-profile-products";
-	}
+	}*/
 	
-	@RequestMapping(value = { "/{vendorId}/map" }, method = RequestMethod.GET)
+/*	@RequestMapping(value = { "/{vendorId}/map" }, method = RequestMethod.GET)
 	public String mapData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
 		Object object =  request.getSession().getAttribute("authorities");
 		List loginUser  = (List)object;
@@ -108,11 +108,12 @@ public class ProfileController {
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
 		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
+		model.put("url", "vendor-profile");
 		return "vendor-profile-map";
-	}
+	}*/
 	
 	
-	@RequestMapping(value = { "/{vendorId}/overview" }, method = RequestMethod.GET)
+	/*	@RequestMapping(value = { "/{vendorId}/overview" }, method = RequestMethod.GET)
 	public String overview(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
 		
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
@@ -130,12 +131,13 @@ public class ProfileController {
 					model.addAttribute("showVerifyButton", true);
 				}
 		}
+		model.put("url", "vendor-profile");
 		return "vendor/overview";
-	}
+	}*/
 	
-	private VendorProfile getLoginVendorDetails() {
-		Account loginUser = utils.getLoggedInUser();
+/*	private VendorProfile getLoginVendorDetails() {
+		Account loginUser = applicationUtils.getLoggedInUser();
 		VendorProfile loginvendor = vendorService.getVendor(loginUser.getReg_id());
 		return loginvendor;
-	}
+	}*/
 }
