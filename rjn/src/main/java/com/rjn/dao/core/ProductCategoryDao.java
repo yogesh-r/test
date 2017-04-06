@@ -9,4 +9,5 @@ public interface ProductCategoryDao {
 	public List<ProductCategory> getAllCategory();
 	public ProductCategory getCategory(int productCategoryId);
 	public void saveInBulk(List<ProductCategory> productCategoryList);
+	public void deleteCategory(ProductCategory productCategory);
 }

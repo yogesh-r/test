@@ -48,4 +48,9 @@ public class ProductCategoryDaoImpl extends AbstractDao<Integer, ProductCategory
 			i++;
 		}
 	}
+
+	@Override
+	public void deleteCategory(ProductCategory productCategory) {
+		delete(productCategory);
+ 	}
 }

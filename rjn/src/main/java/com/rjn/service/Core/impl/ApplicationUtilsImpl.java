@@ -47,7 +47,6 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	@Override
 	public String encryptPassword(String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
 		return passwordEncoder.encode(password);
 	}
 	
@@ -171,6 +170,11 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	@Override
 	public List<City> getCitiesByState(String state) {
 		return cityDao.getCitiesByState(state);
+	}
+
+	@Override
+	public void deleteCategory(ProductCategory productCategory) {
+		productCategoryDao.deleteCategory(productCategory);
 	}
 }
 

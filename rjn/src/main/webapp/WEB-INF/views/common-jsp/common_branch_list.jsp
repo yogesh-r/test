@@ -111,14 +111,13 @@
 			<tbody id="ResultArea">
 				
 					<tr ng-repeat="thisBranch in branchList">
-						
 						<td>
 							{{thisBranch.id}}
 						</td>
 						<td>{{thisBranch.branchName}}</td>
 						<td>{{thisBranch.contactNo}}</td>
 						<td>{{thisBranch.address}}</td>
-						<td><div ng-click="editForm(thisBranch.id);">edit</div></td>
+						<td><a style="cursor:pointer" ng-click="editForm(thisBranch.id);">edit</a></td>
 					</tr>
 				
 			</tbody>

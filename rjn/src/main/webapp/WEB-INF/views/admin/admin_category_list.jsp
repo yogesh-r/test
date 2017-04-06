@@ -1,15 +1,16 @@
 <%@include file="admin_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="content" ng-controller="categoryListCtrl">
+	<div class="col-md-2">
+		<input type="file" file-model="myFile" />
+		<button ng-click="uploadFile()">upload me</button>
+	</div>
+
 	<div ng-if="!displayAddForm" class="col-md-1">
 		<button ng-click="addForm();"
 			class="form-control btn-primary pull-left">Add</button>
 	</div>
 
-	<div ng-if="!displayAddForm" class="col-md-7 input-group">
-		<input type="file" file-model="myFile" />
-		<button ng-click="uploadFile()">upload me</button>
-	</div>
 
 	<div ng-if="displayAddForm">
 		<div class="row">
@@ -58,7 +59,6 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Action</th>
 					<th>Name</th>
 					<th>Description</th>
 					<th>Action</th>
@@ -66,12 +66,11 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="thisCategory in categoryList">
-					<td><div ng-click="editForm(thisCategory.id);">
-							<a style="cursor: pointer;">edit</a>
-						</div></td>
 					<td>{{thisCategory.name}}</td>
 					<td>{{thisCategory.description}}</td>
-					<td><a href="#" ng-click="deleteCategory(thisCategory.id)"> Delete</a></td>
+					<td><a ng-click="editForm(thisCategory.id);"
+						style="cursor: pointer;">edit</a>, <a href="#"
+						ng-click="deleteCategory(thisCategory.id)"> Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

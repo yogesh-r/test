@@ -53,8 +53,8 @@
 						class="form-control" name="addr" value="{{vendorDetails.address}}">
 					<input type="hidden" name="id" value="{{vendorDetails.id}} ">
 
-					<button ng-click="saveVendorProfile();" class="btn btn-default">Submit</button>
-					<div ng-click="enableEditFunction();" class="btn btn-default">Close</div>
+					<button ng-click="saveVendorProfile();" class="btn btn-info">Save</button>
+					<div ng-click="enableEditFunction();" class="btn btn-primary">Close</div>
 				</div>
 			</div>
 		</div>

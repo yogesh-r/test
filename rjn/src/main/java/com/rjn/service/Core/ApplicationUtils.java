@@ -20,17 +20,19 @@ public interface ApplicationUtils {
 	
 	void saveVendorRegistration(VendorProfile vendorDetails);
 	
-
-	
-	public List<ProductCategory> getAllCategory();
-	
-	void saveCategory(ProductCategory productCategory);
-	
-	ProductCategory getCategory(int productCategoryId);
-	
 	public boolean matchPassword(String password,String encriptedPassword);
 	
 	void bulkCategoryInsert(List<ProductCategory> productCategoryList);
+	
+	//category
+	void saveCategory(ProductCategory productCategory);
+	
+	void deleteCategory(ProductCategory productCategory);
+	
+	public List<ProductCategory> getAllCategory();
+	
+	ProductCategory getCategory(int productCategoryId);
+	
 	
 	
 	// Leads

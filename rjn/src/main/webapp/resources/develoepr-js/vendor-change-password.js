@@ -12,7 +12,6 @@ RJN.controller('vendorChangePasswordCtrl', [ '$scope', '$http' , function ($scop
 	$scope.saveChangePassword = function() {
 		$http.post(_context + '/vendor/change-password',
 				$scope.changePassword).then(function(response) {
-					console.log()
 					if (response.data.result == "success") {
 						toastr.success('Profile saved successfully.');
 					} else {

@@ -8,7 +8,7 @@
 				
 				<div ng-show="enableEdit">
 					<div class="pull-right ng-scope">
-						<div ng-click="enableEditFunction();">Edit</div>
+						<div style="cursor:pointer" ng-click="enableEditFunction();"><a>Edit</a></div>
 					</div>
 					<div class="data-row">
 						<label>First Name: </label>
@@ -54,8 +54,8 @@
 						class="form-control" name="addr" value="{{thisProfile.address}}">
 					<input type="hidden" name="id" value="{{thisProfile.id}} ">
 
-					<button ng-click="saveMemberProfile();" class="btn btn-default">Submit</button>
-					<div ng-click="enableEditFunction();" class="btn btn-default">Close</div>
+					<button ng-click="saveMemberProfile();" class="btn btn-info">Save</button>
+					<button ng-click="enableEditFunction();" class="btn btn-primary">Close</button>
 				</div>
 			</div>
 		</div>

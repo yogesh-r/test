@@ -3,6 +3,7 @@
 <br>
 <div class="content" ng-controller="vendorLeadsCtrl">
 	<div class="col-md-3" >
+		<label>View &nbsp</label>
 		<select name="change" id="change" ng-model="change" ng-change="readLead(change)">
 			<option selected value="read">read</option>
 			<option value="unread">unread</option>
@@ -27,7 +28,7 @@
 				<td>{{thisLeads.mobileNo}}</td>
 				<td>{{thisLeads.visitCount}}</td>
 				<td>{{thisLeads.vendorStatus}}</td>
-				<td><button ng-click="markRead(thisLeads.id)">Mark as Read</button></td>
+				<td><a style="cursor:pointer" ng-click="markRead(thisLeads.id)">Mark as Read</a></td>
 			</tr>
 		</tbody>
 	</table>

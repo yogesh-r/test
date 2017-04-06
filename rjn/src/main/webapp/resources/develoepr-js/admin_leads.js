@@ -18,7 +18,6 @@ RJN.controller('adminLeadsCtrl', [ '$scope', '$http' , function ($scope, $http) 
     };
     
     $scope.readLead = function(change) {
-    	console.log(change);
 		$http.get(_context+'/admin/rest/lead-list?status='+change).then(function(response) {
 			$scope.leadList = response.data.leads;
 		});

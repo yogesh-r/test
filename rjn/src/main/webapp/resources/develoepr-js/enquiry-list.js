@@ -15,7 +15,6 @@ RJN.controller('enquiryListCtrl', [ '$scope', '$http' , function ($scope, $http)
 		$scope.totalRow = 1;
 		$http.get(_context+'/admin/rest/enquiry-list?pageNo='+$scope.startingPage).then(function(response) {
  			$scope.enquiryList = response.data.vendorEnquirys;
- 			console.log(response.data.vendorEnquirys);
  		});
     };
     

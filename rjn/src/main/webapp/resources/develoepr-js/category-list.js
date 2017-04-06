@@ -6,6 +6,7 @@ RJN.controller('categoryListCtrl', [ '$scope', '$http', 'fileUpload' , function 
         fileUpload.uploadFileToUrl(file, uploadUrl);
         $scope.loadData();
         $scope.displayAddForm = false;
+        toastr.success('Successfully Saved');
     };
     
 	$scope.categoryList = [];
@@ -35,7 +36,6 @@ RJN.controller('categoryListCtrl', [ '$scope', '$http', 'fileUpload' , function 
 	};
 	
 	$scope.saveCategory = function(thisCategoryForm) {
-		console.log(thisCategoryForm);
 		$http.post(_context+'/admin/register-category', thisCategoryForm).then(function(response) {
 			$scope.editCategory = {};
 			toastr.success('Successfully Saved');
@@ -44,6 +44,14 @@ RJN.controller('categoryListCtrl', [ '$scope', '$http', 'fileUpload' , function 
 		});
 	};
    
+	// delete category
+	$scope.deleteCategory = function(thisId) {
+		$http.get(_context+'/admin/rest/delete/' + thisId).then(function(response) {
+ 			$scope.thisProduct = response.data.message;
+ 			toastr.success($scope.thisProduct); 
+ 			$scope.loadData();
+ 		});
+    };
     
     $scope.loadData();
 }]);

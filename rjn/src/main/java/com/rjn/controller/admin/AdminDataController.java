@@ -4,9 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.model.Account;
 import com.rjn.model.SeqId;
 import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
+import com.rjn.model.core.ProductCategory;
 import com.rjn.model.core.VendorLead;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
@@ -41,7 +39,7 @@ public class AdminDataController {
 	private VendorService vendorService;
 	
 	@Autowired
-	private ApplicationUtils utils;
+	private ApplicationUtils applicationUtils;
 	
 	@Autowired
 	private SequenceGeneratorService seqGenerator;
@@ -60,19 +58,25 @@ public class AdminDataController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		String status = request.getParameter("status");
 		if (Constant.ADMIN_LEAD_STATUS_READ.equals(status)) {
-			
-			 
-			model.put("leads", utils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_READ));
+			model.put("leads", applicationUtils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_READ));
 		} else if(Constant.ADMIN_LEAD_STATUS_UNREAD.equals(status)) {
-			model.put("leads", utils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_UNREAD));
+			model.put("leads", applicationUtils.getLeadsForAdmin(Constant.ADMIN_LEAD_STATUS_UNREAD));
 		} else if(Constant.ADMIN_LEAD_STATUS_All.equals(status)){
-			model.put("leads", utils.allLead());
+			model.put("leads", applicationUtils.allLead());
 		}
 		else {
 			model.put("leads", "No data found");
 		}
-
 		return model;
+	}
+	
+	@RequestMapping(value = { "/delete/{uniqueId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object deleteCategory(@PathVariable String uniqueId) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		ProductCategory productCategory =  applicationUtils.getCategory(Integer.parseInt(uniqueId));
+		applicationUtils.deleteCategory(productCategory);
+		model.put("message", "Category deleted successfully");
+		return model; 
 	}
 	
 	@RequestMapping(value = { "/enquiry-list" }, method = RequestMethod.GET)
@@ -81,8 +85,6 @@ public class AdminDataController {
 		int limit = Constant.PAGINATION_LIMIT;
 		int startingPage = Integer.parseInt(request.getParameter("pageNo"));
 		model.put("vendorEnquirys", vendorService.getBusinessEnquiryList(limit,startingPage));
-		System.out.println(">>>>>>>>>>>>>>>>");
-		System.out.println(vendorService.getBusinessEnquiryList(limit,startingPage));
 		return model;
 	}
 	
@@ -95,18 +97,17 @@ public class AdminDataController {
 		return model;
 	}
 	
-	
 	@RequestMapping(value = { "/product-category-list" }, method = RequestMethod.GET)
 	public  @ResponseBody Object productCategoryList(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("categoryList", utils.getAllCategory());
+		model.put("categoryList", applicationUtils.getAllCategory());
 		return model;
 	}
 	
 	@RequestMapping(value = { "/register-category/{categoryId}" }, method = RequestMethod.GET)
 	public @ResponseBody Object editCategory(@PathVariable int categoryId, HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("thisCategory", utils.getCategory(categoryId));
+		model.put("thisCategory", applicationUtils.getCategory(categoryId));
 		return model;
 	}
 	
@@ -154,12 +155,12 @@ public class AdminDataController {
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
 	public @ResponseBody Object updateVendorPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		Account loginUser = utils.getLoggedInUser();
+		Account loginUser = applicationUtils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
 		String newpassword=forgetPasswordBean.getNewPassword();
-		if (utils.matchPassword(uiOldpassword, dbPassword)) {
-			loginUser.setPassword(utils.encryptPassword(newpassword));
+		if (applicationUtils.matchPassword(uiOldpassword, dbPassword)) {
+			loginUser.setPassword(applicationUtils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
 		} else {
 			model.put("result", "Failure");
@@ -176,7 +177,7 @@ public class AdminDataController {
 		String leadStatus =	request.getParameter("status");
 		System.out.println("leadStatus >> "+leadStatus);
 		
-		VendorLead thisLead = utils.getLeadById(leadId);
+		VendorLead thisLead = applicationUtils.getLeadById(leadId);
 		
 		if (Constant.ADMIN_LEAD_STATUS_READ.equals(leadStatus)) {
 			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_READ);
@@ -184,7 +185,7 @@ public class AdminDataController {
 			thisLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_UNREAD);
 		}
 		
-		utils.updateLead(thisLead);
+		applicationUtils.updateLead(thisLead);
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("isStatusUpdated", "yes");
@@ -194,8 +195,8 @@ public class AdminDataController {
 	@RequestMapping(value = { "/allLead" }, method = RequestMethod.GET)
 	public @ResponseBody Object allLead(HttpServletRequest request) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		System.out.println("utils>>>"+utils.allLead());
-		model.put("allLead", utils.allLead());
+		System.out.println("utils>>>"+applicationUtils.allLead());
+		model.put("allLead", applicationUtils.allLead());
 		return model;
 		
 	}
