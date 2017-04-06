@@ -1,6 +1,8 @@
 package com.rjn.controller.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -10,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rjn.bean.ChangePassworddBean;
 import com.rjn.bean.SearchBean;
@@ -128,7 +132,8 @@ public class MemberNavigationController {
 	}
 	
 	@RequestMapping(value = { "/change-password" }, method = RequestMethod.POST)
-	public String updateMemberPassword(@Valid ChangePassworddBean forgetPasswordBean,BindingResult result, ModelMap model) {
+	public @ResponseBody Object updateMemberPassword(@RequestBody ChangePassworddBean forgetPasswordBean) {
+		Map<String, Object> model1 = new HashMap<String, Object>();
 		Account loginUser = applicationUtils.getLoggedInUser();
 		String dbPassword = loginUser.getPassword();
 		String uiOldpassword =forgetPasswordBean.getOldPassword();
@@ -137,9 +142,12 @@ public class MemberNavigationController {
 		if (applicationUtils.matchPassword(uiOldpassword, dbPassword)) {
 			loginUser.setPassword(applicationUtils.encryptPassword(newpassword));
 			accountService.updatePassword(loginUser);
+			model1.put("result", "Success");
+			return model1;
 		} else {
-			return "wrong-password";
+			model1.put("result", "Failure");
+			return model1;
 		}
-		return null;
+		//return null;
 	}
 }
