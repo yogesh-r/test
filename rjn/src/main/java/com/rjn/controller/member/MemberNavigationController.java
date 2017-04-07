@@ -67,12 +67,7 @@ public class MemberNavigationController {
 	
 	@RequestMapping(value = { "/search"}, method = RequestMethod.GET)
 	public String memberSearch(ModelMap model, HttpServletRequest request) {
-		Object object =  request.getSession().getAttribute("authorities");
-		List loginUser  = (List)object;
-		if (loginUser != null) {
-			model.put("headerType", loginUser.get(0));
-		}
-		
+		model.put("headerType", Constant.ROLE_MEMBER);
 		String productKeyword = (String) request.getParameter("thisProduct");
 		int cityId = Integer.valueOf(request.getParameter("cityId"));
 
@@ -95,28 +90,7 @@ public class MemberNavigationController {
 	public String paernerHome(ModelMap model, HttpServletRequest request, @PathVariable String vendorId) {
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
-		Account loginUser = applicationUtils.getLoggedInUser();
-		CustomerProfile profileMaster = getMemberDetails(loginUser.getReg_id());
-		
-		VendorLead vendorLead = applicationUtils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
-		if (vendorLead == null) {
-			vendorLead = new VendorLead();
-		}
-		vendorLead.setVendorId(thisVendor.getId());
-		vendorLead.setVendorName(thisVendor.getVendorFirstName());
-		vendorLead.setUserId(loginUser.getId());
-		vendorLead.setName(loginUser.getMy_user_name());
-		
-		vendorLead.setMobileNo(profileMaster.getContactMobileNo());
-		vendorLead.setAddress(profileMaster.getAddress());
-		vendorLead.setEmail(profileMaster.getContactEmailId());
-		
-		int count = 0;
-		if (vendorLead.getId() != null) {
-			count = vendorLead.getVisitCount() + 1;
-			vendorLead.setVisitCount(count);
-		}
-		applicationUtils.saveVendorLead(vendorLead);
+		generateLeads(thisVendor);
 		model.put("headerType", Constant.ROLE_MEMBER);
 		model.put("url", "member");
 		return "vendor-profile/vendor-profile";
@@ -124,15 +98,10 @@ public class MemberNavigationController {
 	
 	@RequestMapping(value = { "/{vendorId}/product-list" }, method = RequestMethod.GET)
 	public String productData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
-		Object object =  request.getSession().getAttribute("authorities");
-		List loginUser  = (List)object;
-		if (loginUser != null) {
-			model.put("headerType", loginUser.get(0));
-		}
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
-		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
-		
+		generateLeads(thisVendor);
+		model.put("headerType", Constant.ROLE_MEMBER);
 		List<ProductCategory> product=productService.getProductDetails();
 		model.addAttribute("product", product);
 		model.put("url", "member");
@@ -141,28 +110,21 @@ public class MemberNavigationController {
 	
 	@RequestMapping(value = { "/{vendorId}/map" }, method = RequestMethod.GET)
 	public String mapData(HttpServletRequest request,ModelMap model, @PathVariable String vendorId){
-		Object object =  request.getSession().getAttribute("authorities");
-		List loginUser  = (List)object;
-		if (loginUser != null) {
-			model.put("headerType", loginUser.get(0));
-		}
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
+		generateLeads(thisVendor);
 		model.addAttribute("thisVendor", thisVendor);
+		model.put("headerType", Constant.ROLE_MEMBER);
 		model.put("url", "member");
 		return "vendor-profile-map";
 	}
 	
 	@RequestMapping(value = { "/{vendorId}/branch-list" }, method = RequestMethod.GET)
 	public String branchList(HttpServletRequest request,ModelMap model,@PathVariable String vendorId) {
-		Object object =  request.getSession().getAttribute("authorities");
-		List loginUser  = (List)object;
-		if (loginUser != null) {
-			model.put("headerType", loginUser.get(0));
-		}
 		VendorProfile thisVendor = vendorService.getVendor(vendorId);
 		model.addAttribute("thisVendor", thisVendor);
 		List<BranchProfile> branch_details=branchService.getBranchByVendor(vendorId);
 		model.addAttribute("branch",branch_details);
+		model.put("headerType", Constant.ROLE_MEMBER);
 		model.put("url", "member");
 		return "vendor-profile/vendor-profile-branches";
 	}
@@ -204,10 +166,37 @@ public class MemberNavigationController {
 			model1.put("result", "Failure");
 			return model1;
 		}
-		//return null;
 	}
 	// *************************** private methods ***************************
 	private CustomerProfile getMemberDetails(String regId){
 		return memberService.getProfileMasterByprofileNumber(regId);
+	}
+	
+	private void generateLeads(VendorProfile thisVendor) {
+		Account loginUser = applicationUtils.getLoggedInUser();
+		CustomerProfile profileMaster = getMemberDetails(loginUser.getReg_id());
+		VendorLead vendorLead = applicationUtils.getLeadsByVendorAndUserId(loginUser.getId(), thisVendor.getId());
+		if (vendorLead == null) {
+			vendorLead = new VendorLead();
+		}
+		vendorLead.setVendorId(thisVendor.getId());
+		vendorLead.setVendorName(thisVendor.getVendorFirstName());
+		vendorLead.setUserId(loginUser.getId());
+		vendorLead.setName(loginUser.getMy_user_name());
+		
+		vendorLead.setMobileNo(profileMaster.getContactMobileNo());
+		vendorLead.setAddress(profileMaster.getAddress());
+		vendorLead.setEmail(profileMaster.getContactEmailId());
+		
+		int count = 0;
+		if (vendorLead.getId() != null) {
+			count = vendorLead.getVisitCount() + 1;
+			vendorLead.setVisitCount(count);
+		}
+		vendorLead.setAdminStatus(Constant.ADMIN_LEAD_STATUS_UNREAD);
+		vendorLead.setVendorStatus(Constant.VENDOR_LEAD_STATUS_UNREAD);
+		
+		applicationUtils.saveVendorLead(vendorLead);
+		
 	}
 }
