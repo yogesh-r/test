@@ -71,6 +71,11 @@ public class AdminNavigationController {
 		return "admin/upload_test";
 	}
 	
+	@RequestMapping(value = { "/autocomplete" }, method = RequestMethod.GET)
+	public String tewqdsting(ModelMap model, HttpServletRequest request) {
+		return "common-jsp/add_branch";
+	}
+	
 	@RequestMapping(value = { "/excel-read-test" }, method = RequestMethod.GET)
 	public String testing11(ModelMap model, HttpServletRequest request) {
 		return "admin/excel-read-test";
@@ -224,6 +229,9 @@ public class AdminNavigationController {
 	public String vendorList(ModelMap model) {
 		long count = countService.getVendorProfileRowCount();
 		model.addAttribute("vendorProfileRowCount", count);
+		
+		model.put("cityList", applicationUtils.getCitiesByState(Constant.STATE_CHHATTISGARH));
+		
 		return "admin/vendor-list";
 	}
 

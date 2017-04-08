@@ -1,79 +1,30 @@
-<script
+			<script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdrHIPbEWvJF1K_BCTfKS9Aupm54Q9KGk&libraries=places&callback=initAutocomplete"
 	async defer></script>
-
 
 <div class="form-group">
 	<label class="control-label col-sm-2">Address:</label>
 	<div class="col-sm-10">
 		<input id="autocomplete" name="address" placeholder="Enter your address"
-			value="${thisBranch.address}" type="text" class="form-control"></input>
+			ng-model="editVendor.address" value="{{editVendor.address}}" type="text" class="form-control"></input>
 	</div>
 </div>
 
 <div class="form-group">
-	<label class="control-label col-sm-2">Address Line 1:</label>
+	<label class="control-label col-sm-2">Latitude:</label>
 	<div class="col-sm-10">
-		<input value="${thisBranch.address}" class="field form-control"
-			id="street_number" name="addr" placeholder="Enter Your Door No."
-			required></input>
+		<input id="latitude" disabled
+			ng-model="editVendor.latitude" value="{{editVendor.latitude}}" type="text" class="form-control"></input>
 	</div>
 </div>
 
 <div class="form-group">
-	<label class="control-label col-sm-2">Address Line 2:</label>
+	<label class="control-label col-sm-2">Longitude:</label>
 	<div class="col-sm-10">
-		<input value="${thisBranch.address}" class="field form-control"
-			id="route" name="route"></input>
+		<input id="longitude" disabled
+			ng-model="editVendor.longitude" value="{{editVendor.longitude}}" type="text" class="form-control"></input>
 	</div>
 </div>
-
-<div class="form-group">
-	<label class="control-label col-sm-2">Location:</label>
-	<div class="col-sm-10">
-		<input class="field form-control" value="${thisBranch.location}"
-			id="sublocality_level_1" name="location" readOnly required></input>
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="control-label col-sm-2">City:</label>
-	<div class="col-sm-10">
-		<input class="field form-control" id="locality"
-			value="${thisBranch.city}" name="city" required readOnly></input>
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="control-label col-sm-2">State:</label>
-	<div class="col-sm-10">
-		<input class="field form-control" name="state"
-			value="${thisBranch.state}" id="administrative_area_level_1" readOnly></input>
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="control-label col-sm-2">Country:</label>
-	<div class="col-sm-10">
-		<input value="${thisBranch.country}" class="field form-control"
-			name="country" id="country" readOnly></input>
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="control-label col-sm-2">ZipCode:</label>
-	<div class="col-sm-10">
-		<input type="text" name="zipcode" id="postal_code"
-			value="${thisBranch.zipcode}" class="field form-control" readOnly>
-	</div>
-</div>
-
-<input type="hidden" class="field form-control" id="latitude"
-	value="${thisBranch.latitude}" name="latitude"></input>
-<input type="hidden" class="field form-control" id="longitude"
-	value="${thisBranch.longitude}" name="longitude"></input>
-<input type="hidden" class="field form-control" value="${thisBranch.id}"
-	name="id"></input>
 
 <script type="text/javascript">
 	var placeSearch, autocomplete;
@@ -142,7 +93,7 @@
 				var longitude = position.coords.longitude;
 				document.getElementById("latitude").value = latitude;
 				document.getElementById("longitude").value = longitude;
-
+			    
 				autocomplete.setBounds(new google.maps.LatLngBounds(
 						geolocation, geolocation));
 			});

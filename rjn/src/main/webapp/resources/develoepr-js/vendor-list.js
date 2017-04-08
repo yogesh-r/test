@@ -43,6 +43,16 @@ RJN.controller('vendorListCtrl', [ '$scope', '$http' , function ($scope, $http) 
  		});
     };
 	$scope.saveVendor = function(thisVendorForm) {
+		
+		var latitude =  angular.element('#latitude').val();
+		var longitude =  angular.element('#longitude').val();
+		// angular.element( document.querySelector( '#latitude' ) );
+		console.log(latitude);
+		console.log(longitude);
+		
+		thisVendorForm.latitude = latitude; 
+		thisVendorForm.longitude = longitude; 
+
 		$http.post(_context+'/admin/register-vendor', thisVendorForm).then(function(response) {
 			$scope.editVendor = {};
 			toastr.success('Successfully Saved');
