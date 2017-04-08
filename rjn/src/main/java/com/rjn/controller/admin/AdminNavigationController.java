@@ -240,12 +240,19 @@ public class AdminNavigationController {
 		List<VendorProfile> vendorDetails = vendorService.getAllVendors(Constant.NOT_APPLICABLE, Constant.NOT_APPLICABLE);
 		model.addAttribute("vendorDetails", vendorDetails);
 		model.addAttribute("allVendors", "Yes");
+		model.put("cityList", applicationUtils.getCitiesByState(Constant.STATE_CHHATTISGARH));
+		model.put("vendorList", vendorService.getAllVendors( Constant.NOT_APPLICABLE, Constant.NOT_APPLICABLE));
 		return "admin/branch-list";
 	}
 
 	@RequestMapping(value = { "/city-list" }, method = RequestMethod.GET)
 	public String cityList(ModelMap model) {
 		return "admin/city-list";
+	}
+	
+	@RequestMapping(value = { "/analysis" }, method = RequestMethod.GET)
+	public String analysis(ModelMap model) {
+		return "admin/admin-analysis";
 	}
 
 	@RequestMapping(value = { "/location-list" }, method = RequestMethod.GET)

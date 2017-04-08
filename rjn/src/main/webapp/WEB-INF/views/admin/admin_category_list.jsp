@@ -11,7 +11,6 @@
 			class="form-control btn-primary pull-left">Add</button>
 	</div>
 
-
 	<div ng-if="displayAddForm">
 		<div class="row">
 			</br>
