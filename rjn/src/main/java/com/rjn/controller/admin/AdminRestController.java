@@ -126,18 +126,18 @@ public class AdminRestController {
 	}
 	
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
-	public @ResponseBody Object paernerSaveRegister(@RequestBody  BranchProfile branchMasterDetails) {
+	public @ResponseBody Object paernerSaveRegister(@RequestBody  BranchProfile branchProfile) {
 		Map<String,Object>model=new HashMap<String,Object>();
-		if (branchMasterDetails.getId() == null||"".equals(branchMasterDetails.getId())){
+		if (branchProfile.getId() == null|| "".equals(branchProfile.getId())){
 			Calendar cal = Calendar.getInstance();
 		    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		    String currentDate = sdf.format(cal.getTime());
 			SeqId seqId = seqGenerator.getSeqId(SeqConstant.BRANCH_UNIQUE_SEQ);
 			String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
-			branchMasterDetails.setUniqueId(bracnhUniqueId);
-			branchService.saveBranch(branchMasterDetails);
+			branchProfile.setUniqueId(bracnhUniqueId);
+			branchService.saveBranch(branchProfile);
 		}else{
-		    branchService.updateBranch(branchMasterDetails);
+		    branchService.updateBranch(branchProfile);
 		}
 		model.put("thisCategory", "success");
 		return model;

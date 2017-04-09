@@ -30,7 +30,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<img src="${rc.getContextPath()}/resources/img/" alt="Corp Yogi"
+				<img src="${rc.getContextPath()}/resources/img/"
 					style="cursor: pointer;"></img>
 			</div>
 			<div class="collapse navbar-collapse"

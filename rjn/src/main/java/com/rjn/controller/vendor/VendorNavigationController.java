@@ -180,15 +180,21 @@ public class VendorNavigationController {
 	}
 
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
-	public @ResponseBody Object paernerSaveRegister(@RequestBody BranchProfile branchMasterDetails) {
+	public @ResponseBody Object paernerSaveRegister(@RequestBody BranchProfile branchProfile) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		Calendar cal = Calendar.getInstance();
-	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	    String currentDate = sdf.format(cal.getTime());
-		SeqId seqId = seqGenerator.getSeqId(SeqConstant.BRANCH_UNIQUE_SEQ);
-		String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
-		branchMasterDetails.setUniqueId(bracnhUniqueId);
-		branchService.saveBranch(branchMasterDetails);
+		if (branchProfile.getId() == null||"".equals(branchProfile.getId())){
+			Calendar cal = Calendar.getInstance();
+		    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		    String currentDate = sdf.format(cal.getTime());
+			SeqId seqId = seqGenerator.getSeqId(SeqConstant.BRANCH_UNIQUE_SEQ);
+			String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
+			branchProfile.setUniqueId(bracnhUniqueId);
+			branchService.saveBranch(branchProfile);
+		}else{
+		    branchService.updateBranch(branchProfile);
+		}
+		
+		
 		model.put("message", "success");
 		return model;
 	}
@@ -199,6 +205,7 @@ public class VendorNavigationController {
 		model.addAttribute("vendorDetails", getLoginVendorDetails());
 		List<BranchProfile> branchList =  branchService.getBranchByVendor(loginUser.getReg_id());
 		model.addAttribute("branchList", branchList);
+		model.put("cityList", applicationUtils.getCitiesByState(Constant.STATE_CHHATTISGARH));
 		return "vendor/vendor-branch-list";
 	}
 

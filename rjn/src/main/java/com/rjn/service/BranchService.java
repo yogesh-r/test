@@ -13,7 +13,7 @@ public interface BranchService {
 	
 	List<BranchProfile> getBranchList(String cityId, String vendorId, String location);
 	
-	void updateBranch(BranchProfile branchMasterDetails);
+	void updateBranch(BranchProfile branchProfile);
 	
 	BranchProfile getBranchByUniqueId(String uniqueId);
 	
@@ -21,7 +21,7 @@ public interface BranchService {
 	BranchProfile getBranchData(int branchId);
 	List<BranchProfile> getBranchDetails();
 	BranchProfile getBranchDetails(String uniqueID);
-	void saveBranch(BranchProfile branchMasterDetails);
+	void saveBranch(BranchProfile branchProfile);
 	
 	
 	

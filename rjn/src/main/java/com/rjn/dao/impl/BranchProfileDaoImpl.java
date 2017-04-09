@@ -47,13 +47,9 @@ public class BranchProfileDaoImpl extends AbstractDao<Integer, BranchProfile> im
 	}
 
 	@Override
-	public void updateBranch(BranchProfile branchMasterDetails) {
-		
-			update(branchMasterDetails); 
-		
+	public void updateBranch(BranchProfile branchProfile) {
+			update(branchProfile); 
 	}
-
-	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -78,8 +74,8 @@ public class BranchProfileDaoImpl extends AbstractDao<Integer, BranchProfile> im
 	}
 
 	@Override
-	public void saveBranch(BranchProfile branchMasterDetails) {
-		persist(branchMasterDetails);
+	public void saveBranch(BranchProfile branchProfile) {
+		persist(branchProfile);
 		
 	}
 }

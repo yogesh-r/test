@@ -385,7 +385,7 @@ public class BranchProfile {
 
 	@Override
 	public String toString() {
-		return "BranchMasterDetails [id=" + id + ", uniqueId=" + uniqueId + ", branchName=" + branchName
+		return "BranchProfile [id=" + id + ", uniqueId=" + uniqueId + ", branchName=" + branchName
 				+ ", branchOwner=" + branchOwner + ", description=" + description + ", startDate=" + startDate
 				+ ", contactno=" + contactNo + ", emailid=" + emailId + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", country=" + country + ", zipcode=" + zipcode + ", status=" + status

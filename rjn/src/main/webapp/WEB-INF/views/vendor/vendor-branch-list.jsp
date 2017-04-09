@@ -49,68 +49,21 @@
 						class="form-control" rows="4" maxlength="500" required>{{thisBranch.description}}</TEXTAREA>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Address:</label>
-				<div class="col-sm-10">
-					<input ng-model="thisBranch.address" id="autocomplete"
-						name="address" placeholder="Enter your address"
-						value="{{thisBranch.address}}" type="text" class="form-control"></input>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">City:</label>
+					<div class="col-sm-10">
+						<select name="cityId" class="form-control">
+							<c:forEach items="${cityList}" var="thisCity">
+								<option value="${thisCity.id}">${thisCity.city}</option>
+							</c:forEach>
+						</select>
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Address Line 1:</label>
-				<div class="col-sm-10">
-					<input ng-model="thisBranch.address" value="{{thisBranch.address}}"
-						class="field form-control" id="street_number" name="addr"
-						placeholder="Enter Your Door No." required></input>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Address Line 2:</label>
-				<div class="col-sm-10">
-					<input ng-model="thisBranch.address" value="{{thisBranch.address}}"
-						class="field form-control" id="route" name="route"></input>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Location:</label>
-				<div class="col-sm-10">
-					<input ng-model="thisBranch.location" class="field form-control"
-						value="{{thisBranch.location}}" id="sublocality_level_1"
-						name="location" readOnly required></input>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">City:</label>
-				<div class="col-sm-10">
-					<input ng-model="thisBranch.city" class="field form-control"
-						id="locality" value="{{thisBranch.city}}" name="city" required
-						readOnly></input>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">State:</label>
-				<div class="col-sm-10">
-					<input ng-model="thisBranch.state" class="field form-control"
-						name="state" value="{{thisBranch.state}}"
-						id="administrative_area_level_1" readOnly></input>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Country:</label>
-				<div class="col-sm-10">
-					<input ng-model="thisBranch.country" value="{{thisBranch.country}}"
-						class="field form-control" name="country" id="country" readOnly></input>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">ZipCode:</label>
-				<div class="col-sm-10">
-					<input ng-model="thisBranch.zipcode" type="text" name="zipcode"
-						id="postal_code" value="{{thisBranch.zipcode}}"
-						class="field form-control" readOnly>
-				</div>
-			</div>
+			
+				<%@include file="../auto-complete-branch.jsp"%>
+				
+				
 			<input ng-model="thisBranch.latitude" type="hidden"
 				class="field form-control" id="latitude"
 				value="{{thisBranch.latitude}}" name="latitude"></input> <input

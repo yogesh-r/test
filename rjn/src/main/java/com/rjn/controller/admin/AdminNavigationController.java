@@ -269,14 +269,14 @@ public class AdminNavigationController {
 	}
  
 	@RequestMapping(value = { "/register-branch" }, method = RequestMethod.POST)
-	public String paernerSaveRegister(@Valid BranchProfile branchMasterDetails, BindingResult result, ModelMap model) {
+	public String paernerSaveRegister(@Valid BranchProfile branchProfile, BindingResult result, ModelMap model) {
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	    String currentDate = sdf.format(cal.getTime());
 		SeqId seqId = seqGenerator.getSeqId(SeqConstant.BRANCH_UNIQUE_SEQ);
 		String bracnhUniqueId = seqId.getSeqName() + "-" + currentDate + "-"+ seqId.getSeqNum();
-		branchMasterDetails.setUniqueId(bracnhUniqueId);
-		branchService.saveBranch(branchMasterDetails);
+		branchProfile.setUniqueId(bracnhUniqueId);
+		branchService.saveBranch(branchProfile);
 		return "vendor/vendor_register-branch";
 	}
 	

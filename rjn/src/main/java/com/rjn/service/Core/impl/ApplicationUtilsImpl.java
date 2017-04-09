@@ -33,7 +33,7 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	private AccountDao accountDao;
 	
 	@Autowired
-	private BranchProfileDao branchMasterDetailsDao;
+	private BranchProfileDao branchProfileDao;
 	
 	@Autowired
 	private CityDao cityDao;
@@ -75,8 +75,8 @@ public class ApplicationUtilsImpl implements ApplicationUtils {
 	}
 	
 	private boolean checkUniqueIdIsAvailableOrNot(String uniqueId) {
-		 BranchProfile branchMasterDetails =  branchMasterDetailsDao.getBranchByUniqueId(uniqueId);
-		 if (branchMasterDetails == null) {
+		 BranchProfile branchProfile =  branchProfileDao.getBranchByUniqueId(uniqueId);
+		 if (branchProfile == null) {
 			 // not available
 			 return false;
 		 } else {
