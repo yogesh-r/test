@@ -3,6 +3,7 @@ package com.rjn.controller.admin;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import com.rjn.model.core.ProductCategory;
 import com.rjn.model.core.VendorLead;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
+import com.rjn.service.VendorProductService;
 import com.rjn.service.VendorService;
 import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.SequenceGeneratorService;
@@ -47,6 +49,9 @@ public class AdminRestController {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private VendorProductService productService;
 
 	@RequestMapping(value = { "/branch-list" }, method = RequestMethod.GET)
 	public @ResponseBody ModelMap branchList(ModelMap model) {
@@ -193,5 +198,22 @@ public class AdminRestController {
 		return model;
 		
 	}
+	
+	@RequestMapping(value = { "/arnab/{vendorId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object arnab(HttpServletRequest request,@PathVariable String vendorId) {
+		Map<String,Object>model=new HashMap<String,Object>();
+		model.put("thisBranch", branchService.getBranchByVendor(vendorId));
+		return model;
+		
+	}
+	
+	@RequestMapping(value = { "/getData/{vendorId}/{branchId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object getData(HttpServletRequest request,@PathVariable String vendorId,@PathVariable int branchId) {
+		Map<String,Object>model=new HashMap<String,Object>();
+		model.put("getData", productService.getProductByVendorAndBranch(vendorId, branchId));
+		return model;
+		
+	}
+	
 	
 }

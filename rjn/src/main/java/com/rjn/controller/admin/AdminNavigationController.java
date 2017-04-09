@@ -315,4 +315,11 @@ public class AdminNavigationController {
 	public String enquiry_list(ModelMap model) {
 		return "admin/enquiry_list";
 	}
+	
+	@RequestMapping(value = { "/admin-product-list" }, method = RequestMethod.GET)
+	public String ProductList(ModelMap model) {
+		List<VendorProfile> vendorProfile=vendorService.getVendor();
+		model.addAttribute("vendorProfile", vendorProfile);
+		return "admin/admin_product_list";
+	}
 }

@@ -12,4 +12,5 @@ public interface VendorProductDao {
 	List<String> getKeyWord();
 	public long getRowCount();
 	void deleteProduct(VendorProduct vendorProduct);
+	List<VendorProduct> getProductByVendorAndBranch(String vendorId,int branch);
 }

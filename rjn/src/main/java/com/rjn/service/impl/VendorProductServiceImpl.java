@@ -46,4 +46,9 @@ public class VendorProductServiceImpl implements VendorProductService {
 	public void deleteProduct(VendorProduct vendorProduct) {
 		dao.deleteProduct(vendorProduct);
 	}
+
+	@Override
+	public List<VendorProduct> getProductByVendorAndBranch(String vendorId,int branch) {
+		return dao.getProductByVendorAndBranch(vendorId, branch);
+	}
 }

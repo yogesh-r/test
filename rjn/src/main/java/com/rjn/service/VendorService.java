@@ -14,6 +14,9 @@ public interface VendorService {
     List<CustomerProfile> getAssignedTo(String assignedTo,String vendorID);
     List<BusinessEnquiry> getBusinessEnquiryList(int limit, int startingPage);
     void updateVendorDetails(VendorProfile vendorDetails);
-    void updateVerify(String vendorId, boolean isVerified);	
+    void updateVerify(String vendorId, boolean isVerified);
+    public int verify(String vendorId);
+    List<VendorProfile> getVendor();
+    
 }
  

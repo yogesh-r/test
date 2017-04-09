@@ -11,4 +11,5 @@ public interface VendorProductService {
 	VendorProduct getProductByUniqueID(String uniqueID);
 	List<String> getKeyWord();
 	void deleteProduct(VendorProduct vendorProduct);
+	List<VendorProduct> getProductByVendorAndBranch(String vendorId,int branch);
 }

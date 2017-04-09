@@ -54,6 +54,8 @@
 		<li><a
 			href="${rc.getContextPath()}/admin/vendor-list">Vendors</a></li>
 		<li><a href="${rc.getContextPath()}/admin/branch-list">Branches</a></li>
+		<li><a
+			href="${rc.getContextPath()}/admin/admin-product-list">Product</a></li>
 		<li><a href="${rc.getContextPath()}/admin/leads">Leads</a></li>
 		<li><a href="${rc.getContextPath()}/admin/enquiry-list">Enquiry List</a></li>	
 		<li><a href="${rc.getContextPath()}/admin/analysis">Analysis</a></li>	

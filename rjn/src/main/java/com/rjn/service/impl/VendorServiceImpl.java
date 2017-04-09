@@ -81,4 +81,14 @@ public class VendorServiceImpl implements VendorService {
 	public void updateVendorDetails(VendorProfile vendorDetails) {
 		vendorDetailsDao.updateVendorDetails(vendorDetails);
 	}
+
+	@Override
+	public int verify(String vendorId) {
+		return vendorDetailsDao.verify(vendorId);
+	}
+
+	@Override
+	public List<VendorProfile> getVendor() {
+		return vendorDetailsDao.getVendor();
+	}
 } 

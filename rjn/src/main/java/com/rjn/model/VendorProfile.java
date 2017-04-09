@@ -27,19 +27,19 @@ public class VendorProfile {
 	@Column(name = "vendor_surname", nullable = false)
 	private String vendorSurname;
 	
-	@Column(name = "pan_card_no", nullable = false)
+	@Column(name = "pan_card_no", nullable = true)
 	private String panCardNo;
 	
 	@Column(name = "address", nullable = false)
 	private String address;
 	
-	@Column(name = "city", nullable = false)
+	@Column(name = "city", nullable = true)
 	private int city;
 	
-	@Column(name = "state", nullable = false)
+	@Column(name = "state", nullable = true)
 	private String state;
 	
-	@Column(name = "country", nullable = false)
+	@Column(name = "country", nullable = true)
 	private String country;
 	
 	@Column(name = "p_contact", nullable = false)
@@ -226,4 +226,15 @@ public class VendorProfile {
 	public void setVerified(int verified) {
 		this.verified = verified;
 	}
+
+	@Override
+	public String toString() {
+		return "VendorProfile [id=" + id + ", vendorFirstName=" + vendorFirstName + ", vendorSurname=" + vendorSurname
+				+ ", panCardNo=" + panCardNo + ", address=" + address + ", city=" + city + ", state=" + state
+				+ ", country=" + country + ", pContact=" + pContact + ", email=" + email + ", partnerLogo="
+				+ partnerLogo + ", zipCode=" + zipCode + ", location=" + location + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", verified=" + verified + ", products=" + products + ", password="
+				+ password + ", vendorLogo=" + vendorLogo + "]";
+	}
+	
 }

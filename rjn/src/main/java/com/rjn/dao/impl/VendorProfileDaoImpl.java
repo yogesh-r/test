@@ -3,6 +3,7 @@ package com.rjn.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -58,5 +59,40 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 	public long getRowCount() {
 		Criteria criteria = createEntityCriteria();
 		 return (long) criteria.setProjection(Projections.rowCount()).uniqueResult();
+	}
+
+	@Override
+	public int verify(String vendorId) {
+		System.out.println("inside");
+		//Criteria criteria=createEntityCriteria();
+		//criteria.add(Restrictions.eq("id",vendorId));
+		//return (int) criteria.uniqueResult();
+		//return 0;
+		/*String hql="Select vendor.verified from vendor_profile vendor where vendor.vendor_Id=:vendorId";
+		System.out.println(hql);
+        Query query = getSession().createQuery(hql);
+        query.setParameter("vendorId", vendorId);
+        List value=query.list();
+        if(value.size()>0){
+        	if(value.get(0)==1){
+        		
+        	}
+        }else{
+		return false;
+        }
+        */
+		int data = (int) getSession().createQuery("Select vendor.verified from VendorProfile vendor where vendor.id=:vendorId")
+				.setParameter("vendorId", vendorId)
+				.uniqueResult();
+		System.out.println("data>>>>>>>> "+data);
+		//int result=Integer.parseInt(data);
+		//System.out.println("result>>>> "+result);
+		return data;
+	}
+
+	@Override
+	public List<VendorProfile> getVendor() {
+		Criteria criteria=createEntityCriteria();
+		return (List<VendorProfile>) criteria.list();
 	}
 }

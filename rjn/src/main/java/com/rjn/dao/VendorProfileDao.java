@@ -12,4 +12,6 @@ public interface VendorProfileDao {
 	void updateVerify(String vendorId, boolean isVerified);	
 	
 	public long getRowCount();
+	public int verify(String vendorId);
+	List<VendorProfile> getVendor();
 }

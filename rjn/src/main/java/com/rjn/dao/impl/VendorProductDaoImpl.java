@@ -61,4 +61,13 @@ public class VendorProductDaoImpl extends AbstractDao<Integer, VendorProduct> im
 	public void deleteProduct(VendorProduct vendorProduct) {
 		delete(vendorProduct);
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<VendorProduct> getProductByVendorAndBranch(String vendorId, int branch) {
+		Criteria criteria=createEntityCriteria();
+		criteria.add(Restrictions.eq("vendorId",vendorId));
+		criteria.add(Restrictions.eq("branchId",branch));
+		return (List<VendorProduct>) criteria.list();
+	}
 }
