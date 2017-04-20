@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,7 @@ import com.rjn.model.VendorProfile;
 import com.rjn.model.Branch.BranchProfile;
 import com.rjn.model.core.ProductCategory;
 import com.rjn.model.core.VendorLead;
+import com.rjn.model.product.VendorProduct;
 import com.rjn.service.AccountService;
 import com.rjn.service.BranchService;
 import com.rjn.service.VendorProductService;
@@ -211,6 +213,24 @@ public class AdminRestController {
 	public @ResponseBody Object getData(HttpServletRequest request,@PathVariable String vendorId,@PathVariable int branchId) {
 		Map<String,Object>model=new HashMap<String,Object>();
 		model.put("getData", productService.getProductByVendorAndBranch(vendorId, branchId));
+		return model;
+		
+	}
+	
+	@RequestMapping(value = { "/register-product" }, method = RequestMethod.POST)
+	public @ResponseBody Object saveProduct(@RequestBody VendorProduct vendorProduct) {
+		System.out.println("within controleer");
+		Calendar cal = Calendar.getInstance();
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	    String currentDate = sdf.format(cal.getTime());
+		Map<String,Object>model=new HashMap<String,Object>();
+		SeqId seqId = seqGenerator.getSeqId(SeqConstant.PRODUCT_UNIQUE_SEQ);
+		System.out.println(seqGenerator.getSeqId(SeqConstant.PRODUCT_UNIQUE_SEQ));
+		String unique_id=seqId.getSeqName()+"-"+currentDate+"-"+seqId.getSeqNum();
+		System.out.println("unique_id>>>>> "+unique_id);
+		vendorProduct.setUniqueId(unique_id);
+		productService.saveProduct(vendorProduct);
+		model.put("getData","success");
 		return model;
 		
 	}

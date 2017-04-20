@@ -8,6 +8,9 @@ RJN.controller('adminProductDetails', [ '$scope', '$http' , function ($scope, $h
 	$scope.displayAddForm=false;
 	$scope.productData={};
 	$scope.branchOwner={};
+	$scope.displayAdd=false;
+	$scope.displayDropDown=true;
+	$scope.editProduct={};
 	
 	/*$scope.loadBranchOwner = function() {
 		$http.get(_context+'/admin/rest/arnab').then(function(response) {
@@ -24,12 +27,31 @@ RJN.controller('adminProductDetails', [ '$scope', '$http' , function ($scope, $h
     };
     
     $scope.getData = function() {
-    	//console.log($scope.branchOwner);
-    	//console.log($scope.branchName[0].id);
+    	console.log($scope.branchOwner);
+    	console.log($scope.branchName[0].id);
 		$http.get(_context+'/admin/rest/getData/'+$scope.branchOwner+'/'+$scope.branchName[0].id).then(function(response) {
  			$scope.productData = response.data.getData;
  			$scope.displayAddForm=true;
  		});
     };
+    
+    
+    $scope.addForm = function() {
+		//$scope.editVendor = {};
+		$scope.displayAdd = true;
+		$scope.displayDropDown=false;
+	};
+	
+	$scope.saveProduct=function(editProduct){
+		console.log(editProduct);
+		$http.post(_context+'/admin/rest/register-product', editProduct).then(function(response) {
+			$scope.editProduct={};
+			console.log(">>>>>>>>>"+editProduct);
+			toastr.success('Successfully Saved');
+			$scope.displayAdd = false;
+		});
+		
+	};
+	
 	
 }]);
