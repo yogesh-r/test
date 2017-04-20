@@ -19,6 +19,6 @@ public class SequenceGeneratorDaoImpl extends AbstractDao<Integer, SeqId> implem
 		SeqId sidNew = sid;
 		sidNew.setSeqNum(sid.getSeqNum() + 1);
 		persist(sidNew);
-		return sid;
+		return sidNew;
 	}
 }
