@@ -46,8 +46,6 @@ RJN.controller('vendorListCtrl', [ '$scope', '$http' , function ($scope, $http) 
 		
 		var latitude =  angular.element('#latitude').val();
 		var longitude =  angular.element('#longitude').val();
-		console.log(latitude);
-		console.log(longitude);
 		
 		thisVendorForm.latitude = latitude; 
 		thisVendorForm.longitude = longitude; 

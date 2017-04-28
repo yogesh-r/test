@@ -63,13 +63,11 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 
 	@Override
 	public int verify(String vendorId) {
-		System.out.println("inside");
 		//Criteria criteria=createEntityCriteria();
 		//criteria.add(Restrictions.eq("id",vendorId));
 		//return (int) criteria.uniqueResult();
 		//return 0;
 		/*String hql="Select vendor.verified from vendor_profile vendor where vendor.vendor_Id=:vendorId";
-		System.out.println(hql);
         Query query = getSession().createQuery(hql);
         query.setParameter("vendorId", vendorId);
         List value=query.list();
@@ -84,9 +82,6 @@ public class VendorProfileDaoImpl  extends AbstractDao<Integer, VendorProfile> i
 		int data = (int) getSession().createQuery("Select vendor.verified from VendorProfile vendor where vendor.id=:vendorId")
 				.setParameter("vendorId", vendorId)
 				.uniqueResult();
-		System.out.println("data>>>>>>>> "+data);
-		//int result=Integer.parseInt(data);
-		//System.out.println("result>>>> "+result);
 		return data;
 	}
 

@@ -28,7 +28,6 @@ RJN.controller('vendorBranchListCtrl', [ '$scope', '$http' , function ($scope, $
 	};
 	
 	$scope.saveBranch = function(thisBranch) {
-		console.log(thisBranch);
 		$http.post(_context+'/vendor/register-branch', thisBranch).then(function(response) {
 			$scope.thisBranch = {};
 			toastr.success('Successfully Saved');

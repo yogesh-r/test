@@ -3,16 +3,16 @@ package com.rjn.controller.admin;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -84,6 +84,15 @@ public class AdminRestController {
 		ProductCategory productCategory =  applicationUtils.getCategory(Integer.parseInt(uniqueId));
 		applicationUtils.deleteCategory(productCategory);
 		model.put("message", "Category deleted successfully");
+		return model; 
+	}
+	
+	@RequestMapping(value = { "/delete/product/{uniqueId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object deleteProduct(@PathVariable String uniqueId) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		VendorProduct vendorProduct = productService.getProductByUniqueID(uniqueId);
+		productService.deleteProduct(vendorProduct);
+		model.put("message", "Product deleted successfully");
 		return model; 
 	}
 	
@@ -219,21 +228,25 @@ public class AdminRestController {
 	
 	@RequestMapping(value = { "/register-product" }, method = RequestMethod.POST)
 	public @ResponseBody Object saveProduct(@RequestBody VendorProduct vendorProduct) {
-		System.out.println("within controleer");
 		Calendar cal = Calendar.getInstance();
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	    String currentDate = sdf.format(cal.getTime());
 		Map<String,Object>model=new HashMap<String,Object>();
 		SeqId seqId = seqGenerator.getSeqId(SeqConstant.PRODUCT_UNIQUE_SEQ);
-		System.out.println(seqGenerator.getSeqId(SeqConstant.PRODUCT_UNIQUE_SEQ));
 		String unique_id=seqId.getSeqName()+"-"+currentDate+"-"+seqId.getSeqNum();
-		System.out.println("unique_id>>>>> "+unique_id);
 		vendorProduct.setUniqueId(unique_id);
 		productService.saveProduct(vendorProduct);
 		model.put("getData","success");
 		return model;
-		
 	}
 	
+	
+	@RequestMapping(value = { "/get-product/{uniqueId}" }, method = RequestMethod.GET)
+	public @ResponseBody Object editProduct(@PathVariable String uniqueId) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		VendorProduct vendorProduct = productService.getProductByUniqueID(uniqueId);
+			model.put("thisVendor", vendorProduct);
+		return model; 
+	}
 	
 }
