@@ -49,7 +49,7 @@
 	<a data-toggle="collapse" class="nav-header collapsed"
 		href="#dashboard-menu"><i class="icon-dashboard"></i>Menu</a>
 	<ul class="nav nav-list collapse in" id="dashboard-menu"
-		style="height: 246px;" aria-expanded="true">
+		style="height: 270px;" aria-expanded="true">
 		<li><a href="${rc.getContextPath()}/admin/product-category-list">Category</a></li>
 		<li><a
 			href="${rc.getContextPath()}/admin/vendor-list">Vendors</a></li>
