@@ -5,13 +5,18 @@ import java.util.Map;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.rjn.Exception.CustomException;
+import com.rjn.bean.RegistrationBean;
 import com.rjn.model.BusinessEnquiry;
 import com.rjn.model.CustomerProfile;
 import com.rjn.model.SeqId;
@@ -22,9 +27,11 @@ import com.rjn.service.Core.ApplicationUtils;
 import com.rjn.service.Core.MailService;
 import com.rjn.service.Core.SequenceGeneratorService;
 import com.rjn.utils.SeqConstant;
+import com.rjn.validator.RegistrationValidator;
 
 @Controller
 @RequestMapping("/")
+@ComponentScan("com.rjn.validator")
 public class HeaderController {
 	
 	private static final Logger logr = Logger.getLogger(HeaderController.class);
@@ -44,6 +51,9 @@ public class HeaderController {
 	@Autowired 
 	private MailService mailService;
 	
+	@Autowired
+	private RegistrationValidator registrationValidator;
+	
 	@RequestMapping(value = { "/contact-us"}, method = RequestMethod.GET)
 	public String contact(ModelMap model) {
 		return "contact-us";
@@ -56,19 +66,35 @@ public class HeaderController {
 	
 	@RequestMapping(value = { "/member/register"}, method = RequestMethod.GET)
 	public String memberRegister(ModelMap model) {
+		model.addAttribute("vendor", new RegistrationBean());
 		return "member-register"; 
 	}
 
 	@RequestMapping(value = { "/member/register"}, method = RequestMethod.POST)
-	public String saveMemberRegisteration(@Valid CustomerProfile profileMaster, BindingResult result, ModelMap model, RedirectAttributes redirectAttributes) {
-		String unEncryptPass = profileMaster.getPassword();
-		profileMaster.setPassword(applicationUtils.encryptPassword(unEncryptPass));
-		SeqId seqId = seqGenerator.getSeqId(SeqConstant.CUSTOMER_SEQ);
-		String profileNumber = seqId.getSeqName() +"-"+ seqId.getSeqNum();
-		profileMaster.setProfileNumber(profileNumber);
-		model.addAttribute("profileNumber", profileNumber);
-		model.addAttribute("contactEmail" ,profileMaster.getContactEmailId());
-		headerService.saveMemberRegistration(profileMaster);
+	public String saveMemberRegisteration(@ModelAttribute("vendor")RegistrationBean registrationBean, BindingResult result, 
+			ModelMap model, RedirectAttributes redirectAttributes) {
+		registrationValidator.validate(registrationBean, result);
+		if(result.hasErrors()){
+			model.addAttribute("errorMessage", "Please corect the below errors.");
+			model.addAttribute("vendor", registrationBean);
+			return "member-register";
+		}
+		
+		try {
+			String unEncryptPass = registrationBean.getPassword();
+			registrationBean.setPassword(applicationUtils.encryptPassword(unEncryptPass));
+			SeqId seqId = seqGenerator.getSeqId(SeqConstant.CUSTOMER_SEQ);
+			String profileNumber = seqId.getSeqName() +"-"+ seqId.getSeqNum();
+			registrationBean.setProfileNumber(profileNumber);
+			model.addAttribute("profileNumber", profileNumber);
+			model.addAttribute("contactEmail" ,registrationBean.getContactEmailId());
+			headerService.saveMemberRegistration(registrationBean);
+		} catch (CustomException e) {
+			logr.error(e.getMessage());
+			model.addAttribute("vendor", registrationBean);
+			model.addAttribute("errorMessage", e.getMessage());
+			return "member-register";
+		}
 		return "member-register-success";
 	}
 

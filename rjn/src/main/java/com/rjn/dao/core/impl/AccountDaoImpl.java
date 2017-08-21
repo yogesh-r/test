@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
+import com.rjn.Exception.CustomException;
 import com.rjn.dao.core.AbstractDao;
 import com.rjn.dao.core.AccountDao;
 import com.rjn.model.Account;
@@ -17,7 +18,7 @@ import com.rjn.model.Account;
 @Repository("accountDao")
 public class AccountDaoImpl extends AbstractDao<Integer, Account> implements AccountDao {
 
-	public Account findByUserName(String username) {
+	public Account findByUserName(String username) throws CustomException{
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("my_user_name", username));
 		return (Account) criteria.uniqueResult();

@@ -1,8 +1,13 @@
 package com.rjn.service.impl;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.rjn.Exception.CustomException;
+import com.rjn.bean.RegistrationBean;
 import com.rjn.dao.BusinessEnquiryDao;
 import com.rjn.dao.PasswordResetTokenDao;
 import com.rjn.dao.ProfileMasterDao;
@@ -17,6 +22,8 @@ import com.rjn.utils.Constant;
 @Service("headerService")
 @Transactional 
 public class HeaderServiceImpl implements HeaderService  { 
+	
+	private final static Logger logger = Logger.getLogger(HeaderServiceImpl.class);
 
 	@Autowired
 	private ProfileMasterDao profileMasterdao;
@@ -31,13 +38,26 @@ public class HeaderServiceImpl implements HeaderService  {
 	private PasswordResetTokenDao passwordResetTokenDao;
 
 	@Override
-	public void saveMemberRegistration(CustomerProfile profileMaster) {
-		profileMasterdao.saveMemberRegister(profileMaster);
-		Account account = new Account();
-		account.setMy_user_name(profileMaster.getContactEmailId());
-		account.setPassword(profileMaster.getPassword()); 
-		account.setReg_id(profileMaster.getProfileNumber());
-		accountDao.save(account, Constant.ROLE_MEMBER);
+	public void saveMemberRegistration(RegistrationBean registrationBean) throws CustomException{
+		Account account = null;
+		try{
+			account = accountDao.findByUserName(registrationBean.getContactEmailId());
+			if(account != null){
+				throw new CustomException("Email Id is exist");
+			} else {
+				CustomerProfile profileMaster = new CustomerProfile();
+				BeanUtils.copyProperties(registrationBean, profileMaster);
+				profileMasterdao.saveMemberRegister(profileMaster);
+				account = new Account();
+				account.setMy_user_name(registrationBean.getContactEmailId());
+				account.setPassword(registrationBean.getPassword()); 
+				account.setReg_id(registrationBean.getProfileNumber());
+				accountDao.save(account, Constant.ROLE_MEMBER);
+			}
+		}catch(CustomException lE){
+			logger.error("custom exception "+lE);
+			throw new CustomException(lE.getMessage());
+		}
 	}
 
 	@Override
