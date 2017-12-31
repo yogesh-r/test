@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.rjn.Exception.CustomException;
 import com.rjn.model.Account;
 import com.rjn.model.Role;
 import com.rjn.service.AccountService;
@@ -25,7 +26,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException { 
 		// TODO Auto-generated method stub
-		Account acocunt = accountService.findByUserName(username);
+		Account acocunt = null;
+		try {
+			acocunt = accountService.findByUserName(username);
+		} catch (CustomException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (acocunt == null) {
 			return null;
 		}
